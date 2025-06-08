@@ -3,394 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixelated Windows 3.x Toy OS</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles to achieve pixelated Windows 3.x look */
-        body {
-            font-family: 'Inter', sans-serif; /* Fallback for pixelated effect */
-            overflow: hidden; /* Prevent scrolling if windows go out of bounds */
-            -webkit-font-smoothing: none; /* For pixelated text look in some browsers */
-            image-rendering: pixelated; /* Ensures images/icons look pixelated if scaled */
-            background-color: #008080; /* Classic Windows 3.x Teal/Cyan background */
-        }
-
-        .desktop {
-            width: 100vw;
-            height: 100vh;
-            background-color: #008080; /* Windows 3.x desktop color */
-            position: relative; /* For absolute positioning of windows */
-            display: flex;
-            flex-wrap: wrap;
-            padding: 1rem;
-            align-content: flex-start; /* Aligns icons to the top-left */
-        }
-
-        .desktop-icon {
-            width: 64px; /* Icon size */
-            height: 80px; /* Icon + text height */
-            margin: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            cursor: pointer;
-            color: white;
-            font-size: 0.75rem; /* text-xs */
-            user-select: none; /* Prevent text selection on drag */
-            text-shadow: 1px 1px 0px black; /* Simple pixelated shadow */
-            -webkit-font-smoothing: none; /* For pixelated text look */
-            image-rendering: pixelated; /* Ensures icons look pixelated */
-        }
-
-        .desktop-icon img {
-            width: 48px; /* Image size */
-            height: 48px;
-            margin-bottom: 0.25rem;
-            image-rendering: pixelated;
-        }
-
-        .window-frame {
-            position: absolute;
-            background-color: #c0c0c0; /* Standard gray window background */
-            border-top: 2px solid #ffffff;
-            border-left: 2px solid #ffffff;
-            border-right: 2px solid #808080;
-            border-bottom: 2px solid #808080;
-            box-shadow: 2px 2px 0px 0px #000000; /* Outer black shadow */
-            min-width: 200px;
-            min-height: 100px;
-            resize: both; /* Allow resizing */
-            overflow: hidden; /* Hide scrollbars if content overflows for resizing */
-        }
-
-        .title-bar {
-            background: linear-gradient(to right, #000080, #1080d0); /* Blue gradient title bar */
-            color: white;
-            font-weight: bold;
-            padding: 2px 4px; /* Smaller padding */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 20px; /* Fixed height for title bar */
-            border-bottom: 1px solid #c0c0c0; /* Separator for title bar */
-            cursor: grab;
-            user-select: none;
-            -webkit-font-smoothing: none;
-        }
-
-        .title-bar-buttons {
-            display: flex;
-        }
-
-        .title-bar-button {
-            width: 14px; /* Smaller buttons */
-            height: 14px;
-            background-color: #c0c0c0;
-            border-top: 1px solid #ffffff;
-            border-left: 1px solid #ffffff;
-            border-right: 1px solid #808080;
-            border-bottom: 1px solid #808080;
-            margin-left: 2px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem; /* Smaller text for buttons */
-            color: #000000;
-            -webkit-font-smoothing: none;
-        }
-
-        .title-bar-button:active {
-            border-top: 1px solid #808080;
-            border-left: 1px solid #808080;
-            border-right: 1px solid #ffffff;
-            border-bottom: 1px solid #ffffff;
-        }
-
-        .window-content {
-            padding: 0.5rem;
-            border: 1px solid #808080; /* Inset border for content area */
-            border-top: none;
-            height: calc(100% - 20px); /* Adjust height for title bar */
-            overflow: auto; /* For scrollable content */
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
-            background-color: #c0c0c0; /* Standard content background */
-        }
-
-        /* Specific styles for the "Start" bar, mimicking Program Manager/Taskbar */
-        .program-manager-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #c0c0c0;
-            border-top: 2px solid #ffffff;
-            border-left: 2px solid #ffffff;
-            border-right: 2px solid #808080;
-            border-bottom: 2px solid #808080;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            padding: 0 0.5rem;
-            box-shadow: 0 -2px 0px 0px #000000; /* Shadow on top */
-            color: black;
-            font-weight: bold;
-            font-size: 0.875rem; /* text-sm */
-            -webkit-font-smoothing: none;
-            z-index: 1000; /* Ensure it's on top */
-        }
-
-        .program-manager-bar span {
-            margin-right: 1rem;
-        }
-    </style>
+    <title>MomBot OS - Windows 3.x Experience</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Preload essential icons -->
+    <link rel="preload" href="assets/icons/computer.png" as="image">
+    <link rel="preload" href="assets/icons/paint.png" as="image">
+    <link rel="preload" href="assets/icons/wordpad.png" as="image">
+    <link rel="preload" href="assets/icons/minesweeper.png" as="image">
+    <link rel="preload" href="assets/icons/messenger.png" as="image">
+    <link rel="preload" href="assets/icons/browser.png" as="image">
+    <link rel="preload" href="assets/icons/mp3player.png" as="image">
+    <link rel="preload" href="assets/icons/portfolio.png" as="image">
+    <link rel="preload" href="assets/icons/store.png" as="image">
+    <link rel="preload" href="assets/icons/guestbook.png" as="image">
+    <link rel="preload" href="assets/icons/mom.png" as="image">
+    <link rel="preload" href="assets/icons/settings.png" as="image">
+    <link rel="preload" href="assets/icons/help.png" as="image">
+    <link rel="preload" href="assets/icons/shutdown.png" as="image">
 </head>
 <body>
+    <!-- Desktop Container -->
     <div class="desktop">
-        <!-- Desktop Icons -->
-        <div class="desktop-icon" data-program="notepad">
-            <img src="https://placehold.co/48x48/ffffff/000000?text=TXT" alt="Notepad Icon">
-            <span>Notepad</span>
+        <!-- Desktop icons will be dynamically added here -->
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button">Start</button>
+        <div class="taskbar-programs"></div>
+        <div class="system-tray">
+            <div class="tray-icon" title="Volume">🔊</div>
+            <div class="tray-icon" title="Network">📡</div>
+            <div class="tray-icon" title="Mom Bot">👩</div>
         </div>
-        <div class="desktop-icon" data-program="calculator">
-            <img src="https://placehold.co/48x48/ffffff/000000?text=CALC" alt="Calculator Icon">
-            <span>Calculator</span>
-        </div>
-        <div class="desktop-icon" data-program="about">
-            <img src="https://placehold.co/48x48/ffffff/000000?text=INFO" alt="About Icon">
-            <span>About</span>
+        <div class="taskbar-clock"></div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu">
+        <!-- Start menu items will be dynamically added here -->
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" style="display: none;">
+        <div class="loading-content">
+            <img src="assets/images/loading.gif" alt="Loading...">
+            <div class="loading-text">Starting MomBot OS...</div>
         </div>
     </div>
 
-    <!-- Program Manager Bar (simple bottom bar) -->
-    <div class="program-manager-bar">
-        <span>Program Manager</span>
-        <!-- Could add active window indicators here later -->
-    </div>
-
-    <script>
-        const desktop = document.querySelector('.desktop');
-        let zIndexCounter = 100; // To manage window stacking order
-
-        // Function to create a new window
-        function createWindow(title, contentHTML, programId) {
-            const windowFrame = document.createElement('div');
-            windowFrame.className = 'window-frame';
-            windowFrame.style.left = `${Math.random() * (window.innerWidth - 300)}px`; // Random initial position
-            windowFrame.style.top = `${Math.random() * (window.innerHeight - 200)}px`;
-            windowFrame.style.zIndex = ++zIndexCounter; // Bring new window to front
-            windowFrame.setAttribute('data-program-id', programId);
-
-            windowFrame.innerHTML = `
-                <div class="title-bar">
-                    <span class="title-text">${title}</span>
-                    <div class="title-bar-buttons">
-                        <button class="title-bar-button minimize-btn" title="Minimize">—</button>
-                        <button class="title-bar-button maximize-btn" title="Maximize">□</button>
-                        <button class="title-bar-button close-btn" title="Close">×</button>
-                    </div>
-                </div>
-                <div class="window-content">
-                    ${contentHTML}
-                </div>
-            `;
-
-            desktop.appendChild(windowFrame);
-
-            // Make window draggable
-            const titleBar = windowFrame.querySelector('.title-bar');
-            let isDragging = false;
-            let offsetX, offsetY;
-
-            titleBar.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                windowFrame.style.zIndex = ++zIndexCounter; // Bring clicked window to front
-                offsetX = e.clientX - windowFrame.getBoundingClientRect().left;
-                offsetY = e.clientY - windowFrame.getBoundingClientRect().top;
-                titleBar.style.cursor = 'grabbing';
-            });
-
-            desktop.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                windowFrame.style.left = `${e.clientX - offsetX}px`;
-                windowFrame.style.top = `${e.clientY - offsetY}px`;
-            });
-
-            desktop.addEventListener('mouseup', () => {
-                isDragging = false;
-                titleBar.style.cursor = 'grab';
-            });
-
-            // Close button functionality
-            windowFrame.querySelector('.close-btn').addEventListener('click', () => {
-                windowFrame.remove();
-            });
-
-            // Minimize/Maximize (simple toggle for now)
-            const originalWidth = windowFrame.style.width;
-            const originalHeight = windowFrame.style.height;
-            const originalLeft = windowFrame.style.left;
-            const originalTop = windowFrame.style.top;
-            let isMaximized = false;
-            let isMinimized = false; // Not fully implemented, just for visual cue
-
-            windowFrame.querySelector('.maximize-btn').addEventListener('click', () => {
-                if (isMaximized) {
-                    windowFrame.style.width = originalWidth;
-                    windowFrame.style.height = originalHeight;
-                    windowFrame.style.left = originalLeft;
-                    windowFrame.style.top = originalTop;
-                    isMaximized = false;
-                } else {
-                    windowFrame.style.width = '100vw';
-                    windowFrame.style.height = 'calc(100vh - 24px)'; /* Account for program manager bar */
-                    windowFrame.style.left = '0';
-                    windowFrame.style.top = '0';
-                    isMaximized = true;
-                }
-            });
-
-            windowFrame.querySelector('.minimize-btn').addEventListener('click', () => {
-                // For a simple toy OS, minimize might just hide the window.
-                // In a real OS, it would go to a taskbar.
-                if (isMinimized) {
-                    windowFrame.style.display = 'block';
-                    isMinimized = false;
-                } else {
-                    windowFrame.style.display = 'none';
-                    isMinimized = true;
-                }
-            });
-        }
-
-        // Event listener for desktop icons
-        document.querySelectorAll('.desktop-icon').forEach(icon => {
-            icon.addEventListener('click', () => {
-                const program = icon.getAttribute('data-program');
-                let title = '';
-                let content = '';
-
-                // Prevent multiple instances of "about" for simplicity, or specific programs
-                if (program === 'about' && document.querySelector('[data-program-id="about"]')) {
-                    const existingAbout = document.querySelector('[data-program-id="about"]');
-                    existingAbout.style.zIndex = ++zIndexCounter; // Bring to front
-                    return;
-                }
-
-                switch (program) {
-                    case 'notepad':
-                        title = 'Notepad - Untitled';
-                        content = `
-                            <textarea class="w-full h-full p-1 text-sm bg-white border border-gray-400 focus:outline-none resize-none" style="min-height: 80px; -webkit-font-smoothing: none;"></textarea>
-                        `;
-                        break;
-                    case 'calculator':
-                        title = 'Calculator';
-                        content = `
-                            <div class="flex flex-col items-center p-2">
-                                <input type="text" class="w-full mb-2 p-1 text-right text-sm bg-white border border-gray-400 font-mono" value="0" disabled style="-webkit-font-smoothing: none;">
-                                <div class="grid grid-cols-4 gap-1">
-                                    <button class="calc-btn">7</button>
-                                    <button class="calc-btn">8</button>
-                                    <button class="calc-btn">9</button>
-                                    <button class="calc-btn">/</button>
-                                    <button class="calc-btn">4</button>
-                                    <button class="calc-btn">5</button>
-                                    <button class="calc-btn">6</button>
-                                    <button class="calc-btn">*</button>
-                                    <button class="calc-btn">1</button>
-                                    <button class="calc-btn">2</button>
-                                    <button class="calc-btn">3</button>
-                                    <button class="calc-btn">-</button>
-                                    <button class="calc-btn">0</button>
-                                    <button class="calc-btn">.</button>
-                                    <button class="calc-btn">=</button>
-                                    <button class="calc-btn">+</button>
-                                </div>
-                            </div>
-                            <style>
-                                .calc-btn {
-                                    @apply w-10 h-8 bg-gray-300 border-t-2 border-l-2 border-white border-r-2 border-b-2 border-gray-600 text-sm flex items-center justify-center cursor-pointer;
-                                    -webkit-font-smoothing: none;
-                                }
-                                .calc-btn:active {
-                                    @apply border-t-2 border-l-2 border-gray-600 border-r-2 border-b-2 border-white;
-                                }
-                            </style>
-                        `;
-                        // Basic calculator logic (can be expanded)
-                        setTimeout(() => { // Ensure buttons are in DOM before attaching listeners
-                            const display = document.querySelector('.calculator input');
-                            let currentInput = '0';
-                            let operator = null;
-                            let firstOperand = null;
-
-                            const updateDisplay = () => {
-                                display.value = currentInput;
-                            };
-
-                            document.querySelectorAll('.calculator .calc-btn').forEach(button => {
-                                button.addEventListener('click', () => {
-                                    const value = button.textContent;
-                                    if (value >= '0' && value <= '9' || value === '.') {
-                                        if (currentInput === '0' && value !== '.') {
-                                            currentInput = value;
-                                        } else if (value === '.' && currentInput.includes('.')) {
-                                            // Do nothing if '.' already exists
-                                        }
-                                        else {
-                                            currentInput += value;
-                                        }
-                                    } else if (value === '=') {
-                                        if (operator && firstOperand !== null) {
-                                            const secondOperand = parseFloat(currentInput);
-                                            switch (operator) {
-                                                case '+': currentInput = (firstOperand + secondOperand).toString(); break;
-                                                case '-': currentInput = (firstOperand - secondOperand).toString(); break;
-                                                case '*': currentInput = (firstOperand * secondOperand).toString(); break;
-                                                case '/': currentInput = (firstOperand / secondOperand).toString(); break;
-                                            }
-                                            operator = null;
-                                            firstOperand = null;
-                                        }
-                                    } else { // Operator buttons
-                                        if (firstOperand === null) {
-                                            firstOperand = parseFloat(currentInput);
-                                            currentInput = '0';
-                                        }
-                                        operator = value;
-                                    }
-                                    updateDisplay();
-                                });
-                            });
-                        }, 0); // Use setTimeout to ensure the content is rendered
-
-                        break;
-                    case 'about':
-                        title = 'About Windows 3.x Toy OS';
-                        content = `
-                            <p class="text-sm mb-2" style="-webkit-font-smoothing: none;">
-                                This is a simple HTML toy operating system, designed to mimic the aesthetic of Microsoft Windows 3.x.
-                            </p>
-                            <p class="text-sm mb-2" style="-webkit-font-smoothing: none;">
-                                Built with HTML, Tailwind CSS, and JavaScript.
-                            </p>
-                            <p class="text-sm" style="-webkit-font-smoothing: none;">
-                                Version: 1.0 (Pixelated Edition)
-                            </p>
-                        `;
-                        break;
-                    default:
-                        title = 'Error';
-                        content = `<p class="text-sm" style="-webkit-font-smoothing: none;">Program not found.</p>`;
-                }
-                createWindow(title, content, program);
-            });
-        });
-
-    </script>
+    <!-- Core Scripts -->
+    <script src="js/main.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="js/apps/paint.js"></script>
+    <script src="js/apps/wordpad.js"></script>
+    <script src="js/apps/minesweeper.js"></script>
+    <script src="js/apps/messenger.js"></script>
+    <script src="js/apps/browser.js"></script>
+    <script src="js/apps/mp3player.js"></script>
+    <script src="js/apps/mom-bot.js"></script>
+    
+    <!-- Utility Scripts -->
+    <script src="js/utils/window-manager.js"></script>
+    <script src="js/utils/file-system.js"></script>
 </body>
 </html>
