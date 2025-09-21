@@ -31,6 +31,70 @@ body {
     scroll-behavior: smooth;
 }
 
+/* Project Status Badges and Meta Info */
+.project-status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.project-status-badge.completed {
+    background: var(--sage);
+    color: var(--warm-white);
+}
+
+.project-status-badge.work-in-progress {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+}
+
+.project-status-badge.planning {
+    background: var(--copper);
+    color: var(--warm-white);
+}
+
+.project-meta-info {
+    font-size: 0.85rem;
+    color: var(--charcoal);
+    opacity: 0.8;
+    margin-top: 0.75rem;
+    line-height: 1.4;
+}
+
+.project-meta-info span {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.project-author {
+    font-style: italic;
+    color: var(--terracotta);
+}
+
+.project-progress {
+    font-weight: 600;
+    color: var(--dusty-blue);
+}
+
+.project-date {
+    color: var(--sage);
+}
+
+.project-collab {
+    background: var(--clay);
+    color: var(--warm-white);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--border-radius);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
 /* Header and Navigation */
 .navbar {
     background: var(--desert-sand);
@@ -128,6 +192,61 @@ body {
     opacity: 0.9;
 }
 
+/* Global Project Filters */
+.project-filters-section {
+    background: var(--desert-sand);
+    padding: 2rem 0;
+    border-bottom: 2px solid var(--sage);
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+}
+
+.global-filters {
+    text-align: center;
+}
+
+.global-filters h3 {
+    font-family: var(--font-primary);
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.global-filter-btn {
+    padding: 0.75rem 2rem;
+    background: var(--sage);
+    color: var(--warm-white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.global-filter-btn.active {
+    background: var(--terracotta);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.global-filter-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
 /* Sections */
 .section {
     padding: 4rem 0;
@@ -208,15 +327,52 @@ body {
 
 /* Work Status Section */
 .work-status-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+.status-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.status-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--sage);
+    color: var(--warm-white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.filter-btn.active {
+    background: var(--terracotta);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.filter-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
 }
 
 .status-toggle {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 0.5rem;
 }
 
 .status-btn {
@@ -290,6 +446,137 @@ body {
 .status-list li:hover {
     transform: translateX(4px);
     border-left-color: var(--terracotta);
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: var(--warm-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--copper);
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-left-color: var(--clay);
+}
+
+.project-card.hidden {
+    display: none;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.project-title {
+    font-family: var(--font-primary);
+    color: var(--charcoal);
+    font-size: 1.2rem;
+    margin: 0;
+    flex: 1;
+}
+
+.project-author {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    color: var(--charcoal);
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+
+.project-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.project-status.completed {
+    background: var(--sage);
+    color: var(--warm-white);
+}
+
+.project-status.work-in-progress {
+    background: var(--copper);
+    color: var(--warm-white);
+}
+
+.project-status.planning {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+}
+
+.project-status.published {
+    background: var(--sage);
+    color: var(--warm-white);
+}
+
+.project-status.published-digital {
+    background: var(--terracotta);
+    color: var(--warm-white);
+}
+
+.project-description {
+    color: var(--charcoal);
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.project-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.project-meta-item {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    color: var(--charcoal);
+    opacity: 0.7;
+    background: var(--desert-sand);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius);
+}
+
+.project-progress {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    color: var(--copper);
+    font-weight: 500;
+}
+
+/* Loading State */
+.projects-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-family: var(--font-primary);
+    color: var(--charcoal);
+    opacity: 0.7;
+    grid-column: 1 / -1;
 }
 
 /* To-Do Section */
@@ -460,6 +747,47 @@ footer {
     
     .todo-actions {
         justify-content: center;
+    }
+    
+    /* Work Status responsive */
+    .status-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+    }
+    
+    .status-filters {
+        justify-content: center;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .status-toggle {
+        justify-content: center;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .project-author {
+        margin-left: 0;
+    }
+    
+    .project-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 }
 

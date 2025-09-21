@@ -50,28 +50,160 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Work Status Toggle Functionality
-    const alekBtn = document.getElementById('alekBtn');
-    const juleahBtn = document.getElementById('juleahBtn');
-    const todoBtn = document.getElementById('todoBtn');
-    const alekStatus = document.getElementById('alekStatus');
-    const juleahStatus = document.getElementById('juleahStatus');
-    const todoSection = document.getElementById('todoSection');
+    // Work Status and Projects Functionality
+    let workStatusData = null;
+    let currentFilter = 'all';
 
-    function showStatus(section, button) {
-        // Hide all sections
-        [alekStatus, juleahStatus, todoSection].forEach(s => s.classList.remove('active'));
-        // Remove active from all buttons
-        [alekBtn, juleahBtn, todoBtn].forEach(b => b.classList.remove('active'));
-        
-        // Show selected section and activate button
-        section.classList.add('active');
-        button.classList.add('active');
+    async function loadWorkStatus() {
+        try {
+            const response = await fetch('work-status.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            workStatusData = await response.json();
+            
+            // Make data globally accessible
+            window.workStatusData = workStatusData;
+            
+            applyGlobalFilter('all');
+            setupFilterButtons();
+            setupStatusToggle();
+            console.log(`✅ Work status loaded: ${workStatusData.projects.length} projects available`);
+        } catch (error) {
+            console.error('Error loading work status:', error);
+            showWorkStatusError();
+        }
     }
 
-    alekBtn.addEventListener('click', () => showStatus(alekStatus, alekBtn));
-    juleahBtn.addEventListener('click', () => showStatus(juleahStatus, juleahBtn));
-    todoBtn.addEventListener('click', () => showStatus(todoSection, todoBtn));
+    function showWorkStatusError() {
+        const projectsGrid = document.getElementById('projectsGrid');
+        if (projectsGrid) {
+            projectsGrid.innerHTML = `
+                <div class="projects-loading">
+                    <p>Error loading projects. Please check work-status.json</p>
+                </div>
+            `;
+        }
+    }
+
+    function applyGlobalFilter(filter) {
+        if (!workStatusData) return;
+        
+        // Get all project cards from work status data
+        const projects = workStatusData.projects;
+        
+        // Replace content in all sections with filtered projects
+        renderSectionProjects('writing', projects.filter(p => p.type === 'book' || p.type === 'novel' || p.type === 'digital publication' || p.type === "children's book" || p.type === 'game writing'), filter);
+        renderSectionProjects('comics', projects.filter(p => p.type === 'comic' || p.type === 'art portfolio' || p.type === 'art series' || p.type === 'art book'), filter);
+        renderSectionProjects('games', projects.filter(p => p.type === 'game'), filter);
+        renderSectionProjects('music', projects.filter(p => p.type === 'music'), filter); // Will be empty for now
+    }
+    
+    function renderSectionProjects(sectionId, sectionProjects, filter) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+        
+        const contentGrid = section.querySelector('.content-grid');
+        if (!contentGrid) return;
+        
+        // Filter projects based on current filter
+        const filteredProjects = filter === 'all' ? sectionProjects : sectionProjects.filter(p => p.status === filter);
+        
+        if (filteredProjects.length === 0) {
+            contentGrid.innerHTML = `
+                <div class="content-item">
+                    <h3>No ${filter === 'all' ? '' : filter + ' '}projects</h3>
+                    <p>No projects found for this filter in ${sectionId}.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Generate project cards
+        contentGrid.innerHTML = filteredProjects.map(project => {
+            const isWritingProject = sectionId === 'writing' && (project.type === 'book' || project.type === 'novel' || project.type === 'digital publication' || project.type === "children's book" || project.type === 'game writing');
+            const isFlashFiction = project.id === 'flash-fiction-collection';
+            
+            // Determine click handler based on project type
+            let clickHandler = '';
+            if (isFlashFiction) {
+                clickHandler = 'onclick="openFlashFiction()"';
+            } else if (isWritingProject) {
+                // Map work-status.json IDs to writing-projects.json IDs for modal compatibility
+                const idMapping = {
+                    'all-things-bright-beautiful': 'all-things-bright',
+                    'my-balloons-book': 'my-balloons',
+                    'desert-roads-novel': 'desert-roads',
+                    'game-narrative-project': 'game-narratives'
+                };
+                const writingProjectId = idMapping[project.id] || project.id;
+                clickHandler = `onclick="openWritingProject('${writingProjectId}')"`;
+            }
+            
+            return `
+                <div class="content-item" data-status="${project.status}" ${clickHandler}>
+                    <h3>${project.title}</h3>
+                    <div class="project-status-badge ${project.status}">${project.status.replace('-', ' ')}</div>
+                    <p>${project.description}</p>
+                    <div class="project-meta-info">
+                        <span class="project-author">by ${project.author}</span>
+                        ${project.progress ? `<span class="project-progress">${project.progress}</span>` : ''}
+                        ${project.completedDate ? `<span class="project-date">Completed ${new Date(project.completedDate).getFullYear()}</span>` : ''}
+                        ${project.estimatedCompletion ? `<span class="project-date">Est. ${project.estimatedCompletion}</span>` : ''}
+                        ${project.collaboration ? `<span class="project-collab">Collaboration</span>` : ''}
+                    </div>
+                    ${project.platform && !isFlashFiction ? `<a href="#" class="project-link">View on ${project.platform}</a>` : ''}
+                    ${isFlashFiction ? `<button class="project-link" onclick="openFlashFiction()">Read Stories</button>` : ''}
+                </div>
+            `;
+        }).join('');
+    }
+
+    function filterProjects(projects, filter) {
+        if (filter === 'all') {
+            return projects;
+        }
+        return projects.filter(project => project.status === filter);
+    }
+
+    function setupFilterButtons() {
+        const filterButtons = document.querySelectorAll('.global-filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active from all filter buttons
+                filterButtons.forEach(b => b.classList.remove('active'));
+                // Add active to clicked button
+                this.classList.add('active');
+                
+                // Update current filter and apply to all sections
+                currentFilter = this.getAttribute('data-filter');
+                applyGlobalFilter(currentFilter);
+            });
+        });
+    }
+
+    function setupStatusToggle() {
+        const projectsBtn = document.getElementById('projectsBtn');
+        const todoBtn = document.getElementById('todoBtn');
+        const projectsSection = document.getElementById('projectsSection');
+        const todoSection = document.getElementById('todoSection');
+
+        function showSection(section, button) {
+            // Hide all sections
+            [projectsSection, todoSection].forEach(s => s.classList.remove('active'));
+            // Remove active from all buttons
+            [projectsBtn, todoBtn].forEach(b => b.classList.remove('active'));
+            
+            // Show selected section and activate button
+            section.classList.add('active');
+            button.classList.add('active');
+        }
+
+        if (projectsBtn && todoBtn) {
+            projectsBtn.addEventListener('click', () => showSection(projectsSection, projectsBtn));
+            todoBtn.addEventListener('click', () => showSection(todoSection, todoBtn));
+        }
+    }
 
     // To-Do List Functionality
     let todos = JSON.parse(localStorage.getItem('azironaTodos')) || [];
@@ -572,24 +704,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderWritingProjects() {
-        if (!writingData) return;
-
-        // Update the writing section with dynamic content
-        const writingSection = document.querySelector('#writing .content-grid');
-        if (writingSection) {
-            writingSection.innerHTML = writingData.projects.map(project => 
-                `<div class="content-item" onclick="openWritingProject('${project.id}')" style="cursor: pointer;">
-                    <h3>${project.title}</h3>
-                    <p>${project.shortDescription}</p>
-                    ${project.status === 'published' || project.status === 'published-digital' ? 
-                        `<div class="writing-status ${project.status}" style="margin-top: 0.5rem;">${project.status.replace('-', ' ')}</div>` : 
-                        project.purchaseLinks ? 
-                            `<a href="${project.purchaseLinks[0].url}" class="project-link" onclick="event.stopPropagation()">View on ${project.purchaseLinks[0].platform}</a>` :
-                            `<div class="writing-status ${project.status}" style="margin-top: 0.5rem;">${project.status.replace('-', ' ')}</div>`
-                    }
-                </div>`
-            ).join('');
-        }
+        // Writing projects are now handled by the global work status system
+        // This function is kept for compatibility but does nothing
+        return;
     }
 
     function showWritingProject(projectId) {
@@ -613,6 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadFlashFiction();
     loadBlog();
     loadWritingProjects();
+    loadWorkStatus();
 
     console.log('🌵 The Azirona Drift - Digital Southwest Experience Loaded');
 });

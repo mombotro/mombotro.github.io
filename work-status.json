@@ -1,0 +1,185 @@
+{
+  "team": {
+    "title": "The Azirona Drift Work Status",
+    "description": "Current projects and status for Alek & Juleah Miller",
+    "lastUpdated": "2025-01-15"
+  },
+  "projects": [
+    {
+      "id": "round-down-game",
+      "title": "Round Down Card Game",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "game",
+      "description": "Strategic card game featuring innovative mechanics and engaging gameplay.",
+      "completedDate": "2024-11-20",
+      "platform": "Itch.io",
+      "collaboration": "Art by Juleah Miller"
+    },
+    {
+      "id": "all-things-bright-beautiful",
+      "title": "All Things Bright and Beautiful",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "book",
+      "description": "Published collection exploring themes of wonder and beauty in everyday life.",
+      "completedDate": "2024-08-15",
+      "platform": "Lulu Press",
+      "pageCount": 180
+    },
+    {
+      "id": "my-balloons-book",
+      "title": "My Balloons",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "children's book",
+      "description": "Whimsical children's story about joy, sharing, and letting go.",
+      "completedDate": "2024-06-10",
+      "platform": "Lulu Press",
+      "collaboration": "Illustrated by Juleah Miller",
+      "pageCount": 32
+    },
+    {
+      "id": "liminal-webcomic",
+      "title": "Liminal Webcomic",
+      "author": "Juleah Miller",
+      "status": "completed",
+      "type": "comic",
+      "description": "Webcomic exploring the spaces between worlds, launched successfully on Webtoon.",
+      "completedDate": "2024-09-01",
+      "platform": "Webtoon",
+      "episodeCount": 12
+    },
+    {
+      "id": "flash-fiction-collection",
+      "title": "Flash Fiction Collection",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "digital publication",
+      "description": "Four micro-stories exploring technology and nature in the digital southwest.",
+      "completedDate": "2025-01-15",
+      "platform": "Web Publication",
+      "storyCount": 4
+    },
+    {
+      "id": "desert-roads-novel",
+      "title": "Desert Roads Novel",
+      "author": "Alek Miller",
+      "status": "work-in-progress",
+      "type": "novel",
+      "description": "Multi-generational story across the American Southwest exploring themes of identity and belonging.",
+      "progress": "65% complete",
+      "estimatedCompletion": "Fall 2025",
+      "currentWordCount": 78000,
+      "targetWordCount": 120000
+    },
+    {
+      "id": "liminal-updates",
+      "title": "Liminal Comic Updates",
+      "author": "Juleah Miller",
+      "status": "work-in-progress",
+      "type": "comic",
+      "description": "Continuing the Liminal series with new episodes and character development.",
+      "progress": "Season 2 in development",
+      "estimatedCompletion": "Spring 2025",
+      "episodesPlanned": 15
+    },
+    {
+      "id": "character-design-portfolio",
+      "title": "Character Design Portfolio",
+      "author": "Juleah Miller",
+      "status": "work-in-progress",
+      "type": "art portfolio",
+      "description": "Comprehensive portfolio showcasing character design skills across multiple projects.",
+      "progress": "40% complete",
+      "estimatedCompletion": "Summer 2025",
+      "pieceCount": 25
+    },
+    {
+      "id": "game-narrative-project",
+      "title": "Interactive Game Narratives",
+      "author": "Alek Miller",
+      "status": "work-in-progress",
+      "type": "game writing",
+      "description": "Narrative design for multiple game projects including dialogue trees and environmental storytelling.",
+      "progress": "Multiple projects active",
+      "currentProjects": ["Adventure game concept", "Interactive fiction prototype"]
+    },
+    {
+      "id": "digital-art-series",
+      "title": "Digital Art Series",
+      "author": "Juleah Miller",
+      "status": "work-in-progress",
+      "type": "art series",
+      "description": "Themed digital artwork exploring southwest landscapes and technology integration.",
+      "progress": "8 of 12 pieces completed",
+      "estimatedCompletion": "Spring 2025",
+      "theme": "Digital Southwest"
+    },
+    {
+      "id": "collaborative-graphic-novel",
+      "title": "Collaborative Graphic Novel",
+      "author": "Alek & Juleah Miller",
+      "status": "planning",
+      "type": "graphic novel",
+      "description": "Full collaboration combining Alek's storytelling with Juleah's visual narrative expertise.",
+      "plannedStart": "Summer 2025",
+      "estimatedLength": "120 pages",
+      "genre": "Science Fiction",
+      "collaboration": "Joint creative development"
+    },
+    {
+      "id": "data-shepherds-novel",
+      "title": "The Data Shepherds",
+      "author": "Alek Miller",
+      "status": "planning",
+      "type": "novel",
+      "description": "Near-future science fiction about digital preservation specialists in a world of failing technology.",
+      "plannedStart": "2026",
+      "genre": "Science Fiction",
+      "estimatedLength": "80,000 words"
+    },
+    {
+      "id": "interactive-poetry",
+      "title": "Interactive Poetry Collection",
+      "author": "Alek Miller",
+      "status": "planning",
+      "type": "digital poetry",
+      "description": "Web-based poetry with reader interaction and multimedia elements.",
+      "plannedStart": "Late 2025",
+      "platform": "Web Publication",
+      "concept": "Experimental digital format"
+    },
+    {
+      "id": "art-book-compilation",
+      "title": "Art Book Compilation",
+      "author": "Juleah Miller",
+      "status": "planning",
+      "type": "art book",
+      "description": "Comprehensive collection of artwork spanning multiple projects and themes.",
+      "plannedStart": "2026",
+      "estimatedLength": "80 pages",
+      "includesProjects": ["Liminal", "Character designs", "Digital art series"]
+    },
+    {
+      "id": "new-card-game",
+      "title": "New Card Game Prototype",
+      "author": "Alek Miller",
+      "status": "planning",
+      "type": "game",
+      "description": "Follow-up to Round Down with new mechanics and collaborative art development.",
+      "plannedStart": "Mid 2025",
+      "collaboration": "Art partnership with Juleah Miller",
+      "concept": "Desert-themed strategy game"
+    }
+  ],
+  "metadata": {
+    "totalProjects": 15,
+    "completedProjects": 5,
+    "workInProgress": 5,
+    "planningProjects": 5,
+    "collaborativeProjects": 6,
+    "alexProjects": 9,
+    "juleahProjects": 6
+  }
+}

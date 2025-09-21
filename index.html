@@ -19,7 +19,7 @@
                 <li><a href="#games" class="nav-link">Games</a></li>
                 <li><a href="#music" class="nav-link">Music</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
-                <li><a href="#todo" class="nav-link">Work Status</a></li>
+                <li><a href="#todo" class="nav-link">To-Do</a></li>
             </ul>
             <button class="nav-toggle">☰</button>
         </nav>
@@ -30,6 +30,20 @@
             <div class="hero-content">
                 <h2>Welcome to The Azirona Drift</h2>
                 <p>Collaborative creative works from Alek & Juleah Miller - where stories, art, games, and music converge in the digital southwest.</p>
+            </div>
+        </section>
+
+        <section id="project-filters" class="project-filters-section">
+            <div class="container">
+                <div class="global-filters">
+                    <h3>Filter Projects</h3>
+                    <div class="filter-buttons">
+                        <button class="global-filter-btn active" data-filter="all">All Projects</button>
+                        <button class="global-filter-btn" data-filter="completed">Completed</button>
+                        <button class="global-filter-btn" data-filter="work-in-progress">In Progress</button>
+                        <button class="global-filter-btn" data-filter="planning">Planning</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -149,81 +163,13 @@
 
         <section id="todo" class="section">
             <div class="container">
-                <h2>Work Status</h2>
-                <div class="work-status-container">
-                    <div class="status-toggle">
-                        <button id="alekBtn" class="status-btn active">Alek's Projects</button>
-                        <button id="juleahBtn" class="status-btn">Juleah's Projects</button>
-                        <button id="todoBtn" class="status-btn">Shared To-Do</button>
+                <h2>Shared To-Do</h2>
+                <div class="todo-container">
+                    <div class="todo-input">
+                        <input type="text" id="todoInput" placeholder="Add a shared task...">
+                        <button id="addTodo">Add</button>
                     </div>
-                    
-                    <div id="alekStatus" class="status-section active">
-                        <div class="status-grid">
-                            <div class="status-column">
-                                <h3>Work in Progress</h3>
-                                <ul class="status-list">
-                                    <li>New card game prototype</li>
-                                    <li>Short story collection</li>
-                                    <li>Game design documentation</li>
-                                </ul>
-                            </div>
-                            <div class="status-column">
-                                <h3>Completed Works</h3>
-                                <ul class="status-list">
-                                    <li>Round Down card game</li>
-                                    <li>All Things Bright and Beautiful</li>
-                                    <li>My Balloons</li>
-                                </ul>
-                            </div>
-                            <div class="status-column">
-                                <h3>Future Projects</h3>
-                                <ul class="status-list">
-                                    <li>Interactive fiction game</li>
-                                    <li>Novel concept development</li>
-                                    <li>Collaborative game design</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="juleahStatus" class="status-section">
-                        <div class="status-grid">
-                            <div class="status-column">
-                                <h3>Work in Progress</h3>
-                                <ul class="status-list">
-                                    <li>Liminal webcomic updates</li>
-                                    <li>Character design portfolio</li>
-                                    <li>Digital art series</li>
-                                </ul>
-                            </div>
-                            <div class="status-column">
-                                <h3>Completed Works</h3>
-                                <ul class="status-list">
-                                    <li>Liminal webcomic launch</li>
-                                    <li>Art for Round Down</li>
-                                    <li>Book illustrations</li>
-                                </ul>
-                            </div>
-                            <div class="status-column">
-                                <h3>Future Projects</h3>
-                                <ul class="status-list">
-                                    <li>New comic series concept</li>
-                                    <li>Art book compilation</li>
-                                    <li>Collaborative visual projects</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="todoSection" class="status-section">
-                        <div class="todo-container">
-                            <div class="todo-input">
-                                <input type="text" id="todoInput" placeholder="Add a shared task...">
-                                <button id="addTodo">Add</button>
-                            </div>
-                            <ul id="todoList" class="todo-list"></ul>
-                        </div>
-                    </div>
+                    <ul id="todoList" class="todo-list"></ul>
                 </div>
             </div>
         </section>
