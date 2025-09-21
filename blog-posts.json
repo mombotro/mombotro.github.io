@@ -1,0 +1,79 @@
+{
+  "blog": {
+    "title": "The Azirona Drift Blog",
+    "description": "Thoughts on creativity, process, and the digital southwest",
+    "authors": ["Alek Miller", "Juleah Miller"]
+  },
+  "posts": [
+    {
+      "id": "creative-process-desert",
+      "title": "Finding Creativity in the Digital Desert",
+      "author": "Alek Miller",
+      "date": "2025-01-15",
+      "readTime": "3 min read",
+      "excerpt": "How the vast emptiness of the desert mirrors the creative process—sometimes you need space to let ideas emerge.",
+      "tags": ["creativity", "process", "desert", "inspiration"],
+      "content": [
+        "There's something about the desert that strips away everything unnecessary. No distractions, no noise—just you, the horizon, and infinite possibility. I've found that creativity works the same way.",
+        "When I start a new project, whether it's a game, a story, or even just a design problem, I try to create that same kind of space. Clear the desk, close the unnecessary tabs, and sit with the emptiness for a moment.",
+        "The desert doesn't apologize for being sparse. It doesn't try to fill every inch with something. The sagebrush knows exactly where to grow, and the cactus blooms when the time is right. There's a patience there that I'm still learning.",
+        "In game design, this translates to knowing what to leave out. The best mechanics aren't the most complex—they're the ones that create space for players to discover something unexpected. Like finding a hidden spring in what looked like barren land.",
+        "Maybe that's what 'The Azirona Drift' is really about—learning to be comfortable with the spaces between things, and trusting that something beautiful will grow there."
+      ]
+    },
+    {
+      "id": "visual-storytelling-journey",
+      "title": "The Art of Visual Storytelling",
+      "author": "Juleah Miller",
+      "date": "2025-01-10",
+      "readTime": "4 min read",
+      "excerpt": "Every line tells a story. In comics and illustration, what you don't show can be just as important as what you do.",
+      "tags": ["art", "comics", "storytelling", "visual design"],
+      "content": [
+        "When people ask me about comic creation, they usually focus on the dramatic moments—the action scenes, the emotional reveals, the splash pages. But I've learned that the quiet panels often carry the most weight.",
+        "In 'Liminal,' I spend a lot of time thinking about the spaces between panels. What happens in that gutter? How does the reader's mind bridge from one moment to the next? These invisible transitions are where the real magic happens.",
+        "Color plays a huge role in this too. The warm terra cottas and dusty blues aren't just aesthetic choices—they're emotional guides. A shift from warm to cool can signal a character's internal change without a single word of dialogue.",
+        "I remember working on a sequence where a character was making a difficult decision. Instead of showing their face, I drew their shadow stretching across the desert floor, broken by rocks and sagebrush. The fragmentation of the shadow told the story of their fractured state of mind.",
+        "Visual storytelling is about trust—trusting your audience to fill in the gaps, to feel the emotion in a color choice, to understand the weight of a pause. It's collaborative, even when you're drawing alone."
+      ]
+    },
+    {
+      "id": "technology-meets-tradition",
+      "title": "Where Technology Meets Tradition",
+      "author": "Alek Miller",
+      "date": "2025-01-05",
+      "readTime": "2 min read",
+      "excerpt": "Digital tools and ancient wisdom—how we balance innovation with timeless creative principles.",
+      "tags": ["technology", "tradition", "tools", "craft"],
+      "content": [
+        "I write my first drafts with a fountain pen. Not because I'm nostalgic or trying to be artisanal, but because the physical resistance of ink on paper slows me down in a good way.",
+        "When I transition to digital, every tool choice becomes intentional. Markdown for structure, simple text editors for focus, version control for collaboration. The technology serves the story, not the other way around.",
+        "Juleah works similarly with her art. She'll sketch concepts by hand, scan them, then build layers digitally. The hand-drawn foundation gives her digital work a warmth that pure digital art sometimes lacks.",
+        "There's something poetic about using cutting-edge tools to tell ancient human stories. A game engine processing the hero's journey, digital brushes painting universal emotions, code implementing timeless game mechanics.",
+        "The desert has been here longer than any of our tools will last. But the stories we tell about finding your way through vast spaces? Those are eternal."
+      ]
+    },
+    {
+      "id": "collaborative-creation",
+      "title": "Two Minds, One Vision",
+      "author": "Juleah Miller",
+      "date": "2024-12-28",
+      "readTime": "3 min read",
+      "excerpt": "What we've learned about creative collaboration—when two different artistic minds work toward a shared vision.",
+      "tags": ["collaboration", "partnership", "creative process"],
+      "content": [
+        "People often ask how we collaborate without stepping on each other's creative toes. The answer is that we learned to step on them intentionally—and how to recover gracefully.",
+        "When Alek writes a game concept, I don't just illustrate his vision. I push back, I ask questions, I suggest visual solutions that might change the mechanics entirely. Some of our best ideas came from these productive collisions.",
+        "We've developed a language for this. 'What if we tried...' means we're exploring. 'I'm not convinced about...' means we need to dig deeper. 'That feels right' means we've found something worth pursuing.",
+        "The hardest part was learning when to be precious about our individual work and when to let it transform through collaboration. A character design might change completely when it meets the story. A game mechanic might evolve when it meets the visual constraints.",
+        "We keep separate creative spaces but shared inspiration walls. My sketches might inspire one of his stories. His dialogue might change how I draw a character's expression. The work becomes something neither of us could have created alone.",
+        "The Azirona Drift exists in that collaborative space—a place that's both of ours and belongs to neither of us completely."
+      ]
+    }
+  ],
+  "metadata": {
+    "totalPosts": 4,
+    "categories": ["creativity", "process", "collaboration", "technology", "art"],
+    "lastUpdated": "2025-01-15"
+  }
+}

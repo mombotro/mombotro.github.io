@@ -19,7 +19,7 @@
                 <li><a href="#games" class="nav-link">Games</a></li>
                 <li><a href="#music" class="nav-link">Music</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
-                <li><a href="#todo" class="nav-link">To-Do</a></li>
+                <li><a href="#todo" class="nav-link">Work Status</a></li>
             </ul>
             <button class="nav-toggle">☰</button>
         </nav>
@@ -29,7 +29,7 @@
         <section id="hero" class="hero">
             <div class="hero-content">
                 <h2>Welcome to The Azirona Drift</h2>
-                <p>A creative space where stories, art, games, and music converge in the digital southwest.</p>
+                <p>Collaborative creative works from Alek & Juleah Miller - where stories, art, games, and music converge in the digital southwest.</p>
             </div>
         </section>
 
@@ -38,12 +38,19 @@
                 <h2>Writing</h2>
                 <div class="content-grid">
                     <div class="content-item">
-                        <h3>Latest Works</h3>
-                        <p>Explore the latest stories and narratives from Alek Miller.</p>
+                        <h3>All Things Bright and Beautiful</h3>
+                        <p>Published book available on Lulu. A collection exploring themes of wonder and beauty in everyday life.</p>
+                        <a href="#" class="project-link">View on Lulu</a>
                     </div>
                     <div class="content-item">
-                        <h3>Publications</h3>
-                        <p>Published works and ongoing projects.</p>
+                        <h3>My Balloons</h3>
+                        <p>A whimsical story published on Lulu, capturing moments of joy and letting go.</p>
+                        <a href="#" class="project-link">View on Lulu</a>
+                    </div>
+                    <div class="content-item">
+                        <h3>Flash Fiction</h3>
+                        <p>Short stories and micro-fiction pieces. Quick reads that pack emotional punch in minimal words.</p>
+                        <button class="project-link" onclick="openFlashFiction()">Read Stories</button>
                     </div>
                 </div>
             </div>
@@ -54,12 +61,21 @@
                 <h2>Comics</h2>
                 <div class="content-grid">
                     <div class="content-item">
-                        <h3>Visual Stories</h3>
-                        <p>Comics and graphic narratives by Juleah Miller.</p>
+                        <h3>Liminal</h3>
+                        <p>Ongoing webcomic exploring the spaces between worlds. Follow the story on Webtoon.</p>
+                        <a href="#" class="project-link">Read on Webtoon</a>
                     </div>
                     <div class="content-item">
-                        <h3>Gallery</h3>
-                        <p>Browse our collection of visual storytelling.</p>
+                        <h3>Visual Art Gallery</h3>
+                        <p>Artwork and illustrations by Juleah Miller, showcasing her artistic range and style.</p>
+                    </div>
+                    <div class="content-item">
+                        <h3>Current Projects</h3>
+                        <p>Comics and visual narratives currently in development.</p>
+                    </div>
+                    <div class="content-item">
+                        <h3>Future Comics</h3>
+                        <p>Upcoming comic concepts and collaborative visual stories.</p>
                     </div>
                 </div>
             </div>
@@ -70,12 +86,21 @@
                 <h2>Games</h2>
                 <div class="content-grid">
                     <div class="content-item">
-                        <h3>Game Design</h3>
-                        <p>Interactive experiences and game development by Alek Miller.</p>
+                        <h3>Round Down</h3>
+                        <p>Card game featuring strategic gameplay and engaging mechanics. Available for play and download.</p>
+                        <a href="#" class="project-link">Play on Itch.io</a>
                     </div>
                     <div class="content-item">
-                        <h3>Prototypes</h3>
-                        <p>Experimental games and design concepts.</p>
+                        <h3>Game Development</h3>
+                        <p>Current game projects in various stages of development by Alek Miller.</p>
+                    </div>
+                    <div class="content-item">
+                        <h3>Design Concepts</h3>
+                        <p>Experimental game mechanics and innovative design prototypes.</p>
+                    </div>
+                    <div class="content-item">
+                        <h3>Future Games</h3>
+                        <p>Upcoming game concepts and collaborative interactive experiences.</p>
                     </div>
                 </div>
             </div>
@@ -102,12 +127,21 @@
                 <h2>Blog</h2>
                 <div class="content-grid">
                     <div class="content-item">
-                        <h3>Recent Posts</h3>
-                        <p>Thoughts on creativity, process, and the digital southwest.</p>
+                        <h3>Latest Thoughts</h3>
+                        <p>Read our latest posts about creativity, process, and the digital southwest.</p>
+                        <button class="project-link" onclick="openBlog()">Read Blog</button>
                     </div>
                     <div class="content-item">
-                        <h3>Archive</h3>
-                        <p>Browse past entries and reflections.</p>
+                        <h3>Creative Process</h3>
+                        <p>Behind-the-scenes insights into our collaborative creative work.</p>
+                    </div>
+                    <div class="content-item">
+                        <h3>Art & Design</h3>
+                        <p>Visual storytelling techniques and design philosophy.</p>
+                    </div>
+                    <div class="content-item">
+                        <h3>Technology & Craft</h3>
+                        <p>How digital tools and traditional methods intersect in our work.</p>
                     </div>
                 </div>
             </div>
@@ -115,17 +149,160 @@
 
         <section id="todo" class="section">
             <div class="container">
-                <h2>To-Do</h2>
-                <div class="todo-container">
-                    <div class="todo-input">
-                        <input type="text" id="todoInput" placeholder="Add a new task...">
-                        <button id="addTodo">Add</button>
+                <h2>Work Status</h2>
+                <div class="work-status-container">
+                    <div class="status-toggle">
+                        <button id="alekBtn" class="status-btn active">Alek's Projects</button>
+                        <button id="juleahBtn" class="status-btn">Juleah's Projects</button>
+                        <button id="todoBtn" class="status-btn">Shared To-Do</button>
                     </div>
-                    <ul id="todoList" class="todo-list"></ul>
+                    
+                    <div id="alekStatus" class="status-section active">
+                        <div class="status-grid">
+                            <div class="status-column">
+                                <h3>Work in Progress</h3>
+                                <ul class="status-list">
+                                    <li>New card game prototype</li>
+                                    <li>Short story collection</li>
+                                    <li>Game design documentation</li>
+                                </ul>
+                            </div>
+                            <div class="status-column">
+                                <h3>Completed Works</h3>
+                                <ul class="status-list">
+                                    <li>Round Down card game</li>
+                                    <li>All Things Bright and Beautiful</li>
+                                    <li>My Balloons</li>
+                                </ul>
+                            </div>
+                            <div class="status-column">
+                                <h3>Future Projects</h3>
+                                <ul class="status-list">
+                                    <li>Interactive fiction game</li>
+                                    <li>Novel concept development</li>
+                                    <li>Collaborative game design</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="juleahStatus" class="status-section">
+                        <div class="status-grid">
+                            <div class="status-column">
+                                <h3>Work in Progress</h3>
+                                <ul class="status-list">
+                                    <li>Liminal webcomic updates</li>
+                                    <li>Character design portfolio</li>
+                                    <li>Digital art series</li>
+                                </ul>
+                            </div>
+                            <div class="status-column">
+                                <h3>Completed Works</h3>
+                                <ul class="status-list">
+                                    <li>Liminal webcomic launch</li>
+                                    <li>Art for Round Down</li>
+                                    <li>Book illustrations</li>
+                                </ul>
+                            </div>
+                            <div class="status-column">
+                                <h3>Future Projects</h3>
+                                <ul class="status-list">
+                                    <li>New comic series concept</li>
+                                    <li>Art book compilation</li>
+                                    <li>Collaborative visual projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="todoSection" class="status-section">
+                        <div class="todo-container">
+                            <div class="todo-input">
+                                <input type="text" id="todoInput" placeholder="Add a shared task...">
+                                <button id="addTodo">Add</button>
+                            </div>
+                            <ul id="todoList" class="todo-list"></ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Flash Fiction Modal -->
+    <div id="flashFictionModal" class="flash-modal">
+        <div class="flash-modal-content">
+            <div class="flash-header">
+                <h2>Flash Fiction Collection</h2>
+                <button class="flash-close" onclick="closeFlashFiction()">&times;</button>
+            </div>
+            
+            <div class="flash-navigation">
+                <div class="flash-story-list" id="flashStoryButtons">
+                    <!-- Story buttons will be loaded dynamically -->
+                </div>
+                
+                <div class="flash-controls">
+                    <button class="flash-control-btn" onclick="previousStory()">‹ Previous</button>
+                    <span class="flash-counter" id="flashCounter">Loading...</span>
+                    <button class="flash-control-btn" onclick="nextStory()">Next ›</button>
+                </div>
+            </div>
+            
+            <div class="flash-reader" id="flashReader">
+                <!-- Stories will be loaded dynamically -->
+                <div class="flash-loading">
+                    <p>Loading stories...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div id="blogModal" class="blog-modal">
+        <div class="blog-modal-content">
+            <div class="blog-header">
+                <h2>The Azirona Drift Blog</h2>
+                <button class="blog-close" onclick="closeBlog()">&times;</button>
+            </div>
+            
+            <div class="blog-navigation">
+                <div class="blog-post-list" id="blogPostButtons">
+                    <!-- Blog post buttons will be loaded dynamically -->
+                </div>
+                
+                <div class="blog-controls">
+                    <button class="blog-control-btn" onclick="previousPost()">‹ Previous</button>
+                    <span class="blog-counter" id="blogCounter">Loading...</span>
+                    <button class="blog-control-btn" onclick="nextPost()">Next ›</button>
+                </div>
+            </div>
+            
+            <div class="blog-reader" id="blogReader">
+                <!-- Blog posts will be loaded dynamically -->
+                <div class="blog-loading">
+                    <p>Loading posts...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Writing Project Detail Modal -->
+    <div id="writingModal" class="writing-modal">
+        <div class="writing-modal-content">
+            <div class="writing-header">
+                <h2 id="writingProjectTitle">Project Title</h2>
+                <button class="writing-close" onclick="closeWritingProject()">&times;</button>
+            </div>
+            
+            <div class="writing-detail" id="writingDetail">
+                <!-- Project details will be loaded dynamically -->
+                <div class="writing-loading">
+                    <p>Loading project details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">

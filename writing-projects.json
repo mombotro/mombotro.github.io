@@ -1,0 +1,155 @@
+{
+  "collection": {
+    "title": "Alek Miller's Writing Projects",
+    "description": "Stories, books, and narrative works from The Azirona Drift",
+    "author": "Alek Miller"
+  },
+  "projects": [
+    {
+      "id": "all-things-bright",
+      "title": "All Things Bright and Beautiful",
+      "status": "published",
+      "type": "book",
+      "shortDescription": "Published book available on Lulu. A collection exploring themes of wonder and beauty in everyday life.",
+      "detailedDescription": "A contemplative collection of interconnected stories that find the extraordinary in ordinary moments. From a child's discovery of fireflies to an elderly woman's garden ritual, these tales weave together themes of memory, hope, and the quiet magic that surrounds us daily.",
+      "genre": "Literary Fiction",
+      "publishDate": "2024-08-15",
+      "pageCount": 180,
+      "publisher": "Lulu Press",
+      "isbn": "978-1-234-56789-0",
+      "coverImage": "images/all-things-bright-cover.jpg",
+      "purchaseLinks": [
+        {
+          "platform": "Lulu",
+          "url": "https://www.lulu.com/example",
+          "price": "$12.99"
+        }
+      ],
+      "excerpt": "The morning light caught the spider's web like a net for dreams. Sarah pressed her nose against the kitchen window, watching dewdrops transform into tiny prisms. She was seven, and the world was still full of small miracles waiting to be noticed.",
+      "reviews": [
+        {
+          "source": "Desert Literary Review",
+          "quote": "Miller captures the profound in the mundane with remarkable sensitivity.",
+          "rating": 4.5
+        }
+      ],
+      "themes": ["wonder", "memory", "nature", "family", "transformation"],
+      "awards": ["Desert Writers Circle - Honorable Mention 2024"]
+    },
+    {
+      "id": "my-balloons",
+      "title": "My Balloons",
+      "status": "published",
+      "type": "children's book",
+      "shortDescription": "A whimsical story published on Lulu, capturing moments of joy and letting go.",
+      "detailedDescription": "A gentle children's story about Emma, who receives a handful of colorful balloons on her birthday. As the day unfolds, she learns about sharing, loss, and the beautiful impermanence of special moments. Each balloon represents a different emotion and teaches a small lesson about growing up.",
+      "genre": "Children's Literature",
+      "publishDate": "2024-06-10",
+      "pageCount": 32,
+      "publisher": "Lulu Press",
+      "isbn": "978-1-234-56790-6",
+      "ageRange": "4-8 years",
+      "coverImage": "images/my-balloons-cover.jpg",
+      "illustrator": "Juleah Miller",
+      "purchaseLinks": [
+        {
+          "platform": "Lulu",
+          "url": "https://www.lulu.com/example",
+          "price": "$8.99"
+        }
+      ],
+      "excerpt": "Emma held five balloons: red like her favorite apple, blue like the summer sky, yellow like sunshine, green like grass, and purple like her grandmother's favorite flowers.",
+      "themes": ["childhood", "letting go", "emotions", "sharing", "growth"],
+      "collaborativeNote": "Illustrated by Juleah Miller, combining Alek's storytelling with Juleah's visual artistry."
+    },
+    {
+      "id": "desert-roads",
+      "title": "Desert Roads",
+      "status": "work-in-progress",
+      "type": "novel",
+      "shortDescription": "A novel in progress exploring themes of identity and belonging in the American Southwest.",
+      "detailedDescription": "Following three generations of a family across the desert landscape of Arizona and New Mexico, 'Desert Roads' weaves together stories of migration, adaptation, and the search for home. From a 1940s railroad worker to a modern-day game developer, each character navigates the vast spaces between tradition and innovation.",
+      "genre": "Literary Fiction",
+      "estimatedCompletion": "Fall 2025",
+      "currentProgress": "65% complete",
+      "wordCount": 78000,
+      "estimatedWordCount": 120000,
+      "coverImage": "images/desert-roads-concept.jpg",
+      "excerpt": "The highway stretched endless and patient, a ribbon of possibility cutting through time as much as landscape. Miguel pulled over at the same rest stop his grandfather had used forty years ago, when the world was different but the desert remained the same.",
+      "themes": ["family legacy", "migration", "technology vs. tradition", "landscape", "identity"],
+      "researchNotes": "Extensive research into Southwestern railroad history and contemporary tech culture",
+      "inspiration": "Based on family stories and the changing landscape of the digital Southwest"
+    },
+    {
+      "id": "flash-fiction-collection",
+      "title": "Flash Fiction Collection",
+      "status": "published-digital",
+      "type": "collection",
+      "shortDescription": "Short stories and micro-fiction pieces. Quick reads that pack emotional punch in minimal words.",
+      "detailedDescription": "A curated collection of flash fiction pieces, each under 300 words, exploring themes of technology, nature, and human connection in the digital age. These micro-narratives capture complete emotional arcs in minimal space, perfect for modern attention spans.",
+      "genre": "Flash Fiction",
+      "publishDate": "2025-01-15",
+      "storyCount": 4,
+      "averageWordCount": 163,
+      "coverImage": "images/flash-fiction-cover.jpg",
+      "format": "Digital/Web Publication",
+      "excerpt": "Four stories of the digital desert: where neon signs buzz against sagebrush, where server farms hum in the silence, where old highways meet new technologies.",
+      "themes": ["technology", "desert", "memory", "choice", "transformation"],
+      "specialFeature": "Interactive web reading experience with navigation and typography designed for digital consumption"
+    },
+    {
+      "id": "game-narratives",
+      "title": "Interactive Game Narratives",
+      "status": "ongoing",
+      "type": "game writing",
+      "shortDescription": "Narrative design and writing for various game projects, blending storytelling with interactive media.",
+      "detailedDescription": "A collection of narrative work for interactive media, including dialogue trees, environmental storytelling, and character development for various game projects. This work explores how traditional storytelling adapts to player agency and choice-driven narratives.",
+      "genre": "Interactive Fiction",
+      "projectCount": 3,
+      "coverImage": "images/game-narratives-concept.jpg",
+      "collaborativeNote": "Often created in partnership with Juleah Miller for visual design integration",
+      "themes": ["player agency", "choice consequences", "environmental storytelling", "character development"],
+      "currentProjects": [
+        "Round Down card game narrative",
+        "Untitled adventure game concept",
+        "Interactive fiction prototype"
+      ],
+      "tools": ["Twine", "Ink", "Custom scripting"]
+    },
+    {
+      "id": "future-projects",
+      "title": "Future Projects",
+      "status": "planning",
+      "type": "concepts",
+      "shortDescription": "Upcoming books and story concepts on the creative horizon.",
+      "detailedDescription": "A collection of ideas and concepts in various stages of development, from initial sparks to detailed outlines. These represent the future direction of Alek's writing, exploring new genres and collaborative possibilities.",
+      "projects": [
+        {
+          "title": "The Data Shepherds",
+          "genre": "Science Fiction",
+          "concept": "Near-future story about digital preservation specialists in a world of failing servers"
+        },
+        {
+          "title": "Collaborative Graphic Novel",
+          "genre": "Visual Narrative",
+          "concept": "Full collaboration with Juleah Miller on a graphic novel combining her art with narrative storytelling"
+        },
+        {
+          "title": "Interactive Poetry Collection",
+          "genre": "Digital Poetry",
+          "concept": "Web-based poetry with reader interaction and multimedia elements"
+        }
+      ],
+      "coverImage": "images/future-projects-concept.jpg",
+      "themes": ["digital preservation", "collaboration", "multimedia storytelling", "experimental formats"]
+    }
+  ],
+  "metadata": {
+    "totalProjects": 6,
+    "publishedWorks": 3,
+    "worksInProgress": 2,
+    "futureProjects": 1,
+    "totalWordCount": 200000,
+    "lastUpdated": "2025-01-15"
+  }
+}
