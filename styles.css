@@ -195,10 +195,10 @@ body {
 /* Global Project Filters */
 .project-filters-section {
     background: var(--desert-sand);
-    padding: 2rem 0;
+    padding: 1rem 0;
     border-bottom: 2px solid var(--sage);
     position: sticky;
-    top: 80px;
+    top: 0px;
     z-index: 50;
 }
 
@@ -1415,6 +1415,747 @@ footer {
 
 .blog-reader::-webkit-scrollbar-thumb {
     background: var(--dusty-blue);
+}
+
+/* Comics Project Detail Modal */
+.comics-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 44, 44, 0.9);
+}
+
+.comics-modal-content {
+    background: var(--warm-white);
+    margin: 2% auto;
+    padding: 0;
+    border-radius: var(--border-radius);
+    width: 95%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+    position: relative;
+}
+
+.comics-header {
+    background: var(--sage);
+    color: var(--warm-white);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--terracotta);
+}
+
+.comics-header h2 {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+}
+
+.comics-close {
+    background: none;
+    border: none;
+    color: var(--warm-white);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.comics-close:hover {
+    background: var(--clay);
+    transform: scale(1.1);
+}
+
+.comics-detail {
+    padding: 2rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+
+.comics-loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--charcoal);
+    opacity: 0.7;
+    font-family: var(--font-primary);
+}
+
+.comics-project-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.comics-project-image {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.comics-project-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.comics-project-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.comics-project-info h3 {
+    font-family: var(--font-primary);
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.comics-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--desert-sand);
+    border-radius: var(--border-radius);
+}
+
+.comics-meta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(198, 93, 0, 0.2);
+}
+
+.comics-meta-item:last-child {
+    border-bottom: none;
+}
+
+.comics-meta-label {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    color: var(--charcoal);
+    font-size: 0.9rem;
+}
+
+.comics-meta-value {
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    text-align: right;
+}
+
+.comics-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.comics-status.completed, .comics-status.published {
+    background: var(--sage);
+    color: var(--warm-white);
+}
+
+.comics-status.work-in-progress {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+}
+
+.comics-status.planning {
+    background: var(--copper);
+    color: var(--warm-white);
+}
+
+.comics-description {
+    margin-bottom: 1.5rem;
+}
+
+.comics-description p {
+    line-height: 1.7;
+    color: var(--charcoal);
+}
+
+.comics-excerpt {
+    background: var(--desert-sand);
+    padding: 1rem;
+    border-left: 4px solid var(--sage);
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius);
+}
+
+.comics-excerpt p {
+    font-style: italic;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.comics-themes, .comics-art-style, .comics-read-links, .comics-awards, .comics-includes, .comics-collaboration {
+    margin-bottom: 1.5rem;
+}
+
+.comics-themes h4, .comics-art-style h4, .comics-read-links h4, .comics-awards h4, .comics-includes h4, .comics-collaboration h4 {
+    font-family: var(--font-primary);
+    color: var(--terracotta);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.comics-theme-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.comics-theme-tag {
+    background: var(--sage);
+    color: var(--warm-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+}
+
+.comics-read-link {
+    display: inline-block;
+    background: var(--terracotta);
+    color: var(--warm-white);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    transition: all 0.3s ease;
+}
+
+.comics-read-link:hover {
+    background: var(--clay);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.comics-award {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+}
+
+.comics-award-name {
+    font-family: var(--font-primary);
+    font-weight: 600;
+}
+
+.comics-project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.comics-project-item {
+    background: var(--copper);
+    color: var(--warm-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .comics-project-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .comics-project-image {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .comics-meta {
+        grid-template-columns: 1fr;
+    }
+    
+    .comics-meta-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .comics-meta-value {
+        text-align: left;
+    }
+}
+
+/* Games Project Detail Modal */
+.games-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 44, 44, 0.9);
+}
+
+.games-modal-content {
+    background: var(--warm-white);
+    margin: 2% auto;
+    padding: 0;
+    border-radius: var(--border-radius);
+    width: 95%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+    position: relative;
+}
+
+.games-header {
+    background: var(--copper);
+    color: var(--warm-white);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--terracotta);
+}
+
+.games-header h2 {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+}
+
+.games-close {
+    background: none;
+    border: none;
+    color: var(--warm-white);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.games-close:hover {
+    background: var(--clay);
+    transform: scale(1.1);
+}
+
+.games-detail {
+    padding: 2rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+
+.games-loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--charcoal);
+    opacity: 0.7;
+    font-family: var(--font-primary);
+}
+
+.games-project-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.games-project-image {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.games-project-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.games-project-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.games-project-info h3 {
+    font-family: var(--font-primary);
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.games-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--desert-sand);
+    border-radius: var(--border-radius);
+}
+
+.games-meta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(198, 93, 0, 0.2);
+}
+
+.games-meta-item:last-child {
+    border-bottom: none;
+}
+
+.games-meta-label {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    color: var(--charcoal);
+    font-size: 0.9rem;
+}
+
+.games-meta-value {
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    text-align: right;
+}
+
+.games-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.games-status.completed {
+    background: var(--sage);
+    color: var(--warm-white);
+}
+
+.games-status.work-in-progress {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+}
+
+.games-status.planning {
+    background: var(--copper);
+    color: var(--warm-white);
+}
+
+.games-action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.games-play-btn, .games-download-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.games-play-btn {
+    background: var(--terracotta);
+    color: var(--warm-white);
+}
+
+.games-play-btn:hover {
+    background: var(--clay);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.games-download-btn {
+    background: var(--sage);
+    color: var(--warm-white);
+}
+
+.games-download-btn:hover {
+    background: var(--dusty-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.games-description {
+    margin-bottom: 1.5rem;
+}
+
+.games-description p {
+    line-height: 1.7;
+    color: var(--charcoal);
+}
+
+.games-excerpt {
+    background: var(--desert-sand);
+    padding: 1rem;
+    border-left: 4px solid var(--copper);
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius);
+}
+
+.games-excerpt p {
+    font-style: italic;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.games-themes, .games-mechanics, .games-tools, .games-awards, .games-current-projects, .games-collection, .games-collaboration {
+    margin-bottom: 1.5rem;
+}
+
+.games-themes h4, .games-mechanics h4, .games-tools h4, .games-awards h4, .games-current-projects h4, .games-collection h4, .games-collaboration h4 {
+    font-family: var(--font-primary);
+    color: var(--terracotta);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.games-theme-tags, .games-mechanic-list, .games-tool-list, .games-project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.games-theme-tag {
+    background: var(--sage);
+    color: var(--warm-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+}
+
+.games-mechanic-item {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+}
+
+.games-tool-item {
+    background: var(--clay);
+    color: var(--warm-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+}
+
+.games-project-item {
+    background: var(--copper);
+    color: var(--warm-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+}
+
+.games-award {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+}
+
+.games-award-name {
+    font-family: var(--font-primary);
+    font-weight: 600;
+}
+
+.games-collection-item {
+    background: var(--desert-sand);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--copper);
+}
+
+.games-collection-item h5 {
+    margin: 0 0 0.5rem 0;
+    font-family: var(--font-primary);
+    color: var(--terracotta);
+}
+
+.games-collection-status {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.games-collection-status.completed {
+    background: var(--sage);
+    color: var(--warm-white);
+}
+
+.games-collection-status.in-development {
+    background: var(--dusty-blue);
+    color: var(--warm-white);
+}
+
+.games-collection-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--charcoal);
+}
+
+/* Game Player Modal */
+.game-player-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+.game-player-content {
+    width: 95%;
+    height: 95%;
+    margin: 2.5% auto;
+    background: var(--charcoal);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-player-header {
+    background: var(--terracotta);
+    color: var(--warm-white);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.game-player-header h2 {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+}
+
+.game-player-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.game-fullscreen-btn, .game-player-close {
+    background: none;
+    border: none;
+    color: var(--warm-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.game-fullscreen-btn:hover, .game-player-close:hover {
+    background: var(--clay);
+}
+
+.game-player-frame {
+    flex: 1;
+    position: relative;
+    background: var(--charcoal);
+}
+
+.game-player-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--warm-white);
+}
+
+@media (max-width: 768px) {
+    .games-project-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .games-project-image {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .games-meta {
+        grid-template-columns: 1fr;
+    }
+    
+    .games-meta-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .games-meta-value {
+        text-align: left;
+    }
+    
+    .games-action-buttons {
+        flex-direction: column;
+    }
+    
+    .game-player-content {
+        width: 98%;
+        height: 98%;
+        margin: 1% auto;
+    }
+    
+    .game-player-header h2 {
+        font-size: 1rem;
+    }
 }
 
 /* Writing Project Detail Modal */

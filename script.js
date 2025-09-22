@@ -138,6 +138,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
                 const writingProjectId = idMapping[project.id] || project.id;
                 clickHandler = `onclick="openWritingProject('${writingProjectId}')"`;
+            } else if (sectionId === 'comics' && (project.type === 'comic' || project.type === 'art portfolio' || project.type === 'art series' || project.type === 'art book' || project.type === 'graphic novel')) {
+                // Comics projects use their work-status ID directly
+                clickHandler = `onclick="openComicsProject('${project.id}')"`;
+            } else if (sectionId === 'games' && project.type === 'game') {
+                // Games projects use their work-status ID directly
+                clickHandler = `onclick="openGamesProject('${project.id}')"`;
             }
             
             return `
@@ -362,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
-        const rate = scrolled * -0.5;
+        const rate = scrolled * -0.3;
         
         if (hero) {
             hero.style.transform = `translateY(${rate}px)`;
@@ -679,6 +685,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Writing Projects Functionality
     let writingData = null;
+    
+    // Comics Projects Functionality
+    let comicsData = null;
+    
+    // Games Projects Functionality
+    let gamesData = null;
 
     async function loadWritingProjects() {
         try {
@@ -695,6 +707,50 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(`✅ Writing projects loaded: ${writingData.projects.length} projects available`);
         } catch (error) {
             console.error('Error loading writing projects:', error);
+            console.error('Error details:', {
+                message: error.message,
+                stack: error.stack,
+                url: window.location.href
+            });
+        }
+    }
+    
+    async function loadComicsProjects() {
+        try {
+            const response = await fetch('comics-projects.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            comicsData = await response.json();
+            
+            // Make data globally accessible
+            window.comicsData = comicsData;
+            
+            console.log(`✅ Comics projects loaded: ${comicsData.projects.length} projects available`);
+        } catch (error) {
+            console.error('Error loading comics projects:', error);
+            console.error('Error details:', {
+                message: error.message,
+                stack: error.stack,
+                url: window.location.href
+            });
+        }
+    }
+    
+    async function loadGamesProjects() {
+        try {
+            const response = await fetch('games-projects.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            gamesData = await response.json();
+            
+            // Make data globally accessible
+            window.gamesData = gamesData;
+            
+            console.log(`✅ Games projects loaded: ${gamesData.projects.length} projects available`);
+        } catch (error) {
+            console.error('Error loading games projects:', error);
             console.error('Error details:', {
                 message: error.message,
                 stack: error.stack,
@@ -730,6 +786,8 @@ document.addEventListener('DOMContentLoaded', function() {
     loadFlashFiction();
     loadBlog();
     loadWritingProjects();
+    loadComicsProjects();
+    loadGamesProjects();
     loadWorkStatus();
 
     console.log('🌵 The Azirona Drift - Digital Southwest Experience Loaded');
@@ -906,6 +964,117 @@ function closeWritingProject() {
     }
 }
 
+// Global functions for comics projects (called by onclick handlers)
+function openComicsProject(projectId) {
+    const modal = document.getElementById('comicsModal');
+    if (modal && window.comicsData) {
+        // Show project details
+        const project = window.comicsData.projects.find(p => p.id === projectId);
+        if (project) {
+            const titleElement = document.getElementById('comicsProjectTitle');
+            const detailElement = document.getElementById('comicsDetail');
+
+            if (titleElement) {
+                titleElement.textContent = project.title;
+            }
+
+            if (detailElement) {
+                detailElement.innerHTML = generateComicsDetailHTML(project);
+            }
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+
+function closeComicsProject() {
+    const modal = document.getElementById('comicsModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Global functions for games projects (called by onclick handlers)
+function openGamesProject(projectId) {
+    const modal = document.getElementById('gamesModal');
+    if (modal && window.gamesData) {
+        // Show project details
+        const project = window.gamesData.projects.find(p => p.id === projectId);
+        if (project) {
+            const titleElement = document.getElementById('gamesProjectTitle');
+            const detailElement = document.getElementById('gamesDetail');
+
+            if (titleElement) {
+                titleElement.textContent = project.title;
+            }
+
+            if (detailElement) {
+                detailElement.innerHTML = generateGamesDetailHTML(project);
+            }
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+
+function closeGamesProject() {
+    const modal = document.getElementById('gamesModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Global functions for game player (called by onclick handlers)
+function playGame(projectId) {
+    if (!window.gamesData) return;
+    
+    const project = window.gamesData.projects.find(p => p.id === projectId);
+    if (project && project.hasWebVersion && project.webGamePath) {
+        const modal = document.getElementById('gamePlayerModal');
+        const titleElement = document.getElementById('gamePlayerTitle');
+        const iframe = document.getElementById('gameIframe');
+        
+        if (modal && titleElement && iframe) {
+            titleElement.textContent = project.title;
+            iframe.src = project.webGamePath;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+
+function closeGamePlayer() {
+    const modal = document.getElementById('gamePlayerModal');
+    const iframe = document.getElementById('gameIframe');
+    
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // Stop the game by clearing the iframe src
+        if (iframe) {
+            iframe.src = '';
+        }
+    }
+}
+
+function toggleGameFullscreen() {
+    const modal = document.getElementById('gamePlayerModal');
+    if (!modal) return;
+    
+    if (!document.fullscreenElement) {
+        modal.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+
 function generateProjectDetailHTML(project) {
     return `
         <div class="writing-project-content">
@@ -1024,6 +1193,9 @@ window.addEventListener('click', function(event) {
     const flashModal = document.getElementById('flashFictionModal');
     const blogModal = document.getElementById('blogModal');
     const writingModal = document.getElementById('writingModal');
+    const comicsModal = document.getElementById('comicsModal');
+    const gamesModal = document.getElementById('gamesModal');
+    const gamePlayerModal = document.getElementById('gamePlayerModal');
     
     if (event.target === flashModal) {
         closeFlashFiction();
@@ -1036,6 +1208,18 @@ window.addEventListener('click', function(event) {
     if (event.target === writingModal) {
         closeWritingProject();
     }
+    
+    if (event.target === comicsModal) {
+        closeComicsProject();
+    }
+    
+    if (event.target === gamesModal) {
+        closeGamesProject();
+    }
+    
+    if (event.target === gamePlayerModal) {
+        closeGamePlayer();
+    }
 });
 
 // Keyboard navigation for all modals
@@ -1043,6 +1227,9 @@ document.addEventListener('keydown', function(event) {
     const flashModal = document.getElementById('flashFictionModal');
     const blogModal = document.getElementById('blogModal');
     const writingModal = document.getElementById('writingModal');
+    const comicsModal = document.getElementById('comicsModal');
+    const gamesModal = document.getElementById('gamesModal');
+    const gamePlayerModal = document.getElementById('gamePlayerModal');
     
     if (flashModal && flashModal.style.display === 'block') {
         switch(event.key) {
@@ -1083,4 +1270,287 @@ document.addEventListener('keydown', function(event) {
                 break;
         }
     }
+    
+    if (comicsModal && comicsModal.style.display === 'block') {
+        switch(event.key) {
+            case 'Escape':
+                closeComicsProject();
+                break;
+        }
+    }
+    
+    if (gamesModal && gamesModal.style.display === 'block') {
+        switch(event.key) {
+            case 'Escape':
+                closeGamesProject();
+                break;
+        }
+    }
+    
+    if (gamePlayerModal && gamePlayerModal.style.display === 'block') {
+        switch(event.key) {
+            case 'Escape':
+                closeGamePlayer();
+                break;
+            case 'F11':
+                event.preventDefault();
+                toggleGameFullscreen();
+                break;
+        }
+    }
 });
+function generateComicsDetailHTML(project) {
+    return `
+        <div class="comics-project-content">
+            <div class="comics-project-image">
+                <img src="${project.coverImage}" alt="${project.title} cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjOUNBRjg4Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNGRUZDRjgiIHN0cm9rZT0iI0M2NUQwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNDNjVEMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPiR7cHJvamVjdC50aXRsZX08L3RleHQ+Cjwvc3ZnPg=='">
+            </div>
+            <div class="comics-project-info">
+                <h3>Project Details</h3>
+                
+                <div class="comics-meta">
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Status</span>
+                        <span class="comics-meta-value">
+                            <span class="comics-status ${project.status}">${project.status.replace('-', ' ')}</span>
+                        </span>
+                    </div>
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Type</span>
+                        <span class="comics-meta-value">${project.type}</span>
+                    </div>
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Genre</span>
+                        <span class="comics-meta-value">${project.genre || 'N/A'}</span>
+                    </div>
+                    ${project.publishDate ? `
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Published</span>
+                        <span class="comics-meta-value">${new Date(project.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                    </div>
+                    ` : ''}
+                    ${project.episodeCount ? `
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Episodes</span>
+                        <span class="comics-meta-value">${project.episodeCount}</span>
+                    </div>
+                    ` : ''}
+                    ${project.estimatedLength ? `
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Length</span>
+                        <span class="comics-meta-value">${project.estimatedLength}</span>
+                    </div>
+                    ` : ''}
+                    ${project.progress ? `
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Progress</span>
+                        <span class="comics-meta-value">${project.progress}</span>
+                    </div>
+                    ` : ''}
+                </div>
+
+                <div class="comics-description">
+                    <p>${project.detailedDescription}</p>
+                </div>
+
+                ${project.excerpt ? `
+                <div class="comics-excerpt">
+                    <p><em>"${project.excerpt}"</em></p>
+                </div>
+                ` : ''}
+
+                ${project.themes ? `
+                <div class="comics-themes">
+                    <h4>Themes</h4>
+                    <div class="comics-theme-tags">
+                        ${project.themes.map(theme => `<span class="comics-theme-tag">${theme}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.artStyle ? `
+                <div class="comics-art-style">
+                    <h4>Art Style</h4>
+                    <p>${project.artStyle}</p>
+                </div>
+                ` : ''}
+
+                ${project.readLinks ? `
+                <div class="comics-read-links">
+                    <h4>Read Online</h4>
+                    ${project.readLinks.map(link => 
+                        `<a href="${link.url}" target="_blank" class="comics-read-link">${link.platform} - ${link.description}</a>`
+                    ).join('')}
+                </div>
+                ` : ''}
+
+                ${project.awards ? `
+                <div class="comics-awards">
+                    <h4>Awards</h4>
+                    ${project.awards.map(award => `
+                        <div class="comics-award">
+                            <div class="comics-award-name">${award}</div>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+
+                ${project.includesProjects ? `
+                <div class="comics-includes">
+                    <h4>Includes Work From</h4>
+                    <div class="comics-project-list">
+                        ${project.includesProjects.map(proj => `<span class="comics-project-item">${proj}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.collaborativeNote || project.collaboration ? `
+                <div class="comics-collaboration">
+                    <h4>Collaboration</h4>
+                    <p>${project.collaborativeNote || project.collaboration}</p>
+                </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+}function generateGamesDetailHTML(project) {
+    return `
+        <div class="games-project-content">
+            <div class="games-project-image">
+                <img src="${project.coverImage}" alt="${project.title} cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjQjg3MzMzIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNGRUZDRjgiIHN0cm9rZT0iI0M2NUQwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNDNjVEMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPiR7cHJvamVjdC50aXRsZX08L3RleHQ+Cjwvc3ZnPg=='">
+            </div>
+            <div class="games-project-info">
+                <h3>Game Details</h3>
+                
+                <div class="games-meta">
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Status</span>
+                        <span class="games-meta-value">
+                            <span class="games-status ${project.status}">${project.status.replace('-', ' ')}</span>
+                        </span>
+                    </div>
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Type</span>
+                        <span class="games-meta-value">${project.type}</span>
+                    </div>
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Genre</span>
+                        <span class="games-meta-value">${project.genre || 'N/A'}</span>
+                    </div>
+                    ${project.publishDate ? `
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Published</span>
+                        <span class="games-meta-value">${new Date(project.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                    </div>
+                    ` : ''}
+                    ${project.playerCount ? `
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Players</span>
+                        <span class="games-meta-value">${project.playerCount}</span>
+                    </div>
+                    ` : ''}
+                    ${project.playTime || project.estimatedPlayTime ? `
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Play Time</span>
+                        <span class="games-meta-value">${project.playTime || project.estimatedPlayTime}</span>
+                    </div>
+                    ` : ''}
+                    ${project.progress ? `
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Progress</span>
+                        <span class="games-meta-value">${project.progress}</span>
+                    </div>
+                    ` : ''}
+                </div>
+
+                ${project.hasWebVersion || project.playLinks ? `
+                <div class="games-action-buttons">
+                    ${project.hasWebVersion ? `
+                        <button class="games-play-btn" onclick="playGame('${project.id}')">Play Game</button>
+                    ` : ''}
+                    ${project.playLinks ? project.playLinks.map(link => 
+                        `<a href="${link.url}" target="_blank" class="games-download-btn">View on ${link.platform}</a>`
+                    ).join('') : ''}
+                </div>
+                ` : ''}
+
+                <div class="games-description">
+                    <p>${project.detailedDescription}</p>
+                </div>
+
+                ${project.excerpt ? `
+                <div class="games-excerpt">
+                    <p><em>"${project.excerpt}"</em></p>
+                </div>
+                ` : ''}
+
+                ${project.themes ? `
+                <div class="games-themes">
+                    <h4>Themes</h4>
+                    <div class="games-theme-tags">
+                        ${project.themes.map(theme => `<span class="games-theme-tag">${theme}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.mechanics || project.plannedMechanics ? `
+                <div class="games-mechanics">
+                    <h4>Game Mechanics</h4>
+                    <div class="games-mechanic-list">
+                        ${(project.mechanics || project.plannedMechanics).map(mechanic => `<span class="games-mechanic-item">${mechanic}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.tools ? `
+                <div class="games-tools">
+                    <h4>Development Tools</h4>
+                    <div class="games-tool-list">
+                        ${project.tools.map(tool => `<span class="games-tool-item">${tool}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.awards ? `
+                <div class="games-awards">
+                    <h4>Awards & Recognition</h4>
+                    ${project.awards.map(award => `
+                        <div class="games-award">
+                            <div class="games-award-name">${award}</div>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+
+                ${project.currentProjects ? `
+                <div class="games-current-projects">
+                    <h4>Current Projects</h4>
+                    <div class="games-project-list">
+                        ${project.currentProjects.map(proj => `<span class="games-project-item">${proj}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.games ? `
+                <div class="games-collection">
+                    <h4>Included Games</h4>
+                    ${project.games.map(game => `
+                        <div class="games-collection-item">
+                            <h5>${game.title}</h5>
+                            <span class="games-collection-status ${game.status}">${game.status.replace('-', ' ')}</span>
+                            <p>${game.description}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+
+                ${project.collaboration || project.collaborativeNote ? `
+                <div class="games-collaboration">
+                    <h4>Collaboration</h4>
+                    <p>${project.collaboration || project.collaborativeNote}</p>
+                </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+}

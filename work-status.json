@@ -74,26 +74,14 @@
       "targetWordCount": 120000
     },
     {
-      "id": "liminal-updates",
-      "title": "Liminal Comic Updates",
+      "id": "new-comic-project",
+      "title": "Untitled Comic Project",
       "author": "Juleah Miller",
       "status": "work-in-progress",
       "type": "comic",
-      "description": "Continuing the Liminal series with new episodes and character development.",
-      "progress": "Season 2 in development",
-      "estimatedCompletion": "Spring 2025",
-      "episodesPlanned": 15
-    },
-    {
-      "id": "character-design-portfolio",
-      "title": "Character Design Portfolio",
-      "author": "Juleah Miller",
-      "status": "work-in-progress",
-      "type": "art portfolio",
-      "description": "Comprehensive portfolio showcasing character design skills across multiple projects.",
-      "progress": "40% complete",
-      "estimatedCompletion": "Summer 2025",
-      "pieceCount": 25
+      "description": "New comic series in early development exploring themes of connection and technology.",
+      "progress": "Story outline and character concepts",
+      "estimatedCompletion": "TBD"
     },
     {
       "id": "game-narrative-project",
@@ -106,15 +94,15 @@
       "currentProjects": ["Adventure game concept", "Interactive fiction prototype"]
     },
     {
-      "id": "digital-art-series",
-      "title": "Digital Art Series",
-      "author": "Juleah Miller",
-      "status": "work-in-progress",
-      "type": "art series",
-      "description": "Themed digital artwork exploring southwest landscapes and technology integration.",
-      "progress": "8 of 12 pieces completed",
-      "estimatedCompletion": "Spring 2025",
-      "theme": "Digital Southwest"
+      "id": "kirbo-test-game",
+      "title": "Kirbo Test Game",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "game",
+      "description": "PICO-8 test game to demonstrate the web game player functionality.",
+      "completedDate": "2025-01-15",
+      "platform": "Web Browser",
+      "testGame": true
     },
     {
       "id": "collaborative-graphic-novel",
@@ -174,12 +162,12 @@
     }
   ],
   "metadata": {
-    "totalProjects": 15,
-    "completedProjects": 5,
-    "workInProgress": 5,
+    "totalProjects": 14,
+    "completedProjects": 6,
+    "workInProgress": 3,
     "planningProjects": 5,
-    "collaborativeProjects": 6,
-    "alexProjects": 9,
-    "juleahProjects": 6
+    "collaborativeProjects": 4,
+    "alexProjects": 10,
+    "juleahProjects": 4
   }
 }

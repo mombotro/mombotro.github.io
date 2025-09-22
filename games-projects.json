@@ -1,0 +1,140 @@
+{
+  "collection": {
+    "title": "Alek Miller's Game Projects",
+    "description": "Games, interactive experiences, and playable projects from The Azirona Drift",
+    "author": "Alek Miller"
+  },
+  "projects": [
+    {
+      "id": "round-down-game",
+      "title": "Round Down Card Game",
+      "status": "completed",
+      "type": "card game",
+      "shortDescription": "Strategic card game featuring innovative mechanics and engaging gameplay.",
+      "detailedDescription": "Round Down is a strategic card game that combines mathematical thinking with tactical decision-making. Players must balance risk and reward as they work to reduce their hand value while blocking opponents. The game features unique mechanics that make every round engaging and unpredictable.",
+      "genre": "Strategy/Card Game",
+      "publishDate": "2024-11-20",
+      "platform": "Itch.io",
+      "coverImage": "images/round-down-cover.jpg",
+      "playerCount": "2-4 players",
+      "playTime": "30-45 minutes",
+      "playLinks": [
+        {
+          "platform": "Itch.io",
+          "url": "https://itch.io/example",
+          "description": "Download and play"
+        }
+      ],
+      "hasWebVersion": false,
+      "themes": ["strategy", "mathematics", "tactical thinking", "risk management"],
+      "mechanics": ["Hand management", "Set collection", "Risk assessment"],
+      "collaboration": "Art and visual design by Juleah Miller",
+      "awards": ["Indie Game Design Contest - Honorable Mention 2024"],
+      "excerpt": "A game where every card played changes the landscape of possibility, and the path to victory requires both calculation and intuition."
+    },
+    {
+      "id": "game-narrative-project",
+      "title": "Interactive Game Narratives",
+      "status": "work-in-progress",
+      "type": "interactive fiction",
+      "shortDescription": "Narrative design for multiple game projects including dialogue trees and environmental storytelling.",
+      "detailedDescription": "A collection of interactive narrative projects exploring how player choice shapes story outcomes. These projects range from branching dialogue systems to environmental storytelling experiments, each designed to push the boundaries of player agency in digital narratives.",
+      "genre": "Interactive Fiction",
+      "estimatedCompletion": "2025",
+      "progress": "Multiple prototypes in development",
+      "coverImage": "images/interactive-narratives-concept.jpg",
+      "hasWebVersion": true,
+      "webGamePath": "games/narrative-demo/index.html",
+      "themes": ["choice consequences", "branching narratives", "player agency", "environmental storytelling"],
+      "tools": ["Twine", "Ink", "Custom JavaScript"],
+      "currentProjects": [
+        "Desert Roads Interactive Prologue",
+        "Choice-driven Character Study",
+        "Environmental Narrative Experiment"
+      ],
+      "excerpt": "Stories that change based on your choices, where every decision echoes through the narrative landscape."
+    },
+    {
+      "id": "new-card-game",
+      "title": "Desert Winds Card Game",
+      "status": "planning",
+      "type": "card game",
+      "shortDescription": "Follow-up to Round Down with new mechanics and collaborative art development.",
+      "detailedDescription": "Desert Winds builds on the success of Round Down with new strategic elements inspired by the landscapes and challenges of the American Southwest. Players navigate shifting conditions and scarce resources while building their desert settlements.",
+      "genre": "Strategy/Resource Management",
+      "plannedStart": "Mid 2025",
+      "estimatedLength": "Full card game with expansions",
+      "coverImage": "images/desert-winds-concept.jpg",
+      "playerCount": "2-6 players",
+      "estimatedPlayTime": "45-60 minutes",
+      "hasWebVersion": false,
+      "themes": ["resource management", "desert survival", "adaptation", "community building"],
+      "plannedMechanics": ["Resource trading", "Environmental events", "Settlement building"],
+      "collaboration": "Full art partnership with Juleah Miller",
+      "concept": "A game about thriving in harsh conditions through cooperation and smart resource management",
+      "inspiration": "Desert landscapes and stories of resilience in the American Southwest"
+    },
+    {
+      "id": "kirbo-test-game",
+      "title": "Kirbo Test Game",
+      "status": "completed",
+      "type": "web game",
+      "shortDescription": "PICO-8 test game to demonstrate the web game player functionality.",
+      "detailedDescription": "A small PICO-8 game used for testing the web game player system. This demonstrates how HTML-exported games can be embedded and played directly in the browser through the game player modal.",
+      "genre": "Arcade/Test",
+      "publishDate": "2025-01-15",
+      "platform": "Web Browser",
+      "coverImage": "images/kirbo-test-cover.jpg",
+      "playerCount": "1 player",
+      "playTime": "5-10 minutes",
+      "hasWebVersion": true,
+      "webGamePath": "games/kirbo/kirbo.html",
+      "themes": ["testing", "arcade", "retro"],
+      "tools": ["PICO-8", "HTML5"],
+      "excerpt": "A simple test game to verify the web game player functionality works correctly.",
+      "testGame": true
+    },
+    {
+      "id": "web-game-collection",
+      "title": "Browser Game Collection",
+      "status": "work-in-progress",
+      "type": "web games",
+      "shortDescription": "Collection of small browser-based games and interactive experiences.",
+      "detailedDescription": "A growing collection of experimental browser games, each exploring different mechanics and themes. These bite-sized experiences serve as testing grounds for new ideas and provide quick, accessible gaming experiences that can be played anywhere.",
+      "genre": "Experimental/Casual",
+      "progress": "3 games completed, 2 in development",
+      "coverImage": "images/browser-games-concept.jpg",
+      "hasWebVersion": true,
+      "webGamePath": "games/collection/index.html",
+      "games": [
+        {
+          "title": "Digital Tumbleweeds",
+          "status": "completed",
+          "description": "A meditative clicking game about digital debris"
+        },
+        {
+          "title": "Code Canyon",
+          "status": "completed", 
+          "description": "Navigate through abstract programming landscapes"
+        },
+        {
+          "title": "Signal Static",
+          "status": "in-development",
+          "description": "Tune radio frequencies to uncover hidden messages"
+        }
+      ],
+      "themes": ["digital landscapes", "meditation", "discovery", "experimental interaction"],
+      "tools": ["HTML5 Canvas", "JavaScript", "Web Audio API"],
+      "excerpt": "Small digital playgrounds where interaction reveals meaning."
+    }
+  ],
+  "metadata": {
+    "totalProjects": 5,
+    "completedGames": 2,
+    "worksInProgress": 2,
+    "futureProjects": 1,
+    "webPlayableGames": 3,
+    "collaborativeProjects": 2,
+    "lastUpdated": "2025-01-15"
+  }
+}

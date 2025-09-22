@@ -28,8 +28,8 @@
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h2>Welcome to The Azirona Drift</h2>
-                <p>Collaborative creative works from Alek & Juleah Miller - where stories, art, games, and music converge in the digital southwest.</p>
+                <h2>Welcome to the Drift</h2>
+                <p>a mom/dad pact to make games/comics/books</p>
             </div>
         </section>
 
@@ -255,6 +255,55 @@
             <p>&copy; 2025 The Azirona Drift - Alek & Juleah Miller</p>
         </div>
     </footer>
+
+    <!-- Comics Project Detail Modal -->
+    <div id="comicsModal" class="comics-modal">
+        <div class="comics-modal-content">
+            <div class="comics-header">
+                <h2 id="comicsProjectTitle">Project Title</h2>
+                <button class="comics-close" onclick="closeComicsProject()">&times;</button>
+            </div>
+            
+            <div class="comics-detail" id="comicsDetail">
+                <!-- Project details will be loaded dynamically -->
+                <div class="comics-loading">
+                    <p>Loading project details...</p>
+                </div>
+            </div>
+        </div>
+    </div>\n\n    <!-- Games Project Detail Modal -->
+    <div id="gamesModal" class="games-modal">
+        <div class="games-modal-content">
+            <div class="games-header">
+                <h2 id="gamesProjectTitle">Project Title</h2>
+                <button class="games-close" onclick="closeGamesProject()">&times;</button>
+            </div>
+            
+            <div class="games-detail" id="gamesDetail">
+                <!-- Project details will be loaded dynamically -->
+                <div class="games-loading">
+                    <p>Loading project details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Player Modal -->
+    <div id="gamePlayerModal" class="game-player-modal">
+        <div class="game-player-content">
+            <div class="game-player-header">
+                <h2 id="gamePlayerTitle">Game Title</h2>
+                <div class="game-player-controls">
+                    <button class="game-fullscreen-btn" onclick="toggleGameFullscreen()" title="Toggle Fullscreen">⛶</button>
+                    <button class="game-player-close" onclick="closeGamePlayer()">&times;</button>
+                </div>
+            </div>
+            
+            <div class="game-player-frame" id="gamePlayerFrame">
+                <iframe id="gameIframe" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
