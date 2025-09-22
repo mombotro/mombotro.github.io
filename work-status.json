@@ -105,6 +105,27 @@
       "testGame": true
     },
     {
+      "id": "desert-ambience-collection",
+      "title": "Desert Ambience Collection",
+      "author": "Alek & Juleah Miller",
+      "status": "completed",
+      "type": "music",
+      "description": "Atmospheric soundscapes inspired by the American Southwest.",
+      "completedDate": "2024-10-15",
+      "platform": "YouTube",
+      "collaboration": "Field recordings by Juleah Miller"
+    },
+    {
+      "id": "game-soundtrack-collection",
+      "title": "Interactive Media Soundtracks",
+      "author": "Alek Miller",
+      "status": "work-in-progress",
+      "type": "music",
+      "description": "Music composed for games and interactive experiences.",
+      "progress": "5 tracks completed",
+      "estimatedCompletion": "Spring 2025"
+    },
+    {
       "id": "collaborative-graphic-novel",
       "title": "Collaborative Graphic Novel",
       "author": "Alek & Juleah Miller",
@@ -162,12 +183,12 @@
     }
   ],
   "metadata": {
-    "totalProjects": 14,
-    "completedProjects": 6,
-    "workInProgress": 3,
+    "totalProjects": 16,
+    "completedProjects": 7,
+    "workInProgress": 4,
     "planningProjects": 5,
-    "collaborativeProjects": 4,
-    "alexProjects": 10,
-    "juleahProjects": 4
+    "collaborativeProjects": 5,
+    "alexProjects": 11,
+    "juleahProjects": 5
   }
 }

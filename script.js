@@ -144,6 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (sectionId === 'games' && project.type === 'game') {
                 // Games projects use their work-status ID directly
                 clickHandler = `onclick="openGamesProject('${project.id}')"`;
+            } else if (sectionId === 'music' && project.type === 'music') {
+                // Music projects use their work-status ID directly
+                clickHandler = `onclick="openMusicProject('${project.id}')"`;
             }
             
             return `
@@ -691,6 +694,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Games Projects Functionality
     let gamesData = null;
+    let musicData = null;
 
     async function loadWritingProjects() {
         try {
@@ -759,6 +763,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    async function loadMusicProjects() {
+        try {
+            const response = await fetch('music-projects.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            musicData = await response.json();
+            
+            // Make data globally accessible
+            window.musicData = musicData;
+            
+            console.log(`✅ Music projects loaded: ${musicData.projects.length} projects available`);
+        } catch (error) {
+            console.error('Error loading music projects:', error);
+            console.error('Error details:', {
+                message: error.message,
+                stack: error.stack,
+                url: window.location.href
+            });
+        }
+    }
+
     function renderWritingProjects() {
         // Writing projects are now handled by the global work status system
         // This function is kept for compatibility but does nothing
@@ -788,6 +814,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadWritingProjects();
     loadComicsProjects();
     loadGamesProjects();
+    loadMusicProjects();
     loadWorkStatus();
 
     console.log('🌵 The Azirona Drift - Digital Southwest Experience Loaded');
@@ -1028,6 +1055,38 @@ function closeGamesProject() {
     }
 }
 
+// Global functions for music projects (called by onclick handlers)
+function openMusicProject(projectId) {
+    const modal = document.getElementById('musicModal');
+    if (modal && window.musicData) {
+        // Show project details
+        const project = window.musicData.projects.find(p => p.id === projectId);
+        if (project) {
+            const titleElement = document.getElementById('musicProjectTitle');
+            const detailElement = document.getElementById('musicDetail');
+
+            if (titleElement) {
+                titleElement.textContent = project.title;
+            }
+
+            if (detailElement) {
+                detailElement.innerHTML = generateMusicDetailHTML(project);
+            }
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+
+function closeMusicProject() {
+    const modal = document.getElementById('musicModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
 // Global functions for game player (called by onclick handlers)
 function playGame(projectId) {
     if (!window.gamesData) return;
@@ -1085,6 +1144,12 @@ function generateProjectDetailHTML(project) {
                 <h3>Project Details</h3>
                 
                 <div class="writing-meta">
+                    ${project.author ? `
+                    <div class="writing-meta-item">
+                        <span class="writing-meta-label">Author</span>
+                        <span class="writing-meta-value">${project.author}</span>
+                    </div>
+                    ` : ''}
                     <div class="writing-meta-item">
                         <span class="writing-meta-label">Status</span>
                         <span class="writing-meta-value">
@@ -1144,12 +1209,17 @@ function generateProjectDetailHTML(project) {
                 </div>
                 ` : ''}
 
-                ${project.purchaseLinks ? `
+                ${project.purchaseLinks || project.gumroadUrl ? `
                 <div class="writing-purchase-links">
                     <h4>Get This Book</h4>
-                    ${project.purchaseLinks.map(link => 
+                    ${project.gumroadUrl ? `
+                        <a href="${project.gumroadUrl}" target="_blank" class="gumroad-purchase-btn">
+                            🛒 Buy PDF on Gumroad${project.price ? ` - ${project.price}` : ''}
+                        </a>
+                    ` : ''}
+                    ${project.purchaseLinks ? project.purchaseLinks.map(link => 
                         `<a href="${link.url}" target="_blank" class="writing-purchase-link">${link.platform} - ${link.price}</a>`
-                    ).join('')}
+                    ).join('') : ''}
                 </div>
                 ` : ''}
 
@@ -1196,6 +1266,7 @@ window.addEventListener('click', function(event) {
     const comicsModal = document.getElementById('comicsModal');
     const gamesModal = document.getElementById('gamesModal');
     const gamePlayerModal = document.getElementById('gamePlayerModal');
+    const musicModal = document.getElementById('musicModal');
     
     if (event.target === flashModal) {
         closeFlashFiction();
@@ -1220,6 +1291,10 @@ window.addEventListener('click', function(event) {
     if (event.target === gamePlayerModal) {
         closeGamePlayer();
     }
+    
+    if (event.target === musicModal) {
+        closeMusicProject();
+    }
 });
 
 // Keyboard navigation for all modals
@@ -1230,6 +1305,7 @@ document.addEventListener('keydown', function(event) {
     const comicsModal = document.getElementById('comicsModal');
     const gamesModal = document.getElementById('gamesModal');
     const gamePlayerModal = document.getElementById('gamePlayerModal');
+    const musicModal = document.getElementById('musicModal');
     
     if (flashModal && flashModal.style.display === 'block') {
         switch(event.key) {
@@ -1298,6 +1374,14 @@ document.addEventListener('keydown', function(event) {
                 break;
         }
     }
+    
+    if (musicModal && musicModal.style.display === 'block') {
+        switch(event.key) {
+            case 'Escape':
+                closeMusicProject();
+                break;
+        }
+    }
 });
 function generateComicsDetailHTML(project) {
     return `
@@ -1309,6 +1393,12 @@ function generateComicsDetailHTML(project) {
                 <h3>Project Details</h3>
                 
                 <div class="comics-meta">
+                    ${project.author ? `
+                    <div class="comics-meta-item">
+                        <span class="comics-meta-label">Author</span>
+                        <span class="comics-meta-value">${project.author}</span>
+                    </div>
+                    ` : ''}
                     <div class="comics-meta-item">
                         <span class="comics-meta-label">Status</span>
                         <span class="comics-meta-value">
@@ -1375,12 +1465,17 @@ function generateComicsDetailHTML(project) {
                 </div>
                 ` : ''}
 
-                ${project.readLinks ? `
+                ${project.readLinks || project.gumroadUrl ? `
                 <div class="comics-read-links">
-                    <h4>Read Online</h4>
-                    ${project.readLinks.map(link => 
+                    <h4>${project.gumroadUrl ? 'Get This Comic' : 'Read Online'}</h4>
+                    ${project.gumroadUrl ? `
+                        <a href="${project.gumroadUrl}" target="_blank" class="gumroad-purchase-btn">
+                            🛒 Buy PDF on Gumroad${project.price ? ` - ${project.price}` : ''}
+                        </a>
+                    ` : ''}
+                    ${project.readLinks ? project.readLinks.map(link => 
                         `<a href="${link.url}" target="_blank" class="comics-read-link">${link.platform} - ${link.description}</a>`
-                    ).join('')}
+                    ).join('') : ''}
                 </div>
                 ` : ''}
 
@@ -1423,6 +1518,12 @@ function generateComicsDetailHTML(project) {
                 <h3>Game Details</h3>
                 
                 <div class="games-meta">
+                    ${project.author ? `
+                    <div class="games-meta-item">
+                        <span class="games-meta-label">Author</span>
+                        <span class="games-meta-value">${project.author}</span>
+                    </div>
+                    ` : ''}
                     <div class="games-meta-item">
                         <span class="games-meta-label">Status</span>
                         <span class="games-meta-value">
@@ -1463,8 +1564,13 @@ function generateComicsDetailHTML(project) {
                     ` : ''}
                 </div>
 
-                ${project.hasWebVersion || project.playLinks ? `
+                ${project.hasWebVersion || project.playLinks || project.gumroadUrl ? `
                 <div class="games-action-buttons">
+                    ${project.gumroadUrl ? `
+                        <a href="${project.gumroadUrl}" target="_blank" class="gumroad-purchase-btn">
+                            🛒 Buy on Gumroad${project.price ? ` - ${project.price}` : ''}
+                        </a>
+                    ` : ''}
                     ${project.hasWebVersion ? `
                         <button class="games-play-btn" onclick="playGame('${project.id}')">Play Game</button>
                     ` : ''}
@@ -1548,6 +1654,150 @@ function generateComicsDetailHTML(project) {
                 <div class="games-collaboration">
                     <h4>Collaboration</h4>
                     <p>${project.collaboration || project.collaborativeNote}</p>
+                </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+}
+
+function generateMusicDetailHTML(project) {
+    return `
+        <div class="music-project-content">
+            <div class="music-project-image">
+                <img src="${project.coverImage}" alt="${project.title} cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjQjg3MzMzIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIyNjAiIGZpbGw9IiNGRUZDRjgiIHN0cm9rZT0iI0M2NUQwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTUwIiBmb250LWZhbWlseT0iQ291cmllciBOZXciIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNDNjVEMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPiR7cHJvamVjdC50aXRsZX08L3RleHQ+Cjwvc3ZnPg=='">
+            </div>
+            <div class="music-project-info">
+                <h3>Collection Details</h3>
+                
+                <div class="music-meta">
+                    ${project.author ? `
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Author</span>
+                        <span class="music-meta-value">${project.author}</span>
+                    </div>
+                    ` : ''}
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Status</span>
+                        <span class="music-meta-value">
+                            <span class="music-status ${project.status}">${project.status.replace('-', ' ')}</span>
+                        </span>
+                    </div>
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Type</span>
+                        <span class="music-meta-value">${project.type}</span>
+                    </div>
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Genre</span>
+                        <span class="music-meta-value">${project.genre || 'N/A'}</span>
+                    </div>
+                    ${project.releaseDate ? `
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Released</span>
+                        <span class="music-meta-value">${new Date(project.releaseDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                    </div>
+                    ` : ''}
+                    ${project.trackCount ? `
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Track Count</span>
+                        <span class="music-meta-value">${project.trackCount}</span>
+                    </div>
+                    ` : ''}
+                    ${project.totalDuration || project.estimatedDuration ? `
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Duration</span>
+                        <span class="music-meta-value">${project.totalDuration || project.estimatedDuration}</span>
+                    </div>
+                    ` : ''}
+                    ${project.progress ? `
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Progress</span>
+                        <span class="music-meta-value">${project.progress}</span>
+                    </div>
+                    ` : ''}
+                    ${project.estimatedCompletion ? `
+                    <div class="music-meta-item">
+                        <span class="music-meta-label">Est. Completion</span>
+                        <span class="music-meta-value">${project.estimatedCompletion}</span>
+                    </div>
+                    ` : ''}
+                </div>
+
+                ${project.youtubePlaylist || project.gumroadUrl ? `
+                <div class="music-playlist">
+                    <h4>${project.gumroadUrl ? 'Get This Music' : 'Listen on YouTube'}</h4>
+                    ${project.gumroadUrl ? `
+                        <a href="${project.gumroadUrl}" target="_blank" class="gumroad-purchase-btn">
+                            🛒 Buy on Gumroad${project.price ? ` - ${project.price}` : ''}
+                        </a>
+                    ` : ''}
+                    ${project.youtubePlaylist ? `
+                        <a href="${project.youtubePlaylist}" target="_blank" class="music-playlist-btn">🎵 Open YouTube Playlist</a>
+                    ` : ''}
+                </div>
+                ` : ''}
+
+                ${project.themes ? `
+                <div class="music-themes">
+                    <h4>Themes</h4>
+                    <div class="music-theme-list">
+                        ${project.themes.map(theme => `<span class="music-theme-item">${theme}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.instruments || project.plannedInstruments ? `
+                <div class="music-instruments">
+                    <h4>Instruments</h4>
+                    <div class="music-instrument-list">
+                        ${(project.instruments || project.plannedInstruments).map(instrument => `<span class="music-instrument-item">${instrument}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.tracks ? `
+                <div class="music-tracks">
+                    <h4>Track List</h4>
+                    ${project.tracks.map(track => `
+                        <div class="music-track">
+                            <div class="music-track-info">
+                                <div class="music-track-title">${track.title}</div>
+                                ${track.duration ? `<div class="music-track-duration">${track.duration}</div>` : ''}
+                                ${track.status ? `<span class="music-track-status ${track.status}">${track.status.replace('-', ' ')}</span>` : ''}
+                            </div>
+                            ${track.description ? `<div class="music-track-description">${track.description}</div>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+
+                ${project.relatedProjects ? `
+                <div class="music-related-projects">
+                    <h4>Related Projects</h4>
+                    <div class="music-related-list">
+                        ${project.relatedProjects.map(proj => `<span class="music-related-item">${proj}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${project.collaboration || project.collaborativeNote ? `
+                <div class="music-collaboration">
+                    <h4>Collaboration</h4>
+                    <p>${project.collaboration || project.collaborativeNote}</p>
+                </div>
+                ` : ''}
+
+                ${project.inspiration ? `
+                <div class="music-inspiration">
+                    <h4>Inspiration</h4>
+                    <p>${project.inspiration}</p>
+                </div>
+                ` : ''}
+
+                ${project.concept ? `
+                <div class="music-concept">
+                    <h4>Concept</h4>
+                    <p>${project.concept}</p>
                 </div>
                 ` : ''}
             </div>

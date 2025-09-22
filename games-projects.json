@@ -8,6 +8,7 @@
     {
       "id": "round-down-game",
       "title": "Round Down Card Game",
+      "author": "Alek Miller",
       "status": "completed",
       "type": "card game",
       "shortDescription": "Strategic card game featuring innovative mechanics and engaging gameplay.",
@@ -35,6 +36,7 @@
     {
       "id": "game-narrative-project",
       "title": "Interactive Game Narratives",
+      "author": "Alek Miller",
       "status": "work-in-progress",
       "type": "interactive fiction",
       "shortDescription": "Narrative design for multiple game projects including dialogue trees and environmental storytelling.",
@@ -57,6 +59,7 @@
     {
       "id": "new-card-game",
       "title": "Desert Winds Card Game",
+      "author": "Alek Miller",
       "status": "planning",
       "type": "card game",
       "shortDescription": "Follow-up to Round Down with new mechanics and collaborative art development.",
@@ -77,6 +80,7 @@
     {
       "id": "kirbo-test-game",
       "title": "Kirbo Test Game",
+      "author": "Alek Miller",
       "status": "completed",
       "type": "web game",
       "shortDescription": "PICO-8 test game to demonstrate the web game player functionality.",
@@ -97,6 +101,7 @@
     {
       "id": "web-game-collection",
       "title": "Browser Game Collection",
+      "author": "Alek Miller",
       "status": "work-in-progress",
       "type": "web games",
       "shortDescription": "Collection of small browser-based games and interactive experiences.",

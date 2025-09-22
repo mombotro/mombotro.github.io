@@ -8,6 +8,7 @@
     {
       "id": "liminal-webcomic",
       "title": "Liminal",
+      "author": "Juleah Miller",
       "status": "published",
       "type": "webcomic",
       "shortDescription": "Ongoing webcomic exploring the spaces between worlds. Follow the story on Webtoon.",
@@ -34,6 +35,7 @@
     {
       "id": "new-comic-project",
       "title": "Untitled Comic Project",
+      "author": "Juleah Miller",
       "status": "work-in-progress",
       "type": "comic series",
       "shortDescription": "New comic series in early development exploring themes of connection and technology.",
@@ -51,6 +53,7 @@
     {
       "id": "collaborative-graphic-novel",
       "title": "Collaborative Graphic Novel",
+      "author": "Alek & Juleah Miller",
       "status": "planning",
       "type": "graphic novel",
       "shortDescription": "Full collaboration combining Alek's storytelling with Juleah's visual narrative expertise.",
@@ -68,6 +71,7 @@
     {
       "id": "art-book-compilation",
       "title": "Art Book Compilation",
+      "author": "Juleah Miller",
       "status": "planning",
       "type": "art book",
       "shortDescription": "Comprehensive collection of artwork spanning multiple projects and themes.",

@@ -8,6 +8,7 @@
     {
       "id": "all-things-bright",
       "title": "All Things Bright and Beautiful",
+      "author": "Alek Miller",
       "status": "published",
       "type": "book",
       "shortDescription": "Published book available on Lulu. A collection exploring themes of wonder and beauty in everyday life.",
@@ -25,6 +26,8 @@
           "price": "$12.99"
         }
       ],
+      "gumroadUrl": "https://azironadrift.gumroad.com/l/all-things-bright",
+      "price": "$12.99",
       "excerpt": "The morning light caught the spider's web like a net for dreams. Sarah pressed her nose against the kitchen window, watching dewdrops transform into tiny prisms. She was seven, and the world was still full of small miracles waiting to be noticed.",
       "reviews": [
         {
@@ -39,6 +42,7 @@
     {
       "id": "my-balloons",
       "title": "My Balloons",
+      "author": "Alek Miller",
       "status": "published",
       "type": "children's book",
       "shortDescription": "A whimsical story published on Lulu, capturing moments of joy and letting go.",
@@ -58,6 +62,8 @@
           "price": "$8.99"
         }
       ],
+      "gumroadUrl": "https://azironadrift.gumroad.com/l/my-balloons",
+      "price": "$8.99",
       "excerpt": "Emma held five balloons: red like her favorite apple, blue like the summer sky, yellow like sunshine, green like grass, and purple like her grandmother's favorite flowers.",
       "themes": ["childhood", "letting go", "emotions", "sharing", "growth"],
       "collaborativeNote": "Illustrated by Juleah Miller, combining Alek's storytelling with Juleah's visual artistry."
@@ -65,6 +71,7 @@
     {
       "id": "desert-roads",
       "title": "Desert Roads",
+      "author": "Alek Miller",
       "status": "work-in-progress",
       "type": "novel",
       "shortDescription": "A novel in progress exploring themes of identity and belonging in the American Southwest.",
@@ -83,6 +90,7 @@
     {
       "id": "flash-fiction-collection",
       "title": "Flash Fiction Collection",
+      "author": "Alek Miller",
       "status": "published-digital",
       "type": "collection",
       "shortDescription": "Short stories and micro-fiction pieces. Quick reads that pack emotional punch in minimal words.",
@@ -100,6 +108,7 @@
     {
       "id": "game-narratives",
       "title": "Interactive Game Narratives",
+      "author": "Alek Miller",
       "status": "ongoing",
       "type": "game writing",
       "shortDescription": "Narrative design and writing for various game projects, blending storytelling with interactive media.",
@@ -119,6 +128,7 @@
     {
       "id": "future-projects",
       "title": "Future Projects",
+      "author": "Alek Miller",
       "status": "planning",
       "type": "concepts",
       "shortDescription": "Upcoming books and story concepts on the creative horizon.",

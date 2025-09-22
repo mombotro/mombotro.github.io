@@ -1,0 +1,152 @@
+{
+  "collection": {
+    "title": "The Azirona Drift Music Collections",
+    "description": "Musical works, soundscapes, and collaborative compositions from Alek & Juleah Miller",
+    "authors": "Alek & Juleah Miller"
+  },
+  "projects": [
+    {
+      "id": "desert-ambience-collection",
+      "title": "Desert Ambience Collection",
+      "author": "Alek & Juleah Miller",
+      "status": "completed",
+      "type": "ambient collection",
+      "shortDescription": "Atmospheric soundscapes inspired by the American Southwest.",
+      "detailedDescription": "A collection of ambient compositions that capture the vast, contemplative spirit of desert landscapes. These pieces blend field recordings from various southwestern locations with synthesized textures, creating immersive soundscapes for meditation, work, or contemplation.",
+      "genre": "Ambient/Soundscape",
+      "releaseDate": "2024-10-15",
+      "trackCount": 8,
+      "totalDuration": "45 minutes",
+      "coverImage": "images/desert-ambience-cover.jpg",
+      "youtubePlaylist": "https://youtube.com/playlist?list=example1",
+      "themes": ["desert landscapes", "meditation", "nature", "contemplation", "space"],
+      "instruments": ["Field recordings", "Synthesizer", "Ambient guitar", "Found sounds"],
+      "collaborativeNote": "Features field recordings by Juleah Miller",
+      "tracks": [
+        {
+          "title": "Morning Light on Red Rock",
+          "duration": "6:42",
+          "description": "Gentle awakening sounds with distant canyon echoes"
+        },
+        {
+          "title": "Sagebrush Wind",
+          "duration": "5:18",
+          "description": "Rustling textures and shifting harmonics"
+        },
+        {
+          "title": "Highway 89 Memories",
+          "duration": "7:15",
+          "description": "Nostalgic road sounds with ambient processing"
+        }
+      ],
+      "inspiration": "Recorded during various trips through Arizona and New Mexico"
+    },
+    {
+      "id": "game-soundtrack-collection",
+      "title": "Interactive Media Soundtracks",
+      "author": "Alek Miller",
+      "status": "work-in-progress",
+      "type": "soundtrack collection",
+      "shortDescription": "Music composed for games and interactive experiences.",
+      "detailedDescription": "A growing collection of musical pieces created specifically for interactive media projects. These compositions range from ambient background music for exploration games to dynamic pieces that respond to player actions, showcasing how music can enhance digital storytelling.",
+      "genre": "Video Game Music/Interactive",
+      "progress": "5 tracks completed, 3 in development",
+      "estimatedCompletion": "Spring 2025",
+      "trackCount": 8,
+      "estimatedDuration": "30 minutes",
+      "coverImage": "images/game-soundtracks-cover.jpg",
+      "youtubePlaylist": "https://youtube.com/playlist?list=example2",
+      "themes": ["interactive narrative", "player agency", "digital landscapes", "emotional progression"],
+      "instruments": ["Digital synthesizers", "Programmed drums", "Processed guitar", "Orchestral samples"],
+      "relatedProjects": ["Round Down Card Game", "Interactive Game Narratives", "Browser Game Collection"],
+      "tracks": [
+        {
+          "title": "Round Down Theme",
+          "duration": "3:24",
+          "description": "Main theme for the card game with mathematical motifs",
+          "status": "completed"
+        },
+        {
+          "title": "Choice Cascade",
+          "duration": "4:12",
+          "description": "Dynamic piece that builds based on narrative decisions",
+          "status": "completed"
+        },
+        {
+          "title": "Desert Winds (Game Version)",
+          "duration": "2:45",
+          "description": "Adaptive music for the upcoming card game",
+          "status": "in-development"
+        }
+      ]
+    },
+    {
+      "id": "collaborative-compositions",
+      "title": "Collaborative Compositions",
+      "author": "Alek & Juleah Miller",
+      "status": "work-in-progress",
+      "type": "collaborative collection",
+      "shortDescription": "Musical works created through creative partnership with Juleah Miller.",
+      "detailedDescription": "Experimental pieces that explore the intersection of visual art and music through close collaboration. These compositions often begin with visual inspiration from Juleah's artwork and evolve through iterative creative dialogue, resulting in unique multimedia experiences.",
+      "genre": "Experimental/Multimedia",
+      "progress": "3 pieces completed, 2 in development",
+      "estimatedCompletion": "Summer 2025",
+      "trackCount": 5,
+      "estimatedDuration": "25 minutes",
+      "coverImage": "images/collaborative-music-cover.jpg",
+      "youtubePlaylist": "https://youtube.com/playlist?list=example3",
+      "themes": ["visual-audio synthesis", "creative dialogue", "experimental techniques", "multimedia art"],
+      "instruments": ["Various experimental setups", "Found objects", "Digital processing", "Voice"],
+      "collaboration": "Full creative partnership with Juleah Miller - art and music developed together",
+      "tracks": [
+        {
+          "title": "Liminal Frequencies",
+          "duration": "5:33",
+          "description": "Audio companion to the Liminal comic series",
+          "status": "completed"
+        },
+        {
+          "title": "Character Theme Studies",
+          "duration": "4:47",
+          "description": "Musical portraits of visual characters",
+          "status": "completed"
+        },
+        {
+          "title": "Digital Tumbleweeds (Audio)",
+          "duration": "3:28",
+          "description": "Soundtrack for the browser game",
+          "status": "in-development"
+        }
+      ]
+    },
+    {
+      "id": "folk-interpretations",
+      "title": "Digital Folk Interpretations",
+      "author": "Alek Miller",
+      "status": "planning",
+      "type": "folk collection",
+      "shortDescription": "Traditional folk themes reimagined through digital and ambient techniques.",
+      "detailedDescription": "A planned collection that will reinterpret traditional American folk music through the lens of modern digital composition. The project explores how timeless themes of travel, home, and landscape can be expressed using contemporary sonic tools while preserving the emotional core of folk tradition.",
+      "genre": "Folk/Electronic Fusion",
+      "plannedStart": "Fall 2025",
+      "estimatedTrackCount": 10,
+      "estimatedDuration": "40 minutes",
+      "coverImage": "images/digital-folk-concept.jpg",
+      "youtubePlaylist": null,
+      "themes": ["traditional melodies", "digital processing", "cultural heritage", "landscape", "journey"],
+      "plannedInstruments": ["Acoustic guitar", "Harmonica", "Digital processing", "Field recordings", "Vintage synthesizers"],
+      "concept": "Bridging traditional American folk music with contemporary ambient and electronic techniques",
+      "inspiration": "Desert landscapes and the musical heritage of the American Southwest"
+    }
+  ],
+  "metadata": {
+    "totalProjects": 4,
+    "completedCollections": 1,
+    "worksInProgress": 2,
+    "futureProjects": 1,
+    "totalTracks": 21,
+    "collaborativeProjects": 2,
+    "youtubePlaylistCount": 3,
+    "lastUpdated": "2025-01-15"
+  }
+}
