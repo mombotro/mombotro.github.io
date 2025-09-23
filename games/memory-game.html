@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desert Memory - The Azirona Drift</title>
+    <style>
+        :root {
+            --desert-sand: #F4E5D3;
+            --terracotta: #C65D00;
+            --sage: #9CAF88;
+            --clay: #B85450;
+            --charcoal: #2C2C2C;
+            --warm-white: #FEFCF8;
+            --dusty-blue: #7A9CC6;
+            --copper: #B87333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--dusty-blue) 0%, var(--sage) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: var(--charcoal);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: var(--warm-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .game-title {
+            color: var(--terracotta);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--terracotta);
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            aspect-ratio: 1;
+            background: var(--desert-sand);
+            border: 3px solid var(--sage);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover:not(.flipped):not(.matched) {
+            transform: scale(1.05);
+            border-color: var(--terracotta);
+        }
+
+        .card.flipped {
+            background: var(--warm-white);
+            border-color: var(--terracotta);
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            background: var(--sage);
+            border-color: var(--copper);
+            color: var(--warm-white);
+            animation: matchPulse 0.6s ease;
+        }
+
+        @keyframes matchPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card-back {
+            background: var(--desert-sand);
+            color: var(--sage);
+        }
+
+        .card-front {
+            background: var(--warm-white);
+            transform: rotateY(180deg);
+        }
+
+        .card.flipped .card-back {
+            transform: rotateY(180deg);
+        }
+
+        .card.flipped .card-front {
+            transform: rotateY(0deg);
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: var(--warm-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--clay);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--sage);
+            color: var(--warm-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--copper);
+            transform: translateY(-2px);
+        }
+
+        .game-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            min-height: 30px;
+        }
+
+        .win-message {
+            background: var(--sage);
+            color: var(--warm-white);
+            padding: 15px;
+            border-radius: 8px;
+            animation: winCelebration 1s ease;
+        }
+
+        @keyframes winCelebration {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .game-board {
+                max-width: 300px;
+                gap: 8px;
+            }
+
+            .card {
+                font-size: 1.5rem;
+            }
+
+            .game-stats {
+                gap: 20px;
+                font-size: 1rem;
+            }
+
+            .game-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-header">
+        <h1 class="game-title">🌵 Desert Memory</h1>
+        <p>Match pairs of desert symbols in this memory game</p>
+        <div class="game-stats">
+            <div class="stat">
+                <div class="stat-value" id="moves">0</div>
+                <div>Moves</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="matches">0</div>
+                <div>Matches</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="timer">0:00</div>
+                <div>Time</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-board" id="gameBoard"></div>
+
+    <div class="game-controls">
+        <button class="btn btn-primary" onclick="startNewGame()">New Game</button>
+        <button class="btn btn-secondary" onclick="resetGame()">Reset</button>
+    </div>
+
+    <div class="game-message" id="gameMessage"></div>
+
+    <script>
+        class DesertMemoryGame {
+            constructor() {
+                this.symbols = ['🌵', '🦎', '🏜️', '☀️', '🦉', '🌙', '⭐', '🗻'];
+                this.cards = [];
+                this.flippedCards = [];
+                this.matchedPairs = 0;
+                this.moves = 0;
+                this.startTime = null;
+                this.gameTimer = null;
+                this.isGameActive = false;
+
+                this.gameBoard = document.getElementById('gameBoard');
+                this.movesDisplay = document.getElementById('moves');
+                this.matchesDisplay = document.getElementById('matches');
+                this.timerDisplay = document.getElementById('timer');
+                this.messageDisplay = document.getElementById('gameMessage');
+
+                this.initializeGame();
+            }
+
+            initializeGame() {
+                this.createCards();
+                this.renderBoard();
+                this.updateDisplay();
+            }
+
+            createCards() {
+                this.cards = [];
+                // Create pairs
+                for (let i = 0; i < this.symbols.length; i++) {
+                    this.cards.push({
+                        id: i * 2,
+                        symbol: this.symbols[i],
+                        isFlipped: false,
+                        isMatched: false
+                    });
+                    this.cards.push({
+                        id: i * 2 + 1,
+                        symbol: this.symbols[i],
+                        isFlipped: false,
+                        isMatched: false
+                    });
+                }
+                this.shuffleCards();
+            }
+
+            shuffleCards() {
+                for (let i = this.cards.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+                }
+            }
+
+            renderBoard() {
+                this.gameBoard.innerHTML = '';
+                this.cards.forEach((card, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'card';
+                    cardElement.dataset.index = index;
+
+                    cardElement.innerHTML = `
+                        <div class="card-face card-back">?</div>
+                        <div class="card-face card-front">${card.symbol}</div>
+                    `;
+
+                    cardElement.addEventListener('click', () => this.flipCard(index));
+                    this.gameBoard.appendChild(cardElement);
+                });
+            }
+
+            flipCard(index) {
+                if (!this.isGameActive) {
+                    this.startGame();
+                }
+
+                const card = this.cards[index];
+                const cardElement = this.gameBoard.children[index];
+
+                if (card.isFlipped || card.isMatched || this.flippedCards.length >= 2) {
+                    return;
+                }
+
+                card.isFlipped = true;
+                cardElement.classList.add('flipped');
+                this.flippedCards.push(index);
+
+                if (this.flippedCards.length === 2) {
+                    this.moves++;
+                    this.updateDisplay();
+                    setTimeout(() => this.checkMatch(), 1000);
+                }
+            }
+
+            checkMatch() {
+                const [firstIndex, secondIndex] = this.flippedCards;
+                const firstCard = this.cards[firstIndex];
+                const secondCard = this.cards[secondIndex];
+
+                if (firstCard.symbol === secondCard.symbol) {
+                    // Match found
+                    firstCard.isMatched = true;
+                    secondCard.isMatched = true;
+
+                    this.gameBoard.children[firstIndex].classList.add('matched');
+                    this.gameBoard.children[secondIndex].classList.add('matched');
+
+                    this.matchedPairs++;
+                    this.showMessage('Match found! 🎉');
+
+                    if (this.matchedPairs === this.symbols.length) {
+                        this.endGame();
+                    }
+                } else {
+                    // No match
+                    firstCard.isFlipped = false;
+                    secondCard.isFlipped = false;
+
+                    this.gameBoard.children[firstIndex].classList.remove('flipped');
+                    this.gameBoard.children[secondIndex].classList.remove('flipped');
+
+                    this.showMessage('Try again!');
+                }
+
+                this.flippedCards = [];
+                this.updateDisplay();
+            }
+
+            startGame() {
+                this.isGameActive = true;
+                this.startTime = Date.now();
+                this.gameTimer = setInterval(() => this.updateTimer(), 1000);
+            }
+
+            endGame() {
+                this.isGameActive = false;
+                clearInterval(this.gameTimer);
+
+                const finalTime = this.formatTime((Date.now() - this.startTime) / 1000);
+                this.showWinMessage(`🏆 Congratulations! You won in ${this.moves} moves and ${finalTime}!`);
+            }
+
+            updateTimer() {
+                if (this.startTime) {
+                    const elapsed = (Date.now() - this.startTime) / 1000;
+                    this.timerDisplay.textContent = this.formatTime(elapsed);
+                }
+            }
+
+            formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            updateDisplay() {
+                this.movesDisplay.textContent = this.moves;
+                this.matchesDisplay.textContent = this.matchedPairs;
+            }
+
+            showMessage(message) {
+                this.messageDisplay.textContent = message;
+                this.messageDisplay.classList.remove('win-message');
+                setTimeout(() => {
+                    if (this.messageDisplay.textContent === message) {
+                        this.messageDisplay.textContent = '';
+                    }
+                }, 2000);
+            }
+
+            showWinMessage(message) {
+                this.messageDisplay.textContent = message;
+                this.messageDisplay.classList.add('win-message');
+            }
+
+            resetGame() {
+                this.flippedCards = [];
+                this.matchedPairs = 0;
+                this.moves = 0;
+                this.isGameActive = false;
+                this.startTime = null;
+
+                if (this.gameTimer) {
+                    clearInterval(this.gameTimer);
+                    this.gameTimer = null;
+                }
+
+                this.cards.forEach(card => {
+                    card.isFlipped = false;
+                    card.isMatched = false;
+                });
+
+                this.renderBoard();
+                this.updateDisplay();
+                this.timerDisplay.textContent = '0:00';
+                this.messageDisplay.textContent = '';
+                this.messageDisplay.classList.remove('win-message');
+            }
+
+            newGame() {
+                this.resetGame();
+                this.createCards();
+                this.renderBoard();
+            }
+        }
+
+        // Initialize game
+        let game = new DesertMemoryGame();
+
+        // Global functions for buttons
+        function startNewGame() {
+            game.newGame();
+        }
+
+        function resetGame() {
+            game.resetGame();
+        }
+    </script>
+</body>
+</html>

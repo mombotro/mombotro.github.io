@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": "welcome-to-the-drift",
+      "title": "Welcome to the Drift",
+      "date": "2025-01-15",
+      "author": "Alek & Juleah Miller",
+      "excerpt": "Our first post about starting this creative journey together.",
+      "filename": "welcome-to-the-drift.txt"
+    },
+    {
+      "id": "creative-process",
+      "title": "Our Creative Process",
+      "date": "2025-01-10",
+      "author": "Alek Miller",
+      "excerpt": "How we collaborate on books, games, and art.",
+      "filename": "creative-process.txt"
+    },
+    {
+      "id": "desert-inspiration",
+      "title": "Desert Inspiration",
+      "date": "2025-01-05",
+      "author": "Juleah Miller",
+      "excerpt": "Finding beauty in the southwestern landscape.",
+      "filename": "desert-inspiration.txt"
+    }
+  ]
+}

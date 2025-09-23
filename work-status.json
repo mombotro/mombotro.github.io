@@ -55,11 +55,48 @@
       "title": "Flash Fiction Collection",
       "author": "Alek Miller",
       "status": "completed",
-      "type": "digital publication",
-      "description": "Four micro-stories exploring technology and nature in the digital southwest.",
+      "type": "web publication",
+      "description": "Short story collection exploring moments of wonder and connection, available to read online.",
       "completedDate": "2025-01-15",
       "platform": "Web Publication",
-      "storyCount": 4
+      "webFile": "publications/flash-fiction-collection.txt",
+      "storyCount": 8
+    },
+    {
+      "id": "creative-collaboration-guide",
+      "title": "Creative Collaboration Guide",
+      "author": "Alek & Juleah Miller",
+      "status": "completed",
+      "type": "web publication",
+      "description": "A practical handbook for creative partnerships, freely available online.",
+      "completedDate": "2025-01-15",
+      "platform": "Web Publication",
+      "webFile": "publications/creative-collaboration-guide.txt",
+      "collaboration": true
+    },
+    {
+      "id": "desert-memory-game",
+      "title": "Desert Memory",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "web game",
+      "description": "Memory matching game with desert-themed symbols and southwestern aesthetics.",
+      "completedDate": "2025-01-15",
+      "platform": "Web Browser",
+      "webFile": "games/memory-game.html",
+      "gameType": "Puzzle"
+    },
+    {
+      "id": "desert-word-chain",
+      "title": "Desert Word Chain",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "web game",
+      "description": "Word game where players create chains of connected words with desert theming.",
+      "completedDate": "2025-01-15",
+      "platform": "Web Browser",
+      "webFile": "games/word-chain.html",
+      "gameType": "Word Game"
     },
     {
       "id": "desert-roads-novel",

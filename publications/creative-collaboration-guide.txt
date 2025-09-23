@@ -1,0 +1,287 @@
+# Creative Collaboration Guide
+
+*A practical handbook for creative partnerships*
+
+**By Alek & Juleah Miller**
+
+---
+
+## Table of Contents
+
+1. Getting Started Together
+2. Communication Essentials
+3. Creative Process Management
+4. Handling Creative Differences
+5. Technical Tools & Workflows
+6. Maintaining Partnership Health
+7. Real-World Examples
+
+---
+
+## Chapter 1: Getting Started Together
+
+### The Foundation Question
+
+Before diving into any creative partnership, ask yourselves: **Why do we want to create together?**
+
+Our answer evolved over time:
+- Initially: "We both like making things"
+- After some struggles: "We complement each other's skills"
+- Currently: "We create things neither of us could make alone"
+
+### Defining Roles vs. Collaboration
+
+There's a difference between **division of labor** and **true collaboration**:
+
+**Division of Labor:** I write, you illustrate, we combine them.
+
+**True Collaboration:** We both contribute to the story, the visual direction, and the final execution - but in different ways.
+
+### Setting Expectations Early
+
+**Time commitment:** How many hours per week? What seasons are busy for each person?
+
+**Creative control:** Who has final say on what? (Spoiler: ideally, the person whose skills are most relevant to that decision)
+
+**Financial arrangements:** How do you handle costs and potential income?
+
+**Communication style:** Do you prefer text check-ins or scheduled calls? How do you give feedback?
+
+---
+
+## Chapter 2: Communication Essentials
+
+### The Daily Check-in
+
+We do 5-minute status updates most evenings:
+- What did you work on today?
+- What are you stuck on?
+- What do you need from me?
+- Anything exciting to share?
+
+### Feedback That Works
+
+**The "Yes, And" Approach:**
+Instead of: "I don't like this design"
+Try: "I love the color palette, and what if we made the text bigger?"
+
+**Be Specific:**
+Instead of: "Something feels off"
+Try: "The pacing in the middle section feels rushed to me"
+
+**Timing Matters:**
+Don't give feedback when either person is tired, stressed, or excited about sharing something new.
+
+### Fighting Productively
+
+Yes, you will disagree. Here's how to do it well:
+
+1. **Acknowledge the disagreement** early instead of trying to avoid it
+2. **Focus on the project**, not personal preferences
+3. **Look for the underlying need** each person is trying to meet
+4. **Try both approaches** if possible - sometimes you discover a third option
+
+---
+
+## Chapter 3: Creative Process Management
+
+### The Three-Phase Model
+
+**Phase 1: Divergent Brainstorming**
+- No judgment
+- Quantity over quality
+- Build on each other's ideas
+- Document everything
+
+**Phase 2: Convergent Decision-Making**
+- Evaluate ideas against project goals
+- Combine compatible concepts
+- Make clear decisions about direction
+
+**Phase 3: Parallel Execution**
+- Work on different aspects simultaneously
+- Regular check-ins to ensure compatibility
+- Iterate based on what's working
+
+### Project Organization
+
+We use a simple system:
+- **Shared folder** for all project files
+- **Project brief document** that we both update
+- **Weekly planning sessions** to align on priorities
+- **End-of-project retrospectives** to improve next time
+
+---
+
+## Chapter 4: Handling Creative Differences
+
+### The "Third Option" Technique
+
+When you disagree on A vs. B, look for option C that incorporates what each person values about their choice.
+
+**Example:**
+- Alek wants a complex game mechanic that showcases strategy
+- Juleah wants simple, accessible gameplay that anyone can enjoy
+- Solution: Core mechanic is simple, but has optional advanced strategies
+
+### When Someone Needs to "Win"
+
+Sometimes one person cares much more about a particular decision. That's okay. The key is:
+
+1. **Acknowledge** that this matters more to one person
+2. **Understand why** it matters to them
+3. **Let them lead** on that decision
+4. **Trust** that they'll do the same for you on something you care about
+
+### Creative Fatigue
+
+Recognize when someone (including yourself) is hitting a creative wall:
+- Ideas start sounding similar
+- Everything feels like "settling"
+- Frustration with small decisions
+
+**Solutions:**
+- Take a break
+- Switch to a different type of work
+- Bring in outside inspiration
+- Remember why you started the project
+
+---
+
+## Chapter 5: Technical Tools & Workflows
+
+### File Management
+
+**Naming Convention:** `project-name_version-number_your-initials`
+Example: `balloons-book_v3_JM.psd`
+
+**Backup Strategy:**
+- Local copies for active work
+- Cloud backup for everything
+- Exported versions for sharing
+
+### Communication Tools
+
+**For quick questions:** Text/Discord
+**For longer discussions:** Video calls
+**For feedback:** Shared documents with comments
+**For brainstorming:** Physical notebooks (seriously!)
+
+### Version Control
+
+Even for non-programmers, some kind of version tracking helps:
+- Save previous versions before major changes
+- Note what changed in file names or comments
+- Keep a simple change log for complex projects
+
+---
+
+## Chapter 6: Maintaining Partnership Health
+
+### Celebrating Small Wins
+
+Don't wait for project completion to acknowledge progress:
+- Finished a difficult scene? That's worth noting.
+- Solved a tricky technical problem? Mini celebration time.
+- Got positive feedback from a tester? Share the excitement.
+
+### Handling External Pressure
+
+Whether it's deadlines, audience expectations, or financial pressure, external stress can strain partnerships:
+
+**Protect each other** from unnecessary pressure
+**Communicate** about stress levels before they become critical
+**Remember** that your partnership is more important than any single project
+
+### Growing Together
+
+Your creative partnership will evolve:
+- Skills develop
+- Interests change
+- Life circumstances shift
+
+**Embrace this change** rather than trying to keep things exactly the same.
+
+---
+
+## Chapter 7: Real-World Examples
+
+### Example 1: The Children's Book
+
+**Project:** "My Balloons"
+
+**Challenge:** Balancing whimsical art with meaningful story
+
+**Our Process:**
+1. Juleah created initial character sketches
+2. Alek wrote story fragments inspired by the characters
+3. We iterated between art and text until they felt unified
+4. Final editing focused on rhythm and pacing together
+
+**What we learned:** Sometimes the art leads the story, sometimes the story leads the art. Both are valid.
+
+### Example 2: The Card Game
+
+**Project:** "Round Down"
+
+**Challenge:** Making complex strategy accessible
+
+**Our Process:**
+1. Alek designed core mechanics
+2. Juleah created visual prototypes
+3. We playtested together and separately
+4. Revised based on player feedback, not just our preferences
+
+**What we learned:** Outside perspective is crucial for collaborative projects.
+
+### Example 3: The Webcomic
+
+**Project:** "Liminal"
+
+**Challenge:** Maintaining consistent updates while balancing other work
+
+**Our Process:**
+1. Juleah handles art and primary storytelling
+2. Alek provides story feedback and helps with technical issues
+3. We batch work into manageable chunks
+4. Regular schedule reviews to adjust expectations
+
+**What we learned:** Not every project needs equal contribution - sometimes support is collaboration too.
+
+---
+
+## Conclusion
+
+Creative collaboration isn't about finding someone exactly like you - it's about finding someone whose creative instincts you trust, even when (especially when) they're different from your own.
+
+The goal isn't to eliminate creative tension, but to channel it productively. Some of our best work has come from the space between our different approaches.
+
+Most importantly: **the partnership is the real project**. Everything else you create together is just a happy byproduct of figuring out how to think creatively as a team.
+
+---
+
+## Additional Resources
+
+### Books We Recommend
+- "The Art of Gathering" by Priya Parker
+- "Creativity, Inc." by Ed Catmull
+- "The War of Art" by Steven Pressfield
+
+### Questions for Partnership Check-ins
+- What's working well in our collaboration right now?
+- What would you like to try differently?
+- What support do you need from me?
+- What are you most excited about?
+
+### Warning Signs to Watch For
+- Avoiding creative conversations
+- One person doing all the emotional labor
+- Decisions getting made without consultation
+- Loss of excitement about shared projects
+
+---
+
+*This guide is based on our experiences creating books, games, comics, and other projects together. Your mileage may vary, and that's the point - every creative partnership is unique.*
+
+**Published digitally, 2025**
+**Available for free distribution**

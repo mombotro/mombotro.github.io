@@ -14,12 +14,10 @@
                 <p class="tagline">Alek Miller - Author & Game Designer | Juleah Miller - Artist</p>
             </div>
             <ul class="nav-menu">
-                <li><a href="#writing" class="nav-link">Writing</a></li>
-                <li><a href="#comics" class="nav-link">Comics</a></li>
-                <li><a href="#games" class="nav-link">Games</a></li>
-                <li><a href="#music" class="nav-link">Music</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#work" class="nav-link">Work</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
-                <li><a href="#todo" class="nav-link">To-Do</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <button class="nav-toggle">☰</button>
         </nav>
@@ -33,10 +31,28 @@
             </div>
         </section>
 
-        <section id="project-filters" class="project-filters-section">
+        <section id="about" class="section">
             <div class="container">
-                <div class="global-filters">
-                    <h3>Filter Projects</h3>
+                <h2>About Us</h2>
+                <div class="about-grid">
+                    <div class="person-card">
+                        <h3>Alek Miller</h3>
+                        <p class="role">Author & Game Designer</p>
+                        <p>Creating interactive stories and game mechanics that explore wonder, choice, and human connection.</p>
+                    </div>
+                    <div class="person-card">
+                        <h3>Juleah Miller</h3>
+                        <p class="role">Artist</p>
+                        <p>Visual storyteller bringing characters and worlds to life through illustration and design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="section">
+            <div class="container">
+                <h2>Our Work</h2>
+                <div class="project-filters">
                     <div class="filter-buttons">
                         <button class="global-filter-btn active" data-filter="all">All Projects</button>
                         <button class="global-filter-btn" data-filter="completed">Completed</button>
@@ -44,93 +60,10 @@
                         <button class="global-filter-btn" data-filter="planning">Planning</button>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="writing" class="section">
-            <div class="container">
-                <h2>Writing</h2>
-                <div class="content-grid">
-                    <div class="content-item">
-                        <h3>All Things Bright and Beautiful</h3>
-                        <p>Published book available on Lulu. A collection exploring themes of wonder and beauty in everyday life.</p>
-                        <a href="#" class="project-link">View on Lulu</a>
-                    </div>
-                    <div class="content-item">
-                        <h3>My Balloons</h3>
-                        <p>A whimsical story published on Lulu, capturing moments of joy and letting go.</p>
-                        <a href="#" class="project-link">View on Lulu</a>
-                    </div>
-                    <div class="content-item">
-                        <h3>Flash Fiction</h3>
-                        <p>Short stories and micro-fiction pieces. Quick reads that pack emotional punch in minimal words.</p>
-                        <button class="project-link" onclick="openFlashFiction()">Read Stories</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="comics" class="section">
-            <div class="container">
-                <h2>Comics</h2>
-                <div class="content-grid">
-                    <div class="content-item">
-                        <h3>Liminal</h3>
-                        <p>Ongoing webcomic exploring the spaces between worlds. Follow the story on Webtoon.</p>
-                        <a href="#" class="project-link">Read on Webtoon</a>
-                    </div>
-                    <div class="content-item">
-                        <h3>Visual Art Gallery</h3>
-                        <p>Artwork and illustrations by Juleah Miller, showcasing her artistic range and style.</p>
-                    </div>
-                    <div class="content-item">
-                        <h3>Current Projects</h3>
-                        <p>Comics and visual narratives currently in development.</p>
-                    </div>
-                    <div class="content-item">
-                        <h3>Future Comics</h3>
-                        <p>Upcoming comic concepts and collaborative visual stories.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="games" class="section">
-            <div class="container">
-                <h2>Games</h2>
-                <div class="content-grid">
-                    <div class="content-item">
-                        <h3>Round Down</h3>
-                        <p>Card game featuring strategic gameplay and engaging mechanics. Available for play and download.</p>
-                        <a href="#" class="project-link">Play on Itch.io</a>
-                    </div>
-                    <div class="content-item">
-                        <h3>Game Development</h3>
-                        <p>Current game projects in various stages of development by Alek Miller.</p>
-                    </div>
-                    <div class="content-item">
-                        <h3>Design Concepts</h3>
-                        <p>Experimental game mechanics and innovative design prototypes.</p>
-                    </div>
-                    <div class="content-item">
-                        <h3>Future Games</h3>
-                        <p>Upcoming game concepts and collaborative interactive experiences.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="music" class="section">
-            <div class="container">
-                <h2>Music</h2>
-                <div class="content-grid">
-                    <div class="content-item">
-                        <h3>Compositions</h3>
-                        <p>Original music and soundscapes.</p>
-                    </div>
-                    <div class="content-item">
-                        <h3>Collaborations</h3>
-                        <p>Musical projects and partnerships.</p>
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be loaded dynamically -->
+                    <div class="projects-loading">
+                        <p>Loading projects...</p>
                     </div>
                 </div>
             </div>
@@ -138,117 +71,32 @@
 
         <section id="blog" class="section">
             <div class="container">
-                <h2>Blog</h2>
-                <div class="content-grid">
-                    <div class="content-item">
-                        <h3>Latest Thoughts</h3>
-                        <p>Read our latest posts about creativity, process, and the digital southwest.</p>
-                        <button class="project-link" onclick="openBlog()">Read Blog</button>
-                    </div>
-                    <div class="content-item">
-                        <h3>Creative Process</h3>
-                        <p>Behind-the-scenes insights into our collaborative creative work.</p>
-                    </div>
-                    <div class="content-item">
-                        <h3>Art & Design</h3>
-                        <p>Visual storytelling techniques and design philosophy.</p>
-                    </div>
-                    <div class="content-item">
-                        <h3>Technology & Craft</h3>
-                        <p>How digital tools and traditional methods intersect in our work.</p>
+                <h2>From the Drift</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--charcoal); opacity: 0.8;">
+                    Thoughts on creativity, process, and our collaborative journey
+                </p>
+                <div id="blog-posts" class="blog-grid">
+                    <div class="blog-loading">
+                        <p>Loading posts...</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="todo" class="section">
+        <section id="contact" class="section">
             <div class="container">
-                <h2>Shared To-Do</h2>
-                <div class="todo-container">
-                    <div class="todo-input">
-                        <input type="text" id="todoInput" placeholder="Add a shared task...">
-                        <button id="addTodo">Add</button>
+                <h2>Get in Touch</h2>
+                <div class="contact-content">
+                    <p>Interested in collaborating or learning more about our work? We'd love to hear from you.</p>
+                    <div class="contact-links">
+                        <a href="mailto:hello@azironadrift.com" class="contact-link">Email Us</a>
+                        <a href="#" class="contact-link">Twitter</a>
+                        <a href="#" class="contact-link">Instagram</a>
                     </div>
-                    <ul id="todoList" class="todo-list"></ul>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Flash Fiction Modal -->
-    <div id="flashFictionModal" class="flash-modal">
-        <div class="flash-modal-content">
-            <div class="flash-header">
-                <h2>Flash Fiction Collection</h2>
-                <button class="flash-close" onclick="closeFlashFiction()">&times;</button>
-            </div>
-            
-            <div class="flash-navigation">
-                <div class="flash-story-list" id="flashStoryButtons">
-                    <!-- Story buttons will be loaded dynamically -->
-                </div>
-                
-                <div class="flash-controls">
-                    <button class="flash-control-btn" onclick="previousStory()">‹ Previous</button>
-                    <span class="flash-counter" id="flashCounter">Loading...</span>
-                    <button class="flash-control-btn" onclick="nextStory()">Next ›</button>
-                </div>
-            </div>
-            
-            <div class="flash-reader" id="flashReader">
-                <!-- Stories will be loaded dynamically -->
-                <div class="flash-loading">
-                    <p>Loading stories...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Blog Modal -->
-    <div id="blogModal" class="blog-modal">
-        <div class="blog-modal-content">
-            <div class="blog-header">
-                <h2>The Azirona Drift Blog</h2>
-                <button class="blog-close" onclick="closeBlog()">&times;</button>
-            </div>
-            
-            <div class="blog-navigation">
-                <div class="blog-post-list" id="blogPostButtons">
-                    <!-- Blog post buttons will be loaded dynamically -->
-                </div>
-                
-                <div class="blog-controls">
-                    <button class="blog-control-btn" onclick="previousPost()">‹ Previous</button>
-                    <span class="blog-counter" id="blogCounter">Loading...</span>
-                    <button class="blog-control-btn" onclick="nextPost()">Next ›</button>
-                </div>
-            </div>
-            
-            <div class="blog-reader" id="blogReader">
-                <!-- Blog posts will be loaded dynamically -->
-                <div class="blog-loading">
-                    <p>Loading posts...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Writing Project Detail Modal -->
-    <div id="writingModal" class="writing-modal">
-        <div class="writing-modal-content">
-            <div class="writing-header">
-                <h2 id="writingProjectTitle">Project Title</h2>
-                <button class="writing-close" onclick="closeWritingProject()">&times;</button>
-            </div>
-            
-            <div class="writing-detail" id="writingDetail">
-                <!-- Project details will be loaded dynamically -->
-                <div class="writing-loading">
-                    <p>Loading project details...</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <footer>
         <div class="container">
@@ -256,68 +104,56 @@
         </div>
     </footer>
 
-    <!-- Comics Project Detail Modal -->
-    <div id="comicsModal" class="comics-modal">
-        <div class="comics-modal-content">
-            <div class="comics-header">
-                <h2 id="comicsProjectTitle">Project Title</h2>
-                <button class="comics-close" onclick="closeComicsProject()">&times;</button>
-            </div>
-            
-            <div class="comics-detail" id="comicsDetail">
-                <!-- Project details will be loaded dynamically -->
-                <div class="comics-loading">
-                    <p>Loading project details...</p>
+    <!-- Blog Post Modal -->
+    <div id="blog-modal" class="blog-modal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <h1 class="blog-modal-title" id="blog-modal-title">Post Title</h1>
+                <div class="blog-modal-meta" id="blog-modal-meta">
+                    <span>Date</span>
+                    <span>Author</span>
                 </div>
+                <button class="fullscreen-btn" onclick="toggleBlogFullscreen()" title="Toggle Fullscreen">⛶</button>
+                <button class="blog-close" onclick="closeBlogPost()">&times;</button>
+            </div>
+            <div class="blog-modal-body" id="blog-modal-body">
+                Loading post...
             </div>
         </div>
-    </div>\n\n    <!-- Games Project Detail Modal -->
-    <div id="gamesModal" class="games-modal">
-        <div class="games-modal-content">
-            <div class="games-header">
-                <h2 id="gamesProjectTitle">Project Title</h2>
-                <button class="games-close" onclick="closeGamesProject()">&times;</button>
-            </div>
-            
-            <div class="games-detail" id="gamesDetail">
-                <!-- Project details will be loaded dynamically -->
-                <div class="games-loading">
-                    <p>Loading project details...</p>
+    </div>
+
+    <!-- Publication Reader Modal -->
+    <div id="publication-modal" class="blog-modal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <h1 class="blog-modal-title" id="publication-modal-title">Publication Title</h1>
+                <div class="blog-modal-meta" id="publication-modal-meta">
+                    <span>Author</span>
+                    <span>Published</span>
                 </div>
+                <button class="fullscreen-btn" onclick="togglePublicationFullscreen()" title="Toggle Fullscreen">⛶</button>
+                <button class="blog-close" onclick="closePublication()">&times;</button>
+            </div>
+            <div class="blog-modal-body" id="publication-modal-body">
+                Loading publication...
             </div>
         </div>
     </div>
 
     <!-- Game Player Modal -->
-    <div id="gamePlayerModal" class="game-player-modal">
-        <div class="game-player-content">
-            <div class="game-player-header">
-                <h2 id="gamePlayerTitle">Game Title</h2>
-                <div class="game-player-controls">
-                    <button class="game-fullscreen-btn" onclick="toggleGameFullscreen()" title="Toggle Fullscreen">⛶</button>
-                    <button class="game-player-close" onclick="closeGamePlayer()">&times;</button>
+    <div id="game-modal" class="blog-modal game-modal">
+        <div class="blog-modal-content game-modal-content">
+            <div class="blog-modal-header">
+                <h1 class="blog-modal-title" id="game-modal-title">Game Title</h1>
+                <div class="blog-modal-meta" id="game-modal-meta">
+                    <span>Game Type</span>
+                    <span>Author</span>
                 </div>
+                <button class="fullscreen-btn" onclick="toggleGameFullscreen()" title="Toggle Fullscreen">⛶</button>
+                <button class="blog-close" onclick="closeGame()">&times;</button>
             </div>
-            
-            <div class="game-player-frame" id="gamePlayerFrame">
-                <iframe id="gameIframe" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- Music Project Detail Modal -->
-    <div id="musicModal" class="music-modal">
-        <div class="music-modal-content">
-            <div class="music-header">
-                <h2 id="musicProjectTitle">Collection Title</h2>
-                <button class="music-close" onclick="closeMusicProject()">&times;</button>
-            </div>
-            
-            <div class="music-detail" id="musicDetail">
-                <!-- Project details will be loaded dynamically -->
-                <div class="music-loading">
-                    <p>Loading collection details...</p>
-                </div>
+            <div class="game-player-frame" id="game-player-frame">
+                <iframe id="game-iframe" src="" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>

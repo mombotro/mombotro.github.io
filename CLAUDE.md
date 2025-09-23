@@ -36,18 +36,15 @@ azirona/
 ├── project-editor.js       # Editor functionality
 ├── CLAUDE.md              # This documentation
 ├── README.md              # Project README
+├── CNAME                  # Custom domain configuration
+├── work-status.json       # Master project list and content
 ├── assets/                # Images and media
-│   └── pink_chicken.png   # My Balloons cover
+├── blog/                  # Blog post files
 ├── games/                 # Web game files
-│   └── kirbo/            # PICO-8 test game
-└── JSON Data Files:
-    ├── work-status.json       # Master project list
-    ├── writing-projects.json  # Detailed writing projects
-    ├── comics-projects.json   # Comic project details
-    ├── games-projects.json    # Game project details
-    ├── music-projects.json    # Music collection details
-    ├── flash-fiction.json     # Flash fiction stories
-    └── blog-posts.json        # Blog post content
+│   ├── kirbo/            # PICO-8 test game
+│   ├── memory-game.html  # Memory card game
+│   └── word-chain.html   # Word chain game
+└── publications/          # Published works and PDFs
 ```
 
 ## 🎨 Design System
@@ -142,11 +139,11 @@ azirona/
 
 ### Adding New Projects
 1. Use the **Project Editor** (`project-editor.html`) for GUI management
-2. Or manually edit the appropriate JSON file:
-   - `writing-projects.json` for books/stories
-   - `comics-projects.json` for visual narratives
-   - `games-projects.json` for interactive media
-   - `music-projects.json` for audio collections
+2. Or manually edit the `work-status.json` file which now contains all project data:
+   - Consolidated content management in single JSON file
+   - Separate blog posts stored in `/blog/` directory
+   - Games stored as standalone HTML files in `/games/`
+   - Publications stored in `/publications/` directory
 
 ### Project Editor Features
 - Category-specific form fields
@@ -156,9 +153,10 @@ azirona/
 - Export/download functionality
 
 ### Global Status Management
-- All projects appear in `work-status.json` for filtering
-- Automatic metadata calculation
-- Status-based project organization
+- All projects consolidated in `work-status.json` for unified management
+- Comprehensive project data including content, metadata, and links
+- Status-based project organization with filtering capabilities
+- Streamlined content architecture for easier maintenance
 
 ## 🎯 Key Accomplishments
 

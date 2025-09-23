@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desert Word Chain - The Azirona Drift</title>
+    <style>
+        :root {
+            --desert-sand: #F4E5D3;
+            --terracotta: #C65D00;
+            --sage: #9CAF88;
+            --clay: #B85450;
+            --charcoal: #2C2C2C;
+            --warm-white: #FEFCF8;
+            --dusty-blue: #7A9CC6;
+            --copper: #B87333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--dusty-blue) 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--charcoal);
+        }
+
+        .game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--warm-white);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .game-header {
+            background: var(--terracotta);
+            color: var(--warm-white);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .game-subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .game-stats {
+            background: var(--desert-sand);
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--terracotta);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            margin-top: 5px;
+        }
+
+        .game-content {
+            padding: 30px;
+        }
+
+        .word-chain {
+            background: var(--desert-sand);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .word-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background: var(--warm-white);
+            border-radius: 6px;
+            border-left: 4px solid var(--sage);
+            animation: slideIn 0.3s ease;
+        }
+
+        .word-item:nth-child(even) {
+            border-left-color: var(--copper);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .word-number {
+            background: var(--terracotta);
+            color: var(--warm-white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .word-text {
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            flex-grow: 1;
+        }
+
+        .current-prompt {
+            background: linear-gradient(135deg, var(--dusty-blue), var(--sage));
+            color: var(--warm-white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .prompt-text {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .last-letters {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+            letter-spacing: 2px;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .word-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: 2px solid var(--sage);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+            background: var(--warm-white);
+            color: var(--charcoal);
+        }
+
+        .word-input:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(198, 93, 0, 0.1);
+        }
+
+        .submit-btn {
+            padding: 15px 25px;
+            background: var(--terracotta);
+            color: var(--warm-white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--clay);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: var(--sage);
+            color: var(--warm-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--copper);
+            transform: translateY(-2px);
+        }
+
+        .message {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background: var(--sage);
+            color: var(--warm-white);
+        }
+
+        .message.error {
+            background: var(--clay);
+            color: var(--warm-white);
+        }
+
+        .message.info {
+            background: var(--dusty-blue);
+            color: var(--warm-white);
+        }
+
+        .rules {
+            background: var(--desert-sand);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .rules h3 {
+            color: var(--terracotta);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .game-title {
+                font-size: 2rem;
+            }
+
+            .game-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .input-section {
+                flex-direction: column;
+            }
+
+            .game-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1 class="game-title">🏜️ Desert Word Chain</h1>
+            <p class="game-subtitle">Create a chain of words that connect together</p>
+        </div>
+
+        <div class="game-stats">
+            <div class="stat">
+                <div class="stat-value" id="wordCount">0</div>
+                <div class="stat-label">Words</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="score">0</div>
+                <div class="stat-label">Score</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="streak">0</div>
+                <div class="stat-label">Streak</div>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <div class="current-prompt">
+                <div class="prompt-text">Next word must start with:</div>
+                <div class="last-letters" id="targetLetters">SA</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Build your word chain!</div>
+            </div>
+
+            <div class="word-chain" id="wordChain">
+                <div style="text-align: center; color: var(--charcoal); opacity: 0.7; padding: 40px;">
+                    Start by entering a word that begins with "SA"
+                </div>
+            </div>
+
+            <div class="input-section">
+                <input
+                    type="text"
+                    class="word-input"
+                    id="wordInput"
+                    placeholder="Enter a word..."
+                    autocomplete="off"
+                >
+                <button class="submit-btn" id="submitBtn" onclick="submitWord()">Add Word</button>
+            </div>
+
+            <div id="messageArea"></div>
+
+            <div class="game-controls">
+                <button class="btn btn-secondary" onclick="newGame()">New Game</button>
+                <button class="btn btn-secondary" onclick="showHint()">Hint</button>
+                <button class="btn btn-secondary" onclick="toggleRules()">Rules</button>
+            </div>
+
+            <div class="rules" id="rulesSection" style="display: none;">
+                <h3>How to Play</h3>
+                <ul>
+                    <li><strong>Goal:</strong> Create a chain of words where each new word starts with the last 2 letters of the previous word</li>
+                    <li><strong>Example:</strong> SAGE → GENTLE → LEMON → ONION</li>
+                    <li><strong>Scoring:</strong> Longer words = more points. Maintaining streaks gives bonus points</li>
+                    <li><strong>Valid words:</strong> Must be real English words, at least 3 letters long</li>
+                    <li><strong>No repeats:</strong> Each word can only be used once per game</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class DesertWordChain {
+            constructor() {
+                this.words = [];
+                this.usedWords = new Set();
+                this.currentTarget = 'SA';
+                this.score = 0;
+                this.streak = 0;
+                this.maxStreak = 0;
+
+                this.wordInput = document.getElementById('wordInput');
+                this.submitBtn = document.getElementById('submitBtn');
+                this.wordChain = document.getElementById('wordChain');
+                this.targetLetters = document.getElementById('targetLetters');
+                this.messageArea = document.getElementById('messageArea');
+
+                this.setupEventListeners();
+                this.updateDisplay();
+            }
+
+            setupEventListeners() {
+                this.wordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.submitWord();
+                    }
+                });
+
+                this.wordInput.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.toUpperCase();
+                });
+            }
+
+            submitWord() {
+                const word = this.wordInput.value.trim().toUpperCase();
+
+                if (!word) {
+                    this.showMessage('Please enter a word!', 'error');
+                    return;
+                }
+
+                if (word.length < 3) {
+                    this.showMessage('Words must be at least 3 letters long!', 'error');
+                    return;
+                }
+
+                if (!word.startsWith(this.currentTarget)) {
+                    this.showMessage(`Word must start with "${this.currentTarget}"!`, 'error');
+                    return;
+                }
+
+                if (this.usedWords.has(word)) {
+                    this.showMessage('Word already used! Try a different word.', 'error');
+                    return;
+                }
+
+                if (!this.isValidWord(word)) {
+                    this.showMessage('Please use a valid English word.', 'error');
+                    return;
+                }
+
+                this.addWord(word);
+                this.wordInput.value = '';
+                this.wordInput.focus();
+            }
+
+            isValidWord(word) {
+                // Simple word validation - in a real game, you'd want a proper dictionary
+                const commonWords = [
+                    'SAGE', 'GENTLE', 'LEMON', 'ONION', 'SAND', 'SAGE', 'DESERT', 'CACTUS',
+                    'SUNRISE', 'EAGLE', 'LEGEND', 'DANCE', 'ENERGY', 'GUITAR', 'RAINBOW',
+                    'WATER', 'EARTH', 'HOUSE', 'SEASON', 'NATURE', 'PEACE', 'STORY',
+                    'WONDER', 'MAGIC', 'GRACE', 'HEART', 'DREAM', 'LIGHT', 'MUSIC',
+                    'GARDEN', 'FLOWER', 'BRAVE', 'SMILE', 'WISDOM', 'JOURNEY', 'FOREST'
+                ];
+
+                return commonWords.includes(word) || word.length >= 4;
+            }
+
+            addWord(word) {
+                this.words.push(word);
+                this.usedWords.add(word);
+
+                // Calculate score (longer words = more points)
+                const wordScore = word.length * 10;
+                const streakBonus = this.streak * 5;
+                const totalPoints = wordScore + streakBonus;
+
+                this.score += totalPoints;
+                this.streak++;
+                this.maxStreak = Math.max(this.maxStreak, this.streak);
+
+                // Update target for next word (last 2 letters)
+                if (word.length >= 2) {
+                    this.currentTarget = word.slice(-2);
+                }
+
+                this.renderWordChain();
+                this.updateDisplay();
+
+                this.showMessage(`Great! +${totalPoints} points`, 'success');
+
+                // Check if this target might be difficult
+                if (this.isDifficultTarget(this.currentTarget)) {
+                    setTimeout(() => {
+                        this.showMessage(`Challenging letters: ${this.currentTarget}. Need a hint?`, 'info');
+                    }, 2000);
+                }
+            }
+
+            isDifficultTarget(target) {
+                const difficultStarts = ['QU', 'XY', 'ZE', 'UX', 'YZ'];
+                return difficultStarts.includes(target);
+            }
+
+            renderWordChain() {
+                if (this.words.length === 0) {
+                    this.wordChain.innerHTML = `
+                        <div style="text-align: center; color: var(--charcoal); opacity: 0.7; padding: 40px;">
+                            Start by entering a word that begins with "${this.currentTarget}"
+                        </div>
+                    `;
+                    return;
+                }
+
+                this.wordChain.innerHTML = this.words.map((word, index) => `
+                    <div class="word-item">
+                        <div class="word-number">${index + 1}</div>
+                        <div class="word-text">${word}</div>
+                    </div>
+                `).join('');
+
+                // Scroll to bottom
+                this.wordChain.scrollTop = this.wordChain.scrollHeight;
+            }
+
+            updateDisplay() {
+                document.getElementById('wordCount').textContent = this.words.length;
+                document.getElementById('score').textContent = this.score;
+                document.getElementById('streak').textContent = this.streak;
+                this.targetLetters.textContent = this.currentTarget;
+            }
+
+            showMessage(text, type = 'info') {
+                this.messageArea.innerHTML = `<div class="message ${type}">${text}</div>`;
+                setTimeout(() => {
+                    if (this.messageArea.innerHTML.includes(text)) {
+                        this.messageArea.innerHTML = '';
+                    }
+                }, 3000);
+            }
+
+            showHint() {
+                const hints = {
+                    'SA': 'Try: SAGE, SAND, SAFE, SAVE, SALT',
+                    'GE': 'Try: GENTLE, GENIUS, GENERAL, GERMAN',
+                    'LE': 'Try: LEMON, LEGEND, LEARN, LEAVE, LEVEL',
+                    'ON': 'Try: ONION, ONCE, ONLY, OPEN, ORANGE',
+                    'ND': 'Try: UNDER, WONDERFUL, THUNDER',
+                    'ST': 'Try: STORY, STONE, STORM, STRONG, STYLE',
+                    'RY': 'Try: RHYTHM, MYSTERY, COUNTRY',
+                    'ER': 'Try: ENERGY, ERROR, EVERY, EARTH'
+                };
+
+                const hint = hints[this.currentTarget] || `Think of words starting with "${this.currentTarget}"...`;
+                this.showMessage(`Hint: ${hint}`, 'info');
+            }
+
+            newGame() {
+                this.words = [];
+                this.usedWords.clear();
+                this.currentTarget = 'SA';
+                this.score = 0;
+                this.streak = 0;
+                this.wordInput.value = '';
+
+                this.renderWordChain();
+                this.updateDisplay();
+                this.messageArea.innerHTML = '';
+                this.showMessage('New game started! Good luck!', 'success');
+                this.wordInput.focus();
+            }
+        }
+
+        // Initialize game
+        const game = new DesertWordChain();
+
+        // Global functions
+        function submitWord() {
+            game.submitWord();
+        }
+
+        function newGame() {
+            game.newGame();
+        }
+
+        function showHint() {
+            game.showHint();
+        }
+
+        function toggleRules() {
+            const rules = document.getElementById('rulesSection');
+            rules.style.display = rules.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Focus input on load
+        window.addEventListener('load', () => {
+            game.wordInput.focus();
+        });
+    </script>
+</body>
+</html>
