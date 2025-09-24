@@ -33,6 +33,28 @@ function setupEventListeners() {
             closeProjectModal();
         }
     });
+
+    // File input change listener
+    document.getElementById('json-import-input').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const importBtn = document.getElementById('import-btn');
+        const statusDiv = document.getElementById('import-status');
+
+        if (file) {
+            if (file.type === 'application/json' || file.name.endsWith('.json')) {
+                statusDiv.textContent = `Selected: ${file.name}`;
+                statusDiv.style.color = '#155724';
+                importBtn.disabled = false;
+            } else {
+                statusDiv.textContent = 'Please select a valid JSON file';
+                statusDiv.style.color = '#721c24';
+                importBtn.disabled = true;
+            }
+        } else {
+            statusDiv.textContent = '';
+            importBtn.disabled = true;
+        }
+    });
 }
 
 function loadProjects() {
@@ -81,7 +103,12 @@ function renderProjects() {
         return;
     }
 
-    container.innerHTML = filteredProjects.map(project => `
+    container.innerHTML = filteredProjects.map(project => {
+        const externalLinksHtml = project.externalLinks && project.externalLinks.length > 0
+            ? project.externalLinks.map(link => `<span>🔗 <a href="${link.url}" target="_blank" style="color: #c65d00; text-decoration: none;">${link.label}</a></span>`).join(' ')
+            : '';
+
+        return `
         <div class="project-item">
             <div class="project-info">
                 <div class="project-title">${project.title}</div>
@@ -93,6 +120,7 @@ function renderProjects() {
                     ${project.webFile ? `<span>💻 ${project.webFile}</span>` : ''}
                     ${project.gameType ? `<span>🎮 ${project.gameType}</span>` : ''}
                     ${project.progress ? `<span>📊 ${project.progress}</span>` : ''}
+                    ${externalLinksHtml}
                 </div>
             </div>
             <div class="project-actions">
@@ -100,7 +128,8 @@ function renderProjects() {
                 <button class="btn btn-danger" onclick="deleteProject('${project.id}')">Delete</button>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function generateProjectId() {
@@ -153,6 +182,14 @@ function populateForm(project) {
     document.getElementById('project-game-type').value = project.gameType || '';
     document.getElementById('project-collaboration').checked = project.collaboration || false;
 
+    // Populate external links
+    document.getElementById('project-link1-label').value = (project.externalLinks && project.externalLinks[0]) ? project.externalLinks[0].label : '';
+    document.getElementById('project-link1-url').value = (project.externalLinks && project.externalLinks[0]) ? project.externalLinks[0].url : '';
+    document.getElementById('project-link2-label').value = (project.externalLinks && project.externalLinks[1]) ? project.externalLinks[1].label : '';
+    document.getElementById('project-link2-url').value = (project.externalLinks && project.externalLinks[1]) ? project.externalLinks[1].url : '';
+    document.getElementById('project-link3-label').value = (project.externalLinks && project.externalLinks[2]) ? project.externalLinks[2].label : '';
+    document.getElementById('project-link3-url').value = (project.externalLinks && project.externalLinks[2]) ? project.externalLinks[2].url : '';
+
     // Show/hide conditional fields
     toggleWebFileField();
 }
@@ -173,6 +210,31 @@ function saveProject() {
         gameType: document.getElementById('project-game-type').value.trim(),
         collaboration: document.getElementById('project-collaboration').checked
     };
+
+    // Process external links
+    const externalLinks = [];
+
+    const link1Label = document.getElementById('project-link1-label').value.trim();
+    const link1Url = document.getElementById('project-link1-url').value.trim();
+    if (link1Label && link1Url) {
+        externalLinks.push({ label: link1Label, url: link1Url });
+    }
+
+    const link2Label = document.getElementById('project-link2-label').value.trim();
+    const link2Url = document.getElementById('project-link2-url').value.trim();
+    if (link2Label && link2Url) {
+        externalLinks.push({ label: link2Label, url: link2Url });
+    }
+
+    const link3Label = document.getElementById('project-link3-label').value.trim();
+    const link3Url = document.getElementById('project-link3-url').value.trim();
+    if (link3Label && link3Url) {
+        externalLinks.push({ label: link3Label, url: link3Url });
+    }
+
+    if (externalLinks.length > 0) {
+        formData.externalLinks = externalLinks;
+    }
 
     // Validation
     if (!formData.title || !formData.author || !formData.status || !formData.type || !formData.description) {
@@ -347,7 +409,11 @@ function loadSampleData() {
                 type: 'comic',
                 description: 'An ongoing webcomic exploring the spaces between worlds.',
                 platform: 'Webtoon',
-                progress: 'Episode 12 of 20'
+                progress: 'Episode 12 of 20',
+                externalLinks: [
+                    { label: 'Read on Webtoon', url: 'https://webtoon.com/liminal' },
+                    { label: 'Artist Gallery', url: 'https://example.com/gallery' }
+                ]
             }
         ];
         saveProjects();
@@ -376,7 +442,96 @@ function toggleWebFileField() {
     }
 }
 
-// Make function global for onchange handler
+// Import JSON functionality
+function importJSON() {
+    const fileInput = document.getElementById('json-import-input');
+    const statusDiv = document.getElementById('import-status');
+    const importBtn = document.getElementById('import-btn');
+
+    if (!fileInput.files[0]) {
+        statusDiv.textContent = 'Please select a JSON file first';
+        statusDiv.style.color = '#721c24';
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        try {
+            const jsonData = JSON.parse(e.target.result);
+
+            // Validate JSON structure
+            if (!validateImportJSON(jsonData)) {
+                statusDiv.textContent = 'Invalid JSON format. Please check the file structure.';
+                statusDiv.style.color = '#721c24';
+                return;
+            }
+
+            // Confirm with user before replacing projects
+            const confirmMessage = `This will replace all current projects with ${jsonData.projects.length} projects from the file. Continue?`;
+            if (!confirm(confirmMessage)) {
+                statusDiv.textContent = 'Import cancelled';
+                statusDiv.style.color = '#6c757d';
+                return;
+            }
+
+            // Import the projects
+            projects = jsonData.projects;
+            saveProjects();
+            renderProjects();
+
+            // Update UI
+            statusDiv.textContent = `Successfully imported ${projects.length} projects!`;
+            statusDiv.style.color = '#155724';
+
+            // Reset file input
+            fileInput.value = '';
+            importBtn.disabled = true;
+
+            // Show success for a few seconds then clear
+            setTimeout(() => {
+                statusDiv.textContent = '';
+            }, 5000);
+
+        } catch (error) {
+            statusDiv.textContent = 'Error parsing JSON file: ' + error.message;
+            statusDiv.style.color = '#721c24';
+        }
+    };
+
+    reader.onerror = function() {
+        statusDiv.textContent = 'Error reading file';
+        statusDiv.style.color = '#721c24';
+    };
+
+    reader.readAsText(file);
+}
+
+// Validate imported JSON structure
+function validateImportJSON(jsonData) {
+    // Check if it has the expected structure
+    if (!jsonData || typeof jsonData !== 'object') {
+        return false;
+    }
+
+    // Must have projects array
+    if (!Array.isArray(jsonData.projects)) {
+        return false;
+    }
+
+    // Validate each project has required fields
+    for (const project of jsonData.projects) {
+        if (!project.id || !project.title || !project.author || !project.status || !project.type) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Make functions global for onclick handlers
+window.importJSON = importJSON;
 window.toggleWebFileField = toggleWebFileField;
 
 // Initialize with sample data if needed

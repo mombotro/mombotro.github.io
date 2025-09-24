@@ -320,11 +320,28 @@
             <div id="projects-list" class="project-list"></div>
 
             <div class="export-section">
-                <h3>Export work-status.json</h3>
-                <div id="json-output" class="json-output"></div>
-                <div style="display: flex; gap: 10px;">
-                    <button class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
-                    <button class="btn btn-primary" onclick="downloadJSON()">Download JSON File</button>
+                <h3>Import & Export work-status.json</h3>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #c65d00; margin-bottom: 10px; font-size: 1.1em;">Import JSON File</h4>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                        <input type="file" id="json-import-input" accept=".json" style="display: none;">
+                        <button class="btn btn-secondary" onclick="document.getElementById('json-import-input').click()">Choose JSON File</button>
+                        <button class="btn btn-primary" onclick="importJSON()" id="import-btn" disabled>Import Projects</button>
+                    </div>
+                    <div id="import-status" style="font-size: 0.9em; color: #6c757d;"></div>
+                    <small style="color: #856404; background: #fff3cd; padding: 8px; border-radius: 4px; display: block; margin-top: 10px;">
+                        <strong>⚠️ Warning:</strong> Importing will replace all current projects. Make sure to export your current work first!
+                    </small>
+                </div>
+
+                <div>
+                    <h4 style="color: #c65d00; margin-bottom: 10px; font-size: 1.1em;">Export JSON File</h4>
+                    <div id="json-output" class="json-output"></div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+                        <button class="btn btn-primary" onclick="downloadJSON()">Download JSON File</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -429,6 +446,27 @@
                     <label class="form-label">Game Type</label>
                     <input type="text" id="project-game-type" class="form-input" placeholder="e.g., Puzzle, Word Game, Strategy">
                     <small style="color: #6c757d; font-size: 0.85em;">Optional: Describe the type of game</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">External Links</label>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="project-link1-label" class="form-input" placeholder="Link 1 Label (e.g., Purchase, Read Online)" style="flex: 0 0 200px;">
+                            <input type="url" id="project-link1-url" class="form-input" placeholder="https://example.com" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="project-link2-label" class="form-input" placeholder="Link 2 Label (e.g., Preview, Gallery)" style="flex: 0 0 200px;">
+                            <input type="url" id="project-link2-url" class="form-input" placeholder="https://example.com" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="project-link3-label" class="form-input" placeholder="Link 3 Label (e.g., Download, Social)" style="flex: 0 0 200px;">
+                            <input type="url" id="project-link3-url" class="form-input" placeholder="https://example.com" style="flex: 1;">
+                        </div>
+                    </div>
+                    <small style="color: #6c757d; font-size: 0.85em;">
+                        Optional: Add up to 3 external links (e.g., Lulu, Webtoon, Itch.io, etc.)
+                    </small>
                 </div>
 
                 <div class="form-group">
