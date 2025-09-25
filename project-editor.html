@@ -79,6 +79,11 @@
             color: white;
         }
 
+        .sort-controls {
+            display: flex;
+            gap: 10px;
+        }
+
         .btn {
             padding: 10px 20px;
             border: none;
@@ -153,6 +158,56 @@
         .project-actions {
             display: flex;
             gap: 10px;
+        }
+
+        .project-position {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .position-number {
+            background: #e9ecef;
+            color: #495057;
+            font-size: 0.9em;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 12px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .project-reorder {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-right: 15px;
+        }
+
+        .reorder-btn {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: #c65d00;
+            transition: all 0.2s ease;
+        }
+
+        .reorder-btn:hover:not(:disabled) {
+            background: #e9ecef;
+            border-color: #c65d00;
+            transform: scale(1.1);
+        }
+
+        .reorder-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
 
         .status-badge {
@@ -287,6 +342,19 @@
                 align-items: stretch;
             }
 
+            .project-position {
+                margin-right: 0;
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+
+            .project-reorder {
+                flex-direction: row;
+                margin-right: 0;
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+
             .project-actions {
                 margin-top: 15px;
                 justify-content: flex-end;
@@ -295,6 +363,11 @@
             .controls {
                 flex-direction: column;
                 align-items: stretch;
+            }
+
+            .sort-controls {
+                justify-content: center;
+                margin: 10px 0;
             }
         }
     </style>
@@ -313,6 +386,9 @@
                     <button class="filter-btn" data-filter="completed">Completed</button>
                     <button class="filter-btn" data-filter="work-in-progress">In Progress</button>
                     <button class="filter-btn" data-filter="planning">Planning</button>
+                </div>
+                <div class="sort-controls">
+                    <button class="btn btn-secondary" onclick="sortByNewest()">📅 Order by Newest</button>
                 </div>
                 <button class="btn btn-primary" onclick="openProjectModal()">+ Add New Project</button>
             </div>
@@ -393,6 +469,7 @@
                             <option value="game">Game</option>
                             <option value="web game">Web Game</option>
                             <option value="music">Music</option>
+                            <option value="video">Video</option>
                         </select>
                     </div>
                 </div>
@@ -400,6 +477,11 @@
                 <div class="form-group">
                     <label class="form-label">Description *</label>
                     <textarea id="project-description" class="form-input form-textarea" required placeholder="Brief description for the project card"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Extra Notes</label>
+                    <textarea id="project-extra-notes" class="form-input form-textarea" placeholder="Additional details that will appear in the full view modal"></textarea>
                 </div>
 
                 <div class="form-row">

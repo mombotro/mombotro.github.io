@@ -1,231 +1,223 @@
 {
-  "team": {
-    "title": "The Azirona Drift Work Status",
-    "description": "Current projects and status for Alek & Juleah Miller",
-    "lastUpdated": "2025-01-15"
-  },
+  "lastUpdated": "2025-09-24T19:26:48.246Z",
+  "totalProjects": 11,
   "projects": [
     {
-      "id": "round-down-game",
-      "title": "Round Down Card Game",
+      "id": "mfxg8j8pzpdgovmjazq",
+      "title": "Hephaestus",
       "author": "Alek Miller",
       "status": "completed",
-      "type": "game",
-      "description": "Strategic card game featuring innovative mechanics and engaging gameplay.",
-      "completedDate": "2024-11-20",
-      "platform": "Itch.io",
-      "collaboration": "Art by Juleah Miller"
+      "type": "web game",
+      "description": "You are a blacksmith, forging your legacy over 50 years.\n\nCreated with Gemini Canvas",
+      "platform": "HTML",
+      "progress": "",
+      "completedDate": "2025-04-04",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "games/hephaestus.html",
+      "gameType": "Rogue-lite clicker",
+      "collaboration": false
     },
     {
-      "id": "all-things-bright-beautiful",
-      "title": "All Things Bright and Beautiful",
-      "author": "Alek Miller",
-      "status": "completed",
-      "type": "book",
-      "description": "Published collection exploring themes of wonder and beauty in everyday life.",
-      "completedDate": "2024-08-15",
-      "platform": "Lulu Press",
-      "pageCount": 180
-    },
-    {
-      "id": "my-balloons-book",
-      "title": "My Balloons",
-      "author": "Alek Miller",
-      "status": "completed",
-      "type": "children's book",
-      "description": "Whimsical children's story about joy, sharing, and letting go.",
-      "completedDate": "2024-06-10",
-      "platform": "Lulu Press",
-      "collaboration": "Illustrated by Juleah Miller",
-      "pageCount": 32
-    },
-    {
-      "id": "liminal-webcomic",
-      "title": "Liminal Webcomic",
+      "id": "sample-2",
+      "title": "Liminal",
       "author": "Juleah Miller",
       "status": "completed",
       "type": "comic",
-      "description": "Webcomic exploring the spaces between worlds, launched successfully on Webtoon.",
-      "completedDate": "2024-09-01",
+      "description": "A lone hiker falls into an abandoned mineshaft. Pitch black, and no way out, he navigates the maze of tunnels from a bygone era and battles his mind as it creates monsters out of the endless darkness and silence. Or is something actually following him through the mine?",
       "platform": "Webtoon",
-      "episodeCount": 12
+      "progress": "",
+      "completedDate": "2020-06-21",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "Read on Webtoons",
+          "url": "https://www.webtoons.com/en/canvas/liminal-b/list?title_no=443514"
+        }
+      ]
     },
     {
-      "id": "flash-fiction-collection",
-      "title": "Flash Fiction Collection",
-      "author": "Alek Miller",
-      "status": "completed",
-      "type": "web publication",
-      "description": "Short story collection exploring moments of wonder and connection, available to read online.",
-      "completedDate": "2025-01-15",
-      "platform": "Web Publication",
-      "webFile": "publications/flash-fiction-collection.txt",
-      "storyCount": 8
-    },
-    {
-      "id": "creative-collaboration-guide",
-      "title": "Creative Collaboration Guide",
-      "author": "Alek & Juleah Miller",
-      "status": "completed",
-      "type": "web publication",
-      "description": "A practical handbook for creative partnerships, freely available online.",
-      "completedDate": "2025-01-15",
-      "platform": "Web Publication",
-      "webFile": "publications/creative-collaboration-guide.txt",
+      "id": "mfybrm7sm2s8g97mnr",
+      "title": "Kirbo",
+      "author": "Juleah Miller",
+      "status": "work-in-progress",
+      "type": "web game",
+      "description": "Collaboration with oldest son and his dungeon designs. Based off Kirby. Made with Pico-8 and Claude Code.",
+      "platform": "Pico-8",
+      "progress": "75%",
+      "completedDate": "2025-09-24",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "games/kirbo/kirbo.html",
+      "gameType": "Side scroller",
       "collaboration": true
     },
     {
-      "id": "desert-memory-game",
-      "title": "Desert Memory",
-      "author": "Alek Miller",
-      "status": "completed",
-      "type": "web game",
-      "description": "Memory matching game with desert-themed symbols and southwestern aesthetics.",
-      "completedDate": "2025-01-15",
-      "platform": "Web Browser",
-      "webFile": "games/memory-game.html",
-      "gameType": "Puzzle"
-    },
-    {
-      "id": "desert-word-chain",
-      "title": "Desert Word Chain",
-      "author": "Alek Miller",
-      "status": "completed",
-      "type": "web game",
-      "description": "Word game where players create chains of connected words with desert theming.",
-      "completedDate": "2025-01-15",
-      "platform": "Web Browser",
-      "webFile": "games/word-chain.html",
-      "gameType": "Word Game"
-    },
-    {
-      "id": "desert-roads-novel",
-      "title": "Desert Roads Novel",
+      "id": "mfydfmuu1uchneej072h",
+      "title": "Theology Songs",
       "author": "Alek Miller",
       "status": "work-in-progress",
-      "type": "novel",
-      "description": "Multi-generational story across the American Southwest exploring themes of identity and belonging.",
-      "progress": "65% complete",
-      "estimatedCompletion": "Fall 2025",
-      "currentWordCount": 78000,
-      "targetWordCount": 120000
+      "type": "music",
+      "description": "Growing playlist of theological songs, sometimes serious, sometimes parody. Just one song out of many so far.",
+      "extraNotes": "Lyrics by Alek\nMade in Producer.ai by Juleah",
+      "platform": "Producer.ai",
+      "progress": "",
+      "completedDate": "",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": true,
+      "externalLinks": [
+        {
+          "label": "YT Playlist",
+          "url": "https://youtu.be/zxRr5T1oWkw?si=7Whn7YNp_ldZYGAh"
+        }
+      ]
     },
     {
-      "id": "new-comic-project",
-      "title": "Untitled Comic Project",
-      "author": "Juleah Miller",
+      "id": "mfxflezrs388wdj4eua",
+      "title": "Send It! Tank Dice Battles",
+      "author": "Alek & Juleah Miller",
       "status": "work-in-progress",
-      "type": "comic",
-      "description": "New comic series in early development exploring themes of connection and technology.",
-      "progress": "Story outline and character concepts",
-      "estimatedCompletion": "TBD"
-    },
-    {
-      "id": "game-narrative-project",
-      "title": "Interactive Game Narratives",
-      "author": "Alek Miller",
-      "status": "work-in-progress",
-      "type": "game writing",
-      "description": "Narrative design for multiple game projects including dialogue trees and environmental storytelling.",
-      "progress": "Multiple projects active",
-      "currentProjects": ["Adventure game concept", "Interactive fiction prototype"]
-    },
-    {
-      "id": "kirbo-test-game",
-      "title": "Kirbo Test Game",
-      "author": "Alek Miller",
-      "status": "completed",
       "type": "game",
-      "description": "PICO-8 test game to demonstrate the web game player functionality.",
-      "completedDate": "2025-01-15",
-      "platform": "Web Browser",
-      "testGame": true
+      "description": "Battle with tank dice",
+      "platform": "Boardgame",
+      "progress": "90%",
+      "completedDate": "",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": true
     },
     {
-      "id": "desert-ambience-collection",
-      "title": "Desert Ambience Collection",
-      "author": "Alek & Juleah Miller",
-      "status": "completed",
-      "type": "music",
-      "description": "Atmospheric soundscapes inspired by the American Southwest.",
-      "completedDate": "2024-10-15",
-      "platform": "YouTube",
-      "collaboration": "Field recordings by Juleah Miller"
-    },
-    {
-      "id": "game-soundtrack-collection",
-      "title": "Interactive Media Soundtracks",
+      "id": "mfyd8a7fmdvn2dhy3jq",
+      "title": "Kings of Israel",
       "author": "Alek Miller",
       "status": "work-in-progress",
-      "type": "music",
-      "description": "Music composed for games and interactive experiences.",
-      "progress": "5 tracks completed",
-      "estimatedCompletion": "Spring 2025"
+      "type": "game",
+      "description": "Can you do better than the Kings of Israel? Tabletop boardgame in progress",
+      "extraNotes": "",
+      "platform": "",
+      "progress": "35%",
+      "completedDate": "",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": false
     },
     {
-      "id": "collaborative-graphic-novel",
-      "title": "Collaborative Graphic Novel",
-      "author": "Alek & Juleah Miller",
-      "status": "planning",
-      "type": "graphic novel",
-      "description": "Full collaboration combining Alek's storytelling with Juleah's visual narrative expertise.",
-      "plannedStart": "Summer 2025",
-      "estimatedLength": "120 pages",
-      "genre": "Science Fiction",
-      "collaboration": "Joint creative development"
-    },
-    {
-      "id": "data-shepherds-novel",
-      "title": "The Data Shepherds",
+      "id": "mfxfj2rltja5ysol58l",
+      "title": "Triumph Tactics",
       "author": "Alek Miller",
-      "status": "planning",
-      "type": "novel",
-      "description": "Near-future science fiction about digital preservation specialists in a world of failing technology.",
-      "plannedStart": "2026",
-      "genre": "Science Fiction",
-      "estimatedLength": "80,000 words"
+      "status": "work-in-progress",
+      "type": "game",
+      "description": "Tabletop hex based battles",
+      "platform": "Boardgame",
+      "progress": "",
+      "completedDate": "",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": true,
+      "extraNotes": "Art and assets by Juleah"
     },
     {
-      "id": "interactive-poetry",
-      "title": "Interactive Poetry Collection",
-      "author": "Alek Miller",
-      "status": "planning",
-      "type": "digital poetry",
-      "description": "Web-based poetry with reader interaction and multimedia elements.",
-      "plannedStart": "Late 2025",
-      "platform": "Web Publication",
-      "concept": "Experimental digital format"
-    },
-    {
-      "id": "art-book-compilation",
-      "title": "Art Book Compilation",
+      "id": "sample-1",
+      "title": "My Balloons",
       "author": "Juleah Miller",
-      "status": "planning",
+      "status": "completed",
+      "type": "children's book",
+      "description": "Learn primary colors and counting with balloons.",
+      "platform": "Lulu",
+      "collaboration": false,
+      "backgroundImage": "assets/my-balloons.jpg",
+      "progress": "",
+      "completedDate": "2020-07-08",
+      "estimatedCompletion": "",
+      "webFile": "",
+      "gameType": "",
+      "externalLinks": [
+        {
+          "label": "Purchase at Lulu",
+          "url": "https://www.lulu.com/shop/juleah-miller/my-balloons/paperback/product-njvn4r.html"
+        }
+      ]
+    },
+    {
+      "id": "mfyd6k1rsfuh5lii5pr",
+      "title": "All Things Bright and Beautiful",
+      "author": "Juleah Miller",
+      "status": "completed",
       "type": "art book",
-      "description": "Comprehensive collection of artwork spanning multiple projects and themes.",
-      "plannedStart": "2026",
-      "estimatedLength": "80 pages",
-      "includesProjects": ["Liminal", "Character designs", "Digital art series"]
+      "description": "Furnish your mind with beauty anywhere you go with this portable poem. The poem is by Cecil F. Alexander, but the illustrations are by me. I made this for my son because he loves being sung to, and his big version of the book is too old to travel around with.",
+      "extraNotes": "Painted in Rebelle 5",
+      "platform": "Gumroad",
+      "progress": "",
+      "completedDate": "2020-03-21",
+      "estimatedCompletion": "",
+      "backgroundImage": "assets/bright-beautiful.webp",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "Buy Digital PDF on Gumroad",
+          "url": "https://yourinternetmom.gumroad.com/l/MgoRl"
+        }
+      ]
     },
     {
-      "id": "new-card-game",
-      "title": "New Card Game Prototype",
+      "id": "mfxfwqxci4hkvl46gk",
+      "title": "Round Down",
       "author": "Alek Miller",
-      "status": "planning",
+      "status": "completed",
       "type": "game",
-      "description": "Follow-up to Round Down with new mechanics and collaborative art development.",
-      "plannedStart": "Mid 2025",
-      "collaboration": "Art partnership with Juleah Miller",
-      "concept": "Desert-themed strategy game"
+      "description": "Blackjack, on steroids. 1-4 players\n\nHit up to 7 cards, roll dice equal to the number of cards in your wager, and attempt to surpass the sum of your cards' value with the sum of your dice roll. Win, and you collect points! But the higher value you wager, the harder it will be to win the dice roll.\n\nNab the Cubes and Tiles before other players. If they win more points than there are Cubes or Tiles, they have to ROUND DOWN!\n\nTiles multiply the final score! HUGE NUMBERS!!\n\nPlayer with the highest score WINS!\n\nArt by Juleah",
+      "platform": "Itch.io",
+      "progress": "",
+      "completedDate": "",
+      "estimatedCompletion": "",
+      "backgroundImage": "assets/rounddown.jpg",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "View on Itch.io",
+          "url": "https://azirona-games.itch.io/round-down"
+        }
+      ]
+    },
+    {
+      "id": "mfydkuje3b7qkbdm5d8",
+      "title": "Abridgelion Abridged Evangelion",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "book",
+      "description": "Silly youtube parody, warning language",
+      "extraNotes": "",
+      "platform": "Youtube",
+      "progress": "",
+      "completedDate": "",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "Watch on Youtube",
+          "url": "https://www.youtube.com/@Abridgelion/featured"
+        }
+      ]
     }
-  ],
-  "metadata": {
-    "totalProjects": 16,
-    "completedProjects": 7,
-    "workInProgress": 4,
-    "planningProjects": 5,
-    "collaborativeProjects": 5,
-    "alexProjects": 11,
-    "juleahProjects": 5
-  }
+  ]
 }

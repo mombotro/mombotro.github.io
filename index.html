@@ -11,10 +11,9 @@
         <nav class="navbar">
             <div class="nav-brand">
                 <h1>The Azirona Drift</h1>
-                <p class="tagline">Alek Miller - Author & Game Designer | Juleah Miller - Artist</p>
+                <p class="tagline">Alek Miller - Author, Game Designer, Musician, Dad | Juleah Miller - Artist, Author, Coder, Mom</p>
             </div>
             <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#work" class="nav-link">Work</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -28,24 +27,6 @@
             <div class="hero-content">
                 <h2>Welcome to the Drift</h2>
                 <p>a mom/dad pact to make games/comics/books</p>
-            </div>
-        </section>
-
-        <section id="about" class="section">
-            <div class="container">
-                <h2>About Us</h2>
-                <div class="about-grid">
-                    <div class="person-card">
-                        <h3>Alek Miller</h3>
-                        <p class="role">Author & Game Designer</p>
-                        <p>Creating interactive stories and game mechanics that explore wonder, choice, and human connection.</p>
-                    </div>
-                    <div class="person-card">
-                        <h3>Juleah Miller</h3>
-                        <p class="role">Artist</p>
-                        <p>Visual storyteller bringing characters and worlds to life through illustration and design.</p>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -154,6 +135,33 @@
             </div>
             <div class="game-player-frame" id="game-player-frame">
                 <iframe id="game-iframe" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-detail-modal" class="blog-modal">
+        <div class="blog-modal-content project-detail-content">
+            <div class="blog-modal-header">
+                <h1 class="blog-modal-title" id="project-detail-title">Project Title</h1>
+                <div class="blog-modal-meta" id="project-detail-meta">
+                    <span id="project-detail-type">Type</span>
+                    <span id="project-detail-author">Author</span>
+                    <span id="project-detail-status">Status</span>
+                </div>
+                <button class="blog-close" onclick="closeProjectDetail()">&times;</button>
+            </div>
+            <div class="project-detail-body">
+                <div class="project-detail-image" id="project-detail-image"></div>
+                <div class="project-detail-description" id="project-detail-description">
+                    Project description will appear here...
+                </div>
+                <div class="project-detail-actions" id="project-detail-actions">
+                    <!-- Action buttons will be populated here -->
+                </div>
+                <div class="project-detail-info" id="project-detail-info">
+                    <!-- Additional project info will be populated here -->
+                </div>
             </div>
         </div>
     </div>

@@ -108,19 +108,21 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (project.type === 'music') {
             categoryIcon = '🎵';
             categoryClass = 'music';
+        } else if (project.type === 'video') {
+            categoryIcon = '🎬';
+            categoryClass = 'video';
         }
 
         // Handle background image
         const hasBackground = project.backgroundImage ? 'has-background' : '';
-        const backgroundStyle = project.backgroundImage ?
-            `style="--bg-image: url('${project.backgroundImage}')"` : '';
 
         return `
-            <div class="project-card ${categoryClass} ${hasBackground}" data-status="${project.status}" ${backgroundStyle}>
+            <div class="project-card ${categoryClass} ${hasBackground}" data-status="${project.status}" onclick="openProjectDetail('${project.id}')">
                 <div class="project-header">
                     <span class="project-category">${categoryIcon} ${project.type}</span>
                     <span class="project-status ${project.status}">${project.status.replace('-', ' ')}</span>
                 </div>
+                ${project.backgroundImage ? `<div class="project-banner" style="background-image: url('${project.backgroundImage}')"></div>` : ''}
                 <div class="project-content">
                     <h3>${project.title}</h3>
                     <p>${project.description}</p>
@@ -138,15 +140,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getProjectAction(project) {
+        let actions = [];
+
         // Handle different project types with appropriate actions
         if (project.type === 'web publication' && project.webFile) {
-            return `<button class="project-link" onclick="openPublication('${project.id}')">Read Online</button>`;
+            actions.push(`<button class="project-link" onclick="event.stopPropagation(); openPublication('${project.id}')">Read Online</button>`);
         } else if (project.type === 'web game' && project.webFile) {
-            return `<button class="project-link" onclick="openGame('${project.id}')">Play Game</button>`;
-        } else if (project.platform) {
-            return `<a href="${getProjectLink(project)}" class="project-link" target="_blank">View on ${project.platform}</a>`;
+            actions.push(`<button class="project-link" onclick="event.stopPropagation(); openGame('${project.id}')">Play Game</button>`);
         }
-        return '';
+
+        // Add external links if they exist
+        if (project.externalLinks && project.externalLinks.length > 0) {
+            project.externalLinks.forEach(link => {
+                // Only add links that have both label and URL
+                if (link.label && link.url && link.url !== '#') {
+                    actions.push(`<a href="${link.url}" class="project-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${link.label}</a>`);
+                }
+            });
+        }
+
+        return actions.length > 0 ? `<div class="project-actions" onclick="event.stopPropagation()">${actions.join('')}</div>` : '';
     }
 
     function getProjectLink(project) {
@@ -467,6 +480,74 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.toggle('fullscreen');
     }
 
+    // Project Detail Modal functionality
+    function openProjectDetail(projectId) {
+        const project = workStatusData.projects.find(p => p.id === projectId);
+        if (!project) return;
+
+        const modal = document.getElementById('project-detail-modal');
+        const title = document.getElementById('project-detail-title');
+        const meta = document.getElementById('project-detail-meta');
+        const image = document.getElementById('project-detail-image');
+        const description = document.getElementById('project-detail-description');
+        const info = document.getElementById('project-detail-info');
+        const actions = document.getElementById('project-detail-actions');
+
+        // Set project info
+        title.textContent = project.title;
+
+        // Update meta info
+        document.getElementById('project-detail-type').textContent = project.type;
+        document.getElementById('project-detail-author').textContent = `by ${project.author}`;
+        document.getElementById('project-detail-status').textContent = project.status.replace('-', ' ');
+
+        // Handle image
+        if (project.backgroundImage) {
+            image.style.backgroundImage = `url('${project.backgroundImage}')`;
+            image.style.display = 'block';
+            image.onclick = null;
+            image.title = '';
+        } else {
+            image.style.display = 'none';
+        }
+
+        // Set full description
+        description.textContent = project.description;
+
+        // Set additional info (simplified, no sections)
+        let infoHtml = '<div class="project-detail-simple-info">';
+
+        // Extra notes at the top if they exist
+        if (project.extraNotes) {
+            infoHtml += `<div class="extra-notes"><p style="white-space: pre-wrap; margin-bottom: 1rem; font-style: italic; color: var(--charcoal);">${project.extraNotes}</p></div>`;
+        }
+
+        // All details in one clean list
+        if (project.platform) infoHtml += `<p><strong>Platform:</strong> ${project.platform}</p>`;
+        if (project.gameType) infoHtml += `<p><strong>Game Type:</strong> ${project.gameType}</p>`;
+        if (project.webFile) infoHtml += `<p><strong>Web File:</strong> ${project.webFile}</p>`;
+        if (project.collaboration) infoHtml += `<p><strong>Collaboration:</strong> Yes</p>`;
+        if (project.progress) infoHtml += `<p><strong>Progress:</strong> ${project.progress}</p>`;
+        if (project.completedDate) infoHtml += `<p><strong>Completed:</strong> ${formatDate(project.completedDate)}</p>`;
+        if (project.estimatedCompletion) infoHtml += `<p><strong>Est. Completion:</strong> ${project.estimatedCompletion}</p>`;
+
+        infoHtml += '</div>';
+        info.innerHTML = infoHtml;
+
+        // Set actions (reuse existing logic)
+        actions.innerHTML = getProjectAction(project).replace('onclick="event.stopPropagation();"', '').replace('onclick="event.stopPropagation(); ', 'onclick="');
+
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectDetail() {
+        const modal = document.getElementById('project-detail-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
     // Make functions global for onclick handlers
     window.openBlogPost = openBlogPost;
     window.closeBlogPost = closeBlogPost;
@@ -477,6 +558,8 @@ document.addEventListener('DOMContentLoaded', function() {
     window.openGame = openGame;
     window.closeGame = closeGame;
     window.toggleGameFullscreen = toggleGameFullscreen;
+    window.openProjectDetail = openProjectDetail;
+    window.closeProjectDetail = closeProjectDetail;
 
     console.log('🌵 The Azirona Drift - Streamlined Experience Loaded');
 });

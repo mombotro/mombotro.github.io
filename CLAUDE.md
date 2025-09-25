@@ -24,6 +24,8 @@ The Azirona Drift is a comprehensive creative portfolio website showcasing the c
 - Gumroad PDF selling platform
 - Author attribution system
 - Project management editor tool
+- Blog writer and web publication creation tool
+- Blog post management with deletion capabilities
 
 ## 📁 File Structure
 
@@ -34,12 +36,15 @@ azirona/
 ├── styles.css              # Complete styling system
 ├── project-editor.html     # Content management tool
 ├── project-editor.js       # Editor functionality
+├── blog-writer.html        # Blog and publication creation tool
+├── blog-writer.js          # Blog writer functionality
 ├── CLAUDE.md              # This documentation
 ├── README.md              # Project README
 ├── CNAME                  # Custom domain configuration
 ├── work-status.json       # Master project list and content
 ├── assets/                # Images and media
 ├── blog/                  # Blog post files
+│   └── index.json         # Blog post metadata
 ├── games/                 # Web game files
 │   ├── kirbo/            # PICO-8 test game
 │   ├── memory-game.html  # Memory card game
@@ -147,10 +152,13 @@ azirona/
 
 ### Project Editor Features
 - Category-specific form fields
+- External links management (up to 3 configurable web links per project)
+- JSON import/export functionality for data backup and restoration
 - Gumroad integration setup
 - Author selection (Alek/Juleah/Both)
 - Real-time JSON preview
 - Export/download functionality
+- File validation and error handling for imports
 
 ### Global Status Management
 - All projects consolidated in `work-status.json` for unified management
@@ -186,6 +194,24 @@ azirona/
 - ✅ Author attribution system
 - ✅ Content management workflow
 
+### Phase 6: Enhanced Project Management
+- ✅ External links system (3 configurable links per project)
+- ✅ JSON import/export functionality for data backup
+- ✅ Project data validation and error handling
+- ✅ Clickable external links in project displays
+
+### Phase 7: Content Creation Tools
+- ✅ Blog writer tool with markdown support
+- ✅ Web publication creation functionality
+- ✅ Blog post management with deletion capabilities
+- ✅ JSON import/export for blog index management
+- ✅ Multi-content type support (blog posts vs web publications)
+
+### Phase 8: Expanded Project Types
+- ✅ Video project type support with 🎬 icon
+- ✅ Purple accent styling for video projects
+- ✅ Integration with external video platforms
+
 ## 🔧 Technical Highlights
 
 ### JSON Architecture
@@ -215,6 +241,31 @@ Professional e-commerce implementation:
 - Seamless integration with existing purchase flows
 - Mobile-optimized checkout experience
 - Easy management through project editor
+
+### External Links System
+Flexible external link management:
+- Up to 3 configurable links per project with custom labels
+- Support for any external platform (Lulu, Webtoon, Itch.io, etc.)
+- Clickable links in project displays with visual indicators
+- JSON-based storage for easy management and portability
+
+### Data Backup & Import System
+Comprehensive data management:
+- JSON export functionality for complete project backup
+- Import validation with error handling and user confirmation
+- File format validation and structure verification
+- Warning system to prevent accidental data loss
+- Seamless restoration of all project data and configurations
+
+### Blog Writer Tool
+Advanced content creation system:
+- Dual-mode content creation (blog posts vs web publications)
+- Real-time markdown preview with proper formatting
+- Automatic file generation with download functionality
+- Blog post management with import/export capabilities
+- Post deletion with confirmation safeguards
+- Character counting and form validation
+- Integration with existing blog system architecture
 
 ## 🚀 Future Development
 

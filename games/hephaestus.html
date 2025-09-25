@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEPHAESTUS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #2c2c2c; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            overscroll-behavior: none; /* Prevent pull-to-refresh */
+        }
+        .game-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #404040; /* Slightly lighter dark */
+            border: 4px solid #a0a0a0; /* Gray border */
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .explanation {
+            background-color: #333;
+            border: 1px solid #666;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 1.25rem; /* Larger section titles */
+            margin-bottom: 1rem;
+            color: #f0a040; /* Orange accent */
+            text-shadow: 2px 2px #000;
+            border-bottom: 2px solid #a0a0a0;
+            padding-bottom: 0.5rem;
+        }
+        .section-title .subtitle {
+            font-size: 0.8rem;
+            color: #c0c0c0; /* Slightly dimmer color */
+            opacity: 0.8;
+            margin-left: 0.5em;
+        }
+        .stat-display {
+            background-color: #555;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 2px solid #777;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            min-width: 100px; /* Ensure stats have some width */
+        }
+        .aspect-value {
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            background-color: #666;
+            border: 1px solid #888;
+            display: inline-block; /* Make clickable area tight */
+            position: relative; /* Needed for tooltip positioning */
+        }
+        .aspect-value:hover {
+            background-color: #f0a040; /* Highlight on hover */
+            color: #2c2c2c;
+        }
+        .aspect-value:active {
+            transform: scale(0.95);
+        }
+        /* Disabled aspect styling */
+        .aspect-value.disabled {
+             opacity: 0.5;
+             cursor: not-allowed;
+             background-color: #555;
+        }
+        .aspect-value.disabled:hover {
+             background-color: #555; /* Prevent hover color change when disabled */
+             color: #e0e0e0;
+        }
+        .aspect-value.disabled .cost-tooltip {
+             display: none !important; /* Hide tooltip when disabled */
+        }
+        .event-log {
+            height: 150px;
+            background-color: #333;
+            border: 2px solid #666;
+            border-radius: 6px;
+            padding: 0.75rem;
+            overflow-y: scroll;
+            margin-top: 1.5rem; /* Adjusted margin */
+            font-size: 0.8rem; /* Smaller font for log */
+            line-height: 1.4;
+        }
+        .event-log p {
+            margin-bottom: 0.5rem;
+            border-bottom: 1px dashed #555;
+            padding-bottom: 0.25rem;
+        }
+         .event-log p:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+         }
+        .message-box {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #404040;
+            border: 4px solid #f0a040;
+            padding: 2rem;
+            border-radius: 10px;
+            z-index: 100;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.7);
+            min-width: 300px;
+        }
+        .message-box-content {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        .message-box-button {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #d97706;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #b45309;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .message-box-button:hover {
+            background-color: #f59e0b;
+        }
+        .cost-tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.85); /* Slightly darker */
+            color: white;
+            padding: 8px 12px; /* More padding */
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: normal; /* Allow wrapping */
+            width: 200px; /* Fixed width for wrapping */
+            z-index: 50;
+            display: none;
+            pointer-events: none;
+            bottom: 125%; /* Position above the element */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            line-height: 1.4;
+        }
+         /* Arrow for tooltip */
+        .cost-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+        }
+         /* Show tooltip on hover of parent aspect-value */
+         .aspect-value:hover .cost-tooltip {
+            display: block;
+         }
+
+        .legacy-info {
+            font-size: 0.8rem;
+            color: #ccc;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .icon {
+            display: inline-block;
+            width: 1.2em;
+            height: 1.2em;
+            margin-right: 0.3em;
+            vertical-align: -0.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="text-3xl font-bold text-center mb-6 text-[#f0a040] text-shadow-lg">
+             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.808 6.178l-2.986-2.986a3.808 3.808 0 0 0-5.386 0l-1.83 1.83-3.531 3.531-1.414 1.414-4.243 4.243a1 1 0 0 0 0 1.414l4.95 4.95a1 1 0 0 0 1.414 0l4.243-4.243 1.414-1.414 3.531-3.531 1.83-1.83a3.808 3.808 0 0 0 0-5.386zM8.828 18.364l-4.95-4.95 3.536-3.536 4.95 4.95-3.536 3.536zm1.414-1.414l4.95-4.95-1.414-1.414-4.95 4.95 1.414 1.414zm3.535-3.535l1.83-1.83a1.808 1.808 0 0 1 2.556 0l2.986 2.986a1.808 1.808 0 0 1 0 2.556l-1.83 1.83-4.098-4.098z"/></svg>
+            HEPHAESTUS
+        </h1>
+
+        <div class="explanation">
+            You are a blacksmith, forging your legacy over 50 years. Each upgrade you craft takes one year. Every 10 years (Year 10, 20, 30, 40), your town faces an invasion. You must improve your <strong>Weapons</strong> (Quality & Number) to meet the required defense threshold and survive. Failing an invasion means death, but your successor carries on with accumulated <strong>Legacy Bonuses</strong>. Improving <strong>Jewelry</strong> reflects the beauty and culture you provide and contributes to your final score if you reach Year 50. Manage your Skill Points wisely! (Cost: 1 Skill Point per upgrade).
+        </div>
+
+
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="stat-display">Year: <span id="year-display">0</span> / 50</div>
+            <div class="stat-display">Skill Points: <span id="skill-points-display">1</span></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+                <h2 class="section-title">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.879 4.121a3 3 0 0 0-4.243 0l-9.878 9.879-2.122 2.121-1.414 3.536a1 1 0 0 0 1.414 1.414l3.535-1.414 2.122-2.121 9.878-9.879a3 3 0 0 0 0-4.242zm-2.121 2.121a1 1 0 0 1 0 1.414l-9.879 9.879-1.414 1.414-.707.283.283-.707 1.414-1.414 9.879-9.879a1 1 0 0 1 1.414 0zM4.929 19.071l-1.414-1.414 1.121-2.828 2.121 2.121-1.828 2.121z"/></svg>
+                    Weapons <span class="subtitle">(weapons & tools)</span>
+                </h2>
+                <div class="space-y-2">
+                    <div>Quality: <span class="aspect-value" id="wpn-quality" data-aspect="wpn-quality">1<span class="cost-tooltip" id="wpn-quality-tooltip">Increases the effectiveness of weapons, contributing to Defense Power (Quality * Number) needed to survive invasions.</span></span></div>
+                    <div>Number: <span class="aspect-value" id="wpn-number" data-aspect="wpn-number">1<span class="cost-tooltip" id="wpn-number-tooltip">Increases the quantity of weapons produced, contributing to Defense Power (Quality * Number) needed to survive invasions. Upgraded by 1 * Speed.</span></span></div>
+                    <div>Speed: <span class="aspect-value" id="wpn-speed" data-aspect="wpn-speed">1<span class="cost-tooltip" id="wpn-speed-tooltip">Increases how fast weapons are made. Upgrading Number increases it by the current Speed value. Upgraded by 1 * Quality.</span></span></div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="section-title">
+                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.31L22 9.27l-5 4.87L18.18 22 12 18.31 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2zm0 2.62L9.91 9.14l-4.94.73 3.58 3.48-.84 4.92L12 15.97l4.29 2.32-.84-4.92 3.58-3.48-4.94-.73L12 4.62z"/></svg>
+                    Jewelry <span class="subtitle">(artwork & jewelry)</span>
+                </h2>
+                 <div class="space-y-2">
+                     <div>Quality: <span class="aspect-value" id="jwl-quality" data-aspect="jwl-quality">1<span class="cost-tooltip" id="jwl-quality-tooltip">Increases the beauty and value of artwork. Contributes to final score but does not affect invasion survival.</span></span></div>
+                    <div>Number: <span class="aspect-value" id="jwl-number" data-aspect="jwl-number">1<span class="cost-tooltip" id="jwl-number-tooltip">Increases the quantity of artwork produced. Contributes to final score. Upgraded by 1 * Speed.</span></span></div>
+                    <div>Speed: <span class="aspect-value" id="jwl-speed" data-aspect="jwl-speed">1<span class="cost-tooltip" id="jwl-speed-tooltip">Increases how fast artwork is made. Upgrading Number increases it by the current Speed value. Upgraded by 1 * Quality.</span></span></div>
+                </div>
+            </div>
+        </div>
+
+         <div class="legacy-info">
+            Blacksmiths Lost: <span id="dead-blacksmiths-display">0</span> | Legacy Bonuses: <span id="legacy-bonuses-display">0</span> / 20
+        </div>
+
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold mb-2 text-[#e0e0e0]">Event Log</h3>
+            <div class="event-log" id="event-log">
+                <p>Welcome, young blacksmith! Click an aspect to upgrade it and advance time.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="message-box" class="message-box">
+        <div id="message-box-content" class="message-box-content">Message goes here</div>
+        <button id="message-box-button" class="message-box-button">OK</button>
+    </div>
+
+    <script>
+        // --- Game State ---
+        let gameState = {
+            currentYear: 0,
+            skillPoints: 1,
+            // Renamed state keys
+            weapons: { quality: 1, number: 1, speed: 1 },
+            jewelry: { quality: 1, number: 1, speed: 1 },
+            deadBlacksmiths: 0,
+            totalTurns: 0, // Represents total upgrades made
+            legacyBonusesApplied: 0,
+            maxLegacyBonuses: 20,
+            gameOver: false,
+            isMessageBoxOpen: false,
+            actionInProgress: false, // Flag to prevent overlapping actions
+        };
+
+        // --- DOM Elements ---
+        const yearDisplay = document.getElementById('year-display');
+        const skillPointsDisplay = document.getElementById('skill-points-display');
+        // Updated element IDs
+        const wpnQualityDisplay = document.getElementById('wpn-quality');
+        const wpnNumberDisplay = document.getElementById('wpn-number');
+        const wpnSpeedDisplay = document.getElementById('wpn-speed');
+        const jwlQualityDisplay = document.getElementById('jwl-quality');
+        const jwlNumberDisplay = document.getElementById('jwl-number');
+        const jwlSpeedDisplay = document.getElementById('jwl-speed');
+        const eventLog = document.getElementById('event-log');
+        const deadBlacksmithsDisplay = document.getElementById('dead-blacksmiths-display');
+        const legacyBonusesDisplay = document.getElementById('legacy-bonuses-display');
+
+        // Message Box Elements
+        const messageBox = document.getElementById('message-box');
+        const messageBoxContent = document.getElementById('message-box-content');
+        const messageBoxButton = document.getElementById('message-box-button');
+
+        // --- Message Box Listener Management ---
+        let currentMessageBoxListener = null;
+
+        // --- Aspect Click Handlers ---
+        document.querySelectorAll('.aspect-value').forEach(el => {
+            el.addEventListener('click', handleAspectClick);
+            // Tooltips now handled by CSS hover
+        });
+
+        // --- Message Box Logic ---
+        function showMessage(message, onConfirm = null) {
+            // Prevent stacking message boxes or interfering with actions
+            if (gameState.isMessageBoxOpen || gameState.actionInProgress) {
+                 console.warn("showMessage called while message box open or action in progress.");
+                 // Attempt to reset action flag if message box isn't actually open, might help recover
+                 if (!gameState.isMessageBoxOpen) gameState.actionInProgress = false;
+                 return;
+            }
+            gameState.isMessageBoxOpen = true;
+            gameState.actionInProgress = true; // Mark action start
+
+            messageBoxContent.innerHTML = message;
+            messageBox.style.display = 'block';
+
+            // Remove previous listener before adding a new one
+            if (currentMessageBoxListener) {
+                messageBoxButton.removeEventListener('click', currentMessageBoxListener);
+            }
+
+            // Define the listener for this instance
+            currentMessageBoxListener = () => {
+                messageBox.style.display = 'none';
+                gameState.isMessageBoxOpen = false; // Reset flag immediately
+
+                // Use setTimeout to allow UI to update and prevent race conditions before callback
+                if (onConfirm) {
+                    setTimeout(() => {
+                        onConfirm(); // Execute the callback (e.g., resetForNewBlacksmith)
+                        gameState.actionInProgress = false; // Reset flag *after* callback completes
+                        updateUI(); // Update UI after callback potentially changed state
+                    }, 10);
+                } else {
+                    // If no callback, reset flag immediately and update UI
+                    gameState.actionInProgress = false;
+                    updateUI();
+                }
+                currentMessageBoxListener = null; // Clear the stored listener reference
+            };
+
+            // Add the listener, ensuring it only runs once
+            messageBoxButton.addEventListener('click', currentMessageBoxListener, { once: true });
+        }
+
+
+        // --- Event Log ---
+        function logEvent(message) {
+            const p = document.createElement('p');
+            p.textContent = message;
+            eventLog.insertBefore(p, eventLog.firstChild);
+        }
+
+        // --- Update UI ---
+        function updateUI() {
+            // Determine if actions should be disabled
+            const disableActions = gameState.gameOver || gameState.isMessageBoxOpen || gameState.actionInProgress;
+
+            yearDisplay.textContent = gameState.currentYear;
+            skillPointsDisplay.textContent = gameState.skillPoints;
+
+            // Update aspect values displayed (accessing firstChild which is the text node)
+            wpnQualityDisplay.firstChild.textContent = gameState.weapons.quality;
+            wpnNumberDisplay.firstChild.textContent = gameState.weapons.number;
+            wpnSpeedDisplay.firstChild.textContent = gameState.weapons.speed;
+            jwlQualityDisplay.firstChild.textContent = gameState.jewelry.quality;
+            jwlNumberDisplay.firstChild.textContent = gameState.jewelry.number;
+            jwlSpeedDisplay.firstChild.textContent = gameState.jewelry.speed;
+
+            deadBlacksmithsDisplay.textContent = gameState.deadBlacksmiths;
+            legacyBonusesDisplay.textContent = gameState.legacyBonusesApplied;
+
+            // Enable/disable aspect buttons based on skill points and game state
+            const canAffordUpgrade = gameState.skillPoints >= 1;
+            document.querySelectorAll('.aspect-value').forEach(el => {
+                if (!canAffordUpgrade || disableActions) {
+                    el.classList.add('disabled');
+                } else {
+                    el.classList.remove('disabled');
+                }
+            });
+        }
+
+         // --- Core Year Advancement Logic ---
+         function advanceOneYear() {
+            // Prevent advancement if game over or another action is pending
+            if (gameState.gameOver || !gameState.actionInProgress) {
+                 // If actionInProgress wasn't true, reset it just in case and exit
+                 // This might happen if called directly after a failed upgrade attempt
+                 gameState.actionInProgress = false;
+                 return;
+            }
+
+            gameState.currentYear++;
+
+            // 1. Yearly Skill Point Gain
+            const yearlySkillPointGain = 1;
+            gameState.skillPoints += yearlySkillPointGain;
+            logEvent(`Year ${gameState.currentYear}: Earned ${yearlySkillPointGain} Skill Point.`);
+
+            // 2. Check for Invasion Events
+            let invasionFailed = false;
+            let invasionMessage = "";
+            let requiredPower = 0;
+            let invasionYear = 0;
+
+            if (gameState.currentYear === 10) {
+                invasionYear = 10; requiredPower = 100;
+            } else if (gameState.currentYear === 20) {
+                invasionYear = 20; requiredPower = 1000;
+            } else if (gameState.currentYear === 30) {
+                invasionYear = 30; requiredPower = 10000;
+            } else if (gameState.currentYear === 40) {
+                invasionYear = 40; requiredPower = 50000;
+            }
+
+            // Perform invasion check if applicable
+            if (invasionYear > 0) {
+                logEvent(`Year ${invasionYear}: An invasion begins! Threshold: ${requiredPower.toLocaleString()}`);
+                const defensePower = gameState.weapons.quality * gameState.weapons.number;
+                if (defensePower >= requiredPower) {
+                    invasionMessage = `Year ${invasionYear} Invasion Repelled!<br>Defense Power: ${defensePower.toLocaleString()} / ${requiredPower.toLocaleString()}`;
+                    logEvent(`Defense successful! (Power: ${defensePower.toLocaleString()} >= ${requiredPower.toLocaleString()})`);
+                } else {
+                    logEvent(`Defense failed! (Power: ${defensePower.toLocaleString()} < ${requiredPower.toLocaleString()})`);
+                    invasionFailed = true; // Set flag, death handled later
+                }
+            }
+
+            // 3. Check for Game End (only if invasion didn't fail this turn)
+            if (gameState.currentYear >= 50 && !invasionFailed) {
+                logEvent("Reached Year 50. The blacksmith's journey ends.");
+                updateUI(); // Update UI before showing final message
+                endGame(); // endGame handles its own message and flags
+                return; // Stop processing this year's advancement
+            }
+
+            // 4. Handle invasion outcomes (message or death)
+            // These calls manage the actionInProgress flag internally via showMessage
+            if (invasionFailed) {
+                handleDeath(); // Calls showMessage, which handles flags
+                return; // Stop processing this year's advancement
+            } else if (invasionMessage) {
+                // Show success message; showMessage handles flags
+                showMessage(invasionMessage, () => { updateUI(); });
+                return; // Stop processing this year's advancement
+            }
+
+            // 5. If no event occurred or interrupted the flow, reset flag and update UI
+            gameState.actionInProgress = false;
+            updateUI();
+        }
+
+
+        // --- Aspect Upgrade Logic (Triggers Year Advancement) ---
+        function handleAspectClick(event) {
+            // Check all relevant flags to prevent conflicts
+            if (gameState.gameOver || gameState.isMessageBoxOpen || gameState.actionInProgress || event.target.closest('.aspect-value').classList.contains('disabled')) return;
+
+            const aspectSpan = event.target.closest('.aspect-value');
+            if (!aspectSpan) return;
+
+            const aspectId = aspectSpan.dataset.aspect;
+            const cost = 1;
+
+            if (gameState.skillPoints >= cost) {
+                gameState.actionInProgress = true; // Mark start of action
+
+                gameState.skillPoints -= cost;
+                gameState.totalTurns++; // Increment total upgrades made
+
+                let upgradeLog = "";
+
+                // Use updated state keys and logic
+                switch (aspectId) {
+                    // Weapons
+                    case 'wpn-quality':
+                        gameState.weapons.quality++;
+                        upgradeLog = `Upgraded Weapons Quality to ${gameState.weapons.quality}.`;
+                        break;
+                    case 'wpn-number':
+                        gameState.weapons.number += (1 * gameState.weapons.speed);
+                         upgradeLog = `Upgraded Weapons Number to ${gameState.weapons.number}.`;
+                        break;
+                    case 'wpn-speed':
+                        gameState.weapons.speed += (1 * gameState.weapons.quality);
+                         upgradeLog = `Upgraded Weapons Speed to ${gameState.weapons.speed}.`;
+                        break;
+                    // Jewelry
+                    case 'jwl-quality':
+                        gameState.jewelry.quality++;
+                         upgradeLog = `Upgraded Jewelry Quality to ${gameState.jewelry.quality}.`;
+                        break;
+                    case 'jwl-number':
+                        gameState.jewelry.number += (1 * gameState.jewelry.speed);
+                         upgradeLog = `Upgraded Jewelry Number to ${gameState.jewelry.number}.`;
+                        break;
+                    case 'jwl-speed':
+                        gameState.jewelry.speed += (1 * gameState.jewelry.quality);
+                         upgradeLog = `Upgraded Jewelry Speed to ${gameState.jewelry.speed}.`;
+                        break;
+                }
+                logEvent(`${upgradeLog} Cost: ${cost} Skill Point.`);
+
+                updateUI(); // Update UI immediately to show spent point/new value
+
+                // Advance the year *after* applying the upgrade
+                // Delay slightly to allow UI refresh and prevent race conditions
+                // advanceOneYear handles resetting actionInProgress flag
+                setTimeout(advanceOneYear, 50);
+
+            } else {
+                 logEvent(`Not enough Skill Points to upgrade (Need ${cost}).`);
+                 // If upgrade fails, ensure action flag is reset
+                 gameState.actionInProgress = false;
+            }
+        }
+
+
+        // --- Blacksmith Death & Legacy ---
+        function handleDeath() {
+             // Ensure death process isn't interrupted or run concurrently
+             if(gameState.actionInProgress && !gameState.isMessageBoxOpen) {
+                 // Already in an action, likely the one causing death, allow it
+             } else if (gameState.actionInProgress || gameState.isMessageBoxOpen) {
+                 console.warn("handleDeath called while action/message in progress.");
+                 return; // Prevent overlapping death sequences
+             }
+             gameState.actionInProgress = true;
+
+            logEvent(`The blacksmith has fallen in year ${gameState.currentYear}!`);
+            gameState.deadBlacksmiths++;
+            // totalTurns represents upgrades now, not years lived
+
+            // Increment legacy bonuses applied, capped at max
+            if (gameState.legacyBonusesApplied < gameState.maxLegacyBonuses) {
+                gameState.legacyBonusesApplied++;
+            }
+            const bonusesToApply = gameState.legacyBonusesApplied;
+
+            logEvent("Resetting aspects to base level...");
+            // Use renamed state keys
+            gameState.weapons = { quality: 1, number: 1, speed: 1 };
+            gameState.jewelry = { quality: 1, number: 1, speed: 1 };
+
+            // Reset Skill Points to 1
+            gameState.skillPoints = 1;
+            logEvent("Resetting Skill Points to 1.");
+
+            // Apply legacy bonuses randomly across all aspects (as per artifact logic)
+            logEvent(`Applying ${bonusesToApply} legacy bonus points randomly...`);
+            const aspectPaths = [
+                'weapons.quality', 'weapons.number', 'weapons.speed',
+                'jewelry.quality', 'jewelry.number', 'jewelry.speed'
+            ];
+
+            for (let i = 0; i < bonusesToApply; i++) {
+                const randomAspectIndex = Math.floor(Math.random() * aspectPaths.length);
+                const keyToIncrement = aspectPaths[randomAspectIndex];
+                const keys = keyToIncrement.split('.');
+                // Check if keys[0] and keys[1] exist before incrementing (safety check)
+                if (gameState[keys[0]] && typeof gameState[keys[0]][keys[1]] === 'number') {
+                     gameState[keys[0]][keys[1]]++;
+                } else {
+                    console.error("Error applying legacy bonus: Invalid aspect path", keyToIncrement);
+                }
+            }
+
+            let legacyMessage = `Aspects & Skill Points reset. Applied ${bonusesToApply} legacy bonus points randomly across all aspects.`;
+
+            // showMessage handles resetting actionInProgress via its callback logic
+            showMessage(
+                `The blacksmith has fallen!<br>A successor takes over.<br>${legacyMessage}`,
+                resetForNewBlacksmith // Pass the callback
+            );
+        }
+
+        // --- Reset for New Blacksmith ---
+        function resetForNewBlacksmith() {
+            gameState.currentYear = 0; // Reset year for the successor
+            logEvent("A new blacksmith takes the hammer...");
+            // UI update is handled by showMessage callback completion
+        }
+
+
+        // --- Game End ---
+        function endGame() {
+            gameState.gameOver = true;
+            gameState.actionInProgress = true; // Mark game as ended, action pending message
+
+            const denominator = gameState.deadBlacksmiths === 0 ? 1 : gameState.deadBlacksmiths;
+            // Score uses totalTurns (upgrades)
+            const finalScore = Math.floor((gameState.totalTurns * gameState.legacyBonusesApplied) / denominator);
+
+            const endMessage = `
+                Year 50 has passed. The final blacksmith rests.<br><br>
+                Total Upgrades Made (all blacksmiths): ${gameState.totalTurns}<br>
+                Blacksmiths Lost: ${gameState.deadBlacksmiths}<br>
+                Legacy Bonuses Earned: ${gameState.legacyBonusesApplied} / ${gameState.maxLegacyBonuses}<br><br>
+                <strong class="text-xl text-[#f0a040]">Final Legacy Score: ${finalScore}</strong>
+            `;
+            logEvent(`Game Over! Final Score: ${finalScore}`);
+
+            // showMessage handles resetting actionInProgress via its callback logic
+            showMessage(endMessage, () => { updateUI(); }); // Update UI one last time after message closes
+        }
+
+        // --- Initial Setup ---
+        logEvent("Game started. Click an aspect to upgrade it and advance time.");
+        updateUI(); // Initial UI render
+
+    </script>
+</body>
+</html>

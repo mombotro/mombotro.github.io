@@ -88,7 +88,7 @@ function saveProjects() {
 function renderProjects() {
     const container = document.getElementById('projects-list');
 
-    // Filter projects
+    // Filter projects (maintain original order from projects array)
     const filteredProjects = currentFilter === 'all'
         ? projects
         : projects.filter(p => p.status === currentFilter);
@@ -103,13 +103,24 @@ function renderProjects() {
         return;
     }
 
-    container.innerHTML = filteredProjects.map(project => {
+    container.innerHTML = filteredProjects.map((project, index) => {
         const externalLinksHtml = project.externalLinks && project.externalLinks.length > 0
             ? project.externalLinks.map(link => `<span>🔗 <a href="${link.url}" target="_blank" style="color: #c65d00; text-decoration: none;">${link.label}</a></span>`).join(' ')
             : '';
 
+        const projectIndex = projects.findIndex(p => p.id === project.id);
+        const canMoveUp = projectIndex > 0;
+        const canMoveDown = projectIndex < projects.length - 1;
+
         return `
         <div class="project-item">
+            <div class="project-position">
+                <span class="position-number">#${projectIndex + 1}</span>
+            </div>
+            <div class="project-reorder">
+                <button class="reorder-btn" onclick="moveProject('${project.id}', -1)" ${!canMoveUp ? 'disabled' : ''} title="Move Up">↑</button>
+                <button class="reorder-btn" onclick="moveProject('${project.id}', 1)" ${!canMoveDown ? 'disabled' : ''} title="Move Down">↓</button>
+            </div>
             <div class="project-info">
                 <div class="project-title">${project.title}</div>
                 <div class="project-meta">
@@ -120,6 +131,7 @@ function renderProjects() {
                     ${project.webFile ? `<span>💻 ${project.webFile}</span>` : ''}
                     ${project.gameType ? `<span>🎮 ${project.gameType}</span>` : ''}
                     ${project.progress ? `<span>📊 ${project.progress}</span>` : ''}
+                    ${project.completedDate ? `<span>📅 Completed ${new Date(project.completedDate).toLocaleDateString()}</span>` : ''}
                     ${externalLinksHtml}
                 </div>
             </div>
@@ -173,6 +185,7 @@ function populateForm(project) {
     document.getElementById('project-status').value = project.status || '';
     document.getElementById('project-type').value = project.type || '';
     document.getElementById('project-description').value = project.description || '';
+    document.getElementById('project-extra-notes').value = project.extraNotes || '';
     document.getElementById('project-platform').value = project.platform || '';
     document.getElementById('project-progress').value = project.progress || '';
     document.getElementById('project-completed-date').value = project.completedDate || '';
@@ -201,6 +214,7 @@ function saveProject() {
         status: document.getElementById('project-status').value,
         type: document.getElementById('project-type').value,
         description: document.getElementById('project-description').value.trim(),
+        extraNotes: document.getElementById('project-extra-notes').value.trim(),
         platform: document.getElementById('project-platform').value.trim(),
         progress: document.getElementById('project-progress').value.trim(),
         completedDate: document.getElementById('project-completed-date').value,
@@ -313,6 +327,46 @@ function deleteProject(projectId) {
         saveProjects();
         renderProjects();
     }
+}
+
+function moveProject(projectId, direction) {
+    const currentIndex = projects.findIndex(p => p.id === projectId);
+    if (currentIndex === -1) return;
+
+    const newIndex = currentIndex + direction;
+
+    // Check bounds
+    if (newIndex < 0 || newIndex >= projects.length) return;
+
+    // Swap projects
+    const temp = projects[currentIndex];
+    projects[currentIndex] = projects[newIndex];
+    projects[newIndex] = temp;
+
+    saveProjects();
+    renderProjects();
+}
+
+function sortByNewest() {
+    // Sort projects by completion date (most recent first), then by creation order
+    projects.sort((a, b) => {
+        // If both have completion dates, sort by date (newest first)
+        if (a.completedDate && b.completedDate) {
+            return new Date(b.completedDate) - new Date(a.completedDate);
+        }
+        // If only one has a completion date, completed projects go first
+        if (a.completedDate && !b.completedDate) return -1;
+        if (!a.completedDate && b.completedDate) return 1;
+
+        // If neither has completion date, maintain current relative order
+        return 0;
+    });
+
+    saveProjects();
+    renderProjects();
+
+    // Show feedback to user
+    alert('Projects have been sorted by newest completion date!');
 }
 
 function updateJSONOutput() {
