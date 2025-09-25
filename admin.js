@@ -590,3 +590,485 @@ window.toggleWebFileField = toggleWebFileField;
 
 // Initialize with sample data if needed
 setTimeout(loadSampleData, 100);
+
+// =============================================================================
+// BLOG FUNCTIONALITY & TAB SWITCHING
+// =============================================================================
+
+// Global blog variables
+let blogPosts = [];
+let editingBlogIndex = -1;
+let blogInitialized = false;
+
+// Tab switching functionality
+function switchTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabName + '-tab').classList.add('active');
+
+    // Update content sections
+    document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+    document.getElementById(tabName + '-section').classList.add('active');
+
+    // Initialize blog functionality if switching to blog tab
+    if (tabName === 'blog') {
+        initializeBlogFunctionality();
+    }
+}
+
+// Initialize blog functionality
+function initializeBlogFunctionality() {
+    if (!blogInitialized) {
+        // Set default date to today
+        const today = new Date().toISOString().split('T')[0];
+        const blogDateInput = document.getElementById('blog-date');
+        if (blogDateInput) {
+            blogDateInput.value = today;
+        }
+
+        // Auto-generate post ID from title
+        const blogTitleInput = document.getElementById('blog-title');
+        if (blogTitleInput) {
+            blogTitleInput.addEventListener('input', function() {
+                const title = this.value;
+                const postId = generatePostId(title);
+                const blogIdInput = document.getElementById('blog-id');
+                if (blogIdInput) {
+                    blogIdInput.value = postId;
+                }
+            });
+        }
+
+        // Character counters
+        const blogExcerptInput = document.getElementById('blog-excerpt');
+        const blogContentInput = document.getElementById('blog-content');
+
+        if (blogExcerptInput) {
+            blogExcerptInput.addEventListener('input', updateBlogExcerptCount);
+        }
+        if (blogContentInput) {
+            blogContentInput.addEventListener('input', updateBlogContentCount);
+        }
+
+        // Initialize counters and toggle
+        updateBlogExcerptCount();
+        updateBlogContentCount();
+        toggleBlogContentFields();
+        renderBlogPosts();
+
+        blogInitialized = true;
+    }
+}
+
+function generatePostId(title) {
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+}
+
+function updateBlogExcerptCount() {
+    const excerptInput = document.getElementById('blog-excerpt');
+    const countElement = document.getElementById('blog-excerpt-count');
+    if (excerptInput && countElement) {
+        countElement.textContent = `${excerptInput.value.length} characters`;
+    }
+}
+
+function updateBlogContentCount() {
+    const contentInput = document.getElementById('blog-content');
+    const countElement = document.getElementById('blog-content-count');
+    if (contentInput && countElement) {
+        countElement.textContent = `${contentInput.value.length} characters`;
+    }
+}
+
+function toggleBlogContentFields() {
+    const contentType = document.getElementById('blog-content-type');
+    const blogFields = document.getElementById('blog-specific-fields');
+    const excerptField = document.getElementById('blog-excerpt-field');
+    const contentLabel = document.getElementById('blog-content-label');
+
+    if (!contentType) return;
+
+    if (contentType.value === 'blog') {
+        if (blogFields) blogFields.style.display = 'block';
+        if (excerptField) excerptField.style.display = 'block';
+        if (contentLabel) contentLabel.textContent = 'Blog Content * (Markdown supported)';
+
+        const excerptInput = document.getElementById('blog-excerpt');
+        const idInput = document.getElementById('blog-id');
+        if (excerptInput) excerptInput.required = true;
+        if (idInput) idInput.required = true;
+    } else {
+        if (blogFields) blogFields.style.display = 'none';
+        if (excerptField) excerptField.style.display = 'none';
+        if (contentLabel) contentLabel.textContent = 'Publication Content * (Markdown supported)';
+
+        const excerptInput = document.getElementById('blog-excerpt');
+        const idInput = document.getElementById('blog-id');
+        if (excerptInput) excerptInput.required = false;
+        if (idInput) idInput.required = false;
+    }
+}
+
+function renderBlogPosts() {
+    const listContainer = document.getElementById('blog-posts-list');
+    const postCount = document.getElementById('blog-post-count');
+
+    if (!listContainer || !postCount) return;
+
+    postCount.textContent = `${blogPosts.length} post${blogPosts.length !== 1 ? 's' : ''}`;
+
+    if (blogPosts.length === 0) {
+        listContainer.innerHTML = `
+            <div class="no-posts" style="text-align: center; padding: 40px; color: #6c757d; background: #f8f9fa; border-radius: 6px;">
+                <p>No blog posts loaded. Import your blog/index.json file or create a new post to get started.</p>
+            </div>
+        `;
+        return;
+    }
+
+    let listHTML = '<div class="posts-list">';
+
+    blogPosts.forEach((post, index) => {
+        const date = new Date(post.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+
+        listHTML += `
+            <div class="post-item">
+                <div class="move-controls">
+                    <button type="button" class="move-btn" onclick="moveBlogPost(${index}, -1)"
+                            ${index === 0 ? 'disabled' : ''} title="Move up">↑</button>
+                    <button type="button" class="move-btn" onclick="moveBlogPost(${index}, 1)"
+                            ${index === blogPosts.length - 1 ? 'disabled' : ''} title="Move down">↓</button>
+                </div>
+                <div class="post-info">
+                    <div class="post-title" onclick="editBlogPost(${index})">${post.title}</div>
+                    <div class="post-meta">${date} - by ${post.author}</div>
+                    <div class="post-excerpt">${post.excerpt || 'No excerpt'}</div>
+                </div>
+                <div class="post-actions">
+                    <button type="button" class="btn btn-secondary" onclick="editBlogPost(${index})">Edit</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteBlogPost(${index})">Delete</button>
+                </div>
+            </div>
+        `;
+    });
+
+    listHTML += '</div>';
+    listContainer.innerHTML = listHTML;
+}
+
+function newBlogPost() {
+    editingBlogIndex = -1;
+    ['blog-title', 'blog-author', 'blog-id', 'blog-excerpt', 'blog-content'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.value = '';
+    });
+
+    const today = new Date().toISOString().split('T')[0];
+    const blogDateInput = document.getElementById('blog-date');
+    if (blogDateInput) blogDateInput.value = today;
+
+    const contentTypeInput = document.getElementById('blog-content-type');
+    if (contentTypeInput) contentTypeInput.value = 'blog';
+
+    updateBlogExcerptCount();
+    updateBlogContentCount();
+    toggleBlogContentFields();
+
+    const formTitle = document.getElementById('blog-form-title');
+    const formSection = document.getElementById('blog-form-section');
+    const previewSection = document.getElementById('blog-preview-section');
+
+    if (formTitle) formTitle.textContent = 'New Blog Post';
+    if (formSection) formSection.style.display = 'block';
+    if (previewSection) previewSection.style.display = 'none';
+
+    const titleInput = document.getElementById('blog-title');
+    if (titleInput) titleInput.focus();
+
+    if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function editBlogPost(index) {
+    if (index < 0 || index >= blogPosts.length) return;
+
+    editingBlogIndex = index;
+    const post = blogPosts[index];
+
+    const fieldMapping = {
+        'blog-title': post.title,
+        'blog-author': post.author,
+        'blog-date': post.date,
+        'blog-id': post.id,
+        'blog-excerpt': post.excerpt || '',
+        'blog-content': post.content || ''
+    };
+
+    Object.entries(fieldMapping).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+        if (element) element.value = value;
+    });
+
+    const contentTypeInput = document.getElementById('blog-content-type');
+    if (contentTypeInput) contentTypeInput.value = 'blog';
+
+    updateBlogExcerptCount();
+    updateBlogContentCount();
+    toggleBlogContentFields();
+
+    const formTitle = document.getElementById('blog-form-title');
+    const formSection = document.getElementById('blog-form-section');
+    const previewSection = document.getElementById('blog-preview-section');
+
+    if (formTitle) formTitle.textContent = `Edit: ${post.title}`;
+    if (formSection) formSection.style.display = 'block';
+    if (previewSection) previewSection.style.display = 'none';
+
+    if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function cancelBlogEdit() {
+    editingBlogIndex = -1;
+    const formSection = document.getElementById('blog-form-section');
+    const previewSection = document.getElementById('blog-preview-section');
+    if (formSection) formSection.style.display = 'none';
+    if (previewSection) previewSection.style.display = 'none';
+}
+
+function saveBlogPost() {
+    const title = document.getElementById('blog-title')?.value?.trim();
+    const author = document.getElementById('blog-author')?.value;
+    const date = document.getElementById('blog-date')?.value;
+    const postId = document.getElementById('blog-id')?.value?.trim();
+    const excerpt = document.getElementById('blog-excerpt')?.value?.trim();
+    const content = document.getElementById('blog-content')?.value?.trim();
+
+    if (!title || !author || !date || !postId || !excerpt || !content) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    const duplicateIndex = blogPosts.findIndex((post, index) =>
+        post.id === postId && index !== editingBlogIndex
+    );
+    if (duplicateIndex !== -1) {
+        alert(`A post with ID "${postId}" already exists. Please use a different ID.`);
+        return;
+    }
+
+    const postData = {
+        id: postId,
+        title: title,
+        date: date,
+        author: author,
+        excerpt: excerpt,
+        filename: `${postId}.txt`,
+        content: content
+    };
+
+    if (editingBlogIndex === -1) {
+        blogPosts.unshift(postData);
+        alert('Blog post created successfully!');
+    } else {
+        blogPosts[editingBlogIndex] = postData;
+        alert('Blog post updated successfully!');
+    }
+
+    renderBlogPosts();
+    cancelBlogEdit();
+}
+
+function deleteBlogPost(index) {
+    if (index < 0 || index >= blogPosts.length) return;
+
+    const post = blogPosts[index];
+    const confirmDelete = confirm(`Are you sure you want to delete "${post.title}"?`);
+
+    if (confirmDelete) {
+        blogPosts.splice(index, 1);
+        renderBlogPosts();
+
+        if (editingBlogIndex === index) {
+            cancelBlogEdit();
+        } else if (editingBlogIndex > index) {
+            editingBlogIndex--;
+        }
+
+        alert(`"${post.title}" has been deleted.`);
+    }
+}
+
+function moveBlogPost(index, direction) {
+    if (index < 0 || index >= blogPosts.length) return;
+
+    const newIndex = index + direction;
+    if (newIndex < 0 || newIndex >= blogPosts.length) return;
+
+    const temp = blogPosts[index];
+    blogPosts[index] = blogPosts[newIndex];
+    blogPosts[newIndex] = temp;
+
+    if (editingBlogIndex === index) {
+        editingBlogIndex = newIndex;
+    } else if (editingBlogIndex === newIndex) {
+        editingBlogIndex = index;
+    }
+
+    renderBlogPosts();
+}
+
+function importBlogJSON() {
+    const fileInput = document.getElementById('blog-json-import');
+    const file = fileInput?.files[0];
+
+    if (!file) {
+        alert('Please select a JSON file to import.');
+        return;
+    }
+
+    if (!file.name.endsWith('.json')) {
+        alert('Please select a valid JSON file.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const jsonContent = JSON.parse(e.target.result);
+
+            if (!jsonContent.posts || !Array.isArray(jsonContent.posts)) {
+                throw new Error('Invalid JSON structure: missing posts array');
+            }
+
+            for (const post of jsonContent.posts) {
+                if (!post.id || !post.title || !post.date || !post.author || !post.excerpt || !post.filename) {
+                    throw new Error('Invalid post structure: missing required fields');
+                }
+            }
+
+            blogPosts = jsonContent.posts.map(post => ({
+                ...post,
+                content: ''
+            }));
+
+            renderBlogPosts();
+            alert(`✅ Successfully imported ${blogPosts.length} blog posts!`);
+            fileInput.value = '';
+
+        } catch (error) {
+            alert('❌ Error importing JSON file:\n\n' + error.message + '\n\nPlease check that you selected a valid blog/index.json file.');
+            console.error('JSON Import Error:', error);
+        }
+    };
+
+    reader.onerror = function() {
+        alert('❌ Error reading file. Please try again.');
+    };
+
+    reader.readAsText(file);
+}
+
+function exportBlogJSON() {
+    if (blogPosts.length === 0) {
+        alert('No blog posts to export. Create some posts first.');
+        return;
+    }
+
+    const exportData = {
+        posts: blogPosts.map(post => ({
+            id: post.id,
+            title: post.title,
+            date: post.date,
+            author: post.author,
+            excerpt: post.excerpt,
+            filename: post.filename
+        }))
+    };
+
+    const jsonString = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = 'index.json';
+    downloadLink.click();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    alert(`✅ Exported ${blogPosts.length} blog posts to index.json`);
+}
+
+function generateBlogPreview() {
+    const title = document.getElementById('blog-title')?.value;
+    const author = document.getElementById('blog-author')?.value;
+    const date = document.getElementById('blog-date')?.value;
+    const content = document.getElementById('blog-content')?.value;
+
+    if (!title || !author || !date || !content) {
+        alert('Please fill in all required fields before generating preview.');
+        return;
+    }
+
+    const dateObj = new Date(date);
+    const readableDate = dateObj.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    let htmlContent = content
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+        .replace(/^---$/gm, '<hr>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(?!<[h|u|l|p])(.+)$/gm, '<p>$1</p>')
+        .replace(/<p><\/p>/g, '');
+
+    const previewContent = `
+        <h1>${title}</h1>
+        <p style="font-style: italic; color: #666; margin-bottom: 2rem;">
+            ${readableDate} - by ${author}
+        </p>
+        ${htmlContent}
+    `;
+
+    const previewContentElement = document.getElementById('blog-preview-content');
+    const previewSection = document.getElementById('blog-preview-section');
+
+    if (previewContentElement) previewContentElement.innerHTML = previewContent;
+    if (previewSection) previewSection.style.display = 'block';
+
+    if (previewSection) {
+        previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// Make blog functions global for onclick handlers
+window.switchTab = switchTab;
+window.newBlogPost = newBlogPost;
+window.editBlogPost = editBlogPost;
+window.cancelBlogEdit = cancelBlogEdit;
+window.saveBlogPost = saveBlogPost;
+window.deleteBlogPost = deleteBlogPost;
+window.moveBlogPost = moveBlogPost;
+window.importBlogJSON = importBlogJSON;
+window.exportBlogJSON = exportBlogJSON;
+window.generateBlogPreview = generateBlogPreview;
+window.toggleBlogContentFields = toggleBlogContentFields;
