@@ -328,8 +328,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'hidden';
 
         try {
-            // Load post content
-            const response = await fetch(`blog/${post.filename}`);
+            // Try loading from blog folder first
+            let response = await fetch(`blog/${post.filename}`);
+
+            // If not found in blog folder, try publications folder
+            if (!response.ok) {
+                response = await fetch(`publications/${post.filename}`);
+            }
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

@@ -296,15 +296,12 @@
 
         // --- Message Box Logic ---
         function showMessage(message, onConfirm = null) {
-            // Prevent stacking message boxes or interfering with actions
-            if (gameState.isMessageBoxOpen || gameState.actionInProgress) {
-                 console.warn("showMessage called while message box open or action in progress.");
-                 // Attempt to reset action flag if message box isn't actually open, might help recover
-                 if (!gameState.isMessageBoxOpen) gameState.actionInProgress = false;
+            // Prevent stacking message boxes
+            if (gameState.isMessageBoxOpen) {
+                 console.warn("showMessage called while message box already open.");
                  return;
             }
             gameState.isMessageBoxOpen = true;
-            gameState.actionInProgress = true; // Mark action start
 
             messageBoxContent.innerHTML = message;
             messageBox.style.display = 'block';
@@ -318,17 +315,16 @@
             currentMessageBoxListener = () => {
                 messageBox.style.display = 'none';
                 gameState.isMessageBoxOpen = false; // Reset flag immediately
+                gameState.actionInProgress = false; // Reset action flag before any callbacks or UI updates
 
                 // Use setTimeout to allow UI to update and prevent race conditions before callback
                 if (onConfirm) {
                     setTimeout(() => {
                         onConfirm(); // Execute the callback (e.g., resetForNewBlacksmith)
-                        gameState.actionInProgress = false; // Reset flag *after* callback completes
                         updateUI(); // Update UI after callback potentially changed state
                     }, 10);
                 } else {
-                    // If no callback, reset flag immediately and update UI
-                    gameState.actionInProgress = false;
+                    // If no callback, just update UI
                     updateUI();
                 }
                 currentMessageBoxListener = null; // Clear the stored listener reference
@@ -378,11 +374,8 @@
 
          // --- Core Year Advancement Logic ---
          function advanceOneYear() {
-            // Prevent advancement if game over or another action is pending
-            if (gameState.gameOver || !gameState.actionInProgress) {
-                 // If actionInProgress wasn't true, reset it just in case and exit
-                 // This might happen if called directly after a failed upgrade attempt
-                 gameState.actionInProgress = false;
+            // Prevent advancement if game over
+            if (gameState.gameOver) {
                  return;
             }
 
@@ -437,7 +430,7 @@
                 return; // Stop processing this year's advancement
             } else if (invasionMessage) {
                 // Show success message; showMessage handles flags
-                showMessage(invasionMessage, () => { updateUI(); });
+                showMessage(invasionMessage);
                 return; // Stop processing this year's advancement
             }
 
@@ -597,7 +590,7 @@
             logEvent(`Game Over! Final Score: ${finalScore}`);
 
             // showMessage handles resetting actionInProgress via its callback logic
-            showMessage(endMessage, () => { updateUI(); }); // Update UI one last time after message closes
+            showMessage(endMessage);
         }
 
         // --- Initial Setup ---

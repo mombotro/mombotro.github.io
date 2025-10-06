@@ -5,42 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Azirona Drift - Content Manager</title>
 
-    <!-- Password Protection Script -->
-    <script>
-        (function() {
-            // Only protect when not on localhost
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                return;
-            }
-
-            // Check if already authenticated
-            const authKey = ['azirona', 'admin', 'auth'].join('-');
-            const isAuthenticated = sessionStorage.getItem(authKey);
-            if (isAuthenticated === 'true') {
-                return;
-            }
-
-            // Obfuscated password verification
-            const userInput = prompt('Enter admin password:');
-
-            // Multiple obfuscation layers
-            const p1 = atob('NW14czdxSk9aTHFRRmc2MlR2NGc='); // Base64 decoded
-            const p2 = String.fromCharCode(53,109,120,115,55,113,74,79,90,76,113,81,70,103,54,50,84,118,52,103); // Character codes
-            const p3 = ['5mx', 's7q', 'JOZ', 'LqQ', 'Fg6', '2Tv', '4g'].join(''); // Split and join
-
-            // Verify against multiple encodings
-            const validPassword = p1 === p2 && p2 === p3 ? p1 : null;
-
-            if (!userInput || !validPassword || userInput !== validPassword) {
-                alert('Access denied. Incorrect password.');
-                window.location.href = '/';
-                return;
-            }
-
-            // Store authentication with obfuscated key
-            sessionStorage.setItem(authKey, 'true');
-        })();
-    </script>
     <style>
         * {
             margin: 0;

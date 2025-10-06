@@ -1,14 +1,31 @@
 {
-  "lastUpdated": "2025-09-24T19:26:48.246Z",
-  "totalProjects": 11,
+  "lastUpdated": "2025-10-06T02:39:52.445Z",
+  "totalProjects": 13,
   "projects": [
+    {
+      "id": "mgeb44zqzcne8kuu7g",
+      "title": "Witnesses: Seven Stories from the Margins of Scripture",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "book",
+      "description": "Witnesses:\nWhile \"all Scripture is God-breathed,\" room remains for the stories of people not explicitly mentioned or deeply considered. A servant of an Old Testament patriarch; the keeper of beasts in the vast Persian empire; the baker and cupbearer of a great Egyptian Pharoah; a crewman on the ship that encountered a sea creature from the deep; and more. All of these individuals touched verses in the Bible and became part of the larger story.\nIn \"Witnesses,\" these people are explored. Remaining accurate to Scripture, these short stories embellish details in ways that do not contradict Holy Writ. Each small tale is meant to whet the reader's appetite, exciting them to go to the related passage in Scripture, and read the story with its context in whole.\n\nQadash:\nNomads don't carry what they can't use. Naamah doesn't see the prudence in bringing along something that sees no use and serves no apparent purpose. What possible reason could it be set aside for?\n\nAshianeh:\nBruzantes knows what beasts do. He can predict how they'll act, especially when famished. Narrowly escaping death is just another day in the life for the near-feral man. But it is nobles who employ him whom he fears most of all.\n\nNahar:\nWanderlust is a powerful narcotic. No one has a better view for it than Ioannis, from high up in the crow's nest of a trireme ship. Marvelous as his fledging nation of Greece is, it cannot compare to the wondrous sights on the open sea.\n\nLehavah:\nRain. The great life-giver. Take that away, and people die. People will kill to have the rain return. Etakkama's drive to madness is swift and unstoppable when his life is on the line.\n\nMashqeh:\nIntrigue at the royal court is the highest-stakes game ever played. Paser overbid. It's going to take intervention on a divine level to rescue him from his own machinations.\n\nPolus:\nNever mess with beings from the spiritual realm. They have a way of humbling even - perhaps especially - the strongest.\n\nSaoshyant:\nThe astrologers of old were serious and skilled in their arts. They commanded respect and treated their role with utmost importance. The heavens hide many secrets; Zaif helps pull the curtain up on them. He records data, follows patterns, and leaves room for error. He doesn't commit to what he's not fully confident in. So when the stars literally align for him, how will he respond?",
+      "extraNotes": "Cover art, layout, and publishing by Juleah Miller",
+      "platform": "",
+      "progress": "",
+      "completedDate": "2025-07-26",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": true
+    },
     {
       "id": "mfxg8j8pzpdgovmjazq",
       "title": "Hephaestus",
       "author": "Alek Miller",
       "status": "completed",
       "type": "web game",
-      "description": "You are a blacksmith, forging your legacy over 50 years.\n\nCreated with Gemini Canvas",
+      "description": "You are a blacksmith, forging your legacy over 50 years.",
       "platform": "HTML",
       "progress": "",
       "completedDate": "2025-04-04",
@@ -16,79 +33,54 @@
       "backgroundImage": "",
       "webFile": "games/hephaestus.html",
       "gameType": "Rogue-lite clicker",
-      "collaboration": false
-    },
-    {
-      "id": "sample-2",
-      "title": "Liminal",
-      "author": "Juleah Miller",
-      "status": "completed",
-      "type": "comic",
-      "description": "A lone hiker falls into an abandoned mineshaft. Pitch black, and no way out, he navigates the maze of tunnels from a bygone era and battles his mind as it creates monsters out of the endless darkness and silence. Or is something actually following him through the mine?",
-      "platform": "Webtoon",
-      "progress": "",
-      "completedDate": "2020-06-21",
-      "estimatedCompletion": "",
-      "backgroundImage": "",
-      "webFile": "",
-      "gameType": "",
       "collaboration": false,
-      "externalLinks": [
-        {
-          "label": "Read on Webtoons",
-          "url": "https://www.webtoons.com/en/canvas/liminal-b/list?title_no=443514"
-        }
-      ]
-    },
-    {
-      "id": "mfybrm7sm2s8g97mnr",
-      "title": "Kirbo",
-      "author": "Juleah Miller",
-      "status": "work-in-progress",
-      "type": "web game",
-      "description": "Collaboration with oldest son and his dungeon designs. Based off Kirby. Made with Pico-8 and Claude Code.",
-      "platform": "Pico-8",
-      "progress": "75%",
-      "completedDate": "2025-09-24",
-      "estimatedCompletion": "",
-      "backgroundImage": "",
-      "webFile": "games/kirbo/kirbo.html",
-      "gameType": "Side scroller",
-      "collaboration": true
-    },
-    {
-      "id": "mfydfmuu1uchneej072h",
-      "title": "Theology Songs",
-      "author": "Alek Miller",
-      "status": "work-in-progress",
-      "type": "music",
-      "description": "Growing playlist of theological songs, sometimes serious, sometimes parody. Just one song out of many so far.",
-      "extraNotes": "Lyrics by Alek\nMade in Producer.ai by Juleah",
-      "platform": "Producer.ai",
-      "progress": "",
-      "completedDate": "",
-      "estimatedCompletion": "",
-      "backgroundImage": "",
-      "webFile": "",
-      "gameType": "",
-      "collaboration": true,
-      "externalLinks": [
-        {
-          "label": "YT Playlist",
-          "url": "https://youtu.be/zxRr5T1oWkw?si=7Whn7YNp_ldZYGAh"
-        }
-      ]
+      "extraNotes": "Created with Gemini Canvas"
     },
     {
       "id": "mfxflezrs388wdj4eua",
       "title": "Send It! Tank Dice Battles",
       "author": "Alek & Juleah Miller",
-      "status": "work-in-progress",
+      "status": "completed",
       "type": "game",
-      "description": "Battle with tank dice",
+      "description": "One on one tank battles with custom tank dice. Match tank positions to score hits on your opponent's tank.\n\nMy spin on the classic game, Pass the Pigs.",
       "platform": "Boardgame",
-      "progress": "90%",
-      "completedDate": "",
+      "progress": "",
+      "completedDate": "2024-03-17",
+      "estimatedCompletion": "",
+      "backgroundImage": "assets/sendit.webp",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": true,
+      "extraNotes": "Rules by Alek and Juleah\nTank dice and board design by Juleah"
+    },
+    {
+      "id": "mgebw3m3viibyacbtyq",
+      "title": "Dragon's Roll",
+      "author": "Alek & Juleah Miller",
+      "status": "completed",
+      "type": "game",
+      "description": "A hoard of treasure sits at the center of a tall, tall stone. Dragons approach, but their path gets more and more treacherous with each step closer. Tensions will rise and fireballs will fly as drakes nearly reach the plunder! It's Dragon's Roll!\n\nFor ages 2-8",
+      "extraNotes": "Game rules by Alek Miller\nDice design by Juleah Miller",
+      "platform": "",
+      "progress": "",
+      "completedDate": "2023-01-15",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": true
+    },
+    {
+      "id": "mgebpktvjtcjqgwm3ab",
+      "title": "Enlightened Night Sky",
+      "author": "Alek Miller",
+      "status": "completed",
+      "type": "game",
+      "description": "The stars lead to wisdom... and madness. Connect stars into constellations, then blot out the stars of your rival astrologers to foil their plans. Maintain the most coherent stellar structure you can come up with, but beware single points of weakness. Your overreliance will be your undoing.",
+      "extraNotes": "Game rules design by Juleah Miller",
+      "platform": "",
+      "progress": "",
+      "completedDate": "2022-05-07",
       "estimatedCompletion": "",
       "backgroundImage": "",
       "webFile": "",
@@ -120,7 +112,7 @@
       "type": "game",
       "description": "Tabletop hex based battles",
       "platform": "Boardgame",
-      "progress": "",
+      "progress": "75%",
       "completedDate": "",
       "estimatedCompletion": "",
       "backgroundImage": "",
@@ -130,26 +122,61 @@
       "extraNotes": "Art and assets by Juleah"
     },
     {
-      "id": "sample-1",
-      "title": "My Balloons",
-      "author": "Juleah Miller",
-      "status": "completed",
-      "type": "children's book",
-      "description": "Learn primary colors and counting with balloons.",
-      "platform": "Lulu",
-      "collaboration": false,
-      "backgroundImage": "assets/my-balloons.jpg",
+      "id": "mgebkrw3efo6dl65fqb",
+      "title": "Great and Small",
+      "author": "Alek Miller",
+      "status": "planning",
+      "type": "book",
+      "description": "Bible animals",
+      "extraNotes": "",
+      "platform": "",
       "progress": "",
-      "completedDate": "2020-07-08",
-      "estimatedCompletion": "",
+      "completedDate": "",
+      "estimatedCompletion": "Summer 2026",
+      "backgroundImage": "",
       "webFile": "",
       "gameType": "",
+      "collaboration": false
+    },
+    {
+      "id": "mfybrm7sm2s8g97mnr",
+      "title": "Kirbo",
+      "author": "Juleah Miller",
+      "status": "work-in-progress",
+      "type": "web game",
+      "description": "Collaboration with oldest son and his dungeon designs. Based off Kirby.",
+      "platform": "Pico-8",
+      "progress": "75%",
+      "completedDate": "2025-09-24",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "games/kirbo/kirbo.html",
+      "gameType": "Side scroller",
+      "collaboration": true,
+      "extraNotes": "Made with Pico-8 and Claude Code."
+    },
+    {
+      "id": "sample-2",
+      "title": "Liminal",
+      "author": "Juleah Miller",
+      "status": "completed",
+      "type": "comic",
+      "description": "A lone hiker falls into an abandoned mineshaft. Pitch black, and no way out, he navigates the maze of tunnels from a bygone era and battles his mind as it creates monsters out of the endless darkness and silence. Or is something actually following him through the mine?",
+      "platform": "Webtoon",
+      "progress": "",
+      "completedDate": "2020-06-21",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "",
+      "gameType": "",
+      "collaboration": false,
       "externalLinks": [
         {
-          "label": "Purchase at Lulu",
-          "url": "https://www.lulu.com/shop/juleah-miller/my-balloons/paperback/product-njvn4r.html"
+          "label": "Read on Webtoons",
+          "url": "https://www.webtoons.com/en/canvas/liminal-b/list?title_no=443514"
         }
-      ]
+      ],
+      "extraNotes": "Hand drawn\nDigital watercolor"
     },
     {
       "id": "mfyd6k1rsfuh5lii5pr",
@@ -180,7 +207,7 @@
       "author": "Alek Miller",
       "status": "completed",
       "type": "game",
-      "description": "Blackjack, on steroids. 1-4 players\n\nHit up to 7 cards, roll dice equal to the number of cards in your wager, and attempt to surpass the sum of your cards' value with the sum of your dice roll. Win, and you collect points! But the higher value you wager, the harder it will be to win the dice roll.\n\nNab the Cubes and Tiles before other players. If they win more points than there are Cubes or Tiles, they have to ROUND DOWN!\n\nTiles multiply the final score! HUGE NUMBERS!!\n\nPlayer with the highest score WINS!\n\nArt by Juleah",
+      "description": "Blackjack, on steroids. 1-4 players\n\nHit up to 7 cards, roll dice equal to the number of cards in your wager, and attempt to surpass the sum of your cards' value with the sum of your dice roll. Win, and you collect points! But the higher value you wager, the harder it will be to win the dice roll.\n\nNab the Cubes and Tiles before other players. If they win more points than there are Cubes or Tiles, they have to ROUND DOWN!\n\nTiles multiply the final score! HUGE NUMBERS!!\n\nPlayer with the highest score WINS!",
       "platform": "Itch.io",
       "progress": "",
       "completedDate": "",
@@ -194,28 +221,28 @@
           "label": "View on Itch.io",
           "url": "https://azirona-games.itch.io/round-down"
         }
-      ]
+      ],
+      "extraNotes": "Art by Juleah"
     },
     {
-      "id": "mfydkuje3b7qkbdm5d8",
-      "title": "Abridgelion Abridged Evangelion",
-      "author": "Alek Miller",
+      "id": "sample-1",
+      "title": "My Balloons",
+      "author": "Juleah Miller",
       "status": "completed",
-      "type": "book",
-      "description": "Silly youtube parody, warning language",
-      "extraNotes": "",
-      "platform": "Youtube",
+      "type": "children's book",
+      "description": "Learn primary colors and counting with balloons.",
+      "platform": "Lulu",
+      "collaboration": false,
+      "backgroundImage": "assets/my-balloons.jpg",
       "progress": "",
-      "completedDate": "",
+      "completedDate": "2020-07-08",
       "estimatedCompletion": "",
-      "backgroundImage": "",
       "webFile": "",
       "gameType": "",
-      "collaboration": false,
       "externalLinks": [
         {
-          "label": "Watch on Youtube",
-          "url": "https://www.youtube.com/@Abridgelion/featured"
+          "label": "Purchase at Lulu",
+          "url": "https://www.lulu.com/shop/juleah-miller/my-balloons/paperback/product-njvn4r.html"
         }
       ]
     }
