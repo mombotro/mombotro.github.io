@@ -848,6 +848,7 @@ function cancelBlogEdit() {
 }
 
 function saveBlogPost() {
+    const contentType = document.getElementById('blog-content-type')?.value;
     const title = document.getElementById('blog-title')?.value?.trim();
     const author = document.getElementById('blog-author')?.value;
     const date = document.getElementById('blog-date')?.value;
@@ -855,26 +856,37 @@ function saveBlogPost() {
     const excerpt = document.getElementById('blog-excerpt')?.value?.trim();
     const content = document.getElementById('blog-content')?.value?.trim();
 
-    if (!title || !author || !date || !postId || !excerpt || !content) {
+    // Basic validation for all content types
+    if (!title || !author || !date || !content) {
         alert('Please fill in all required fields.');
         return;
     }
 
+    // Additional validation for blog posts
+    if (contentType === 'blog' && (!postId || !excerpt)) {
+        alert('Please fill in all required fields (Post ID and Excerpt are required for blog posts).');
+        return;
+    }
+
+    // For web publications, generate an ID from the title if not provided
+    const finalPostId = postId || generatePostId(title);
+    const finalExcerpt = excerpt || '';
+
     const duplicateIndex = blogPosts.findIndex((post, index) =>
-        post.id === postId && index !== editingBlogIndex
+        post.id === finalPostId && index !== editingBlogIndex
     );
     if (duplicateIndex !== -1) {
-        alert(`A post with ID "${postId}" already exists. Please use a different ID.`);
+        alert(`A post with ID "${finalPostId}" already exists. Please use a different ID.`);
         return;
     }
 
     const postData = {
-        id: postId,
+        id: finalPostId,
         title: title,
         date: date,
         author: author,
-        excerpt: excerpt,
-        filename: `${postId}.txt`,
+        excerpt: finalExcerpt,
+        filename: `${finalPostId}.txt`,
         content: content
     };
 
