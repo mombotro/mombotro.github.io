@@ -567,5 +567,204 @@ document.addEventListener('DOMContentLoaded', function() {
     window.openProjectDetail = openProjectDetail;
     window.closeProjectDetail = closeProjectDetail;
 
+    // Background Chicken
+    class Chicken {
+        constructor() {
+            this.element = document.getElementById('chicken');
+            this.x = Math.random() * (window.innerWidth - 32);
+            this.y = Math.random() * (window.innerHeight - 32);
+            this.velocityX = (Math.random() - 0.5) * 2;
+            this.velocityY = (Math.random() - 0.5) * 2;
+            this.currentFrame = 0;
+            this.frameTime = 0;
+            this.currentAnimation = 'idle';
+            this.isJumping = false;
+            this.isPecking = false;
+            this.isIdling = false;
+            this.idleTimer = 0;
+            this.facingRight = true;
+            this.jumpStartY = 0;
+            this.jumpProgress = 0;
+
+            this.animations = {
+                idle: { frames: [0, 1], speed: 500 },
+                walking: { frames: [2, 3, 4, 5], speed: 150 },
+                pecking: { frames: [6, 7], speed: 300 },
+                jumping: { frames: [8, 9], speed: 100 }
+            };
+
+            this.updatePosition();
+            this.setupEventListeners();
+            this.animate();
+        }
+
+        updatePosition() {
+            this.element.style.left = this.x + 'px';
+            this.element.style.top = this.y + 'px';
+        }
+
+        updateSprite() {
+            const frameX = this.currentFrame * 32;
+            this.element.style.backgroundPosition = `-${frameX}px 0px`;
+            this.element.style.transform = this.facingRight ? 'scaleX(-1)' : 'scaleX(1)';
+        }
+
+        setAnimation(animName) {
+            if (this.currentAnimation !== animName) {
+                this.currentAnimation = animName;
+                this.currentFrame = this.animations[animName].frames[0];
+                this.frameTime = 0;
+            }
+        }
+
+        updateAnimation(deltaTime) {
+            const anim = this.animations[this.currentAnimation];
+            this.frameTime += deltaTime;
+
+            if (this.frameTime >= anim.speed) {
+                this.frameTime = 0;
+                const currentFrameIndex = anim.frames.indexOf(this.currentFrame);
+                const nextFrameIndex = (currentFrameIndex + 1) % anim.frames.length;
+                this.currentFrame = anim.frames[nextFrameIndex];
+            }
+
+            this.updateSprite();
+        }
+
+        wander(deltaTime) {
+            if (this.isJumping) {
+                this.updateJump(deltaTime);
+                return;
+            }
+
+            if (this.isPecking) return;
+
+            if (this.isIdling) {
+                this.idleTimer += deltaTime;
+                if (this.idleTimer >= this.idleDuration) {
+                    this.isIdling = false;
+                    this.idleTimer = 0;
+                    this.velocityX = (Math.random() - 0.5) * 2;
+                    this.velocityY = (Math.random() - 0.5) * 2;
+                } else {
+                    return;
+                }
+            }
+
+            if (Math.random() < 0.01) {
+                this.velocityX = (Math.random() - 0.5) * 2;
+                this.velocityY = (Math.random() - 0.5) * 2;
+            }
+
+            if (Math.random() < 0.005) {
+                this.isPecking = true;
+                this.setAnimation('pecking');
+                setTimeout(() => {
+                    this.isPecking = false;
+                    if (!this.isJumping && !this.isIdling) {
+                        this.setAnimation(Math.abs(this.velocityX) + Math.abs(this.velocityY) > 0.1 ? 'walking' : 'idle');
+                    }
+                }, 600);
+                return;
+            }
+
+            if (Math.random() < 0.003) {
+                this.isIdling = true;
+                this.idleTimer = 0;
+                this.idleDuration = 1000 + Math.random() * 4000;
+                this.setAnimation('idle');
+                return;
+            }
+
+            this.x += this.velocityX;
+            this.y += this.velocityY;
+
+            if (this.velocityX > 0.1) {
+                this.facingRight = true;
+            } else if (this.velocityX < -0.1) {
+                this.facingRight = false;
+            }
+
+            if (this.x <= 0 || this.x >= window.innerWidth - 32) {
+                this.velocityX = -this.velocityX;
+                this.x = Math.max(0, Math.min(window.innerWidth - 32, this.x));
+                this.facingRight = this.velocityX > 0;
+            }
+            if (this.y <= 0 || this.y >= window.innerHeight - 32) {
+                this.velocityY = -this.velocityY;
+                this.y = Math.max(0, Math.min(window.innerHeight - 32, this.y));
+            }
+
+            const isMoving = Math.abs(this.velocityX) + Math.abs(this.velocityY) > 0.1;
+            this.setAnimation(isMoving ? 'walking' : 'idle');
+
+            this.updatePosition();
+        }
+
+        updateJump(deltaTime) {
+            this.jumpProgress += deltaTime / 800;
+
+            if (this.jumpProgress >= 1) {
+                this.isJumping = false;
+                this.jumpProgress = 0;
+                this.setAnimation(Math.abs(this.velocityX) + Math.abs(this.velocityY) > 0.1 ? 'walking' : 'idle');
+                return;
+            }
+
+            const jumpHeight = 60 * Math.sin(this.jumpProgress * Math.PI);
+            const jumpDistance = 40 * this.jumpProgress;
+
+            this.y = this.jumpStartY - jumpHeight;
+            this.x += (this.facingRight ? jumpDistance : -jumpDistance) / 20;
+
+            this.x = Math.max(0, Math.min(window.innerWidth - 32, this.x));
+            this.y = Math.max(0, Math.min(window.innerHeight - 32, this.y));
+
+            this.updatePosition();
+        }
+
+        jump() {
+            if (this.isJumping || this.isPecking) return;
+
+            this.isJumping = true;
+            this.isPecking = false;
+            this.isIdling = false;
+            this.jumpStartY = this.y;
+            this.jumpProgress = 0;
+            this.setAnimation('jumping');
+        }
+
+        setupEventListeners() {
+            this.element.addEventListener('mouseenter', () => {
+                this.jump();
+            });
+
+            window.addEventListener('resize', () => {
+                this.x = Math.min(this.x, window.innerWidth - 32);
+                this.y = Math.min(this.y, window.innerHeight - 32);
+                this.updatePosition();
+            });
+        }
+
+        animate() {
+            let lastTime = 0;
+
+            const gameLoop = (currentTime) => {
+                const deltaTime = currentTime - lastTime;
+                lastTime = currentTime;
+
+                this.updateAnimation(deltaTime);
+                this.wander(deltaTime);
+
+                requestAnimationFrame(gameLoop);
+            };
+
+            requestAnimationFrame(gameLoop);
+        }
+    }
+
+    // Create chicken
+    new Chicken();
+
     console.log('🌵 The Azirona Drift - Streamlined Experience Loaded');
 });

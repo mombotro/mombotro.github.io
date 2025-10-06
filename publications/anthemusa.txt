@@ -23,32 +23,53 @@ The boy smiled, nodding. "Okay. Thanks, Dr. Grant!"
 After Scott put the gear away, he headed to the mess hall for lunch. Ordering himself a salad, dressing, and bread with butter, he sat down at his usual spot. Partway into the salad, his usual partner in cures, Dr. Carolyn Ryan, sat down across from him. She had the salad too, no bread or butter.
 
 The diet soda, however…
+
 “Lost another one?” Scott asked. He could afford to be this candid with her. Carrie worked at the hospice center. She saved her break time to take an extra long lunch, utilizing the accrued time to walk the ten minutes over from the other side of the hospital campus.
+
 She nodded gravely. “My age,” she said. 65 years old. “Perfectly healthy, ‘cept for the aggressive tumor in her liver. Worked out every day, excellent physical condition, never drank a single beer, never smoked. It just… happened. Next thing you know, three months pass, and she’s gone.”
 Scott’s eyebrows shot up. “That’s fast, isn’t it?”
+
 “It is.” Carrie nodded again. “Can’t make major travel plans and arrangements. I mean some tourist sites have waiting lists a year or two in advance. And they don’t let you jump the line just ‘cause you’re mortally ill. Imagine the fraud that could generate.”
+
 Dr. Grant smiled at the grim notion. “Family there for her?”
 “Some, yes. Husband stayed close to his roots, so her in-laws could visit every other week. Her side of the family, on the other hand, couldn’t fly in till she was on her way out.”
+
 “Was she in a lot of pain?”
 “Oh, yes. Liver cancer’s quite painful. Being so aggressive in this case, the pain came on rather quickly. Only so much we can do, then.”
+
 Scott had a thought. “What helps to take their mind off things?”
+
 “Rapid accomplishment of their most yearned-for dreams. When they stay busy, they stay preoccupied. They forget all about the life-sucking pain. It’s only when one has nothing to do that it becomes the focus of their attention.”
+
 Scott let the silence hang on the air, but it wasn’t enough.
+
 “You have a thought,” Carrie interrupted.
+
 “I do, yes.” A short pause. “Patients do great when they’re preoccupied with work meaningful to them. Same holds true in video games. Oh, it’s not ‘work’ in any traditional sense, no. But it does busy the brain and wrench attention away from whatever pain they’re dealing with.”
+
 Carrie crossed her arms and leaned back in her chair, shifting her body like a snake coiling before it strikes. “You want my patients to play video games to distract them from their deathly pains?”
+
 Scott didn’t dismiss the notion entirely, but he did shake his head. “No, I mean, what if we cater the programming to the patient? Someone your age isn’t distracted by video games. I grant that. Different generations and so forth.” He spread his hands open. “How ‘bout family?”
+
 Carrie’s eyebrow went up. “Family?”
+
 Nodding, Scott continued. “Livestream between them in a VR headset, and the family from wherever they’re at. Better yet, program their family into the software.”
+
 “Scott, there’s no way that’s possible-”
+
 “Have you seen what technology can do these days?”
+
 “It won’t be the slightest bit life-like.”
+
 “It won’t be convincing at first, no. But that’s actually an easier problem to solve.”
+
 “Easier? Compared to what?”
  
 
 Dr. Scott Grant didn’t have the words for it at the time. The closest he came up with, after all was said and done, was “interfacing with the brain.” Scott worked closely with software engineers from the nearby university to program his objective of convincing the human mind that the virtual figure they saw and heard wasn’t virtual, but as real as real could be.
+
 Old videos and audio were unearthed by close friends and family, brought to Dr. Grant’s office, and uploaded for the program to train on. It took Scott’s team surprisingly little time to improve the program to the point of reasonable believability. Since the program’s purpose was intended for patients whose death loomed on the imminent horizon, Scott called it “Anthemusa,” in recognition of the island the Sirens sat on, luring sailors into its rocky coast, to their ultimate doom.
+
 The purpose was not malicious, Dr. Grant insisted. The fear of death is a real thing, all the more immediate and terrifying when one knows it’s just up ahead. Scott knew he was providing relief to his patients. He saw their uplifted expressions. He witnessed their tears of joy. He observed their stress melt away. With each passing minute, participants proved Anthemusa a success.
 
 
@@ -58,16 +79,27 @@ It was unfortunate, then, for Dr. Grant to suffer a debilitating stroke only sev
 ## Part 2: Issachar Jung
 
 
-Issachar Jung was a driven individual. He carried in his head youthful unstoppability, tempered by patience forged into him from two decades of exceptional schooling. Most of his classmates goofed off, riding on their parents’ coattails. Not Izzy. Izzy started his first business at age 12, meeting the need of providing a Jewish deli where said need had gone previously unknown. He used that success to open up a bike shop. That turned out to be a failure, so he quickly closed up that venture to write a self-help book. He basically copy-pasted the Talmud, but in a way that electrified a new movement of aspiring entrepreneurs.
+Issachar Jung was a driven individual. He carried in his head youthful unstoppability, tempered by patience forged into him from two decades of exceptional schooling. Most of his classmates goofed off, riding on their parents’ coattails. 
+Not Izzy. Izzy started his first business at age 12, meeting the need of providing a Jewish deli where said need had gone previously unknown. He used that success to open up a bike shop. That turned out to be a failure, so he quickly closed up that venture to write a self-help book. He basically copy-pasted the Talmud, but in a way that electrified a new movement of aspiring entrepreneurs.
+
 Imagine that, he’d thought at the time, just needed a better translator.
+
 After five years in college, Izzy graduated cum laude with twin degrees in medical engineering and computer science, plus his MBA. He paid for it all through the successful enterprises of his middle and high school years. Impressive as they were, the slips of paper framed and hung on his wall telling the world he was “wicked smart,” he was infinitely more proud of the fact he got through uni without a penny of debt. The money he hadn’t spent (mostly because scholarships kicked in) he’d learned to invest in mutual funds, netting a perfectly comfortable 8% average annual return. What others had in debt, he held in liquid assets.
+
 Thank God they were liquid. He’d needed to withdraw a good sum for medical expenses. His old mentor and friend, Yonah, lay back on a hospital bed, his beer gut shrinking a pound a day. As soon as that was gone, his illness would eat at his muscles, then at more vital organs.
+
 Yonah told his protege about this new VR thing the staff let him try. He loved it, he said. Felt just like real life. They put all his friends and siblings and two kids in there. He got to tie up loose ends. No, no, not really, but in the virtual world? It was like the Catholics do at confession. If your conscience is cleared, so what if the other guy doesn’t know about it? You’re at peace; that’s all that mattered.
+
 Yonah’s two kids both ended up with broken marriages that left no children of their own for the old man to be grandfather for. It bothered him immensely. So naturally, Izzy got to work.
+
 Issachar bought himself one of these Anthemusa things, a hefty amount in the six-digit range. (he’d write it off as a business expense; the business would come later, today was the expense) Trying it out for himself, well gee whiz, the old man was right: It felt just like real life! He found it very easy to customize, but he wasn’t satisfied filling presets. No, Izzy took the whole thing apart, piece by piece, line by line of code. He altered the brain interface so that it went deeper, pulled from farther in, triggered senses thought impossible to imitate.
+
 Izzy’s Anthemusa 2.0 was placed on top of his mentor’s head, and three hours later, was almost impossible to take of. There were no problems with the program at all. None. It worked flawlessly. Izzy had it inspected by three very expensive, extremely thorough quality testers. Each returned shocked reports of effectiveness. This was their 11 out of 10, they’d never seen anything like it, couldn’t believe something this impressive was possible.
+
 Then, Izzy filled out the necessary paperwork, triple checking to ensure he wasn’t stepping on anyone else’s copyright. Once everything was set, Issachar Jung released Anthemusa onto the world. No longer was it relegated to hospice use. Izzy made it so anyone in the general public with enough capital could experience the virtual power of Anthemusa.
+
 Word quickly spread. Popularity caused the price to decrease. Imitation brands popped up, but couldn’t come close to competing with Izzy’s program. Something worse than failure happened to Anthemusa.
+
 Anthemusa was a perfect success.
 
 
@@ -75,59 +107,102 @@ Anthemusa was a perfect success.
 
 
 Beets and turnips. Turnips and beets. Sometimes corn. That’s all anyone knew to grow now. Second Mennonites lamented the state of their knowledge. Ancestors - long-lost but far, far from forgotten - grew whole cornucopias of fruits, vegetables, seeds, herbs, and seasonings.
+
 Jebediah Robertson, a man heavy with muscle and hibernation fat, sat at his wooden table. He did not look forward to this meal any more than the previous hundred. Beets. Turnips. Sometimes corn. Aged 16 and with the spiritual fire to prove it, he yearned for more.
+
 Outside of Cleveland, Ohio, the Order of Second Mennonites formed their conclave twenty miles from the city. They used to live farther, but road repairs abruptly ended once the Mass Dive occurred. Millions of Americans and Europeans (soon after followed by the rest of the world) plugged themselves into the impossibly-real virtual reality offered by Anthemusa. Quickly recognizing its potential for great evil, the Order lambasted the technology, warning all who would hear.
+
 Civilization did not maintain upkeep. Supply chains failed. Work ended on most major projects. Fulfillment was found in the golden headset, portal to the virtual world.
+
 Of course the big teen had never experienced Anthemusa for himself. He wasn’t even curious about the appeal of the device. He harbored instead an intense hatred, because what it stood for - to him - was a dinner table like the one he now stared at: bereft of the abundance his forefathers once enjoyed and worked so damn diligently to pass on.
+
 Jebediah reproved himself for the lowercase obscenity. He left the table without touching the morsels. He ran out of the house into the open air. The stars in the night sky were more numerous and wondrous than any time in his life. Though he did not know it, Jebediah was privileged to witness more heavenly lights, more brightly, than those same forefathers just two hundred years before. The teen, every day becoming more of a young man, cried out to his Lord Father, swearing an oath, building it piece by piece and word by word with whole chunks of his soul. He finished with a breathless “Amen,” then returned inside.
+
 Besides his God, Jebediah had a second witness. Unbeknownst to him in the darkness, a teenage girl stood and watched. She was too thin from eating very little, magnified by chronic health problems that a doctor could have treated with ease - if a doctor still existed outside of virtual reality. She too knew this lifestyle was unsustainable. She also remembered the Lord’s words, “Be not conformed to this world,” and “We are citizens of heaven,” followed by “He will take our weak mortal bodies and change them into glorious ones,” ending with “He will bring under His control.”
+
 She cared not for this world. She craved the next. The only respite she could hope for was the same place Jebediah vowed to destroy.
 
 
 The next day, he began.
+
 Shouldering a load of food, and a large glass jar of spring water, Jebediah Robertson began his trek in to Cleveland, Ohio. He pitched his tent 12 miles into his journey, continuing the next morning. Arriving just after noon, he looked for The Bunker. The Bunker was a cubeish building, thirty-three stories high, and another twenty below ground. The security desk at the entrance was abandoned, long-since determined unworthy of vigilance. Making that desk his base for operations, Jebediah explored the building.
+
 Most of the room - rooms, truly - were filled with human-occupied pods. Sleek, golden coffins, Jebediah thought, each carrying a person with a soul that was transported elsewhere, the body left behind.
+
 The big teen found a training device. Fiddling with it, he made sure it wasn’t connected to anything, wired or wireless. He had figured out enough to know about wi-fi, invisible rays for communication. Probably demonic. It took two and a half days to appreciably understand the device’s mechanisms. Now, he was ready to dig into the programming.
+
 He cabled in to a computer tower, examining the code. A week of this and he had gained a rudimentary understanding of this language, so foreign when juxtaposed to the various communications a hen or a rooster can produce. There was, however, a logic to it all, and logic was something Mr. Robertson understood and could respect. He didn’t know how lucky he was to have code that was simplified to the point he could manipulate it the way he wanted.
+
 Unlike the effect Anthemusa would have on his mind in the pod, this offline headset gave him very basic experiences. It only served as a training module, an introduction to controls within the virtual world. The effect was no different than the bland turnips, beets, and corn he’d stomached every season, without an inkling that they could prove far tastier.
+
 Jebediah went in on the device three times a day, for five days, quickly running out of food. His hair grew wild, but the teen embraced it, as he had swore a Nazirite oath up to the Lord Father. He would not cut it, or go back for food, or take proper rest, until he had accomplished his mission.
+
 Finally, he deemed himself ready. Several of the hundreds of rooms had spare pods, empties waiting to be filled. Carefully, but with a stern expression, Jebediah Robertson entered one. He was transported, via Anthemusa, from the real to the virtual.
 
 
 He “landed” outside the Bunker. He felt normal. Super-normal. It was off, but agreeably off. The sensation improved by the minute. With a fervent prayer, Jebediah implemented his plan.
+
 The streets were not filled with people. He hadn’t wanted any, so none showed up. Walking the empty avenue was as peaceful in virtual reality as it had been in reality, although the sun was out in here, skyscrapers glinting light with their unbroken windows, an overall cheery urban park atmosphere.
+
 Jebediah reached his destination. With a gesture, he was able to access the code beneath the visuals. Gently, he tweaked it, then applied it globally. Anyone hooked into Anthemusa who visited this specific street would witness this visual impairment. Anyone curious enough would search further.
+
 The visual impairment was placed right in front of an alley. Again, with utmost care, Jebediah tweaked the code behind the graphics, several times down this alleyway. At the end of the alley was a staircase leading down to a cellar under the tall, brick buildings. Reaching the bottom, littering his way with additional tweaks, intending to entice further the prospectively curious. He placed a brick precariously over the door, positioned such that a person would have to push up with both hands. Jebediah, naturally, tested it.
+
 He came up out of Anthemusa. He gasped deeply while his body readjusted to the real world. Short jump though it was, Mr. Robertson’s lack of experience with anything electronic made the transition extremely jarring. He calmed himself, saying another prayer, then dove in once more to make sure it worked again.
+
 Jebediah reentered Anthemusa right where he left it: at the bottom of that stone stairwell. He was facing up the stairs now. Climbing up, he checked each of his tweaks. All was in its proper place. Every single one up to the main road was just as he’d left it. Satisfied, he looked up at the sky. Damnable or not, the technology surely impressed him. It was a nice day in the virtual. Each ray of sunshine felt pleasant on his bristly arms. The warmth felt good without causing an undesirable sweat.
+
 Jebediah sighed, no small measure of contentment filling his spirit. He looked down the empty streets. They looked much more inviting than the disheveled destruction that awaited him back in the real.
+
 “Lovely day.”
+
 He turned at the words. They were spoken by one Abigail Mendes. Two years his senior, Ms Abigail was gorgeous and womanly in all the ways the ideal Mennonite woman could possibly be. And that was without the virtual clarifications and enhancements in Anthemusa. The woman smiled demurely at him.
+
 Jebediah saw through the ruse immediately.
+
 He stalked back into the alley and down the flight of stairs. Roughly, he ripped himself away from the virtual.
+
+
 Breathing heavily, the large teen gathered his thoughts and resolve. A sweaty hand wiped what it could off his face. The Bunker expressed so little life and liveliness, despite housing thousands of souls whose bodies had long left this Earth. He wasn’t hungry, oddly, but not full either. The grumblings in his stomach weren’t from starvation, but from expectation. What did he have to look forward to? Beets… Turnips…. Turnips, and beets… Corn…
+
 Just once, only once, did he want to taste what his ancestors enjoyed so readily. He would use that as motivation to pull him and his clan up from the subsistence lifestyle they now struggled through. He would take that taste and fuel his own revival, inspiring the family around them to reclaim what should never have been lost.
 
 
 Jebediah Robertson went back in. Ms Abigail waited for him at the top of the stairs in the alley. She carried a woven basket of freshly-picked flowers. How they got there, he couldn’t explain logically outside of the abilities of the computer programming. She seemed happy to see him, almost expectant, yet patient.
+
 “Shall we go?” she asked. Clear as a bell, just as if she were right there next to him.
+
 Jebediah did not reply. They walked West, out of town, towards the clan’s farms. Once out of the city, the fields no longer looked barren of food, overrun by wild shrubs and yearning saplings. Instead, they were filled with what surely grew before: tall stalks of wheat, ears of corn, and green vegetables. The procedural generation allowed for small variations in shape, but the overall size of each plant was identical.
+
 “A veritable Garden of Eden, isn’t it?” Abigail asked innocently.
+
 Jebediah caught himself before answering. He remained guarded against possible tricks by this cursed computer system.
+
 In due time, they arrived at the Robertson house. Their log cabin looked exactly as he remembered it. That much had translated over perfectly well. His brothers and cousins played ball in the dirt field out front. His sisters were nowhere to be found. He expected the virtual Abigail to say something. Interestingly, she didn’t.
+
 “Where have the ladyfolk gone off to?” he asked.
+
 Abigail looked up at him. “No doubt preparing the evening supper. It is Sabbath on the morrow, remember.”
+
 That hit him strongly. It was Sabbath, wasn’t it? Even with their meagre provisions, his family did their utmost to make Sabbath dinner special, set apart from the rest of the week. He dismissed the calls from the boys outside. Steeling himself, he opened the door.
+
 Smells so vibrant and real bombarded him. Fresh-baked bread, with butter pads melting. Roasted vegetables seasoned with garlic and caramelized onion. A full turkey was retrieved from the oven, the aroma of its cooked juices bringing the teen to an incredible feeling of homeliness.
+
 The women bustled about in perfectly human harmony, setting places, finishing touches, assisting sisters. It was a remarkable exhibition of righteous womanhood. Jebediah pulled off his hat, and a tear rolled down his cheek at the glorious bounty his eyes witnessed. This, he wanted. Yearned for. Desired and craved. Mutual respect and individual beauty. Hearth and home. Contentment in the blessings God bestowed upon him and his household.
+
 A brush against his arm brought him back to his senses. Abigail had not-so-surreptitiously bumped into him. “Oh, pardon, Miss,” Jebediah quickly said.
+
 Abigail shook her head. “The pardon is all mine, Mr. Robertson.” She smiled modestly at him. A new desire deluged the young man’s mind.
+
 Jebediah had a final moment of clarity. He recognized the deception for what it was. “Lead us not into temptation,” yet how lovely a temptation that was, when the alternative was turnips, beets, corn…
+
 Abigail might reject him. Even if she accepted him, she would not survive long. If they were blessed, God would grant them two children at most. Not here. Here? She would thrive. She would be as resplendent as God had intended her to be.
+
 His misgivings and rebellion did not win out. Gradually, they disintegrated into the background of the perfect Sabbath dinner he would never get anywhere else.
 
 
 Outside of his place in the Bunker, the unit next to him was now occupied. A young girl, thin with malnourishment, now receiving nutrients artificially, occupied this adjacent unit. Her right arm was outside of the unit. Clasped to it was the left hand of Jebediah Robertson.
+
 Locked in a real love, they lived out their dream life in the plentiful fields provided by Anthemusa.
 
 
@@ -135,72 +210,124 @@ Locked in a real love, they lived out their dream life in the plentiful fields p
 
 
 Another successful day at the office! Curtis Walks told himself that he could get used to this, although long ago, he already had. Ten thousand days into his Anthemusa cycle, he had climbed the corporate ladder at his architectural engineering job in downtown Cleveland, Ohio. Just like he’d always wanted.
+
 He walked out the door to the skyscraper where his office was located. On a whim, he took a detour down 37th Street. He did indeed encounter new sights and sounds, enjoying them for what they were.
+
 Something curious caught his eye. The sidewalk here was torn up. Not in the typical construction manner. Rather, it was twisted and mangled on a… digital level? He glanced around. This was odd. To the side was a shadowy alley. To his astonishment, several digital imperfections could be seen. On the ground. In the walls. Applied to various surfaces.
+
 Curtis looked at his watch. He had to be home soon. Another day, he told himself.
+
 That night, the 64-year-old enjoyed a delicious meal of baked Mediterranean sea bass, crusted with Italian seasonings, topped with a sensuous glaze of the finest olive oil he could find. His son came over to visit afterwards, bringing his grandson, Cade. Cade was so much fun! He told his Grandpa all about the new thing he learned at school. Curtis did an admirable job expressing interest, asking pertinent questions. Grandma Walks - Margaret was her first name - brought out bowls of ice cream, topped with fresh berries and melted chocolate drizzle. Each delicious bite tasted as wonderful as the one before it.
+
 Cade ran off to occupy himself with a book from Curtis’s modest library, while the elder got to speak with Callum, his son. Same old, same old at Callum’s job, wouldn’t bump him up to the next level, something about needing an opening first. Curtis gave his son some sage advice, learned over many years in a different industry, yet applicable all the same. Callum thanked him, brought Cade up, and the four exchanged good-byes.
+
 Margaret exchanged a look with her husband. Curtis knew this look well.
+
 Thirty minutes later, they were shirtless in bed with a muted movie playing on their bedroom television. “You know, I really couldn’t ask for more, Mags,” he said to her.
+
 She propped herself up on elbow. “Then don’t ask.” She smiled. They kissed, and he went to sleep.
 
 
 The next morning, Margaret was already out of bed. She’d done her customary workout, looking fitter than ever. She fried bacon on the stovetop, while plates of jam-packed biscuits waited for their meat and eggs. “Morning, honey!”
+
 “Morning, cupcake.” He kissed her. “It’s Friday, isn’t it?”
+
 She nodded. “Great-looking forecast for the weekend. You and Cade are going to have perfect weather for the baseball game!”
+
 Curtis smiled from ear to ear. He’d grown up watching baseball. This was Cade’s second game of the season. He was hooked ever since the first game. The grandfather marveled, only to be interrupted by the plate of bacon, eggs, and jam biscuits from his wife. They smiled knowing smiles at each other, then dug in.
 
 
 That day after work, Curtis went down the same route as the day before. He was still interested in this little alleyway, what with its visual oddities. When he went down to touch them, they had no effect on him, nor he on them. He continued down the alley, spotting more imperfections on a set of stairs. Treading down the stone steps, he ended up in front of a door with a peculiar brick placed directly at his eye level. It was strangely positioned, not so much a hindrance, but more of an eccentricity that logic could not explain.
+
 Curtis put one hand on a side of the brick, ducking under. He thought better of the maneuver and placed his other hand on the other side…
 
 
 Curtis Walks emerged out of Anthemusa and into the real world. The life support that was connected to him disengaged. His frail body, limp and unused due to decades in the machine, hadn’t atrophied exactly, rather relaxing to the point of uselessness. He breathed the stale, dead air in the Bunker, coughing for several minutes.
+
 Twenty-seven years in a virtual world more real than reality had dramatic effects on Curtis’s psyche. The coldness in the atmosphere chilled him to the bone. He lurched over to a wall with towels hanging on it. Made from durable synthetic fabric, they had stood the test of time. He spent the better part of an hour in that dark, cold room jackhammering on the floor beneath a blanket meant to simulate wool.
+
 Eventually, he gathered the strength in mind and body to stand up. He walked slowly, the blanket wrapped tight over his bare body. He peeked inside of his unit. It had already been cleaned, disinfected, and refreshed. Incredible, was all he could think of. His attention turned to the unit for his wife.
+
 The light for her unit was a solid red.
+
 Red.
+
 Red!
+
 He fiddled with the external controls. By some miracle, he proved able to lift the machine. As it rose, he saw why. The skeletal remains of Maragaret Walks lay peacefully in the unit, facedown, just as she’d entered twenty-seven years earlier. The unit would not have opened by external command if she were still alive. Only special technicians could do that for emergency maintenance (which was remarkably never needed) or for foul play (which had happened on a couple of high-profile occasions, to great acclaim in the news and substantial consternation from the public).
+
 Curtis sobbed gently at this realization, that his wife had already passed away. At least it had been painless. She had no doubt been doing whatever she loved. Her unit had to have sensed her imminent demise, and prepared her for it accordingly. The procedure for that was to allow one last day’s worth of the user’s favorite things, fulfill their heart’s deepest desire, then permit exhaustion to sap their energy from the comfort of a virtual deathbed. A painless concoction of chemicals entered their bloodstream to ease the passage.
+
 The old man came back to his senses gradually. He went over to the display. “Time of Death: 8:52 PM, July 10th, 2085.” His brain searched memories for when they had gone in. 2071? Or ‘72? Maybe later? Hopefully not later. That would put him past the turn of the century.
+
 Curtis moved to his own unit. Sure enough, the current date and time were there: “October 21st, 2103.”
+
 He gasped. She’d been gone nearly two decades already. He was brought to tears again.
 
 
 Looking around, Curtis saw quite a few of the units glowing red. A few were empty, unoccupied, they didn’t have lights on at all. Several were yellow - less than a year remaining for them. The remainder - maybe three out of every ten - were still bright green. 30% of the human race still remained alive, Curtis thought to himself. He shuddered at that conclusion.
+
 Slowly, he made his way to the reception area of the Bunker. A dull gray pallor hung over the entire facility. It looked nearly apocalyptic. With all his might and weight, he shoved the metal door open. Outside was much greener, but no less depressing. Vines traced up the skyscrapers. Grass grew through the cracks in concrete roads not driven on in many, many years. Dandelions sprouted where they could. Bird nests coated crevices in the buildings.
+
 He walked forward to the middle of the road. Down the street, a baby deer and its mother strolled into the center of an ancient intersection. Without warning, a rabid dog leapt onto a car - parked eternally at a meter that would never receive payment - then stretched its paws forward. It careened into the small, young creature. The doe hesitated for a moment, realized the hopelessness of the situation, and scampered off in a frantic hurry. The canine growled, then dug into the helpless fawn. Curtis watched in shock at the grisly scene.
+
 He heard a piece of glass crack. To his grim dismay, he realized the cause of the noise was him.
+
 The canine heard it too, and diverted its attention away from the deer… onto the elderly man.
+
 Curtis ran, immediately slipped, then picked himself up and ran properly. Back into the Bunker he went. He fought to close the door. The dog was about to reach him. He heard barking right outside the portal. Additional howling signaled that more were on the way. That first canine was upon him… until the door closed enough to prevent its entry. Curtis then pushed the door completely shut. The barking didn’t die down for more than an hour. Fortunately for Curtis, there was no other way into the Bunker.
+
 He was safe.
+
 Curtis took the hour after that to regather his strength once more. He slowly trudged up the steps back to where the units were. He resumed his position in the corner at the walls, his blanket curled up around him.
+
 A sense of purpose entered him. He had to rebuild the human race, he told himself. Obviously, no one else had figured out how to extricate themselves from the virtual world of Anthemusa. Not on their own like this. He wasn’t certain how to begin, however. First… Shelter. Well, alright, he had that. Second… Food. A scavenger had left a small assortment of canned food items on the floor. Not all were opened. Someone had been nice enough to leave a can opener.
+
 He cut open the can to find beans that must have been a decently-tasty black color at one point last decade. Unsalted. Flavorless. Stale. Real food couldn’t hope to compare to the many incredible flavors he experienced in the virtual. The virtual didn’t taste fake; that tasted real. More real than real.
+
 Looking around, he counted maybe a dozen cans of beans. Say he shouldered this burden of restarting humanity: how would he survive in two weeks when he ran out of this food? Well, he could plug himself back into the machine to recuperate. That depended on his willpower to return out of the machine again, to continue the mission…
+
 Third, electricity. The Bunker ran on a self-sustained source of combined wind, solar, and fission power. He could figure out how to wire what he needed: infrastructure, vehicles, food production, that sort of thing. Learning to do so without hurting himself in the process would require additional trips into Anthemusa. Again, his willpower would be tested…
+
 Fourth, manpower. He couldn’t do this alone. Alone he most certainly was. No family. No friends. He’d have to rely on strangers. Strangers who also had to exhibit the sort of willpower necessary to come back out of Anthemusa…
+
 There was also the practical matter of extricating them from their machines. That seemed incredibly minor in the grand scheme of things.
+
 Throwing the can in disgust, Curtis huddled close to himself. This was miserable. Life would be an absolute chore if this was what he had to look forward to. There was nothing enjoyable or alluring about this world. Not with Anthemusa right there and waiting for him. His sense of purpose waned dramatically. Eventually he gave up altogether.
+
 The only thing he wanted now, that would ease his brain, was the virtual reality of Anthemusa.
 
 
 Curtis woke up to an empty bed. Fearing he had lost Margaret in the unreal world too, he sat up straight. He heard frying in the other room. His heart resumed its previous pace. Curtis walked into the kitchen. “Good morning, honey!” Margaret greeted happily.
+
 “Morning, cupcake,” Curtis said absentmindedly.
+
 “I’ve got your favorite all ready for you, just wait for the eggs, okay?”
+
 “Y-yeah,” Curtis responded. His mind raced. His wife was still alive. In here, anyways. Fit and functional as ever before. She kissed him on the cheek, smiling broadly. Curtis couldn’t help but smile back.
+
 “Grandpa!” he heard a voice call from the living room.
+
 That changed his mood immediately. “Ohh, how’s my favorite young grandson?”
+
 “Grandpa, I’m your only grandson!” Cade said with a smile.
+
 “Yes, so you’re my favorite!” He laughed as Cade giggled. They sat down at the table while Margaret served them. The bright morning sun flared pleasantly through the windows. The bacon smelled incredible, and tasted salty and delicious. The orange juice was full of that citric kick. Cade grinned through mouthfuls of pancakes, getting purple jelly on his cheeks and chin. The old man chuckled, showing his grandson how to wipe with a napkin. Callum walked in, shaking his dad’s hand and announcing that his promotion came through after all. They celebrated. Curtis popped open a bottle of vintage wine. With a “Cheers!” they clinked glasses and drank to his son’s success. Cade enjoyed a soda pop.
+
 That day, the family attended the baseball game. Cleveland won, 7 to nothing, with two homeruns. Cade was all smiles the entire time. They celebrated the victory with ice cream, then went their separate ways home.
+
 Curtis once again found himself in bed with his wife. This time, he knew the truth. He really knew it now. This was Margaret at her best, her most lovely, the way he had fallen in love with her all those years ago. It wasn’t that he could abandon her; he knew this Margaret was only a representation from his imagination. Callum and Cade weren’t real people either; they’d been barren and childless. The old man knew this wasn’t real. A pang of guilt and longing shot through him… Shouldn’t he get out and explore the real world again? Return to reality? Start the species up once again?
+
 He remembered the apocalyptic scene he’d witnessed after exiting the Bunker. Seven out of ten humans deceased. The remaining three out of ten encased until he figured out how to extract them at all, and safely. Persuading them to contribute to the rebuilding of humanity. Keeping them alive long enough to jumpstart society once more. Ensuring that civilization didn’t collapse on itself into anarchy, infighting, the same old wars they had escaped. Initiating food production, generating electricity, and before even that: reclaiming all the necessary infrastructure back from nature’s unimpeded takeover.
+
 This was a very tall ask of someone who knew he would begin with a very short ladder.
+
 For all he knew, Curtis Walks was the last conscious human being. Instead of feeling empowered and emboldened, he felt overwhelmed, incapable, and helpless. Not here. Not in Anthemusa. Here, he was healthy. Looked dashing. Ate the finest foods. His car never broke down. His bank account, flush with cash. The weather, always pleasant, rain or shine. His peers and direct reports, respectful. His few superiors, trusting. His family and relatives, loving. His friends, most agreeable. His eventual deathbed,... peaceful.
+
 He could look forward to none of that - the exact opposite of all of that - were he to extricate himself from this virtual paradise and embark on the arduous task doomed to failure.
+
 There was no competition to this choice. He knew where he wanted to be. What he wanted to choose. How he wanted to go. Whom he wanted to be with.
+
 Curtis kissed his wife on the forehead. “Love you, cupcake.” She nestled in close to him, and he drifted off to sleep a final time.
 
 
@@ -213,6 +340,9 @@ Curtis kissed his wife on the forehead. “Love you, cupcake.” She nestled in 
 ## Epilogue
 
 What would the end of humanity look like, if it ended in the most humane way possible? What is the ultimate “good” ending for the human race? The conclusion with the least pain, most pleasure, and most satisfying peace? One where war was ended as a whole, all people had their material needs met, and they got to feel and experience whatever they wanted on their own terms? And in such a real way that was indistinguishable from real life?
+
 That was the idea that prompted me to write Anthemusa. Presuming there’s no afterlife, the only experience a human has is the life he or she lives. People complain about having to work: so let’s say society moves beyond needing money for things. People complain about low-quality food and scarcity: so let’s say abundance is the rule instead. People complain about not getting to do or visit what they want to: so let’s say they can. People complain about equal access to basic necessities, as well as enjoyable luxuries: so let’s say they are made accessible.
+
 What is so wrong about a virtual reality that - to the senses and brain - is equally real to the real reality? If life’s chief end is to satisfy human needs and supply human desires and cravings, Anthemusa checks those boxes, without the moral implications of disenfranchising other people.
+
 Feeling real in the virtual is no different than feeling real in the real.
