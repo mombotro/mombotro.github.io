@@ -744,7 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             this.element.addEventListener('click', () => {
-                window.location.href = 'https://azirona.com/gadogo';
+                window.location.href = 'https://azirona.com/starfighters';
             });
 
             window.addEventListener('resize', () => {
