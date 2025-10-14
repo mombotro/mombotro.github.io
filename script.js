@@ -743,6 +743,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.jump();
             });
 
+            this.element.addEventListener('click', () => {
+                window.location.href = 'https://azirona.com/gadogo';
+            });
+
             window.addEventListener('resize', () => {
                 this.x = Math.min(this.x, window.innerWidth - 32);
                 this.y = Math.min(this.y, window.innerHeight - 32);
