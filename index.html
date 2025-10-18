@@ -16,6 +16,7 @@
             <ul class="nav-menu">
                 <li><a href="#work" class="nav-link">Work</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="https://azirona.gumroad.com/l/Witnesses" class="nav-link" target="_blank" rel="noopener noreferrer">Download Witnesses</a></li>
             </ul>
@@ -53,11 +54,23 @@
             <div class="container">
                 <h2>Our Work</h2>
                 <div class="project-filters">
-                    <div class="filter-buttons">
-                        <button class="global-filter-btn active" data-filter="all">All Projects</button>
-                        <button class="global-filter-btn" data-filter="completed">Completed</button>
-                        <button class="global-filter-btn" data-filter="work-in-progress">In Progress</button>
-                        <button class="global-filter-btn" data-filter="planning">Planning</button>
+                    <div class="filter-group">
+                        <label class="filter-label">Status:</label>
+                        <div class="filter-buttons">
+                            <button class="global-filter-btn active" data-filter="all">All</button>
+                            <button class="global-filter-btn" data-filter="completed">Completed</button>
+                            <button class="global-filter-btn" data-filter="work-in-progress">In Progress</button>
+                            <button class="global-filter-btn" data-filter="planning">Planning</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Author:</label>
+                        <div class="filter-buttons">
+                            <button class="author-filter-btn active" data-author="all">All</button>
+                            <button class="author-filter-btn" data-author="Alek Miller">Alek</button>
+                            <button class="author-filter-btn" data-author="Juleah Miller">Juleah</button>
+                            <button class="author-filter-btn" data-author="collaboration">Both</button>
+                        </div>
                     </div>
                 </div>
                 <div class="projects-grid" id="projectsGrid">
@@ -78,6 +91,20 @@
                 <div id="blog-posts" class="blog-grid">
                     <div class="blog-loading">
                         <p>Loading posts...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="section">
+            <div class="container">
+                <h2>Tools & Utilities</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--charcoal); opacity: 0.8;">
+                    Free tools and web apps we've created
+                </p>
+                <div id="tools-grid" class="tools-grid">
+                    <div class="tools-loading">
+                        <p>Loading tools...</p>
                     </div>
                 </div>
             </div>

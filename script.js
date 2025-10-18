@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Project data and filtering
     let workStatusData = null;
     let currentFilter = 'all';
+    let currentAuthorFilter = 'all';
 
     // Blog data
     let blogPosts = null;
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             workStatusData = await response.json();
 
-            renderProjects('all');
+            renderProjects();
             setupFilterButtons();
             console.log(`✅ Work status loaded: ${workStatusData.projects.length} projects available`);
         } catch (error) {
@@ -70,20 +71,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function renderProjects(filter) {
+    function renderProjects() {
         if (!workStatusData) return;
 
         const projectsGrid = document.getElementById('projectsGrid');
         if (!projectsGrid) return;
 
-        // Filter projects based on current filter
+        // Filter projects based on current filters
         const projects = workStatusData.projects;
-        const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.status === filter);
+        let filteredProjects = projects;
+
+        // Apply status filter
+        if (currentFilter !== 'all') {
+            filteredProjects = filteredProjects.filter(p => p.status === currentFilter);
+        }
+
+        // Apply author filter
+        if (currentAuthorFilter !== 'all') {
+            if (currentAuthorFilter === 'collaboration') {
+                filteredProjects = filteredProjects.filter(p => p.collaboration === true);
+            } else {
+                filteredProjects = filteredProjects.filter(p => {
+                    // Match exact author or as part of collaboration (e.g., "Alek & Juleah Miller")
+                    return p.author === currentAuthorFilter ||
+                           (p.author && p.author.includes(currentAuthorFilter.split(' ')[0]));
+                });
+            }
+        }
 
         if (filteredProjects.length === 0) {
             projectsGrid.innerHTML = `
                 <div class="projects-loading">
-                    <p>No ${filter === 'all' ? '' : filter + ' '}projects found.</p>
+                    <p>No projects found with the selected filters.</p>
                 </div>
             `;
             return;
@@ -173,17 +192,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function setupFilterButtons() {
+        // Status filter buttons
         const filterButtons = document.querySelectorAll('.global-filter-btn');
         filterButtons.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Remove active from all filter buttons
+                // Remove active from all status filter buttons
                 filterButtons.forEach(b => b.classList.remove('active'));
                 // Add active to clicked button
                 this.classList.add('active');
 
                 // Update current filter and render projects
                 currentFilter = this.getAttribute('data-filter');
-                renderProjects(currentFilter);
+                renderProjects();
+            });
+        });
+
+        // Author filter buttons
+        const authorButtons = document.querySelectorAll('.author-filter-btn');
+        authorButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active from all author filter buttons
+                authorButtons.forEach(b => b.classList.remove('active'));
+                // Add active to clicked button
+                this.classList.add('active');
+
+                // Update current author filter and render projects
+                currentAuthorFilter = this.getAttribute('data-author');
+                renderProjects();
             });
         });
     }
@@ -202,9 +237,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Tools data
+    let toolsData = null;
+
     // Initialize
     loadWorkStatus();
     loadBlogPosts();
+    loadTools();
 
     // Re-setup effects when projects are re-rendered
     const observer = new MutationObserver(function(mutations) {
@@ -570,6 +609,61 @@ document.addEventListener('DOMContentLoaded', function() {
     window.toggleGameFullscreen = toggleGameFullscreen;
     window.openProjectDetail = openProjectDetail;
     window.closeProjectDetail = closeProjectDetail;
+
+    // Tools functionality
+    async function loadTools() {
+        try {
+            const response = await fetch('tools.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            toolsData = await response.json();
+
+            renderTools();
+            console.log(`🔧 Tools loaded: ${toolsData.tools.length} tools available`);
+        } catch (error) {
+            console.error('Error loading tools:', error);
+            showToolsError();
+        }
+    }
+
+    function showToolsError() {
+        const toolsGrid = document.getElementById('tools-grid');
+        if (toolsGrid) {
+            toolsGrid.innerHTML = `
+                <div class="tools-loading">
+                    <p>No tools available yet.</p>
+                </div>
+            `;
+        }
+    }
+
+    function renderTools() {
+        if (!toolsData) return;
+
+        const toolsGrid = document.getElementById('tools-grid');
+        if (!toolsGrid) return;
+
+        if (toolsData.tools.length === 0) {
+            toolsGrid.innerHTML = `
+                <div class="tools-loading">
+                    <p>No tools available yet.</p>
+                </div>
+            `;
+            return;
+        }
+
+        toolsGrid.innerHTML = toolsData.tools.map(tool => `
+            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="tool-card">
+                <div class="tool-header">
+                    <h3 class="tool-title">${tool.title}</h3>
+                    <span class="tool-category">${tool.category}</span>
+                </div>
+                <p class="tool-description">${tool.description}</p>
+                <span class="tool-link">Open Tool →</span>
+            </a>
+        `).join('');
+    }
 
     // Background Chicken
     class Chicken {

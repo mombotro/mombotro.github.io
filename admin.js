@@ -1084,3 +1084,254 @@ window.importBlogJSON = importBlogJSON;
 window.exportBlogJSON = exportBlogJSON;
 window.generateBlogPreview = generateBlogPreview;
 window.toggleBlogContentFields = toggleBlogContentFields;
+
+// ============================================
+// TOOLS MANAGEMENT
+// ============================================
+
+let tools = [];
+let editingToolId = null;
+
+function loadTools() {
+    const savedTools = localStorage.getItem('azirona-tools');
+    if (savedTools) {
+        try {
+            const data = JSON.parse(savedTools);
+            tools = data.tools || [];
+        } catch (e) {
+            console.error('Error parsing saved tools:', e);
+            tools = [];
+        }
+    }
+    renderToolsList();
+}
+
+function saveTools() {
+    const toolsData = {
+        lastUpdated: new Date().toISOString(),
+        totalTools: tools.length,
+        tools: tools
+    };
+
+    localStorage.setItem('azirona-tools', JSON.stringify(toolsData));
+}
+
+function renderToolsList() {
+    const listContainer = document.getElementById('tools-items-list');
+    const countSpan = document.getElementById('tools-count');
+
+    if (!listContainer) return;
+
+    countSpan.textContent = `${tools.length} tool${tools.length !== 1 ? 's' : ''}`;
+
+    if (tools.length === 0) {
+        listContainer.innerHTML = `
+            <div class="no-tools" style="text-align: center; padding: 40px; color: #6c757d; background: #f8f9fa; border-radius: 6px;">
+                <p>No tools loaded. Import your tools.json file or create a new tool to get started.</p>
+            </div>
+        `;
+        return;
+    }
+
+    listContainer.innerHTML = tools.map(tool => `
+        <div class="post-item">
+            <div class="post-info">
+                <div class="post-title" onclick="editTool('${tool.id}')">${tool.title}</div>
+                <div class="post-meta">
+                    <span>${tool.category}</span>
+                </div>
+                <div class="post-excerpt">${tool.description}</div>
+                <div class="post-meta" style="margin-top: 5px;">
+                    <span style="font-size: 0.8em; opacity: 0.7;">${tool.url}</span>
+                </div>
+            </div>
+            <div class="post-actions">
+                <button class="btn btn-primary" onclick="editTool('${tool.id}')">Edit</button>
+                <button class="btn btn-danger" onclick="deleteTool('${tool.id}')">Delete</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function newTool() {
+    editingToolId = null;
+    document.getElementById('tool-form-title').textContent = 'New Tool';
+    document.getElementById('tool-form-section').style.display = 'block';
+
+    // Clear form
+    document.getElementById('tool-title').value = '';
+    document.getElementById('tool-id').value = '';
+    document.getElementById('tool-category').value = '';
+    document.getElementById('tool-description').value = '';
+    document.getElementById('tool-url').value = '';
+
+    // Auto-generate ID from title
+    const titleInput = document.getElementById('tool-title');
+    const idInput = document.getElementById('tool-id');
+
+    titleInput.addEventListener('input', function() {
+        if (!editingToolId) {
+            idInput.value = this.value
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '_')
+                .replace(/^_+|_+$/g, '');
+        }
+    });
+
+    // Scroll to form
+    document.getElementById('tool-form-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function editTool(toolId) {
+    const tool = tools.find(t => t.id === toolId);
+    if (!tool) return;
+
+    editingToolId = toolId;
+    document.getElementById('tool-form-title').textContent = 'Edit Tool';
+    document.getElementById('tool-form-section').style.display = 'block';
+
+    // Populate form
+    document.getElementById('tool-title').value = tool.title;
+    document.getElementById('tool-id').value = tool.id;
+    document.getElementById('tool-category').value = tool.category;
+    document.getElementById('tool-description').value = tool.description;
+    document.getElementById('tool-url').value = tool.url;
+
+    // Scroll to form
+    document.getElementById('tool-form-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function cancelToolEdit() {
+    editingToolId = null;
+    document.getElementById('tool-form-section').style.display = 'none';
+    document.getElementById('tool-form').reset();
+}
+
+function saveTool() {
+    const title = document.getElementById('tool-title').value.trim();
+    const id = document.getElementById('tool-id').value.trim();
+    const category = document.getElementById('tool-category').value.trim();
+    const description = document.getElementById('tool-description').value.trim();
+    const url = document.getElementById('tool-url').value.trim();
+
+    if (!title || !id || !category || !description || !url) {
+        alert('Please fill in all required fields');
+        return;
+    }
+
+    // Validate URL
+    try {
+        new URL(url);
+    } catch (e) {
+        alert('Please enter a valid URL');
+        return;
+    }
+
+    // Check for duplicate IDs
+    const existingTool = tools.find(t => t.id === id && t.id !== editingToolId);
+    if (existingTool) {
+        alert('A tool with this ID already exists. Please use a different ID.');
+        return;
+    }
+
+    const toolData = {
+        id,
+        title,
+        description,
+        url,
+        category
+    };
+
+    if (editingToolId) {
+        // Update existing tool
+        const index = tools.findIndex(t => t.id === editingToolId);
+        if (index !== -1) {
+            tools[index] = toolData;
+        }
+    } else {
+        // Add new tool
+        tools.push(toolData);
+    }
+
+    saveTools();
+    renderToolsList();
+    cancelToolEdit();
+
+    alert(editingToolId ? 'Tool updated successfully!' : 'Tool added successfully!');
+}
+
+function deleteTool(toolId) {
+    if (!confirm('Are you sure you want to delete this tool?')) return;
+
+    tools = tools.filter(t => t.id !== toolId);
+    saveTools();
+    renderToolsList();
+
+    alert('Tool deleted successfully!');
+}
+
+function importToolsJSON() {
+    const fileInput = document.getElementById('tools-json-import');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select a JSON file to import');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            if (!data.tools || !Array.isArray(data.tools)) {
+                throw new Error('Invalid tools.json format');
+            }
+
+            tools = data.tools;
+            saveTools();
+            renderToolsList();
+
+            alert(`Successfully imported ${tools.length} tool${tools.length !== 1 ? 's' : ''}!`);
+        } catch (error) {
+            alert('Error importing JSON: ' + error.message);
+        }
+    };
+
+    reader.readAsText(file);
+}
+
+function exportToolsJSON() {
+    const toolsData = {
+        lastUpdated: new Date().toISOString(),
+        totalTools: tools.length,
+        tools: tools
+    };
+
+    const jsonString = JSON.stringify(toolsData, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'tools.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert('tools.json has been downloaded! Move it to your website root directory.');
+}
+
+// Make tools functions global for onclick handlers
+window.newTool = newTool;
+window.editTool = editTool;
+window.cancelToolEdit = cancelToolEdit;
+window.saveTool = saveTool;
+window.deleteTool = deleteTool;
+window.importToolsJSON = importToolsJSON;
+window.exportToolsJSON = exportToolsJSON;
+
+// Load tools when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadTools();
+});

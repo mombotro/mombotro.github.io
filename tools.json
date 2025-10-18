@@ -1,0 +1,20 @@
+{
+  "lastUpdated": "2025-10-18T04:17:18.191Z",
+  "totalTools": 2,
+  "tools": [
+    {
+      "id": "pixel_printout",
+      "title": "Pixel Printout",
+      "description": "The Analog Pixel Art Printout tool generates customizable pixel grids (8×8 to 128×128) that automatically scale to fit your paper size and print at 300 DPI for high-quality hand-coloring.",
+      "url": "https://azirona.com/pixel-printout",
+      "category": "Utility"
+    },
+    {
+      "id": "mosaic_crochet_pattern_editor",
+      "title": "Mosaic Crochet Pattern Editor",
+      "description": "mosaic crochet pattern editor alpha",
+      "url": "https://mombot.nekoweb.org/mosaic/",
+      "category": "Design"
+    }
+  ]
+}
