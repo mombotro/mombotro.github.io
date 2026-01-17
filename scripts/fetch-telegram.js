@@ -1,147 +1,98 @@
 const https = require('https');
 const fs = require('fs');
 
-// Configuration
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const CHANNEL_USERNAME = process.env.TELEGRAM_CHANNEL; // e.g., @azironablog
+// Configuration - channel username without @
+const CHANNEL_USERNAME = (process.env.TELEGRAM_CHANNEL || '').replace('@', '');
 
-if (!BOT_TOKEN || !CHANNEL_USERNAME) {
-  console.error('Missing required environment variables');
+if (!CHANNEL_USERNAME) {
+  console.error('Missing TELEGRAM_CHANNEL environment variable');
   process.exit(1);
 }
 
-// Function to make Telegram API requests
-function telegramRequest(method, params = {}) {
+// Fetch the public channel page
+function fetchChannelPage() {
   return new Promise((resolve, reject) => {
-    const queryString = new URLSearchParams(params).toString();
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/${method}?${queryString}`;
-    
+    const url = `https://t.me/s/${CHANNEL_USERNAME}`;
+    console.log(`Fetching ${url}`);
+
     https.get(url, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          const json = JSON.parse(data);
-          if (json.ok) {
-            resolve(json.result);
-          } else {
-            reject(new Error(json.description));
-          }
-        } catch (e) {
-          reject(e);
-        }
-      });
+      res.on('end', () => resolve(data));
     }).on('error', reject);
   });
 }
 
-// Get channel info to get chat ID
-async function getChannelId() {
-  const chat = await telegramRequest('getChat', {
-    chat_id: CHANNEL_USERNAME
-  });
-  return chat.id;
-}
+// Parse posts from the HTML
+function parsePosts(html) {
+  const posts = [];
 
-// Fetch recent messages from channel
-async function fetchMessages(chatId, limit = 50) {
-  try {
-    const updates = await telegramRequest('getUpdates', {
-      limit: 100,
-      allowed_updates: JSON.stringify(['channel_post'])
-    });
-    
-    // Filter for messages from our channel
-    const channelPosts = updates
-      .filter(update => update.channel_post && update.channel_post.chat.id === chatId)
-      .map(update => update.channel_post)
-      .slice(0, limit);
-    
-    return channelPosts;
-  } catch (error) {
-    console.error('Error fetching messages:', error);
-    return [];
-  }
-}
+  // Match each message widget
+  const messageRegex = /<div class="tgme_widget_message_wrap[^"]*"[^>]*>[\s\S]*?<div class="tgme_widget_message text_not_supported_wrap[^"]*"[^>]*data-post="([^"]+)"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/g;
 
-// Format posts for blog
-function formatPosts(messages) {
-  return messages.map(msg => {
-    const post = {
-      id: msg.message_id,
-      date: new Date(msg.date * 1000).toISOString(),
-      text: msg.text || msg.caption || '',
-      author: msg.author_signature || 'Azirona Drift'
-    };
-    
-    // Handle photos
-    if (msg.photo) {
-      const largestPhoto = msg.photo[msg.photo.length - 1];
-      post.photo = {
-        file_id: largestPhoto.file_id,
-        width: largestPhoto.width,
-        height: largestPhoto.height
-      };
+  // Simpler approach: find all data-post attributes and extract content
+  const postBlocks = html.split('tgme_widget_message_wrap');
+
+  for (const block of postBlocks) {
+    // Get post ID
+    const postIdMatch = block.match(/data-post="([^"]+)"/);
+    if (!postIdMatch) continue;
+
+    const postId = postIdMatch[1];
+    const messageId = postId.split('/')[1];
+
+    // Get timestamp
+    const timeMatch = block.match(/datetime="([^"]+)"/);
+    const date = timeMatch ? timeMatch[1] : new Date().toISOString();
+
+    // Get text content
+    const textMatch = block.match(/<div class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)<\/div>\s*(?:<div class="tgme_widget_message_footer|<\/div>\s*<\/div>)/);
+    let text = '';
+    if (textMatch) {
+      text = textMatch[1]
+        .replace(/<br\s*\/?>/gi, '\n')
+        .replace(/<[^>]+>/g, '')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .trim();
     }
-    
-    // Handle other media types
-    if (msg.video) post.video = msg.video.file_id;
-    if (msg.document) post.document = msg.document.file_id;
-    
-    return post;
-  }).reverse(); // Oldest first
-}
 
-// Main function
-async function main() {
-  try {
-    console.log('Fetching channel posts...');
-    const chatId = await getChannelId();
-    console.log(`Channel ID: ${chatId}`);
-    
-    const messages = await fetchMessages(chatId);
-    console.log(`Found ${messages.length} posts`);
-    
-    const posts = formatPosts(messages);
-    
-    // Read existing posts if they exist
-    let existingPosts = [];
-    if (fs.existsSync('blog/posts.json')) {
-      existingPosts = JSON.parse(fs.readFileSync('blog/posts.json', 'utf8'));
+    // Get author if present
+    const authorMatch = block.match(/<span class="tgme_widget_message_from_author"[^>]*>([^<]+)<\/span>/);
+    const author = authorMatch ? authorMatch[1].trim() : '';
+
+    // Get photo if present
+    const photoMatch = block.match(/tgme_widget_message_photo_wrap[^>]*style="[^"]*background-image:url\('([^']+)'\)/);
+    const photo = photoMatch ? photoMatch[1] : null;
+
+    if (text || photo) {
+      posts.push({
+        id: parseInt(messageId) || postId,
+        date: date,
+        text: text,
+        author: author || 'Azirona Drift',
+        photo: photo
+      });
     }
-    
-    // Merge new posts with existing (avoid duplicates)
-    const existingIds = new Set(existingPosts.map(p => p.id));
-    const newPosts = posts.filter(p => !existingIds.has(p.id));
-    
-    const allPosts = [...existingPosts, ...newPosts].sort((a, b) => 
-      new Date(b.date) - new Date(a.date)
-    );
-    
-    // Save to file
-    fs.writeFileSync('blog/posts.json', JSON.stringify(allPosts, null, 2));
-    console.log(`Saved ${allPosts.length} total posts (${newPosts.length} new)`);
-    
-    // Generate RSS feed
-    generateRSS(allPosts);
-    
-  } catch (error) {
-    console.error('Error:', error);
-    process.exit(1);
   }
+
+  return posts;
 }
 
 // Generate RSS feed
 function generateRSS(posts) {
   const rssItems = posts.slice(0, 20).map(post => `
     <item>
-      <title>${escapeXml(post.text.substring(0, 100))}</title>
+      <title>${escapeXml(post.text.substring(0, 100) || 'Post')}</title>
       <description>${escapeXml(post.text)}</description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <guid>telegram-post-${post.id}</guid>
     </item>
   `).join('');
-  
+
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
@@ -152,7 +103,7 @@ function generateRSS(posts) {
     ${rssItems}
   </channel>
 </rss>`;
-  
+
   fs.writeFileSync('blog/feed.xml', rss);
   console.log('Generated RSS feed');
 }
@@ -164,6 +115,48 @@ function escapeXml(text) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
+}
+
+// Main function
+async function main() {
+  try {
+    console.log(`Fetching posts from @${CHANNEL_USERNAME}...`);
+
+    const html = await fetchChannelPage();
+    console.log(`Fetched ${html.length} bytes`);
+
+    const posts = parsePosts(html);
+    console.log(`Parsed ${posts.length} posts`);
+
+    // Read existing posts if they exist
+    let existingPosts = [];
+    if (fs.existsSync('blog/posts.json')) {
+      try {
+        existingPosts = JSON.parse(fs.readFileSync('blog/posts.json', 'utf8'));
+      } catch (e) {
+        existingPosts = [];
+      }
+    }
+
+    // Merge new posts with existing (avoid duplicates)
+    const existingIds = new Set(existingPosts.map(p => p.id));
+    const newPosts = posts.filter(p => !existingIds.has(p.id));
+
+    const allPosts = [...existingPosts, ...newPosts].sort((a, b) =>
+      new Date(b.date) - new Date(a.date)
+    );
+
+    // Save to file
+    fs.writeFileSync('blog/posts.json', JSON.stringify(allPosts, null, 2));
+    console.log(`Saved ${allPosts.length} total posts (${newPosts.length} new)`);
+
+    // Generate RSS feed
+    generateRSS(allPosts);
+
+  } catch (error) {
+    console.error('Error:', error);
+    process.exit(1);
+  }
 }
 
 main();
