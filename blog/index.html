@@ -81,6 +81,7 @@
                     
                     postDiv.innerHTML = `
                         <div class="post-date">${dateStr}</div>
+                        ${post.photo ? `<img class="post-image" src="${escapeHtml(post.photo)}" alt="Post image">` : ''}
                         <div class="post-text">${escapeHtml(post.text)}</div>
                         ${post.author ? `<div class="post-author">— ${escapeHtml(post.author)}</div>` : ''}
                     `;

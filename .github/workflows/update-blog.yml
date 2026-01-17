@@ -24,7 +24,6 @@ jobs:
       
       - name: Fetch Telegram posts
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
         run: node scripts/fetch-telegram.js
       
