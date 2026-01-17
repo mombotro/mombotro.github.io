@@ -49,12 +49,22 @@
     </style>
 </head>
 <body>
-    <h1>🐔 chicken time 🐔</h1>
-    <p><a href="https://azirona.com">Home</a> | <a href="/blog/feed.xml">RSS Feed</a></p>
-    
+    <h1 id="page-title"></h1>
+    <p id="nav"></p>
+
     <div id="posts"></div>
-    
+
     <script>
+        const params = new URLSearchParams(window.location.search);
+        const filter = params.get('filter');
+        const isWebpub = filter === 'webpub';
+
+        // Set title and nav based on filter
+        document.getElementById('page-title').textContent = isWebpub ? 'Web Publications' : 'chicken time';
+        document.getElementById('nav').innerHTML = isWebpub
+            ? '<a href="/blog/">All Posts</a> | <a href="https://azirona.com">Home</a> | <a href="/blog/feed.xml">RSS Feed</a>'
+            : '<a href="https://azirona.com">Home</a> | <a href="?filter=webpub">Web Publications</a> | <a href="/blog/feed.xml">RSS Feed</a>';
+
         // Load and display posts
         fetch('posts.json')
             .then(response => response.json())
@@ -85,7 +95,17 @@
                     if (post.photo) postsByDate[dateKey].photos.push(post.photo);
                 });
 
-                mergedPosts.forEach(post => {
+                // Filter for webpub if needed
+                const displayPosts = isWebpub
+                    ? mergedPosts.filter(post => post.texts.some(t => t.includes('#webpub')))
+                    : mergedPosts;
+
+                if (displayPosts.length === 0) {
+                    postsContainer.innerHTML = '<p>No posts yet! Check back soon.</p>';
+                    return;
+                }
+
+                displayPosts.forEach(post => {
                     const postDiv = document.createElement('div');
                     postDiv.className = 'post';
 
@@ -102,7 +122,8 @@
                         `<img class="post-image" src="${escapeHtml(photo)}" alt="Post image">`
                     ).join('');
 
-                    const textHtml = post.texts.map(text => escapeHtml(text)).join('\n\n');
+                    // Remove #webpub from displayed text
+                    const textHtml = post.texts.map(text => escapeHtml(text.replace(/#webpub/gi, '').trim())).join('\n\n');
 
                     postDiv.innerHTML = `
                         <div class="post-date">${dateStr}</div>
