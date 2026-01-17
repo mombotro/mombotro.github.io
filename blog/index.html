@@ -65,8 +65,8 @@
             ? '<a href="/blog/">All Posts</a> | <a href="https://azirona.com">Home</a> | <a href="/blog/feed.xml">RSS Feed</a>'
             : '<a href="https://azirona.com">Home</a> | <a href="?filter=webpub">Web Publications</a> | <a href="/blog/feed.xml">RSS Feed</a>';
 
-        // Load and display posts
-        fetch('posts.json')
+        // Load and display posts (cache-bust to always get fresh content)
+        fetch('posts.json?t=' + Date.now())
             .then(response => response.json())
             .then(posts => {
                 const postsContainer = document.getElementById('posts');
