@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azirona Blog</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5dc;
+            color: #333;
+        }
+        h1 {
+            border-bottom: 3px solid #8b4513;
+            padding-bottom: 10px;
+        }
+        .post {
+            background: white;
+            border: 2px solid #8b4513;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 3px 3px 0 #ddd;
+        }
+        .post-date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .post-author {
+            font-style: italic;
+            color: #8b4513;
+            margin-top: 10px;
+        }
+        .post-text {
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        .post-image {
+            max-width: 100%;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+        a {
+            color: #8b4513;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐔 chicken time 🐔</h1>
+    <p><a href="feed.xml">RSS Feed</a></p>
+    
+    <div id="posts"></div>
+    
+    <script>
+        // Load and display posts
+        fetch('posts.json')
+            .then(response => response.json())
+            .then(posts => {
+                const postsContainer = document.getElementById('posts');
+                
+                if (posts.length === 0) {
+                    postsContainer.innerHTML = '<p>No posts yet! Check back soon.</p>';
+                    return;
+                }
+                
+                posts.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'post';
+                    
+                    const date = new Date(post.date);
+                    const dateStr = date.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    postDiv.innerHTML = `
+                        <div class="post-date">${dateStr}</div>
+                        <div class="post-text">${escapeHtml(post.text)}</div>
+                        ${post.author ? `<div class="post-author">— ${escapeHtml(post.author)}</div>` : ''}
+                    `;
+                    
+                    postsContainer.appendChild(postDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading posts:', error);
+                document.getElementById('posts').innerHTML = '<p>Error loading posts.</p>';
+            });
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

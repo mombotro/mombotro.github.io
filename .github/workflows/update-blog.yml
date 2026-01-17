@@ -1,0 +1,33 @@
+name: Update Blog from Telegram
+
+on:
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Fetch Telegram posts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: node scripts/fetch-telegram.js
+      
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'Telegram Blog Bot'
+          git config --global user.email 'bot@azirona.com'
+          git add blog/posts.json blog/feed.xml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update blog posts from Telegram" && git push)
