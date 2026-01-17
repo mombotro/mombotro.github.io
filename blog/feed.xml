@@ -6,5 +6,12 @@
     <description>hi there</description>
     <language>en-us</language>
     
+    <item>
+      <title>This is another test.</title>
+      <description>This is another test.</description>
+      <pubDate>Sat, 17 Jan 2026 22:01:36 GMT</pubDate>
+      <guid>telegram-post-12</guid>
+    </item>
+  
   </channel>
 </rss>
