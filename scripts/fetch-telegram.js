@@ -64,7 +64,16 @@ function parsePosts(html) {
 
     // Get author if present
     const authorMatch = block.match(/<span class="tgme_widget_message_from_author"[^>]*>([^<]+)<\/span>/);
-    const author = authorMatch ? authorMatch[1].trim() : '';
+    let author = authorMatch ? authorMatch[1].trim() : '';
+
+    // Map Telegram handles to display names
+    const authorMap = {
+      'Mombotro': 'Juleah',
+      'graindefender': 'Alek'
+    };
+    if (authorMap[author]) {
+      author = authorMap[author];
+    }
 
     // Get photo if present
     const photoMatch = block.match(/tgme_widget_message_photo_wrap[^>]*style="[^"]*background-image:url\('([^']+)'\)/);
