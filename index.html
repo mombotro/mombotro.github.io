@@ -85,16 +85,36 @@
         <section id="blog" class="section">
             <div class="container">
                 <h2>From the Drift</h2>
-                <p style="text-align: center; margin-bottom: 2rem; color: var(--charcoal); opacity: 0.8;">
-                    Short stories, thoughts, silly stuff | <a href="/blog/?filter=webpub">Web Publications</a>
-                </p>
-                <div id="blog-posts" class="blog-grid">
-                    <div class="blog-loading">
-                        <p>Loading posts...</p>
-                    </div>
+                <div id="latest-post" class="latest-post-preview">
+                    <p class="loading-text">Loading...</p>
                 </div>
+                <p style="text-align: center; margin-top: 1.5rem;">
+                    <a href="/blog/" class="blog-link">Read more posts</a> | <a href="/blog/?filter=webpub" class="blog-link">Web Publications</a>
+                </p>
             </div>
         </section>
+        <script>
+            fetch('/blog/posts.json?t=' + Date.now())
+                .then(r => r.json())
+                .then(posts => {
+                    if (posts.length === 0) {
+                        document.getElementById('latest-post').innerHTML = '<p>No posts yet!</p>';
+                        return;
+                    }
+                    const post = posts[0];
+                    const text = post.text || '';
+                    const sentences = text.split(/(?<=[.!?])\s+/).slice(0, 2).join(' ');
+                    const date = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    document.getElementById('latest-post').innerHTML = `
+                        <p class="latest-post-date">${date}</p>
+                        <p class="latest-post-text">${sentences}...</p>
+                        <p class="latest-post-author">— ${post.author || 'Azirona Drift'}</p>
+                    `;
+                })
+                .catch(() => {
+                    document.getElementById('latest-post').innerHTML = '<p>Could not load posts.</p>';
+                });
+        </script>
 
         <section id="tools" class="section">
             <div class="container">
@@ -134,41 +154,6 @@
     <!-- Background Chicken -->
     <div id="chicken" class="chicken"></div>
 
-    <!-- Blog Post Modal -->
-    <div id="blog-modal" class="blog-modal">
-        <div class="blog-modal-content">
-            <div class="blog-modal-header">
-                <h1 class="blog-modal-title" id="blog-modal-title">Post Title</h1>
-                <div class="blog-modal-meta" id="blog-modal-meta">
-                    <span>Date</span>
-                    <span>Author</span>
-                </div>
-                <button class="fullscreen-btn" onclick="toggleBlogFullscreen()" title="Toggle Fullscreen">⛶</button>
-                <button class="blog-close" onclick="closeBlogPost()">&times;</button>
-            </div>
-            <div class="blog-modal-body" id="blog-modal-body">
-                Loading post...
-            </div>
-        </div>
-    </div>
-
-    <!-- Publication Reader Modal -->
-    <div id="publication-modal" class="blog-modal">
-        <div class="blog-modal-content">
-            <div class="blog-modal-header">
-                <h1 class="blog-modal-title" id="publication-modal-title">Publication Title</h1>
-                <div class="blog-modal-meta" id="publication-modal-meta">
-                    <span>Author</span>
-                    <span>Published</span>
-                </div>
-                <button class="fullscreen-btn" onclick="togglePublicationFullscreen()" title="Toggle Fullscreen">⛶</button>
-                <button class="blog-close" onclick="closePublication()">&times;</button>
-            </div>
-            <div class="blog-modal-body" id="publication-modal-body">
-                Loading publication...
-            </div>
-        </div>
-    </div>
 
     <!-- Game Player Modal -->
     <div id="game-modal" class="blog-modal game-modal">
