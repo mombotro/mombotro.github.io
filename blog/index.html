@@ -3,76 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azirona Blog</title>
+    <title>From the Drift - Azirona Blog</title>
+    <link rel="stylesheet" href="../styles.css">
     <style>
-        body {
-            font-family: 'Courier New', monospace;
-            max-width: 800px;
+        .blog-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-header {
+            background: var(--desert-sand);
+            padding: 1.5rem 2rem;
+            border-bottom: var(--border-double);
+            box-shadow: var(--shadow-western);
+        }
+
+        .blog-header-content {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background: #f5f5dc;
-            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-        h1 {
-            border-bottom: 3px solid #8b4513;
-            padding-bottom: 10px;
+
+        .blog-header h1 {
+            font-family: var(--font-accent);
+            color: var(--burnt-orange);
+            font-size: 2rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 0px rgba(43, 27, 23, 0.3);
         }
-        .post {
-            background: white;
-            border: 2px solid #8b4513;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 3px 3px 0 #ddd;
+
+        .blog-header h1 a {
+            color: inherit;
+            text-decoration: none;
         }
-        .post-date {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 10px;
+
+        .blog-nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        .post-author {
-            font-style: italic;
-            color: #8b4513;
-            margin-top: 10px;
+
+        .blog-nav a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
         }
-        .post-text {
+
+        .blog-nav a:hover {
+            background: var(--burnt-orange);
+            color: var(--warm-white);
+            border-color: var(--charcoal);
+        }
+
+        .blog-nav a.active {
+            background: var(--burnt-orange);
+            color: var(--warm-white);
+            border-color: var(--charcoal);
+        }
+
+        .blog-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 2rem;
+            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .blog-sidebar {
+            width: 200px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-section {
+            background: var(--parchment);
+            border: 3px solid var(--charcoal);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-western);
+        }
+
+        .sidebar-section h3 {
+            font-family: var(--font-accent);
+            color: var(--burnt-orange);
+            font-size: 1.2rem;
+            margin: 0 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px dashed var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .year-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .year-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .year-list a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-family: var(--font-primary);
+            font-weight: 700;
+            display: block;
+            padding: 0.4rem 0.6rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+
+        .year-list a:hover,
+        .year-list a.active {
+            background: var(--burnt-orange);
+            color: var(--warm-white);
+        }
+
+        .year-list .post-count {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .blog-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .blog-post {
+            background: var(--parchment);
+            background-image: var(--paper-texture);
+            border: 3px solid var(--charcoal);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-western);
+        }
+
+        .blog-post-date {
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blog-post-text {
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--charcoal);
             white-space: pre-wrap;
-            line-height: 1.6;
         }
-        .post-image {
+
+        .blog-post-image {
             max-width: 100%;
-            margin: 15px 0;
-            border: 1px solid #ddd;
+            margin: 1rem 0;
+            border: 2px solid var(--charcoal);
+            border-radius: var(--border-radius);
         }
-        a {
-            color: #8b4513;
+
+        .blog-post-author {
+            font-family: var(--font-secondary);
+            font-style: italic;
+            color: var(--terracotta);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--desert-sand);
+        }
+
+        .blog-empty {
+            text-align: center;
+            padding: 3rem;
+            font-family: var(--font-primary);
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .blog-layout {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .blog-sidebar {
+                width: 100%;
+                order: -1;
+            }
+
+            .year-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .year-list li {
+                margin-bottom: 0;
+            }
+
+            .blog-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .blog-header h1 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
-<body>
-    <h1 id="page-title"></h1>
-    <p id="nav"></p>
+<body class="blog-page">
+    <header class="blog-header">
+        <div class="blog-header-content">
+            <h1><a href="/">The Azirona Drift</a></h1>
+            <nav class="blog-nav" id="nav">
+                <a href="/blog/">All Posts</a>
+                <a href="/blog/?filter=webpub">Web Publications</a>
+                <a href="/">Home</a>
+                <a href="/blog/feed.xml">RSS</a>
+            </nav>
+        </div>
+    </header>
 
-    <div id="posts"></div>
+    <div class="blog-layout">
+        <aside class="blog-sidebar">
+            <div class="sidebar-section">
+                <h3>Years</h3>
+                <ul class="year-list" id="year-list">
+                    <li>Loading...</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="blog-main" id="posts">
+            <p class="blog-empty">Loading posts...</p>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 The Azirona Drift - Alek & Juleah Miller</p>
+        </div>
+    </footer>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const filter = params.get('filter');
+        const yearFilter = params.get('year');
         const isWebpub = filter === 'webpub';
 
-        // Set title and nav based on filter
-        document.getElementById('page-title').textContent = isWebpub ? 'Web Publications' : 'chicken time';
-        document.getElementById('nav').innerHTML = isWebpub
-            ? '<a href="/blog/">All Posts</a> | <a href="https://azirona.com">Home</a> | <a href="/blog/feed.xml">RSS Feed</a>'
-            : '<a href="https://azirona.com">Home</a> | <a href="?filter=webpub">Web Publications</a> | <a href="/blog/feed.xml">RSS Feed</a>';
+        // Update active nav link
+        document.querySelectorAll('.blog-nav a').forEach(link => {
+            if (isWebpub && link.href.includes('filter=webpub')) {
+                link.classList.add('active');
+            } else if (!isWebpub && !link.href.includes('filter=') && link.href.includes('/blog/') && !link.href.includes('feed.xml')) {
+                link.classList.add('active');
+            }
+        });
 
-        // Load and display posts (cache-bust to always get fresh content)
+        // Load and display posts
         fetch('posts.json?t=' + Date.now())
             .then(response => response.json())
             .then(posts => {
                 const postsContainer = document.getElementById('posts');
+                const yearListContainer = document.getElementById('year-list');
 
                 if (posts.length === 0) {
-                    postsContainer.innerHTML = '<p>No posts yet! Check back soon.</p>';
+                    postsContainer.innerHTML = '<p class="blog-empty">No posts yet! Check back soon.</p>';
+                    yearListContainer.innerHTML = '<li>No posts</li>';
                     return;
                 }
 
@@ -95,41 +310,63 @@
                     if (post.photo) postsByDate[dateKey].photos.push(post.photo);
                 });
 
+                // Build year list from all posts
+                const yearCounts = {};
+                mergedPosts.forEach(post => {
+                    const year = new Date(post.date).getFullYear();
+                    yearCounts[year] = (yearCounts[year] || 0) + 1;
+                });
+
+                const years = Object.keys(yearCounts).sort((a, b) => b - a);
+                yearListContainer.innerHTML = years.map(year => {
+                    const isActive = yearFilter === year;
+                    const baseUrl = isWebpub ? '?filter=webpub&year=' : '?year=';
+                    return `<li><a href="${baseUrl}${year}" class="${isActive ? 'active' : ''}">${year} <span class="post-count">(${yearCounts[year]})</span></a></li>`;
+                }).join('') + `<li><a href="${isWebpub ? '?filter=webpub' : '/blog/'}" class="${!yearFilter ? 'active' : ''}">All</a></li>`;
+
                 // Filter for webpub if needed
-                const displayPosts = isWebpub
+                let displayPosts = isWebpub
                     ? mergedPosts.filter(post => post.texts.some(t => t.includes('#webpub')))
                     : mergedPosts;
 
+                // Filter by year if needed
+                if (yearFilter) {
+                    displayPosts = displayPosts.filter(post => {
+                        const year = new Date(post.date).getFullYear().toString();
+                        return year === yearFilter;
+                    });
+                }
+
                 if (displayPosts.length === 0) {
-                    postsContainer.innerHTML = '<p>No posts yet! Check back soon.</p>';
+                    postsContainer.innerHTML = '<p class="blog-empty">No posts found for this filter.</p>';
                     return;
                 }
 
+                postsContainer.innerHTML = '';
+
                 displayPosts.forEach(post => {
                     const postDiv = document.createElement('div');
-                    postDiv.className = 'post';
+                    postDiv.className = 'blog-post';
 
                     const date = new Date(post.date);
                     const dateStr = date.toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
+                        day: 'numeric'
                     });
 
                     const photosHtml = post.photos.map(photo =>
-                        `<img class="post-image" src="${escapeHtml(photo)}" alt="Post image">`
+                        `<img class="blog-post-image" src="${escapeHtml(photo)}" alt="Post image">`
                     ).join('');
 
                     // Remove #webpub from displayed text
                     const textHtml = post.texts.map(text => escapeHtml(text.replace(/#webpub/gi, '').trim())).join('\n\n');
 
                     postDiv.innerHTML = `
-                        <div class="post-date">${dateStr}</div>
+                        <div class="blog-post-date">${dateStr}</div>
                         ${photosHtml}
-                        <div class="post-text">${textHtml}</div>
-                        ${post.author ? `<div class="post-author">— ${escapeHtml(post.author)}</div>` : ''}
+                        <div class="blog-post-text">${textHtml}</div>
+                        ${post.author ? `<div class="blog-post-author">— ${escapeHtml(post.author)}</div>` : ''}
                     `;
 
                     postsContainer.appendChild(postDiv);
@@ -137,7 +374,7 @@
             })
             .catch(error => {
                 console.error('Error loading posts:', error);
-                document.getElementById('posts').innerHTML = '<p>Error loading posts.</p>';
+                document.getElementById('posts').innerHTML = '<p class="blog-empty">Error loading posts.</p>';
             });
 
         function escapeHtml(text) {
