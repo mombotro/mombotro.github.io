@@ -117,6 +117,7 @@ body {
     font-family: var(--font-secondary);
     font-size: 0.95rem;
     position: relative;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -124,22 +125,6 @@ body {
     color: var(--warm-white);
     border: 2px solid var(--charcoal);
     box-shadow: var(--shadow-western);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--burnt-orange);
-    transition: width 0.3s ease, left 0.3s ease;
-}
-
-.nav-link:hover::after {
-    width: 80%;
-    left: 10%;
 }
 
 .nav-toggle {
@@ -224,6 +209,41 @@ body {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     font-family: var(--font-secondary);
     font-style: italic;
+}
+
+.hero-subtitle {
+    font-family: var(--font-accent);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.hero-blog-preview {
+    margin-top: 2rem;
+    background: rgba(255, 249, 240, 0.95);
+    color: var(--charcoal);
+    text-shadow: none;
+}
+
+.hero-blog-preview .latest-post-text {
+    font-style: normal;
+}
+
+.hero-blog-links {
+    margin-top: 1rem;
+    font-style: normal;
+}
+
+.hero-blog-links .blog-link {
+    color: var(--parchment);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.hero-blog-links .blog-link:hover {
+    color: var(--warm-white);
 }
 
 /* Hidden links in hero text */
