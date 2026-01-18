@@ -226,15 +226,15 @@ body {
 }
 
 .hero .hero-blog-preview p {
-    font-size: 0.95rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.5;
-    text-shadow: none;
+    font-size: 0.95rem !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    text-shadow: none !important;
 }
 
 .hero .hero-blog-preview .read-more-link {
-    color: var(--parchment);
+    color: var(--burnt-orange);
     text-decoration: underline;
 }
 
