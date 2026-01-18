@@ -1530,6 +1530,7 @@ footer::before {
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-shadow: none;
 }
 
 .latest-post-text {
@@ -1539,6 +1540,7 @@ footer::before {
     line-height: 1.5;
     color: var(--charcoal);
     margin-bottom: 0;
+    text-shadow: none;
 }
 
 .blog-link {
