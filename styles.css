@@ -223,7 +223,19 @@ body {
 
 .hero-blog-preview {
     margin-top: 2rem;
+}
+
+.hero .hero-blog-preview p {
+    font-size: 0.95rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
     text-shadow: none;
+}
+
+.hero .hero-blog-preview .read-more-link {
+    color: var(--parchment);
+    text-decoration: underline;
 }
 
 .hero-blog-links {
