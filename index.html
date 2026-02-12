@@ -584,6 +584,13 @@
       background: var(--turquoise);
       color: #fff;
     }
+    .video-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      background: var(--charcoal); color: var(--gold);
+      border: 1px solid var(--gold);
+    }
 
     .post-date {
       font-family: 'Oswald', sans-serif;
@@ -1703,14 +1710,26 @@
           catch { return ds; }
         };
         // Posts have no title field — first line of text IS the title
+        const ytRegex = /https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/watch\?(?:[^\s]*?&)*?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})[^\s]*/g;
         const parsePost = p => {
           const raw = p.text || p.content || '';
           const lines = raw.split('\n');
-          const title = p.title || lines[0] || 'Untitled';
+          // First line is title unless it looks like a URL
+          const firstLine = lines[0] || '';
+          const title = p.title || (firstLine.startsWith('http') ? 'Untitled' : firstLine) || 'Untitled';
           const bodyStart = raw.indexOf('\n\n');
           const body = bodyStart >= 0 ? raw.slice(bodyStart + 2) : lines.slice(1).join(' ');
-          const parts = body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().split(/(?<=[.!?])\s+/);
-          return { title, excerpt: parts.slice(0, 3).join(' ') + (parts.length > 3 ? '\u2026' : '') };
+          // Detect YouTube links before stripping
+          const hasVideo = ytRegex.test(body); ytRegex.lastIndex = 0;
+          // Strip HTML tags and bare URLs so they don't appear in the excerpt
+          const clean = body
+            .replace(/<[^>]+>/g, '')
+            .replace(ytRegex, '')
+            .replace(/https?:\/\/\S+/g, '')
+            .replace(/\s+/g, ' ').trim();
+          const parts = clean.split(/(?<=[.!?])\s+/);
+          const excerpt = parts.slice(0, 3).join(' ') + (parts.length > 3 ? '\u2026' : '');
+          return { title, excerpt, hasVideo };
         };
         const badge = a => {
           const j = a && a.toLowerCase().includes('juleah');
@@ -1720,6 +1739,7 @@
 
         const [feat, ...rest] = posts;
         const fp = parsePost(feat);
+        const videoBadge = `<span class="video-badge" title="This post contains a video">&#9654; Video</span>`;
         const sideHtml = rest.slice(0, 2).map((p, i) => {
           const pp = parsePost(p);
           return `
@@ -1728,6 +1748,7 @@
             <div class="post-meta">
               ${badge(p.author)}
               <time class="post-date" datetime="${p.date}" itemprop="datePublished">${fmt(p.date)}</time>
+              ${pp.hasVideo ? videoBadge : ''}
             </div>
             <a href="${postUrl(p)}" class="post-title-sm" itemprop="headline url">${pp.title}</a>
             <p class="post-snippet" itemprop="description">${pp.excerpt}</p>
@@ -1739,6 +1760,7 @@
             <div class="post-meta">
               ${badge(feat.author)}
               <time class="post-date" datetime="${feat.date}" itemprop="datePublished">${fmt(feat.date)}</time>
+              ${fp.hasVideo ? videoBadge : ''}
             </div>
             <a href="${postUrl(feat)}" class="post-title-lg" itemprop="headline url">${fp.title}</a>
             <p class="post-excerpt" itemprop="description">${fp.excerpt}</p>
