@@ -838,6 +838,12 @@
       z-index: 1;
     }
 
+    .proj-date {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(243,233,210,0.28); margin-bottom: 0.6rem;
+      position: relative; z-index: 1;
+    }
     .proj-desc {
       font-size: 0.9rem;
       line-height: 1.65;
@@ -1323,7 +1329,12 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+    .panel-date {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(243,233,210,0.3); margin-bottom: 1.25rem;
     }
 
     .panel-rule {
@@ -1783,10 +1794,20 @@
           card.setAttribute('itemscope', '');
           card.setAttribute('itemtype', 'https://schema.org/CreativeWork');
           card.addEventListener('click', () => openPanel(p, sc, sl));
+          const fmtDate = ds => {
+            if (!ds) return '';
+            try { return new Date(ds).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); }
+            catch { return ds; }
+          };
+          const dateLabel = p.completedDate ? fmtDate(p.completedDate)
+            : p.estimatedCompletion ? 'Est. ' + p.estimatedCompletion
+            : '';
+
           card.innerHTML = `
             <span class="proj-status ${sc}">${sl}</span>
             <h3 class="proj-name" itemprop="name">${p.title || p.name || 'Untitled'}</h3>
             <div class="proj-who" itemprop="author">${p.author || ''}</div>
+            ${dateLabel ? `<div class="proj-date">${dateLabel}</div>` : ''}
             <p class="proj-desc" itemprop="description">${descText}</p>
             ${links.length ? `<div class="proj-links">${links.join('')}</div>` : ''}
           `;
@@ -1800,10 +1821,12 @@
             document.querySelectorAll('.filt').forEach(b => b.classList.remove('on'));
             btn.classList.add('on');
             const f = btn.dataset.f;
+            const activeStatuses = ['active', 'work-in-progress', 'wip', 'planning'];
             document.querySelectorAll('.proj-card').forEach(c => {
               if (f === 'all') { c.style.display = ''; return; }
-              if (f === 'alek') { c.style.display = c.dataset.a.includes('alek') ? '' : 'none'; return; }
+              if (f === 'alek')   { c.style.display = c.dataset.a.includes('alek') ? '' : 'none'; return; }
               if (f === 'juleah') { c.style.display = c.dataset.a.includes('juleah') ? '' : 'none'; return; }
+              if (f === 'active') { c.style.display = activeStatuses.includes(c.dataset.s) ? '' : 'none'; return; }
               c.style.display = (c.dataset.s === f) ? '' : 'none';
             });
           });
@@ -1841,12 +1864,21 @@
     const drawer = document.getElementById('panelDrawer');
 
     function openPanel(p, sc, sl) {
+      const fmtD = ds => {
+        if (!ds) return '';
+        try { return new Date(ds).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); }
+        catch { return ds; }
+      };
+      const dateStr = p.completedDate ? fmtD(p.completedDate)
+        : p.estimatedCompletion ? 'Est. ' + p.estimatedCompletion : '';
+
       document.getElementById('panelHeaderMeta').innerHTML = `
         <div>
           <span class="panel-status ${sc}">${sl}</span>
           <div class="panel-title">${p.title || p.name || ''}</div>
           <div class="panel-author">${p.author || ''}</div>
           ${p.type ? `<div class="panel-type">${p.type}</div>` : ''}
+          ${dateStr ? `<div class="panel-date">${dateStr}</div>` : ''}
         </div>`;
 
       const imgEl = document.getElementById('panelImage');
