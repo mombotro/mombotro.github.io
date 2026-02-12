@@ -1915,7 +1915,7 @@
         };
         this.updatePosition();
         this.element.addEventListener('mouseenter', () => this.jump());
-        this.element.addEventListener('click', () => { window.location.href = '/starfighters'; });
+        this.element.addEventListener('click', () => { window.location.href = '/starfighters/'; });
         this.lastTime = performance.now();
         requestAnimationFrame(t => this.loop(t));
       }
