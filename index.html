@@ -846,9 +846,11 @@
       z-index: 1;
     }
 
+    .proj-links {
+      margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.75rem;
+      position: relative; z-index: 1;
+    }
     .proj-link {
-      display: inline-block;
-      margin-top: 0.9rem;
       font-family: 'Oswald', sans-serif;
       font-size: 0.65rem;
       letter-spacing: 0.2em;
@@ -858,9 +860,23 @@
       position: relative;
       z-index: 1;
     }
+    .proj-link:hover { color: #fff; }
 
-    .proj-link:hover {
-      color: #fff;
+    /* ====== HIDDEN LINKS ====== */
+    .hidden-link { color: inherit; text-decoration: none; }
+    .hidden-link:hover { opacity: 0.6; }
+
+    /* ====== CHICKEN ====== */
+    #chicken {
+      position: fixed;
+      width: 32px; height: 32px;
+      background-image: url('assets/addon/chicken.PNG');
+      background-repeat: no-repeat;
+      image-rendering: pixelated;
+      z-index: 9997;
+      pointer-events: auto;
+      cursor: pointer;
+      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.5));
     }
 
     /* ====== TOOLS & GAMES ====== */
@@ -1216,7 +1232,7 @@
     <div class="hero-body">
       <p class="hero-eyebrow">The Creative Home of Alek &amp; Juleah Miller</p>
       <h1 class="hero-title">Azirona</h1>
-      <p class="hero-subtitle">Essays, fiction, games, and art<br>with the heart of the American desert</p>
+      <p class="hero-subtitle">a <a href="https://azirona.com/mom" class="hidden-link">mom</a>/<a href="https://azirona.com/dad" class="hidden-link">dad</a> pact to make games, comics &amp; books</p>
       <div class="hero-btns">
         <a href="#blog" class="btn-fill">Read the Blog</a>
         <a href="#work" class="btn-ghost">Explore Work</a>
@@ -1400,7 +1416,7 @@
         </ul>
       </nav>
     </div>
-    <p class="footer-copy">&copy; <span id="yr"></span> Alek &amp; Juleah Miller · Azirona</p>
+    <p class="footer-copy">&copy; <a href="https://azirona.com/flower-clouds" class="hidden-link"><span id="yr"></span></a> Alek &amp; Juleah Miller · Azirona</p>
   </footer>
 
   <script>
@@ -1460,10 +1476,11 @@
           try { return new Date(ds).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
           catch { return ds; }
         };
-        const snip = (txt, n = 200) => {
+        const sentences = (txt, n = 2) => {
           if (!txt) return '';
           const s = txt.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-          return s.length > n ? s.slice(0, n).replace(/\s\S*$/, '') + '\u2026' : s;
+          const parts = s.split(/(?<=[.!?])\s+/);
+          return parts.slice(0, n).join(' ') + (parts.length > n ? '\u2026' : '');
         };
         const badge = a => {
           const j = a && a.toLowerCase().includes('juleah');
@@ -1480,7 +1497,7 @@
           <time class="post-date" datetime="${p.date}" itemprop="datePublished">${fmt(p.date)}</time>
         </div>
         <a href="${postUrl(p)}" class="post-title-sm" itemprop="headline url">${p.title || 'Untitled'}</a>
-        <p class="post-snippet" itemprop="description">${snip(p.content || p.excerpt, 110)}</p>
+        <p class="post-snippet" itemprop="description">${sentences(p.text || p.content || p.excerpt, 2)}</p>
       </article>
     `).join('');
 
@@ -1491,7 +1508,7 @@
           <time class="post-date" datetime="${feat.date}" itemprop="datePublished">${fmt(feat.date)}</time>
         </div>
         <a href="${postUrl(feat)}" class="post-title-lg" itemprop="headline url">${feat.title || 'Untitled'}</a>
-        <p class="post-excerpt" itemprop="description">${snip(feat.content || feat.excerpt, 240)}</p>
+        <p class="post-excerpt" itemprop="description">${sentences(feat.text || feat.content || feat.excerpt, 3)}</p>
         <a href="${postUrl(feat)}" class="read-link" itemprop="url">Continue Reading &rarr;</a>
       </article>
       <div class="blog-side">${sideHtml}</div>
@@ -1510,31 +1527,52 @@
         grid.innerHTML = '';
 
         const stMap = {
-          completed: ['st-complete', 'Complete'],
-          complete: ['st-complete', 'Complete'],
-          active: ['st-active', 'Active'],
-          wip: ['st-wip', 'In Progress'],
-          paused: ['st-paused', 'Paused'],
-          hiatus: ['st-paused', 'On Hiatus'],
+          completed:        ['st-complete', 'Complete'],
+          complete:         ['st-complete', 'Complete'],
+          active:           ['st-active', 'Active'],
+          wip:              ['st-wip', 'In Progress'],
+          'work-in-progress': ['st-wip', 'In Progress'],
+          planning:         ['st-wip', 'Planning'],
+          paused:           ['st-paused', 'Paused'],
+          hiatus:           ['st-paused', 'On Hiatus'],
         };
 
         projs.forEach((p, i) => {
           const sk = (p.status || '').toLowerCase();
           const [sc, sl] = stMap[sk] || ['st-wip', p.status || ''];
+
+          // Build action links
+          const links = [];
+          if (p.type === 'web game' && p.webFile)
+            links.push(`<a href="/${p.webFile}" class="proj-link">Play &rarr;</a>`);
+          if (p.externalLinks && p.externalLinks.length)
+            p.externalLinks.forEach(l => links.push(`<a href="${l.url}" class="proj-link" target="_blank" rel="noopener">${l.label} &rarr;</a>`));
+          if (p.url)
+            links.push(`<a href="${p.url}" class="proj-link" target="_blank" rel="noopener">View &rarr;</a>`);
+
+          // First external/game link used as card href if available
+          const primaryHref = (p.type === 'web game' && p.webFile) ? `/${p.webFile}`
+            : (p.externalLinks && p.externalLinks[0]) ? p.externalLinks[0].url
+            : p.url || null;
+
+          const descText = (p.description || '').split('\n')[0];
+
           const card = document.createElement('article');
-          card.className = 'proj-card reveal';
+          card.className = 'proj-card reveal' + (primaryHref ? ' proj-clickable' : '');
           card.style.transitionDelay = `${i * 0.06}s`;
           card.dataset.a = (p.author || '').toLowerCase();
           card.dataset.s = sk;
           card.setAttribute('itemscope', '');
           card.setAttribute('itemtype', 'https://schema.org/CreativeWork');
+          if (primaryHref) card.style.cursor = 'pointer';
+          if (primaryHref) card.addEventListener('click', () => window.open(primaryHref, primaryHref.startsWith('/') ? '_self' : '_blank'));
           card.innerHTML = `
-        <span class="proj-status ${sc}">${sl}</span>
-        <h3 class="proj-name" itemprop="name">${p.title || p.name || 'Untitled'}</h3>
-        <div class="proj-who" itemprop="author">${p.author || ''}</div>
-        <p class="proj-desc" itemprop="description">${(p.description || '').split('\n')[0].slice(0, 160)}${(p.description || '').length > 160 ? '\u2026' : ''}</p>
-        ${p.url ? `<a href="${p.url}" class="proj-link" target="_blank" rel="noopener" itemprop="url">View &rarr;</a>` : ''}
-      `;
+            <span class="proj-status ${sc}">${sl}</span>
+            <h3 class="proj-name" itemprop="name">${p.title || p.name || 'Untitled'}</h3>
+            <div class="proj-who" itemprop="author">${p.author || ''}</div>
+            <p class="proj-desc" itemprop="description">${descText}</p>
+            ${links.length ? `<div class="proj-links">${links.join('')}</div>` : ''}
+          `;
           grid.appendChild(card);
           ro.observe(card);
         });
@@ -1580,7 +1618,112 @@
     loadBlog();
     loadProjects();
     loadTools();
+
+    /* ====== CHICKEN ====== */
+    class Chicken {
+      constructor() {
+        this.element = document.getElementById('chicken');
+        this.x = Math.random() * (window.innerWidth - 32);
+        this.y = Math.random() * (window.innerHeight - 32);
+        this.velocityX = (Math.random() - 0.5) * 2;
+        this.velocityY = (Math.random() - 0.5) * 2;
+        this.currentFrame = 0;
+        this.frameTime = 0;
+        this.currentAnimation = 'idle';
+        this.isJumping = false;
+        this.isPecking = false;
+        this.idleTimer = 0;
+        this.facingRight = true;
+        this.jumpProgress = 0;
+        this.animations = {
+          idle:    { frames: [0, 1], speed: 500 },
+          walking: { frames: [2, 3, 4, 5], speed: 150 },
+          pecking: { frames: [6, 7], speed: 300 },
+          jumping: { frames: [8, 9], speed: 100 }
+        };
+        this.updatePosition();
+        this.element.addEventListener('click', () => this.jump());
+        this.lastTime = performance.now();
+        requestAnimationFrame(t => this.loop(t));
+      }
+      updatePosition() {
+        this.element.style.left = this.x + 'px';
+        this.element.style.top  = this.y + 'px';
+      }
+      updateSprite() {
+        const frameX = this.currentFrame * 32;
+        this.element.style.backgroundPosition = `-${frameX}px 0px`;
+        this.element.style.transform = this.facingRight ? 'scaleX(-1)' : 'scaleX(1)';
+      }
+      setAnimation(name) {
+        if (this.currentAnimation !== name) {
+          this.currentAnimation = name;
+          this.currentFrame = this.animations[name].frames[0];
+          this.frameTime = 0;
+        }
+      }
+      jump() {
+        if (!this.isJumping) {
+          this.isJumping = true;
+          this.jumpProgress = 0;
+          this.setAnimation('jumping');
+        }
+      }
+      loop(timestamp) {
+        const dt = timestamp - this.lastTime;
+        this.lastTime = timestamp;
+
+        // Advance animation frame
+        const anim = this.animations[this.currentAnimation];
+        this.frameTime += dt;
+        if (this.frameTime >= anim.speed) {
+          this.frameTime = 0;
+          const idx = anim.frames.indexOf(this.currentFrame);
+          this.currentFrame = anim.frames[(idx + 1) % anim.frames.length];
+        }
+
+        if (this.isJumping) {
+          this.jumpProgress += dt / 600;
+          const arc = Math.sin(this.jumpProgress * Math.PI) * 60;
+          this.y -= arc * (dt / 600);
+          if (this.jumpProgress >= 1) { this.isJumping = false; this.jumpProgress = 0; }
+        } else if (this.isPecking) {
+          this.idleTimer -= dt;
+          if (this.idleTimer <= 0) this.isPecking = false;
+          this.setAnimation('pecking');
+        } else {
+          // Random peck
+          this.idleTimer -= dt;
+          if (this.idleTimer <= 0) {
+            if (Math.random() < 0.3) {
+              this.isPecking = true;
+              this.idleTimer = 800 + Math.random() * 1200;
+            } else {
+              this.idleTimer = 2000 + Math.random() * 3000;
+            }
+          }
+          if (!this.isPecking) {
+            this.setAnimation(Math.abs(this.velocityX) > 0.1 || Math.abs(this.velocityY) > 0.1 ? 'walking' : 'idle');
+            this.x += this.velocityX;
+            this.y += this.velocityY;
+            this.facingRight = this.velocityX > 0;
+            // Bounce off edges
+            if (this.x < 0)  { this.x = 0;  this.velocityX *= -1; }
+            if (this.x > window.innerWidth  - 32) { this.x = window.innerWidth  - 32; this.velocityX *= -1; }
+            if (this.y < 0)  { this.y = 0;  this.velocityY *= -1; }
+            if (this.y > window.innerHeight - 32) { this.y = window.innerHeight - 32; this.velocityY *= -1; }
+          }
+        }
+
+        this.updatePosition();
+        this.updateSprite();
+        requestAnimationFrame(t => this.loop(t));
+      }
+    }
+    new Chicken();
   </script>
+
+  <div id="chicken"></div>
 </body>
 
 </html>
