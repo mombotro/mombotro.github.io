@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Azirona Drift - Alek & Juleah Miller</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>The Azirona Drift</h1>
+                <p class="tagline">Alek Miller - Author, Game Designer, Musician, Dad | Juleah Miller - Artist, Author, Coder, Mom</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#work" class="nav-link">Work</a></li>
+                <li><a href="/blog/" class="nav-link">Blog</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="https://azirona.gumroad.com/l/Witnesses" class="nav-link" target="_blank" rel="noopener noreferrer">Download Witnesses</a></li>
+            </ul>
+            <button class="nav-toggle">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h2>Welcome to the Drift</h2>
+                <p>a <a href="https://azirona.com/mom" class="hidden-link">mom</a>/<a href="https://azirona.com/dad" class="hidden-link">dad</a> pact to make games/comics/books</p>
+                <form
+                    action="https://buttondown.com/api/emails/embed-subscribe/azirona"
+                    method="post"
+                    target="popupwindow"
+                    onsubmit="window.open('https://buttondown.com/azirona', 'popupwindow')"
+                    class="newsletter-form"
+                >
+                    <label for="bd-email">Join our newsletter to receive announcements on new books & projects</label>
+                    <div class="newsletter-input-group">
+                        <input type="email" name="email" id="bd-email" placeholder="Enter your email" required />
+                        <input type="submit" value="Subscribe" />
+                    </div>
+                    <p class="newsletter-credit">
+                        <a href="https://buttondown.com/refer/azirona" target="_blank" rel="noopener noreferrer">
+                            Powered by Buttondown
+                        </a>
+                    </p>
+                </form>
+                <p class="hero-subtitle">From the Drift</p>
+                <div id="latest-post" class="latest-post-preview hero-blog-preview">
+                    <p class="loading-text">Loading...</p>
+                </div>
+                <p class="hero-blog-links">
+                    <a href="/blog/" class="blog-link">Read more posts</a> | <a href="/blog/?filter=webpub" class="blog-link">Web Publications</a>
+                </p>
+            </div>
+        </section>
+        <script>
+            fetch('/blog/posts.json?t=' + Date.now())
+                .then(r => r.json())
+                .then(posts => {
+                    if (posts.length === 0) {
+                        document.getElementById('latest-post').innerHTML = '<p>No posts yet!</p>';
+                        return;
+                    }
+                    const post = posts[0];
+                    const text = post.text || '';
+                    const sentences = text.split(/(?<=[.!?])\s+/).slice(0, 2).join(' ');
+                    const date = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    document.getElementById('latest-post').innerHTML = `
+                        <p class="latest-post-date">${date}</p>
+                        <p class="latest-post-text">${sentences}... <a href="/blog/" class="read-more-link">Read more</a></p>
+                    `;
+                })
+                .catch(() => {
+                    document.getElementById('latest-post').innerHTML = '<p>Could not load posts.</p>';
+                });
+        </script>
+
+        <section id="work" class="section">
+            <div class="container">
+                <h2>Our Work</h2>
+                <div class="project-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Status:</label>
+                        <div class="filter-buttons">
+                            <button class="global-filter-btn active" data-filter="all">All</button>
+                            <button class="global-filter-btn" data-filter="completed">Completed</button>
+                            <button class="global-filter-btn" data-filter="work-in-progress">In Progress</button>
+                            <button class="global-filter-btn" data-filter="planning">Planning</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Author:</label>
+                        <div class="filter-buttons">
+                            <button class="author-filter-btn active" data-author="all">All</button>
+                            <button class="author-filter-btn" data-author="Alek Miller">Alek</button>
+                            <button class="author-filter-btn" data-author="Juleah Miller">Juleah</button>
+                            <button class="author-filter-btn" data-author="collaboration">Both</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be loaded dynamically -->
+                    <div class="projects-loading">
+                        <p>Loading projects...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="tools" class="section">
+            <div class="container">
+                <h2>Tools & Utilities</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--charcoal); opacity: 0.8;">
+                    Free tools and web apps we've created
+                </p>
+                <div id="tools-grid" class="tools-grid">
+                    <div class="tools-loading">
+                        <p>Loading tools...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-content">
+                    <p>Interested in collaborating or learning more about our work? We'd love to hear from you.</p>
+                    <div class="contact-links">
+                        <a href="mailto:alekmiller@pm.me" class="contact-link">Email Us</a>
+                        <a href="https://azirona-games.itch.io/" class="contact-link">Itch.io</a>
+                        <a href="https://ko-fi.com/azirona" class="contact-link" target="_blank" rel="noopener noreferrer">Support us on Ko-fi</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <a href="https://azirona.com/flower-clouds" class="hidden-link">2025</a> The Azirona Drift - Alek & Juleah Miller</p>
+        </div>
+    </footer>
+
+    <!-- Background Chicken -->
+    <div id="chicken" class="chicken"></div>
+
+
+    <!-- Game Player Modal -->
+    <div id="game-modal" class="blog-modal game-modal">
+        <div class="blog-modal-content game-modal-content">
+            <div class="blog-modal-header">
+                <h1 class="blog-modal-title" id="game-modal-title">Game Title</h1>
+                <div class="blog-modal-meta" id="game-modal-meta">
+                    <span>Game Type</span>
+                    <span>Author</span>
+                </div>
+                <button class="fullscreen-btn" onclick="toggleGameFullscreen()" title="Toggle Fullscreen">⛶</button>
+                <button class="blog-close" onclick="closeGame()">&times;</button>
+            </div>
+            <div class="game-player-frame" id="game-player-frame">
+                <iframe id="game-iframe" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-detail-modal" class="blog-modal">
+        <div class="blog-modal-content project-detail-content">
+            <div class="blog-modal-header">
+                <h1 class="blog-modal-title" id="project-detail-title">Project Title</h1>
+                <div class="blog-modal-meta" id="project-detail-meta">
+                    <span id="project-detail-type">Type</span>
+                    <span id="project-detail-author">Author</span>
+                    <span id="project-detail-status">Status</span>
+                </div>
+                <button class="blog-close" onclick="closeProjectDetail()">&times;</button>
+            </div>
+            <div class="project-detail-body">
+                <div class="project-detail-image" id="project-detail-image"></div>
+                <div class="project-detail-description" id="project-detail-description">
+                    Project description will appear here...
+                </div>
+                <div class="project-detail-actions" id="project-detail-actions">
+                    <!-- Action buttons will be populated here -->
+                </div>
+                <div class="project-detail-info" id="project-detail-info">
+                    <!-- Additional project info will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
