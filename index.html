@@ -1186,10 +1186,120 @@
         border-bottom: none;
       }
     }
+
+    /* ====== PROJECT PANEL ====== */
+    .panel-overlay {
+      position: fixed; inset: 0;
+      background: rgba(9, 15, 28, 0.7);
+      z-index: 5000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .panel-overlay.open { opacity: 1; pointer-events: all; }
+
+    .panel-drawer {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: min(520px, 100vw);
+      background: var(--charcoal);
+      z-index: 5001;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column;
+    }
+    .panel-drawer.open { transform: translateX(0); }
+
+    .panel-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 1.75rem 1.75rem 0;
+      gap: 1rem;
+    }
+    .panel-close {
+      background: none; border: 1px solid rgba(243,233,210,0.2);
+      color: rgba(243,233,210,0.6); cursor: pointer;
+      width: 36px; height: 36px; font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.2s;
+    }
+    .panel-close:hover { border-color: var(--terra); color: var(--terra); }
+
+    .panel-img {
+      width: 100%; max-height: 260px;
+      object-fit: cover; display: block;
+      margin-top: 1.5rem;
+    }
+    .panel-img-placeholder {
+      height: 120px; margin: 1.5rem 1.75rem 0;
+      background: linear-gradient(135deg, var(--terra-dark), var(--terra));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; color: rgba(255,255,255,0.2);
+    }
+
+    .panel-body { padding: 1.5rem 1.75rem 2.5rem; flex: 1; }
+
+    .panel-status {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.18rem 0.55rem; display: inline-block; margin-bottom: 0.75rem;
+    }
+    .panel-title {
+      font-family: 'Cormorant Garant', serif;
+      font-weight: 700; font-size: 1.6rem;
+      color: var(--adobe); line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .panel-author {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(243,233,210,0.35); margin-bottom: 0.4rem;
+    }
+    .panel-type {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+    }
+    .panel-rule {
+      height: 1px; background: rgba(243,233,210,0.1); margin-bottom: 1.25rem;
+    }
+    .panel-desc {
+      font-size: 0.97rem; line-height: 1.75;
+      color: rgba(243,233,210,0.75);
+      white-space: pre-line; margin-bottom: 1.25rem;
+    }
+    .panel-notes {
+      font-size: 0.85rem; line-height: 1.6;
+      color: rgba(243,233,210,0.4);
+      font-style: italic; margin-bottom: 1.5rem;
+    }
+    .panel-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .panel-btn {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .panel-btn-fill { background: var(--terra); color: #fff; border: 2px solid var(--terra); }
+    .panel-btn-fill:hover { background: var(--terra-light); border-color: var(--terra-light); }
+    .panel-btn-ghost { background: transparent; color: var(--tq-light); border: 2px solid var(--tq-light); }
+    .panel-btn-ghost:hover { background: var(--tq-light); color: #fff; }
   </style>
 </head>
 
 <body>
+
+  <!-- Chicken -->
+  <div id="chicken"></div>
+
+  <!-- Project Panel -->
+  <div class="panel-overlay" id="panelOverlay" aria-hidden="true"></div>
+  <aside class="panel-drawer" id="panelDrawer" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="panel-header">
+      <div id="panelHeaderMeta"></div>
+      <button class="panel-close" id="panelClose" aria-label="Close panel">✕</button>
+    </div>
+    <div id="panelImage"></div>
+    <div class="panel-body" id="panelBody"></div>
+  </aside>
 
   <!-- Scroll progress -->
   <div id="scrollBar" role="progressbar" aria-hidden="true"></div>
@@ -1476,11 +1586,15 @@
           try { return new Date(ds).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
           catch { return ds; }
         };
-        const sentences = (txt, n = 2) => {
-          if (!txt) return '';
-          const s = txt.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-          const parts = s.split(/(?<=[.!?])\s+/);
-          return parts.slice(0, n).join(' ') + (parts.length > n ? '\u2026' : '');
+        // Posts have no title field — first line of text IS the title
+        const parsePost = p => {
+          const raw = p.text || p.content || '';
+          const lines = raw.split('\n');
+          const title = p.title || lines[0] || 'Untitled';
+          const bodyStart = raw.indexOf('\n\n');
+          const body = bodyStart >= 0 ? raw.slice(bodyStart + 2) : lines.slice(1).join(' ');
+          const parts = body.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().split(/(?<=[.!?])\s+/);
+          return { title, excerpt: parts.slice(0, 3).join(' ') + (parts.length > 3 ? '\u2026' : '') };
         };
         const badge = a => {
           const j = a && a.toLowerCase().includes('juleah');
@@ -1489,30 +1603,33 @@
         const postUrl = p => `/blog/?post=${p.id || p.slug || 0}`;
 
         const [feat, ...rest] = posts;
-        const sideHtml = rest.slice(0, 2).map((p, i) => `
-      <article class="post-card-mini reveal" style="transition-delay:${(i + 1) * .1}s"
-               itemscope itemtype="https://schema.org/BlogPosting">
-        <div class="post-meta">
-          ${badge(p.author)}
-          <time class="post-date" datetime="${p.date}" itemprop="datePublished">${fmt(p.date)}</time>
-        </div>
-        <a href="${postUrl(p)}" class="post-title-sm" itemprop="headline url">${p.title || 'Untitled'}</a>
-        <p class="post-snippet" itemprop="description">${sentences(p.text || p.content || p.excerpt, 2)}</p>
-      </article>
-    `).join('');
+        const fp = parsePost(feat);
+        const sideHtml = rest.slice(0, 2).map((p, i) => {
+          const pp = parsePost(p);
+          return `
+          <article class="post-card-mini reveal" style="transition-delay:${(i + 1) * .1}s"
+                   itemscope itemtype="https://schema.org/BlogPosting">
+            <div class="post-meta">
+              ${badge(p.author)}
+              <time class="post-date" datetime="${p.date}" itemprop="datePublished">${fmt(p.date)}</time>
+            </div>
+            <a href="${postUrl(p)}" class="post-title-sm" itemprop="headline url">${pp.title}</a>
+            <p class="post-snippet" itemprop="description">${pp.excerpt}</p>
+          </article>`;
+        }).join('');
 
         document.getElementById('blogLayout').innerHTML = `
-      <article class="post-card-featured reveal" itemscope itemtype="https://schema.org/BlogPosting">
-        <div class="post-meta">
-          ${badge(feat.author)}
-          <time class="post-date" datetime="${feat.date}" itemprop="datePublished">${fmt(feat.date)}</time>
-        </div>
-        <a href="${postUrl(feat)}" class="post-title-lg" itemprop="headline url">${feat.title || 'Untitled'}</a>
-        <p class="post-excerpt" itemprop="description">${sentences(feat.text || feat.content || feat.excerpt, 3)}</p>
-        <a href="${postUrl(feat)}" class="read-link" itemprop="url">Continue Reading &rarr;</a>
-      </article>
-      <div class="blog-side">${sideHtml}</div>
-    `;
+          <article class="post-card-featured reveal" itemscope itemtype="https://schema.org/BlogPosting">
+            <div class="post-meta">
+              ${badge(feat.author)}
+              <time class="post-date" datetime="${feat.date}" itemprop="datePublished">${fmt(feat.date)}</time>
+            </div>
+            <a href="${postUrl(feat)}" class="post-title-lg" itemprop="headline url">${fp.title}</a>
+            <p class="post-excerpt" itemprop="description">${fp.excerpt}</p>
+            <a href="${postUrl(feat)}" class="read-link" itemprop="url">Continue Reading &rarr;</a>
+          </article>
+          <div class="blog-side">${sideHtml}</div>
+        `;
         document.querySelectorAll('#blogLayout .reveal').forEach(el => ro.observe(el));
       } catch (e) { console.warn('Blog load failed:', e); }
     }
@@ -1550,22 +1667,17 @@
           if (p.url)
             links.push(`<a href="${p.url}" class="proj-link" target="_blank" rel="noopener">View &rarr;</a>`);
 
-          // First external/game link used as card href if available
-          const primaryHref = (p.type === 'web game' && p.webFile) ? `/${p.webFile}`
-            : (p.externalLinks && p.externalLinks[0]) ? p.externalLinks[0].url
-            : p.url || null;
-
           const descText = (p.description || '').split('\n')[0];
 
           const card = document.createElement('article');
-          card.className = 'proj-card reveal' + (primaryHref ? ' proj-clickable' : '');
+          card.className = 'proj-card reveal proj-clickable';
           card.style.transitionDelay = `${i * 0.06}s`;
+          card.style.cursor = 'pointer';
           card.dataset.a = (p.author || '').toLowerCase();
           card.dataset.s = sk;
           card.setAttribute('itemscope', '');
           card.setAttribute('itemtype', 'https://schema.org/CreativeWork');
-          if (primaryHref) card.style.cursor = 'pointer';
-          if (primaryHref) card.addEventListener('click', () => window.open(primaryHref, primaryHref.startsWith('/') ? '_self' : '_blank'));
+          card.addEventListener('click', () => openPanel(p, sc, sl));
           card.innerHTML = `
             <span class="proj-status ${sc}">${sl}</span>
             <h3 class="proj-name" itemprop="name">${p.title || p.name || 'Untitled'}</h3>
@@ -1618,6 +1730,61 @@
     loadBlog();
     loadProjects();
     loadTools();
+
+    /* ====== PROJECT PANEL ====== */
+    const overlay = document.getElementById('panelOverlay');
+    const drawer  = document.getElementById('panelDrawer');
+
+    function openPanel(p, sc, sl) {
+      document.getElementById('panelHeaderMeta').innerHTML = `
+        <div>
+          <span class="panel-status ${sc}">${sl}</span>
+          <div class="panel-title">${p.title || p.name || ''}</div>
+          <div class="panel-author">${p.author || ''}</div>
+          ${p.type ? `<div class="panel-type">${p.type}</div>` : ''}
+        </div>`;
+
+      const imgEl = document.getElementById('panelImage');
+      if (p.backgroundImage) {
+        imgEl.innerHTML = `<img src="${p.backgroundImage}" alt="${p.title}" class="panel-img">`;
+      } else {
+        const icons = { book: '📖', game: '🎲', comic: '🎨', 'web game': '🕹️', 'art book': '🖼️', "children's book": '📚' };
+        imgEl.innerHTML = `<div class="panel-img-placeholder">${icons[p.type] || '✦'}</div>`;
+      }
+
+      const links = [];
+      if (p.type === 'web game' && p.webFile)
+        links.push(`<a href="/${p.webFile}" class="panel-btn panel-btn-fill">Play Game</a>`);
+      if (p.externalLinks && p.externalLinks.length)
+        p.externalLinks.forEach((l, i) =>
+          links.push(`<a href="${l.url}" class="panel-btn ${i === 0 ? 'panel-btn-fill' : 'panel-btn-ghost'}" target="_blank" rel="noopener">${l.label}</a>`));
+      if (p.url)
+        links.push(`<a href="${p.url}" class="panel-btn panel-btn-ghost" target="_blank" rel="noopener">View Project</a>`);
+
+      document.getElementById('panelBody').innerHTML = `
+        <div class="panel-rule"></div>
+        <p class="panel-desc">${p.description || ''}</p>
+        ${p.extraNotes ? `<p class="panel-notes">${p.extraNotes}</p>` : ''}
+        ${links.length ? `<div class="panel-actions">${links.join('')}</div>` : ''}
+      `;
+
+      overlay.classList.add('open');
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      drawer.scrollTop = 0;
+    }
+
+    function closePanel() {
+      overlay.classList.remove('open');
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('panelClose').addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 
     /* ====== CHICKEN ====== */
     class Chicken {
@@ -1722,8 +1889,6 @@
     }
     new Chicken();
   </script>
-
-  <div id="chicken"></div>
 </body>
 
 </html>
