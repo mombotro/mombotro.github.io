@@ -1,7 +1,24 @@
 {
-  "lastUpdated": "2025-10-06T02:39:52.445Z",
-  "totalProjects": 13,
+  "lastUpdated": "2026-02-11T00:00:00.000Z",
+  "totalProjects": 14,
   "projects": [
+    {
+      "id": "orbital-salvage",
+      "title": "Orbital Salvage",
+      "author": "Juleah Miller",
+      "status": "completed",
+      "type": "web game",
+      "description": "Started as a single prompt — \"make a clicker spaceship building game with html\" — while making spaghetti. Vibed the whole thing via Claude Code on a 2011 Asus EEE Seashell netbook. One prompt became many, and somewhere along the way it turned into something much bigger than originally planned.",
+      "extraNotes": "Built with Claude Code on an ancient 2011 Asus EEE Seashell PC netbook. A testament to what you can vibe into existence.",
+      "platform": "HTML",
+      "progress": "",
+      "completedDate": "2026-02-11",
+      "estimatedCompletion": "",
+      "backgroundImage": "",
+      "webFile": "orbitalsalvagegame/",
+      "gameType": "Clicker / Space Builder",
+      "collaboration": false
+    },
     {
       "id": "mgeb44zqzcne8kuu7g",
       "title": "Witnesses: Seven Stories from the Margins of Scripture",

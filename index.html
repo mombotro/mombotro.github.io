@@ -847,9 +847,14 @@
     }
 
     .proj-links {
-      margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.75rem;
-      position: relative; z-index: 1;
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 1;
     }
+
     .proj-link {
       font-family: 'Oswald', sans-serif;
       font-size: 0.65rem;
@@ -860,23 +865,33 @@
       position: relative;
       z-index: 1;
     }
-    .proj-link:hover { color: #fff; }
+
+    .proj-link:hover {
+      color: #fff;
+    }
 
     /* ====== HIDDEN LINKS ====== */
-    .hidden-link { color: inherit; text-decoration: none; }
-    .hidden-link:hover { opacity: 0.6; }
+    .hidden-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hidden-link:hover {
+      opacity: 0.6;
+    }
 
     /* ====== CHICKEN ====== */
     #chicken {
       position: fixed;
-      width: 32px; height: 32px;
+      width: 32px;
+      height: 32px;
       background-image: url('assets/addon/chicken.PNG');
       background-repeat: no-repeat;
       image-rendering: pixelated;
       z-index: 9997;
       pointer-events: auto;
       cursor: pointer;
-      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.5));
+      filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.5));
     }
 
     /* ====== TOOLS & GAMES ====== */
@@ -1189,99 +1204,187 @@
 
     /* ====== PROJECT PANEL ====== */
     .panel-overlay {
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background: rgba(9, 15, 28, 0.7);
       z-index: 5000;
-      opacity: 0; pointer-events: none;
+      opacity: 0;
+      pointer-events: none;
       transition: opacity 0.3s;
     }
-    .panel-overlay.open { opacity: 1; pointer-events: all; }
+
+    .panel-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
 
     .panel-drawer {
-      position: fixed; top: 0; right: 0; bottom: 0;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
       width: min(520px, 100vw);
       background: var(--charcoal);
       z-index: 5001;
       overflow-y: auto;
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
     }
-    .panel-drawer.open { transform: translateX(0); }
+
+    .panel-drawer.open {
+      transform: translateX(0);
+    }
 
     .panel-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       padding: 1.75rem 1.75rem 0;
       gap: 1rem;
     }
+
     .panel-close {
-      background: none; border: 1px solid rgba(243,233,210,0.2);
-      color: rgba(243,233,210,0.6); cursor: pointer;
-      width: 36px; height: 36px; font-size: 1.2rem;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: all 0.2s;
+      background: none;
+      border: 1px solid rgba(243, 233, 210, 0.2);
+      color: rgba(243, 233, 210, 0.6);
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
     }
-    .panel-close:hover { border-color: var(--terra); color: var(--terra); }
+
+    .panel-close:hover {
+      border-color: var(--terra);
+      color: var(--terra);
+    }
 
     .panel-img {
-      width: 100%; max-height: 260px;
-      object-fit: cover; display: block;
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      display: block;
       margin-top: 1.5rem;
     }
+
     .panel-img-placeholder {
-      height: 120px; margin: 1.5rem 1.75rem 0;
+      height: 120px;
+      margin: 1.5rem 1.75rem 0;
       background: linear-gradient(135deg, var(--terra-dark), var(--terra));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.5rem; color: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: rgba(255, 255, 255, 0.2);
     }
 
-    .panel-body { padding: 1.5rem 1.75rem 2.5rem; flex: 1; }
+    .panel-body {
+      padding: 1.5rem 1.75rem 2.5rem;
+      flex: 1;
+    }
 
     .panel-status {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 0.18rem 0.55rem; display: inline-block; margin-bottom: 0.75rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      display: inline-block;
+      margin-bottom: 0.75rem;
     }
+
     .panel-title {
       font-family: 'Cormorant Garant', serif;
-      font-weight: 700; font-size: 1.6rem;
-      color: var(--adobe); line-height: 1.2;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--adobe);
+      line-height: 1.2;
       margin-bottom: 0.35rem;
     }
+
     .panel-author {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(243,233,210,0.35); margin-bottom: 0.4rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(243, 233, 210, 0.35);
+      margin-bottom: 0.4rem;
     }
+
     .panel-type {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.25rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
     }
+
     .panel-rule {
-      height: 1px; background: rgba(243,233,210,0.1); margin-bottom: 1.25rem;
+      height: 1px;
+      background: rgba(243, 233, 210, 0.1);
+      margin-bottom: 1.25rem;
     }
+
     .panel-desc {
-      font-size: 0.97rem; line-height: 1.75;
-      color: rgba(243,233,210,0.75);
-      white-space: pre-line; margin-bottom: 1.25rem;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: rgba(243, 233, 210, 0.75);
+      white-space: pre-line;
+      margin-bottom: 1.25rem;
     }
+
     .panel-notes {
-      font-size: 0.85rem; line-height: 1.6;
-      color: rgba(243,233,210,0.4);
-      font-style: italic; margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: rgba(243, 233, 210, 0.4);
+      font-style: italic;
+      margin-bottom: 1.5rem;
     }
-    .panel-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    .panel-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
     .panel-btn {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       padding: 0.6rem 1.2rem;
-      text-decoration: none; transition: all 0.2s;
+      text-decoration: none;
+      transition: all 0.2s;
     }
-    .panel-btn-fill { background: var(--terra); color: #fff; border: 2px solid var(--terra); }
-    .panel-btn-fill:hover { background: var(--terra-light); border-color: var(--terra-light); }
-    .panel-btn-ghost { background: transparent; color: var(--tq-light); border: 2px solid var(--tq-light); }
-    .panel-btn-ghost:hover { background: var(--tq-light); color: #fff; }
+
+    .panel-btn-fill {
+      background: var(--terra);
+      color: #fff;
+      border: 2px solid var(--terra);
+    }
+
+    .panel-btn-fill:hover {
+      background: var(--terra-light);
+      border-color: var(--terra-light);
+    }
+
+    .panel-btn-ghost {
+      background: transparent;
+      color: var(--tq-light);
+      border: 2px solid var(--tq-light);
+    }
+
+    .panel-btn-ghost:hover {
+      background: var(--tq-light);
+      color: #fff;
+    }
   </style>
 </head>
 
@@ -1342,7 +1445,8 @@
     <div class="hero-body">
       <p class="hero-eyebrow">The Creative Home of Alek &amp; Juleah Miller</p>
       <h1 class="hero-title">Azirona</h1>
-      <p class="hero-subtitle">a <a href="https://azirona.com/mom" class="hidden-link">mom</a>/<a href="https://azirona.com/dad" class="hidden-link">dad</a> pact to make games, comics &amp; books</p>
+      <p class="hero-subtitle">a <a href="https://azirona.com/mom" class="hidden-link">mom</a>/<a
+          href="https://azirona.com/dad" class="hidden-link">dad</a> pact to make games, comics &amp; books</p>
       <div class="hero-btns">
         <a href="#blog" class="btn-fill">Read the Blog</a>
         <a href="#work" class="btn-ghost">Explore Work</a>
@@ -1372,7 +1476,7 @@
       <div class="book-cta-wrap">
         <div class="book-price">$1+<span>Name Your Price</span></div>
         <a href="https://azirona.gumroad.com/l/Witnesses" class="btn-fill" target="_blank" rel="noopener"
-          aria-label="Download Witnesses on Gumroad">Download Free →</a>
+          aria-label="Download Witnesses on Gumroad">Download Now →</a>
       </div>
     </div>
   </section>
@@ -1526,7 +1630,8 @@
         </ul>
       </nav>
     </div>
-    <p class="footer-copy">&copy; <a href="https://azirona.com/flower-clouds" class="hidden-link"><span id="yr"></span></a> Alek &amp; Juleah Miller · Azirona</p>
+    <p class="footer-copy">&copy; <a href="https://azirona.com/flower-clouds" class="hidden-link"><span
+          id="yr"></span></a> Alek &amp; Juleah Miller · Azirona</p>
   </footer>
 
   <script>
@@ -1644,14 +1749,14 @@
         grid.innerHTML = '';
 
         const stMap = {
-          completed:        ['st-complete', 'Complete'],
-          complete:         ['st-complete', 'Complete'],
-          active:           ['st-active', 'Active'],
-          wip:              ['st-wip', 'In Progress'],
+          completed: ['st-complete', 'Complete'],
+          complete: ['st-complete', 'Complete'],
+          active: ['st-active', 'Active'],
+          wip: ['st-wip', 'In Progress'],
           'work-in-progress': ['st-wip', 'In Progress'],
-          planning:         ['st-wip', 'Planning'],
-          paused:           ['st-paused', 'Paused'],
-          hiatus:           ['st-paused', 'On Hiatus'],
+          planning: ['st-wip', 'Planning'],
+          paused: ['st-paused', 'Paused'],
+          hiatus: ['st-paused', 'On Hiatus'],
         };
 
         projs.forEach((p, i) => {
@@ -1733,7 +1838,7 @@
 
     /* ====== PROJECT PANEL ====== */
     const overlay = document.getElementById('panelOverlay');
-    const drawer  = document.getElementById('panelDrawer');
+    const drawer = document.getElementById('panelDrawer');
 
     function openPanel(p, sc, sl) {
       document.getElementById('panelHeaderMeta').innerHTML = `
@@ -1803,19 +1908,20 @@
         this.facingRight = true;
         this.jumpProgress = 0;
         this.animations = {
-          idle:    { frames: [0, 1], speed: 500 },
+          idle: { frames: [0, 1], speed: 500 },
           walking: { frames: [2, 3, 4, 5], speed: 150 },
           pecking: { frames: [6, 7], speed: 300 },
           jumping: { frames: [8, 9], speed: 100 }
         };
         this.updatePosition();
-        this.element.addEventListener('click', () => this.jump());
+        this.element.addEventListener('mouseenter', () => this.jump());
+        this.element.addEventListener('click', () => { window.location.href = '/starfighters'; });
         this.lastTime = performance.now();
         requestAnimationFrame(t => this.loop(t));
       }
       updatePosition() {
         this.element.style.left = this.x + 'px';
-        this.element.style.top  = this.y + 'px';
+        this.element.style.top = this.y + 'px';
       }
       updateSprite() {
         const frameX = this.currentFrame * 32;
@@ -1875,9 +1981,9 @@
             this.y += this.velocityY;
             this.facingRight = this.velocityX > 0;
             // Bounce off edges
-            if (this.x < 0)  { this.x = 0;  this.velocityX *= -1; }
-            if (this.x > window.innerWidth  - 32) { this.x = window.innerWidth  - 32; this.velocityX *= -1; }
-            if (this.y < 0)  { this.y = 0;  this.velocityY *= -1; }
+            if (this.x < 0) { this.x = 0; this.velocityX *= -1; }
+            if (this.x > window.innerWidth - 32) { this.x = window.innerWidth - 32; this.velocityX *= -1; }
+            if (this.y < 0) { this.y = 0; this.velocityY *= -1; }
             if (this.y > window.innerHeight - 32) { this.y = window.innerHeight - 32; this.velocityY *= -1; }
           }
         }
