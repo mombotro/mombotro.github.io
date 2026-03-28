@@ -337,6 +337,7 @@
       text-decoration: none;
       border: 2px solid var(--terra);
       transition: all 0.22s;
+      cursor: pointer;
     }
 
     .btn-fill:hover {
@@ -440,29 +441,13 @@
       max-width: 560px;
     }
 
-    .book-cover-placeholder {
+    .book-cover-img {
       width: 110px;
       height: 165px;
-      background: linear-gradient(135deg, var(--terra-dark), var(--terra));
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      object-fit: cover;
+      object-position: center top;
       flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .book-cover-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .book-cover-placeholder::after {
-      content: '✦';
-      font-size: 2rem;
-      color: rgba(255, 255, 255, 0.3);
+      display: block;
     }
 
     .book-cta-wrap {
@@ -1416,6 +1401,188 @@
       background: var(--tq-light);
       color: #fff;
     }
+
+    /* ====== BOOK SHOP PANEL ====== */
+    .bshop-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 15, 28, 0.82);
+      z-index: 6000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(6px);
+    }
+    .bshop-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .bshop-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(540px, 100vw);
+      background: var(--mesa);
+      z-index: 6001;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      border-left: 3px solid var(--terra);
+    }
+    .bshop-drawer.open {
+      transform: translateX(0);
+    }
+    .bshop-top {
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: var(--mesa);
+    }
+    .bshop-cover-img {
+      width: 100%;
+      display: block;
+      max-height: 340px;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .bshop-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(243, 233, 210, 0.25);
+      color: rgba(243, 233, 210, 0.7);
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .bshop-close:hover {
+      border-color: var(--terra);
+      color: var(--terra);
+    }
+    .bshop-body {
+      padding: 2rem 1.75rem 3rem;
+      flex: 1;
+    }
+    .bshop-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .bshop-title {
+      font-family: 'Cormorant Garant', serif;
+      font-weight: 700;
+      font-size: 2.1rem;
+      color: var(--adobe);
+      line-height: 1.05;
+      margin-bottom: 0.3rem;
+    }
+    .bshop-subtitle {
+      font-family: 'Cormorant Garant', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(243, 233, 210, 0.42);
+      line-height: 1.45;
+      margin-bottom: 0.6rem;
+    }
+    .bshop-author {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(243, 233, 210, 0.22);
+      margin-bottom: 1.5rem;
+    }
+    .bshop-rule {
+      height: 1px;
+      background: rgba(243, 233, 210, 0.07);
+      margin-bottom: 1.4rem;
+    }
+    .bshop-desc {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: rgba(243, 233, 210, 0.58);
+      margin-bottom: 2rem;
+    }
+    .bshop-editions-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(243, 233, 210, 0.22);
+      margin-bottom: 0.85rem;
+    }
+    .bshop-option {
+      border: 1px solid rgba(243, 233, 210, 0.08);
+      padding: 1.2rem 1.2rem 1rem;
+      margin-bottom: 0.85rem;
+      transition: border-color 0.2s;
+    }
+    .bshop-option:hover {
+      border-color: rgba(243, 233, 210, 0.15);
+    }
+    .bshop-opt-type {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.25rem;
+    }
+    .bshop-opt-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--adobe);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+    .bshop-opt-note {
+      font-size: 0.78rem;
+      color: rgba(243, 233, 210, 0.3);
+      font-style: italic;
+      margin-bottom: 0.85rem;
+      line-height: 1.5;
+    }
+    .bshop-stripe-wrap {
+      display: block;
+      /* Constrain the Stripe button's natural centering */
+      text-align: left;
+    }
+    .bshop-gumroad-btn {
+      display: block;
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.72rem 1rem;
+      background: var(--terra);
+      color: #fff;
+      border: 2px solid var(--terra);
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .bshop-gumroad-btn:hover {
+      background: var(--terra-light);
+      border-color: var(--terra-light);
+    }
+    .nav-cta {
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -1423,6 +1590,43 @@
 
   <!-- Chicken -->
   <div id="chicken"></div>
+
+  <!-- Book Shop Panel -->
+  <div class="bshop-overlay" id="bshopOverlay" aria-hidden="true"></div>
+  <aside class="bshop-drawer" id="bshopDrawer" role="dialog" aria-modal="true" aria-label="Get the Book, Witnesses" aria-hidden="true">
+    <div class="bshop-top">
+      <img src="assets/witnesses.jpg" alt="Witnesses book cover" class="bshop-cover-img">
+      <button class="bshop-close" id="bshopClose" aria-label="Close shop panel">✕</button>
+    </div>
+    <div class="bshop-body">
+      <p class="bshop-eyebrow">Featured Release</p>
+      <h2 class="bshop-title">Witnesses</h2>
+      <p class="bshop-subtitle">Seven Stories from the Margins of Scripture</p>
+      <p class="bshop-author">Alek Miller &nbsp;·&nbsp; Cover &amp; Layout by Juleah Miller</p>
+      <div class="bshop-rule"></div>
+      <p class="bshop-desc">Seven short stories exploring the lives of unnamed Biblical figures, servants, sailors, astrologers, and cupbearers, who touched Scripture and became part of the larger story. Faithful to the text, rich in imagination.</p>
+
+      <p class="bshop-editions-label">Choose Your Edition</p>
+
+      <div class="bshop-option">
+        <div class="bshop-opt-type">Print Edition</div>
+        <div class="bshop-opt-name">Hardcover Book</div>
+        <p class="bshop-opt-note">Premium hardcover, printed &amp; shipped via Lulu Press.</p>
+        <a href="https://buy.stripe.com/aFa7sK0yBgna9xc9Lj9Ve00" class="bshop-gumroad-btn" target="_blank" rel="noopener">
+          Buy on Stripe →
+        </a>
+      </div>
+
+      <div class="bshop-option">
+        <div class="bshop-opt-type">Digital Edition</div>
+        <div class="bshop-opt-name">PDF &amp; eBook</div>
+        <p class="bshop-opt-note">Instant download from Gumroad.</p>
+        <a href="https://azirona.gumroad.com/l/Witnesses" class="bshop-gumroad-btn" target="_blank" rel="noopener">
+          Download on Gumroad →
+        </a>
+      </div>
+    </div>
+  </aside>
 
   <!-- Project Panel -->
   <div class="panel-overlay" id="panelOverlay" aria-hidden="true"></div>
@@ -1448,8 +1652,7 @@
       <li><a href="#newsletter">Newsletter</a></li>
       <li><a href="mailto:alekmiller@pm.me">Contact</a></li>
     </ul>
-    <a href="https://azirona.gumroad.com/l/Witnesses" class="nav-cta" target="_blank" rel="noopener"
-      aria-label="Download Witnesses book">Get the Book</a>
+    <button class="nav-cta" id="navGetBook" aria-label="Get the Witnesses book">Get the Book</button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
   </nav>
 
@@ -1496,19 +1699,17 @@
   <!-- ====== FEATURED BOOK ====== -->
   <section class="book-band" aria-label="Featured book">
     <div class="book-band-inner">
-      <div class="book-cover-placeholder" aria-hidden="true"></div>
+      <img src="assets/witnesses.jpg" alt="Witnesses book cover" class="book-cover-img">
       <div>
         <p class="book-label">Featured Release</p>
         <h2 class="book-title">Witnesses: Seven Stories<br>from the Margins of Scripture</h2>
         <p class="book-author">Alek Miller &nbsp;·&nbsp; Cover &amp; Layout by Juleah Miller</p>
-        <p class="book-desc">Seven short stories exploring the lives of unnamed Biblical figures — servants, sailors,
-          astrologers, and cupbearers — who touched Scripture and became part of the larger story. Faithful to the text,
+        <p class="book-desc">Seven short stories exploring the lives of unnamed Biblical figures, servants, sailors,
+          astrologers, and cupbearers, who touched Scripture and became part of the larger story. Faithful to the text,
           rich in imagination.</p>
       </div>
       <div class="book-cta-wrap">
-        <div class="book-price">$1+<span>Name Your Price</span></div>
-        <a href="https://azirona.gumroad.com/l/Witnesses" class="btn-fill" target="_blank" rel="noopener"
-          aria-label="Download Witnesses on Gumroad">Download Now →</a>
+        <button class="btn-fill" id="bandGetBook" aria-label="Get the Witnesses book">Get the Book →</button>
       </div>
     </div>
   </section>
@@ -1565,6 +1766,9 @@
 
       <div class="filter-row" role="group" aria-label="Filter projects">
         <button class="filt on" data-f="all">All</button>
+        <button class="filt" data-f="books">Books</button>
+        <button class="filt" data-f="games">Games</button>
+        <button class="filt" data-f="comics">Comics</button>
         <button class="filt" data-f="alek">Alek</button>
         <button class="filt" data-f="juleah">Juleah</button>
         <button class="filt" data-f="completed">Completed</button>
@@ -1587,7 +1791,6 @@
 
   <!-- ====== TOOLS & GAMES ====== -->
   <section id="tools" class="section" aria-labelledby="tools-heading">
-    <p class="sec-eyebrow">Made by Hand</p>
     <h2 class="sec-title" id="tools-heading">Tools &amp; Games</h2>
     <div class="sec-rule"></div>
 
@@ -1828,6 +2031,7 @@
           card.style.cursor = 'pointer';
           card.dataset.a = (p.author || '').toLowerCase();
           card.dataset.s = sk;
+          card.dataset.t = (p.type || '').toLowerCase();
           card.setAttribute('itemscope', '');
           card.setAttribute('itemtype', 'https://schema.org/CreativeWork');
           card.addEventListener('click', () => openPanel(p, sc, sl));
@@ -1859,11 +2063,17 @@
             btn.classList.add('on');
             const f = btn.dataset.f;
             const activeStatuses = ['active', 'work-in-progress', 'wip', 'planning'];
+            const bookTypes = ['book', 'art book', "children's book"];
+            const gameTypes = ['game', 'web game'];
+            const comicTypes = ['comic'];
             document.querySelectorAll('.proj-card').forEach(c => {
               if (f === 'all') { c.style.display = ''; return; }
               if (f === 'alek') { c.style.display = c.dataset.a.includes('alek') ? '' : 'none'; return; }
               if (f === 'juleah') { c.style.display = c.dataset.a.includes('juleah') ? '' : 'none'; return; }
               if (f === 'active') { c.style.display = activeStatuses.includes(c.dataset.s) ? '' : 'none'; return; }
+              if (f === 'books') { c.style.display = bookTypes.includes(c.dataset.t) ? '' : 'none'; return; }
+              if (f === 'games') { c.style.display = gameTypes.includes(c.dataset.t) ? '' : 'none'; return; }
+              if (f === 'comics') { c.style.display = comicTypes.includes(c.dataset.t) ? '' : 'none'; return; }
               c.style.display = (c.dataset.s === f) ? '' : 'none';
             });
           });
@@ -1930,8 +2140,8 @@
       if (p.type === 'web game' && p.webFile)
         links.push(`<a href="/${p.webFile}" class="panel-btn panel-btn-fill">Play Game</a>`);
       if (p.externalLinks && p.externalLinks.length)
-        p.externalLinks.forEach((l, i) =>
-          links.push(`<a href="${l.url}" class="panel-btn ${i === 0 ? 'panel-btn-fill' : 'panel-btn-ghost'}" target="_blank" rel="noopener">${l.label}</a>`));
+        p.externalLinks.forEach(l =>
+          links.push(`<a href="${l.url}" class="panel-btn panel-btn-fill" target="_blank" rel="noopener">${l.label}</a>`));
       if (p.url)
         links.push(`<a href="${p.url}" class="panel-btn panel-btn-ghost" target="_blank" rel="noopener">View Project</a>`);
 
@@ -1958,7 +2168,35 @@
 
     document.getElementById('panelClose').addEventListener('click', closePanel);
     overlay.addEventListener('click', closePanel);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+    /* ====== BOOK SHOP PANEL ====== */
+    const bshopOverlay = document.getElementById('bshopOverlay');
+    const bshopDrawer = document.getElementById('bshopDrawer');
+
+    function openBookShop() {
+      bshopOverlay.classList.add('open');
+      bshopDrawer.classList.add('open');
+      bshopOverlay.setAttribute('aria-hidden', 'false');
+      bshopDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBookShop() {
+      bshopOverlay.classList.remove('open');
+      bshopDrawer.classList.remove('open');
+      bshopOverlay.setAttribute('aria-hidden', 'true');
+      bshopDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('bshopClose').addEventListener('click', closeBookShop);
+    bshopOverlay.addEventListener('click', closeBookShop);
+    document.getElementById('navGetBook').addEventListener('click', openBookShop);
+    document.getElementById('bandGetBook').addEventListener('click', openBookShop);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closePanel(); closeBookShop(); }
+    });
 
     /* ====== CHICKEN ====== */
     class Chicken {
