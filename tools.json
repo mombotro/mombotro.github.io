@@ -1,12 +1,19 @@
 {
-  "lastUpdated": "2025-10-18T04:17:18.191Z",
-  "totalTools": 2,
+  "lastUpdated": "2026-03-30T00:00:00.000Z",
+  "totalTools": 3,
   "tools": [
     {
       "id": "pixel_printout",
       "title": "Pixel Printout",
       "description": "The Analog Pixel Art Printout tool generates customizable pixel grids (8×8 to 128×128) that automatically scale to fit your paper size and print at 300 DPI for high-quality hand-coloring.",
       "url": "https://azirona.com/pixel-printout",
+      "category": "Utility"
+    },
+    {
+      "id": "maze_template",
+      "title": "Maze Template",
+      "description": "Create lane grids to draw over for designing labyrinths and mazes.",
+      "url": "https://azirona.com/maze-template/",
       "category": "Utility"
     },
     {
