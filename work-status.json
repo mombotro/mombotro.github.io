@@ -10,13 +10,13 @@
       "type": "web game",
       "description": "Started as a single prompt — \"make a clicker spaceship building game with html\" — while making spaghetti. Vibed the whole thing via Claude Code on a 2011 Asus EEE Seashell netbook. One prompt became many, and somewhere along the way it turned into something much bigger than originally planned.",
       "extraNotes": "Built with Claude Code on an ancient 2011 Asus EEE Seashell PC netbook. A testament to what you can vibe into existence.",
-      "platform": "HTML",
-      "progress": "",
+      "backgroundImage": "",
       "completedDate": "2026-02-11",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "HTML",
       "webFile": "orbitalsalvagegame/",
       "gameType": "Clicker / Space Builder",
+      "progress": "",
       "collaboration": false
     },
     {
@@ -27,17 +27,23 @@
       "type": "book",
       "description": "While \"all Scripture is God-breathed,\" room remains for the stories of people not explicitly mentioned or deeply considered. A servant of an Old Testament patriarch; the keeper of beasts in the vast Persian empire; the baker and cupbearer of a great Egyptian Pharoah; a crewman on the ship that encountered a sea creature from the deep; and more. All of these individuals touched verses in the Bible and became part of the larger story.\nIn \"Witnesses,\" these people are explored. Remaining accurate to Scripture, these short stories embellish details in ways that do not contradict Holy Writ. Each small tale is meant to whet the reader's appetite, exciting them to go to the related passage in Scripture, and read the story with its context in whole.\n\nQadash:\nNomads don't carry what they can't use. Naamah doesn't see the prudence in bringing along something that sees no use and serves no apparent purpose. What possible reason could it be set aside for?\n\nAshianeh:\nBruzantes knows what beasts do. He can predict how they'll act, especially when famished. Narrowly escaping death is just another day in the life for the near-feral man. But it is nobles who employ him whom he fears most of all.\n\nNahar:\nWanderlust is a powerful narcotic. No one has a better view for it than Ioannis, from high up in the crow's nest of a trireme ship. Marvelous as his fledging nation of Greece is, it cannot compare to the wondrous sights on the open sea.\n\nLehavah:\nRain. The great life-giver. Take that away, and people die. People will kill to have the rain return. Etakkama's drive to madness is swift and unstoppable when his life is on the line.\n\nMashqeh:\nIntrigue at the royal court is the highest-stakes game ever played. Paser overbid. It's going to take intervention on a divine level to rescue him from his own machinations.\n\nPolus:\nNever mess with beings from the spiritual realm. They have a way of humbling even - perhaps especially - the strongest.\n\nSaoshyant:\nThe astrologers of old were serious and skilled in their arts. They commanded respect and treated their role with utmost importance. The heavens hide many secrets; Zaif helps pull the curtain up on them. He records data, follows patterns, and leaves room for error. He doesn't commit to what he's not fully confident in. So when the stars literally align for him, how will he respond?",
       "extraNotes": "Cover art, layout, and publishing by Juleah Miller",
-      "platform": "",
-      "progress": "",
+      "backgroundImage": "assets/witnesses.jpg",
       "completedDate": "2025-07-26",
       "estimatedCompletion": "",
-      "backgroundImage": "assets/witnesses.jpg",
+      "platform": "",
       "webFile": "",
       "gameType": "",
+      "progress": "",
       "collaboration": true,
       "externalLinks": [
-        { "label": "Buy Hardcover", "url": "https://buy.stripe.com/aFa7sK0yBgna9xc9Lj9Ve00" },
-        { "label": "Download on Gumroad", "url": "https://azirona.gumroad.com/l/Witnesses" }
+        {
+          "label": "Buy Hardcover",
+          "url": "https://buy.stripe.com/aFa7sK0yBgna9xc9Lj9Ve00"
+        },
+        {
+          "label": "Download on Gumroad",
+          "url": "https://azirona.gumroad.com/l/Witnesses"
+        }
       ]
     },
     {
@@ -47,15 +53,15 @@
       "status": "completed",
       "type": "web game",
       "description": "You are a blacksmith, forging your legacy over 50 years.",
-      "platform": "HTML",
-      "progress": "",
+      "extraNotes": "Created with Gemini Canvas",
+      "backgroundImage": "",
       "completedDate": "2025-04-04",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "HTML",
       "webFile": "games/hephaestus.html",
       "gameType": "Rogue-lite clicker",
-      "collaboration": false,
-      "extraNotes": "Created with Gemini Canvas"
+      "progress": "",
+      "collaboration": false
     },
     {
       "id": "mfxflezrs388wdj4eua",
@@ -64,15 +70,15 @@
       "status": "completed",
       "type": "game",
       "description": "One on one tank battles with custom tank dice. Match tank positions to score hits on your opponent's tank.\n\nMy spin on the classic game, Pass the Pigs.",
-      "platform": "Boardgame",
-      "progress": "",
+      "extraNotes": "Rules by Alek and Juleah\nTank dice and board design by Juleah",
+      "backgroundImage": "assets/sendit.webp",
       "completedDate": "2024-03-17",
       "estimatedCompletion": "",
-      "backgroundImage": "assets/sendit.webp",
+      "platform": "Boardgame",
       "webFile": "",
       "gameType": "",
-      "collaboration": true,
-      "extraNotes": "Rules by Alek and Juleah\nTank dice and board design by Juleah"
+      "progress": "",
+      "collaboration": true
     },
     {
       "id": "mgebw3m3viibyacbtyq",
@@ -82,13 +88,13 @@
       "type": "game",
       "description": "A hoard of treasure sits at the center of a tall, tall stone. Dragons approach, but their path gets more and more treacherous with each step closer. Tensions will rise and fireballs will fly as drakes nearly reach the plunder! It's Dragon's Roll!\n\nFor ages 2-8",
       "extraNotes": "Game rules by Alek Miller\nDice design by Juleah Miller",
-      "platform": "",
-      "progress": "",
+      "backgroundImage": "",
       "completedDate": "2023-01-15",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "",
       "webFile": "",
       "gameType": "",
+      "progress": "",
       "collaboration": true
     },
     {
@@ -99,13 +105,13 @@
       "type": "game",
       "description": "The stars lead to wisdom... and madness. Connect stars into constellations, then blot out the stars of your rival astrologers to foil their plans. Maintain the most coherent stellar structure you can come up with, but beware single points of weakness. Your overreliance will be your undoing.",
       "extraNotes": "Game rules design by Juleah Miller",
-      "platform": "",
-      "progress": "",
+      "backgroundImage": "",
       "completedDate": "2022-05-07",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "",
       "webFile": "",
       "gameType": "",
+      "progress": "",
       "collaboration": true
     },
     {
@@ -116,13 +122,13 @@
       "type": "game",
       "description": "Can you do better than the Kings of Israel? Tabletop boardgame in progress",
       "extraNotes": "",
-      "platform": "",
-      "progress": "35%",
+      "backgroundImage": "",
       "completedDate": "",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "",
       "webFile": "",
       "gameType": "",
+      "progress": "35%",
       "collaboration": false
     },
     {
@@ -132,15 +138,15 @@
       "status": "work-in-progress",
       "type": "game",
       "description": "Tabletop hex based battles",
-      "platform": "Boardgame",
-      "progress": "75%",
+      "extraNotes": "Art and assets by Juleah",
+      "backgroundImage": "",
       "completedDate": "",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "Boardgame",
       "webFile": "",
       "gameType": "",
-      "collaboration": true,
-      "extraNotes": "Art and assets by Juleah"
+      "progress": "75%",
+      "collaboration": true
     },
     {
       "id": "mgebkrw3efo6dl65fqb",
@@ -150,13 +156,13 @@
       "type": "book",
       "description": "Bible stories from the viewpoint of the animals.",
       "extraNotes": "",
-      "platform": "",
-      "progress": "",
+      "backgroundImage": "",
       "completedDate": "",
       "estimatedCompletion": "Summer 2026",
-      "backgroundImage": "",
+      "platform": "",
       "webFile": "",
       "gameType": "",
+      "progress": "",
       "collaboration": false
     },
     {
@@ -166,15 +172,15 @@
       "status": "work-in-progress",
       "type": "web game",
       "description": "Collaboration with oldest son and his dungeon designs. Based off Kirby.",
-      "platform": "Pico-8",
-      "progress": "75%",
+      "extraNotes": "Made with Pico-8 and Claude Code.",
+      "backgroundImage": "",
       "completedDate": "2025-09-24",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "Pico-8",
       "webFile": "games/kirbo/kirbo.html",
       "gameType": "Side scroller",
-      "collaboration": true,
-      "extraNotes": "Made with Pico-8 and Claude Code."
+      "progress": "75%",
+      "collaboration": true
     },
     {
       "id": "sample-2",
@@ -183,21 +189,21 @@
       "status": "completed",
       "type": "comic",
       "description": "A lone hiker falls into an abandoned mineshaft. Pitch black, and no way out, he navigates the maze of tunnels from a bygone era and battles his mind as it creates monsters out of the endless darkness and silence. Or is something actually following him through the mine?",
-      "platform": "Webtoon",
-      "progress": "",
+      "extraNotes": "Hand drawn\nDigital watercolor",
+      "backgroundImage": "",
       "completedDate": "2020-06-21",
       "estimatedCompletion": "",
-      "backgroundImage": "",
+      "platform": "Webtoon",
       "webFile": "",
       "gameType": "",
+      "progress": "",
       "collaboration": false,
       "externalLinks": [
         {
           "label": "Read on Webtoons",
           "url": "https://www.webtoons.com/en/canvas/liminal-b/list?title_no=443514"
         }
-      ],
-      "extraNotes": "Hand drawn\nDigital watercolor"
+      ]
     },
     {
       "id": "mfyd6k1rsfuh5lii5pr",
@@ -207,13 +213,13 @@
       "type": "art book",
       "description": "Furnish your mind with beauty anywhere you go with this portable poem. The poem is by Cecil F. Alexander, but the illustrations are by me. I made this for my son because he loves being sung to, and his big version of the book is too old to travel around with.",
       "extraNotes": "Painted in Rebelle 5",
-      "platform": "Gumroad",
-      "progress": "",
+      "backgroundImage": "assets/bright-beautiful.webp",
       "completedDate": "2020-03-21",
       "estimatedCompletion": "",
-      "backgroundImage": "assets/bright-beautiful.webp",
+      "platform": "Gumroad",
       "webFile": "",
       "gameType": "",
+      "progress": "",
       "collaboration": false,
       "externalLinks": [
         {
@@ -229,21 +235,21 @@
       "status": "completed",
       "type": "game",
       "description": "Blackjack, on steroids. 1-4 players\n\nHit up to 7 cards, roll dice equal to the number of cards in your wager, and attempt to surpass the sum of your cards' value with the sum of your dice roll. Win, and you collect points! But the higher value you wager, the harder it will be to win the dice roll.\n\nNab the Cubes and Tiles before other players. If they win more points than there are Cubes or Tiles, they have to ROUND DOWN!\n\nTiles multiply the final score! HUGE NUMBERS!!\n\nPlayer with the highest score WINS!",
-      "platform": "Itch.io",
-      "progress": "",
+      "extraNotes": "Art by Juleah",
+      "backgroundImage": "assets/rounddown.jpg",
       "completedDate": "",
       "estimatedCompletion": "",
-      "backgroundImage": "assets/rounddown.jpg",
+      "platform": "Itch.io",
       "webFile": "",
       "gameType": "",
+      "progress": "",
       "collaboration": false,
       "externalLinks": [
         {
           "label": "View on Itch.io",
           "url": "https://azirona-games.itch.io/round-down"
         }
-      ],
-      "extraNotes": "Art by Juleah"
+      ]
     },
     {
       "id": "sample-1",
@@ -252,18 +258,65 @@
       "status": "completed",
       "type": "children's book",
       "description": "Learn primary colors and counting with balloons.",
-      "platform": "Lulu",
-      "collaboration": false,
+      "extraNotes": "",
       "backgroundImage": "assets/my-balloons.jpg",
-      "progress": "",
       "completedDate": "2020-07-08",
       "estimatedCompletion": "",
+      "platform": "Lulu",
       "webFile": "",
       "gameType": "",
+      "progress": "",
+      "collaboration": false,
       "externalLinks": [
         {
           "label": "Purchase at Lulu",
           "url": "https://www.lulu.com/shop/juleah-miller/my-balloons/paperback/product-njvn4r.html"
+        }
+      ]
+    },
+    {
+      "id": "tetro-draw",
+      "title": "Tetro-Draw",
+      "author": "Juleah Miller",
+      "status": "completed",
+      "type": "web game",
+      "description": "My children have a little Tetris game box that lives in the back of the car. When they play it, they treat it like an art tool. \"Look what I drew, Mommy!\" This version of Tetris is laid back. No descending threat. Move the pieces down into place at your own pace and fill the whole screen or draw cool pictures with it.",
+      "extraNotes": "",
+      "backgroundImage": "",
+      "completedDate": "2026-04-25",
+      "estimatedCompletion": "",
+      "platform": "Web",
+      "webFile": "",
+      "gameType": "Drawing Tool",
+      "progress": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "Play now",
+          "url": "https://azirona.com/tetro-draw/"
+        }
+      ]
+    },
+    {
+      "id": "bee-game",
+      "title": "PollinHaters",
+      "author": "Juleah Miller",
+      "status": "work-in-progress",
+      "type": "web game",
+      "description": "Bee-type survivor game alpha. In dev. Currently very playable. Adding new content all the time.\n\nBest game ever! - my son",
+      "extraNotes": "",
+      "backgroundImage": "",
+      "completedDate": "",
+      "estimatedCompletion": "Summer 2026",
+      "platform": "Web",
+      "webFile": "",
+      "gameType": "Survivors-type",
+      "progress": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "Play Now",
+          "url": "https://azirona.com/pollinhaters/"
         }
       ]
     }
