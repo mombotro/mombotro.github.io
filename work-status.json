@@ -3,23 +3,6 @@
   "totalProjects": 14,
   "projects": [
     {
-      "id": "orbital-salvage",
-      "title": "Orbital Salvage",
-      "author": "Juleah Miller",
-      "status": "completed",
-      "type": "web game",
-      "description": "Started as a single prompt — \"make a clicker spaceship building game with html\" — while making spaghetti. Vibed the whole thing via Claude Code on a 2011 Asus EEE Seashell netbook. One prompt became many, and somewhere along the way it turned into something much bigger than originally planned.",
-      "extraNotes": "Built with Claude Code on an ancient 2011 Asus EEE Seashell PC netbook. A testament to what you can vibe into existence.",
-      "backgroundImage": "",
-      "completedDate": "2026-02-11",
-      "estimatedCompletion": "",
-      "platform": "HTML",
-      "webFile": "orbitalsalvagegame/",
-      "gameType": "Clicker / Space Builder",
-      "progress": "",
-      "collaboration": false
-    },
-    {
       "id": "mgeb44zqzcne8kuu7g",
       "title": "Witnesses: Seven Stories from the Margins of Scripture",
       "author": "Alek Miller",
@@ -43,6 +26,69 @@
         {
           "label": "Download on Gumroad",
           "url": "https://azirona.gumroad.com/l/Witnesses"
+        }
+      ]
+    },
+    {
+      "id": "orbital-salvage",
+      "title": "Orbital Salvage",
+      "author": "Juleah Miller",
+      "status": "completed",
+      "type": "web game",
+      "description": "Started as a single prompt — \"make a clicker spaceship building game with html\" — while making spaghetti. Vibed the whole thing via Claude Code on a 2011 Asus EEE Seashell netbook. One prompt became many, and somewhere along the way it turned into something much bigger than originally planned.",
+      "extraNotes": "Built with Claude Code on an ancient 2011 Asus EEE Seashell PC netbook. A testament to what you can vibe into existence.",
+      "backgroundImage": "",
+      "completedDate": "2026-02-11",
+      "estimatedCompletion": "",
+      "platform": "HTML",
+      "webFile": "orbitalsalvagegame/",
+      "gameType": "Clicker / Space Builder",
+      "progress": "",
+      "collaboration": false
+    },
+    {
+      "id": "bee-game",
+      "title": "PollinHaters",
+      "author": "Juleah Miller",
+      "status": "work-in-progress",
+      "type": "web game",
+      "description": "Bee-type survivor game alpha. In dev. Currently very playable. Adding new content all the time.\n\nBest game ever! - my son",
+      "extraNotes": "",
+      "backgroundImage": "",
+      "completedDate": "",
+      "estimatedCompletion": "Summer 2026",
+      "platform": "Web",
+      "webFile": "",
+      "gameType": "Survivors-type",
+      "progress": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "Play Now",
+          "url": "https://azirona.com/pollinhaters/"
+        }
+      ]
+    },
+    {
+      "id": "tetro-draw",
+      "title": "Tetro-Draw",
+      "author": "Juleah Miller",
+      "status": "completed",
+      "type": "web game",
+      "description": "My children have a little Tetris game box that lives in the back of the car. When they play it, they treat it like an art tool. \"Look what I drew, Mommy!\" This version of Tetris is laid back. No descending threat. Move the pieces down into place at your own pace and fill the whole screen or draw cool pictures with it.",
+      "extraNotes": "",
+      "backgroundImage": "",
+      "completedDate": "2026-04-25",
+      "estimatedCompletion": "",
+      "platform": "Web",
+      "webFile": "",
+      "gameType": "Drawing Tool",
+      "progress": "",
+      "collaboration": false,
+      "externalLinks": [
+        {
+          "label": "Play now",
+          "url": "https://azirona.com/tetro-draw/"
         }
       ]
     },
@@ -271,52 +317,6 @@
         {
           "label": "Purchase at Lulu",
           "url": "https://www.lulu.com/shop/juleah-miller/my-balloons/paperback/product-njvn4r.html"
-        }
-      ]
-    },
-    {
-      "id": "tetro-draw",
-      "title": "Tetro-Draw",
-      "author": "Juleah Miller",
-      "status": "completed",
-      "type": "web game",
-      "description": "My children have a little Tetris game box that lives in the back of the car. When they play it, they treat it like an art tool. \"Look what I drew, Mommy!\" This version of Tetris is laid back. No descending threat. Move the pieces down into place at your own pace and fill the whole screen or draw cool pictures with it.",
-      "extraNotes": "",
-      "backgroundImage": "",
-      "completedDate": "2026-04-25",
-      "estimatedCompletion": "",
-      "platform": "Web",
-      "webFile": "",
-      "gameType": "Drawing Tool",
-      "progress": "",
-      "collaboration": false,
-      "externalLinks": [
-        {
-          "label": "Play now",
-          "url": "https://azirona.com/tetro-draw/"
-        }
-      ]
-    },
-    {
-      "id": "bee-game",
-      "title": "PollinHaters",
-      "author": "Juleah Miller",
-      "status": "work-in-progress",
-      "type": "web game",
-      "description": "Bee-type survivor game alpha. In dev. Currently very playable. Adding new content all the time.\n\nBest game ever! - my son",
-      "extraNotes": "",
-      "backgroundImage": "",
-      "completedDate": "",
-      "estimatedCompletion": "Summer 2026",
-      "platform": "Web",
-      "webFile": "",
-      "gameType": "Survivors-type",
-      "progress": "",
-      "collaboration": false,
-      "externalLinks": [
-        {
-          "label": "Play Now",
-          "url": "https://azirona.com/pollinhaters/"
         }
       ]
     }
