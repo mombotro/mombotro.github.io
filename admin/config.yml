@@ -2,8 +2,7 @@ backend:
   name: github
   repo: mombotro/mombotro.github.io
   branch: master
-  auth_type: pkce
-  app_id: Ov23liLey50N3ioMgqJm
+  base_url: https://azirona-admin.juleah.workers.dev
 
 media_folder: assets
 public_folder: assets
