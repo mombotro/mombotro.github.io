@@ -1,0 +1,150 @@
+backend:
+  name: github
+  repo: mombotro/mombotro.github.io
+  branch: master
+  auth_type: pkce
+  app_id: Ov23liLey50N3ioMgqJm
+
+media_folder: assets
+public_folder: assets
+
+collections:
+  - name: works
+    label: Creative Works
+    files:
+      - name: works
+        label: Works
+        file: work-status.json
+        fields:
+          - label: Last Updated
+            name: lastUpdated
+            widget: datetime
+          - label: Total Projects
+            name: totalProjects
+            widget: number
+            value_type: int
+          - label: Projects
+            name: projects
+            widget: list
+            summary: "{{fields.title}} — {{fields.author}}"
+            fields:
+              - label: ID
+                name: id
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Author
+                name: author
+                widget: select
+                options:
+                  - Alek Miller
+                  - Juleah Miller
+                  - Alek & Juleah Miller
+              - label: Status
+                name: status
+                widget: select
+                options:
+                  - completed
+                  - work-in-progress
+                  - planning
+                  - paused
+              - label: Type
+                name: type
+                widget: select
+                options:
+                  - book
+                  - web game
+                  - game
+                  - comic
+                  - art book
+                  - children's book
+              - label: Description
+                name: description
+                widget: text
+              - label: Extra Notes
+                name: extraNotes
+                widget: text
+                required: false
+              - label: Background Image
+                name: backgroundImage
+                widget: string
+                required: false
+              - label: Completed Date
+                name: completedDate
+                widget: string
+                required: false
+                hint: "YYYY-MM-DD format, or leave blank"
+              - label: Estimated Completion
+                name: estimatedCompletion
+                widget: string
+                required: false
+                hint: "Human-readable, e.g. Summer 2026"
+              - label: Platform
+                name: platform
+                widget: string
+                required: false
+              - label: Web File
+                name: webFile
+                widget: string
+                required: false
+                hint: "Path to game HTML file, e.g. games/mygame.html"
+              - label: Game Type
+                name: gameType
+                widget: string
+                required: false
+              - label: Progress
+                name: progress
+                widget: string
+                required: false
+              - label: Collaboration
+                name: collaboration
+                widget: boolean
+                default: false
+              - label: External Links
+                name: externalLinks
+                widget: list
+                required: false
+                fields:
+                  - label: Label
+                    name: label
+                    widget: string
+                    hint: "e.g. Buy on Gumroad"
+                  - label: URL
+                    name: url
+                    widget: string
+
+  - name: tools
+    label: Tools
+    files:
+      - name: tools
+        label: Tools
+        file: tools.json
+        fields:
+          - label: Last Updated
+            name: lastUpdated
+            widget: datetime
+          - label: Total Tools
+            name: totalTools
+            widget: number
+            value_type: int
+          - label: Tools
+            name: tools
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - label: ID
+                name: id
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: URL
+                name: url
+                widget: string
+              - label: Category
+                name: category
+                widget: string
