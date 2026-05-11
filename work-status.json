@@ -48,12 +48,12 @@
     },
     {
       "id": "bee-game",
-      "title": "Pollen Haters",
+      "title": "Pollin Haters",
       "author": "Juleah Miller",
       "status": "work-in-progress",
       "type": "web game",
-      "description": "Bee-type survivor game alpha. In dev. Currently very playable. Adding new content all the time.\n\nBest game ever! - my son",
-      "extraNotes": "",
+      "description": "Bee-type survivor game alpha. In dev. Currently very playable. Adding new content all the time. Currently filled with AI-gen assets while I work on art style.\n\nBest game ever! - my son",
+      "extraNotes": "Will swap to my own art when done. The bee is mine though.",
       "backgroundImage": "",
       "completedDate": "",
       "estimatedCompletion": "Summer 2026",
@@ -65,7 +65,7 @@
       "externalLinks": [
         {
           "label": "Play Now",
-          "url": "https://azirona.com/pollenhaters/"
+          "url": "https://azirona.com/pollinhaters/"
         }
       ]
     },
