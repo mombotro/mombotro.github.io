@@ -70,10 +70,15 @@ body {
     color: var(--color-link-visited);
 }
 
-/* Links Section */
-.links-section {
+/* Construction Notice */
+.construction-notice {
     top: var(--spacing-lg);
     left: var(--spacing-lg);
+}
+
+.construction-notice p {
+    margin: 0;
+    font-size: var(--font-size-md);
 }
 
 /* Telegram Feed */
@@ -267,7 +272,157 @@ body {
 
 #farm-stand {
     bottom: 100px;
-    right: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 100px;
+}
+
+/* Room Modal */
+.room-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-modal.active {
+    display: flex;
+}
+
+.room-modal-content {
+    position: relative;
+    width: 75%;
+    height: 75%;
+    background: var(--color-white-transparent);
+    border: 2px dashed var(--color-brown);
+    padding: var(--spacing-lg);
+    box-sizing: border-box;
+    overflow: auto;
+    max-width: 1200px;
+    max-height: 800px;
+}
+
+.room-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--color-brown);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.room-modal-close:hover {
+    color: var(--color-brown-dark);
+}
+
+.room-content {
+    margin-top: 20px;
+}
+
+.room-content h1 {
+    margin-top: 0;
+    color: var(--color-brown);
+    border-bottom: 2px dashed var(--color-brown);
+    padding-bottom: 10px;
+}
+
+.room-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.room-content li {
+    margin: 15px 0;
+    padding: 10px;
+    background: var(--color-brown-bg);
+    border-left: 3px solid var(--color-brown);
+    padding-left: 15px;
+}
+
+.room-content p {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.room-content a {
+    color: var(--color-link);
+    text-decoration: underline;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.room-content a:visited {
+    color: var(--color-link-visited);
+}
+
+.room-content img {
+    max-width: 100%;
+    height: 500px;
+    display: block;
+}
+
+/* Gallery Grid */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery img {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    border: 1px solid #ccc;
+}
+
+/* Image Lightbox */
+.image-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.image-lightbox.active {
+    display: flex;
+}
+
+.image-lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#barn {
+    top: 70px;
+    left: var(--spacing-lg);
     width: 150px;
     height: 100px;
 }

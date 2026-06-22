@@ -192,10 +192,10 @@ class ComicReader {
         const text = document.getElementById('mode-text');
 
         if (this.mode === 'webtoon') {
-            icon.textContent = '📜';
+            icon.textContent = '[SCROLL]';
             text.textContent = 'Webtoon';
         } else {
-            icon.textContent = '📖';
+            icon.textContent = '[MODE]';
             text.textContent = 'Paged';
         }
     }

@@ -7,24 +7,11 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <div class="links-section panel">
-        <h2>mom's stuff</h2>
-        <ul>
-            <li><a href="https://t.me/mombotpro">mombot telegram feed</a></li>
-            <li><a href="https://www.webtoons.com/en/canvas/liminal-b/list?title_no=443514">Liminal webtoon -complete-</a></li>
-            <li><a href="https://mombot.nekoweb.org/mosaic">mosaic</a></li>
-            <li><a href="https://mombotro.itch.io/">itch.io</a></li>
-            <li><a href="https://ko-fi.com/azirona">ko-fi</a></li>
-        </ul>
-        <h2>cool links</h2>
-        <ul>
-            <li><a href="https://archive.org/details/babettes-feast">good movie</a></li>
-            <li><a href="https://www.cherokeedictionary.net/grammar">Cherokee dictionary</a></li>
-            <li><a href="https://drawingbooks.org/">open drawing books</a></li>
-        </ul>
+    <div class="construction-notice panel">
+        <p>buildings under construction</p>
     </div>
 
-    <div class="telegram-feed panel">
+<div class="telegram-feed panel">
         <h2><a href="https://t.me/mombotpro" target="_blank">tg feed</a></h2>
         <ul id="telegram-posts">
             <li>Loading...</li>
@@ -35,31 +22,42 @@
     <div id="mouse-feed" class="mouse-feed"></div>
 
     <!-- Farm Buildings -->
-    <div id="farmhouse" class="farm-building coming-soon">
-        <h3>🏠 FARMHOUSE</h3>
-        <p>About/Contact</p>
-        <p style="margin-top: 10px; font-size: 10px;">(coming soon)</p>
+    <div id="farmhouse" class="farm-building" data-room="about">
+        <h3>FARMHOUSE</h3>
+        <p>about</p>
     </div>
 
-    <a id="chicken-coop" class="farm-building" href="./gallery/comics/">
-        <h3>🐔 CHICKEN COOP</h3>
-        <p>Comics/Webcomics</p>
-    </a>
+    <div id="chicken-coop" class="farm-building" data-room="comics">
+        <h3>CHICKEN COOP</h3>
+        <p>comics/webcomics</p>
+    </div>
 
-    <a id="workshop" class="farm-building" href="./gallery/tools/">
-        <h3>🔨 WORKSHOP</h3>
-        <p>Little Programs & Tools</p>
-    </a>
+    <div id="workshop" class="farm-building" data-room="tools">
+        <h3>WORKSHOP</h3>
+        <p>little programs & tools</p>
+    </div>
 
-    <a id="garden" class="farm-building" href="./gallery/projects/">
-        <h3>🌱 GARDEN</h3>
-        <p>3D Printing & Embroidery</p>
-    </a>
+    <div id="garden" class="farm-building" data-room="projects">
+        <h3>GARDEN</h3>
+        <p>art and drawings</p>
+    </div>
 
-    <div id="farm-stand" class="farm-building coming-soon">
-        <h3>🛒 FARM STAND</h3>
-        <p>Stores & Links</p>
-        <p style="margin-top: 10px; font-size: 10px;">(coming soon)</p>
+    <div id="farm-stand" class="farm-building" data-room="stores">
+        <h3>FARM STAND</h3>
+        <p>stores</p>
+    </div>
+
+    <div id="barn" class="farm-building" data-room="games">
+        <h3>BARN</h3>
+        <p>games</p>
+    </div>
+
+    <!-- Room Expansion Modal -->
+    <div id="room-modal" class="room-modal">
+        <div class="room-modal-content">
+            <button class="room-modal-close">&times;</button>
+            <div id="room-content" class="room-content"></div>
+        </div>
     </div>
 
     <!-- JavaScript -->
@@ -67,6 +65,7 @@
     <script src="./js/egg.js"></script>
     <script src="./js/feed.js"></script>
     <script src="./js/telegram.js"></script>
+    <script src="./js/rooms.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

@@ -125,7 +125,7 @@ class ComicArchive {
                 // If image fails to load, show placeholder
                 const placeholder = document.createElement('div');
                 placeholder.className = 'series-cover placeholder';
-                placeholder.textContent = '📚';
+                placeholder.textContent = '[NO COVER]';
                 img.replaceWith(placeholder);
             };
         } else {
