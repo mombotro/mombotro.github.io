@@ -426,3 +426,52 @@ body {
     width: 150px;
     height: 100px;
 }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: var(--spacing-md);
+    }
+
+    .farm-building {
+        position: static;
+        width: 100%;
+        margin-bottom: 15px;
+        border: 2px solid var(--color-brown);
+        transform: none !important;
+    }
+
+    .farm-building:hover {
+        transform: none;
+    }
+
+    #farmhouse {
+        margin-left: 0;
+    }
+
+    #farm-stand {
+        transform: none;
+    }
+
+    #barn {
+        position: static;
+    }
+
+    .telegram-feed {
+        position: static;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .construction-notice {
+        position: static;
+        margin-bottom: 15px;
+    }
+
+    .room-modal-content {
+        width: 90%;
+        height: 90%;
+        max-width: 100%;
+        max-height: 90vh;
+    }
+}
