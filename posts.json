@@ -1,12 +1,21 @@
 [
   {
+    "id": "371",
+    "datetime": "2026-07-27T06:57:53+00:00",
+    "time": "06:57",
+    "text": "Working on a Playdate walking sim. Got to 30fps with endless mountain ranges on a 16bit system. Not bad. Started messing with adding a sun and expanding camera options. FPS TANKS. I bonked this thing for like… 12 hours trying to optimize anything to get framerate back. I go back in history and load up fresh copies and work forward trying various things until I merge a branch back in that I’ve verified doesn’t wreck my fps and the main is now back in doodoo framerate land. Not possible. Turns out a little bit of code on checking how many film rolls I had slipped in with that merge and it was polling every frame. lol Well now it’s back to blazing fast 30fps again and I get to keep all my fun fancy things.",
+    "html": "Working on a Playdate walking sim. Got to 30fps with endless mountain ranges on a 16bit system. Not bad. Started messing with adding a sun and expanding camera options. FPS TANKS. I bonked this thing for like… 12 hours trying to optimize anything to get framerate back. I go back in history and load up fresh copies and work forward trying various things until I merge a branch back in that I’ve verified doesn’t wreck my fps and the main is now back in doodoo framerate land. Not possible. Turns out a little bit of code on checking how many film rolls I had slipped in with that merge and it was polling every frame. lol Well now it’s back to blazing fast 30fps again and I get to keep all my fun fancy things.",
+    "images": [],
+    "document": null
+  },
+  {
     "id": "370",
     "datetime": "2026-07-15T15:58:57+00:00",
     "time": "15:58",
     "text": "Hype",
     "html": "Hype",
     "images": [
-      "https://cdn1.telesco.pe/file/uGE9zFXmBk2GeCXRf20bS24c6YHiUpeXd2WHXGMfOI_zw0e6mgUsCXQLMCIqvYivHUmeBrtMQuw3-UEGqCp-BnfT-WcOqyZtCiXAepcWq5JYWwEs2rkL0aS045tttrONMC6bkWyGsJHBH7SkhyWELQm3Lh2YzdeAw7tvRD3W5BAu3LlUAdWHr57HUWh1wKvpJAOUkmtfgzjp2aDBGlKsEwTEihkjRhGOr2nrI6mzt51d98kYIJS_PZXB7p2xxqnXqgLiwtPwqHoku_RRNNCInJ1xDc_93taPbcvCxPlwjXGL0357FiqflIL-6d10nNcbRCTxfc2RAXDhF_IfQ7nELA.jpg"
+      "https://cdn1.telesco.pe/file/EXU-QdsY8oXTQAVSdlhYhGKp4BQArVt_cw5x5zTFVCn45sMmzvc98bbGHUzpZu8bBQeA1_g9De35YeQyQXDhhCKvQqy07b1I59CRWGl5SLrP-6yAn7xzMgn7FzrFX_E06DnaAV801HJoxDXwAiM7hBLKvYsYfj8YTiXEV8CvewCNkC1BxwhYaYYbLTxI41UlzEjE-O9Nzlpa9o_IocSt6KTbGYTEMNvip9ofAhhOBXaI0WvzFwZXJUiy9dyYfGnfh6wmvha144zxDA_zsH8LsxZSaX-Nkpjq7YBu-sbFh0oNcTa750XF8fYZid18tN9Tkc8dvBvnb3nAhTAFqn2SQA.jpg"
     ],
     "document": null
   },
@@ -53,7 +62,7 @@
     "text": "Hanging with mom friends and drawing while the kids ran feral in the mud. Very nice time",
     "html": "Hanging with mom friends and drawing while the kids ran feral in the mud. Very nice time",
     "images": [
-      "https://cdn1.telesco.pe/file/ndjQLem8o0R5oDKdjQquPXATBlf6yOW5kbzIe6fO8G_Xlrq2J2QJQ75-6IyKxlJktZXQ5zePPLGZ2yXixOj-Vg5t5WxLX5Fkfrnp_-CjS-HrrW-Pso4MsG2cWc4Th9gvnlyxyqrSKCVGKoLiG6EDWeGQpxGNPBcoirQLgY4FASxWwJCVsvi7hwBKw-eow5bXQPRDumo0p6OKyXktVRTjYhMuL-JxWOG085sBXvaAONcDsNCfNz55Y7LjnjVVWcHzNSqXvrfrEcFLHejci86O3_4cdAVRBB1ty-edRCgqWi0ly3ah2aZK18FTF0n0F1Y9WNmRc-62nGg94ipDIazMeQ.jpg"
+      "https://cdn1.telesco.pe/file/lABGquGFrXOYfOgQ6AaslhijjX7h83aZagfgrgXJ1KDiefeJJctH_3Y5HAm0rZ9qVWar3vZPsfLO1x60lG_f75F4plGzn2fkGS9x1vSDutRHNVz6f3y3vuWICNVc_TTVOTm5Zmz37-JuvggD4Tyy77n0QN75qBx7FDOngICkkRRqk87lD2CIFbUB36KADpy1TgpRtcLLlwJbv7lQOy8ztbpBfCDg7sxfD7LdXhWoZPlZhP5OB40hgAmqDmF-6GtWHc_yirlarZ11LCcvGngOO1j2nWZYqkzdZeonPvBZa24gdKH4qwWfhQDsawMCN-YmVskCsme0y_zB5WRMOyd5kw.jpg"
     ],
     "document": null
   },
@@ -91,7 +100,7 @@
     "text": "Using my stone beads for beadie babies. AHAHAHA",
     "html": "Using my stone beads for beadie babies. AHAHAHA",
     "images": [
-      "https://cdn1.telesco.pe/file/IY4Shtf5RcTLMZ9q-m7ZCe9ng4gcQMwYKdQ8sPbTpsEoYl4fR9TlnDsJ5Nvo_fGKzwWQYuzocD75T1-GcCeUHU-tRMVTpMZ8lQ7PTLrlvmAVnbTLR5GXtUhnU3_nceKQ21X7gHTDLqj1Jx9pBTVeenoorP6KqiYubhBJFgmv9BRBeL1GK4H9X4DezEW6bwJkXxDd_fPMgDn2pkii11bIaJPRoXmy-krVtNgktYcundfXJaEiwwKy_ySEK_IIYS5aYUwLN9tyoX8_F0Nbil5o3EyWgQyoVEzZSLJji4mXxCaWJzCbp2REHEBgD4opnBnh3q3Y2hwar9T1BiKT8wnsgQ.jpg"
+      "https://cdn1.telesco.pe/file/tfXVtnYzfp6Augu9YLobOgfSuJXXhyKEUpgRyexIAGht4lifcr-0pPFW_dmBZ7aNxYvjxOJFyYNq5ji4XWbPQCyl3N-VUkQb4yIgMBQHPAKnZNXHiwLWKiO7nzW7S17UaTrGrAP0CC7Mq8fF76A3LYqfEObi5R6tu0ebk1JBHgi7C_VXzV0qh8940SByAjfNNO9t5ZKsCShrAToCrnpYwqfu1j-gjoMUMX4jdWc6Uqlg7XEQoDneHO76c4WlLNWgGre43CVItWckzidZHuEmlyj9qrnsZL_KXH7-QSo59of0-QY7FateeJVebWfjrtpBZY77TFA0zToeNoML2I_yTg.jpg"
     ],
     "document": null
   },
@@ -102,7 +111,7 @@
     "text": "Practicing disabled leopards for comicbook reasons",
     "html": "Practicing disabled leopards for comicbook reasons",
     "images": [
-      "https://cdn1.telesco.pe/file/Vi_qiT2puJTHpkih9O8PywwepyzU1zM0-PAfjgg77pDT6S5k5HiDFMXJrblQrhXqpcC6keezQADPD561iLdNgtnjGjlHaMMsxzfQ-xxWCzHFxwk7Uev4rDk1xKSrPRzwr_szf-2Q2eh0KQej-D6rRKw0HWuid7w1Fo-NAIQUKVqrtqpYhVypD_zB2FItcYeSri0ge6XhJ6zZcfTqC45-qGTkOT7FSmGy4tx3-T4u-5XvCsBAOQHCdBYp9icNxsaN3mSqss6ytTvDRE8oG6WzXF1x2Pv6T31ILEWCPUe0UD456jec2pOc47-XjA5MHwQYLriELExYXn3OzVCl-V3vPA.jpg"
+      "https://cdn1.telesco.pe/file/LbbsHfK8o8UDTvISGWQlpP3BAnhLgZbp66s1c-3ZAYeOKM1Y5ndDy0m_g3efe3sa9Otet9vTRhFcQXP_GZ7WTB31937PbfjsNTNuIHnihHBAH2ANFQIZ50tlDU5F9kwUQwHkAT-YuB0RT2ZZH67jaXyjwgu6dSMFj6O-JzT-BAg4EHD8AJLrKkWaHRYOH91r_PxNNx5nM_HjamVCgmKFLolke-g69xsahRCBHciV8ESdxjMrgs78uicHq8q7PhX2vnJXhU7fMYMu6vSIlRWjhLxQIvYj8S4e279ZM_Im2ZEKcqsM44qOzEEX0E71vyADc0cGzEKlqNtL2ssIw3tdRA.jpg"
     ],
     "document": null
   },
@@ -167,8 +176,8 @@
     "text": "The videos in question",
     "html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\">The videos in question",
     "images": [
-      "https://cdn1.telesco.pe/file/t5q87I94gCjzmQ6AcZcmOzIZrqikwFfPE-r4YHumNnpu3V4ZcVqdEF2TRWrXPAkiuncaknmBuoUMtL6W47PIsCfbXsnuZRkwUv_dHwYPop1u_ZGbi-gfJ0-KtBHdU6IWRELVnN3qGD0estqR7lJ30EfhLkuHXx6Ch1EvSBaif9dKBP69BtWHBV3Tg_wAkZhIbyCaqjnrKHqS9RUpqCenunPBARW_8SwZv0rpo_mXPvZk4TYhEdYppYVPUG2qgLImzgerx_4Op4xAWy6ojCs0CrGwNjULm5cD734n-OO3FPvO3upz67Vm7TbAIhxLQjCD7Uasc9J-5d541kax_5STYg",
-      "https://cdn1.telesco.pe/file/u01cyIoCRc0EaHOjjssujcKYcTC5eiaJSbVsbhzFIEi4F1bkRI_BnukH32LfeQ1oddoJly98AvL4mIaIogQsCs7xQ8T_ua5FBHNS5-XQacu2HbNslVfnu5F2v5iiyIMz8G3voZHX6CEpMd-xsjdh2fa2b9I-7f7GRCP34CRLqgNnO6mIbdgnJje47PVMMZQ1Za8iVEz7KSJtl1r-PPN1b0ElSeWMglL0hMulrBNWs2Wpf0peOLzqy0MLWBBVKEswHuArZAVIod-dK0aTq0xlfgQc1QHZrpAYNyKhDUHHWN52FuPG_07SCNxeMdrr2XHBZoICpkEAQESBOwsFKHiDAQ"
+      "https://cdn1.telesco.pe/file/X5Tgq3SLdySRPADP5MKG3m0itmE4YP0mU_b5WQExBOUZ_YZOzGXs-AAeEdNId5zlPYyNwILE6IibhJJgtfPPp5mlr0ykaFOLNdUUnKN-BZ4QUk3DVaJOgByXRN2WPjcazB6c8fl8UJE4NKBRgG2VNwnGTU8LcBguUL_WMKo5wvXCdos4VWYJqgHJfk_5kdwPBBRdlSrD6-xl_yT_jSExjxEk2XwACvrodWuHvvDMxpowGG7iXbHdkNoNQeIciys3jeMWR-CbHcViINrdHr4GcyXki5txXaCvJH5IRKKl7r1phtEQooxYvnE4NrKPn_dLqkEWBZmBNr3feoof-QxyGQ",
+      "https://cdn1.telesco.pe/file/C_90wAIwYHimQnxylbvlilKOfYWo3LqojL7tLUvAmngwRO6JWIh_7jRnQ5f5KO-zFCIsoFNlL9HQnu3SWFo7GXMj8t0GMtRhmTG472ENHunMY4FUqcGIJjGHUWK6Z0kfHiQMc_7oXmn6PgL5P11nLAAXC4bTO5BnlgKHaGtE9R5J357cKkAYDdBBTYJAVX6guRB5hwBkWnsj9T7KyxyqLwGJrHeXaG1DJWJWGfqyXOm7T-sry76tWvbYoEjeg8tmfxXl-fUU0Iv4FeKZXQHDLCwDIHXB9wIC3QkUBF_OpGCmCnBGQdWXipXOm2FUKKHL5l2ipR0mHjxn8dTYfJxafw"
     ],
     "document": null
   }
