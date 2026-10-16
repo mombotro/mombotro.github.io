@@ -37,7 +37,7 @@ body {
     display: inline-block;
     margin-bottom: 20px;
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .back-link:hover {
@@ -53,7 +53,7 @@ body {
 }
 
 .subtitle {
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
     margin: 0;
     font-style: italic;
@@ -63,7 +63,7 @@ body {
 .loading, .error {
     text-align: center;
     padding: 40px 20px;
-    font-size: 16px;
+    font-size: 18px;
     color: #8B4513;
 }
 
@@ -130,7 +130,7 @@ body {
 }
 
 .series-description {
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
     margin: 0 0 12px 0;
     line-height: 1.4;
@@ -148,7 +148,7 @@ body {
     background: #8B4513;
     color: white;
     padding: 4px 10px;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -175,7 +175,7 @@ body {
     border: none;
     cursor: pointer;
     font-family: "Terminus", "Terminus (TTF)", monospace;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     transition: background 0.3s ease;
     text-decoration: none;
@@ -207,7 +207,7 @@ body {
 }
 
 .empty-state p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto 20px;
@@ -217,7 +217,7 @@ body {
     background: rgba(139, 69, 19, 0.1);
     padding: 2px 6px;
     border: 1px dashed #8B4513;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* Responsive Design */
@@ -255,7 +255,7 @@ body {
     }
 
     .back-link {
-        font-size: 12px;
+        font-size: 14px;
         padding: 6px 12px;
     }
 
@@ -268,10 +268,10 @@ body {
     }
 
     .series-title {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .series-description {
-        font-size: 12px;
+        font-size: 14px;
     }
 }

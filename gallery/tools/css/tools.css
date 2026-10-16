@@ -37,7 +37,7 @@ body {
     display: inline-block;
     margin-bottom: 20px;
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .back-link:hover {
@@ -53,7 +53,7 @@ body {
 }
 
 .subtitle {
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
     margin: 0;
     font-style: italic;
@@ -108,7 +108,7 @@ body {
 }
 
 .tool-description {
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
     margin: 0 0 12px 0;
     line-height: 1.4;
@@ -124,7 +124,7 @@ body {
     border: none;
     cursor: pointer;
     font-family: "Terminus", "Terminus (TTF)", monospace;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     transition: background 0.3s ease;
     text-decoration: none;
@@ -165,7 +165,7 @@ body {
     }
 
     .back-link {
-        font-size: 12px;
+        font-size: 14px;
         padding: 6px 12px;
     }
 
@@ -174,10 +174,10 @@ body {
     }
 
     .tool-title {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .tool-description {
-        font-size: 12px;
+        font-size: 14px;
     }
 }

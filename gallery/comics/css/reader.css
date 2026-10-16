@@ -50,7 +50,7 @@ body {
     border: 2px dashed #8B4513;
     background: rgba(139, 69, 19, 0.05);
     transition: all 0.3s ease;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .back-btn:hover {
@@ -66,12 +66,12 @@ body {
 #series-title {
     color: #8B4513;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .chapter-subtitle {
     color: #666;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .btn {
@@ -81,7 +81,7 @@ body {
     padding: 8px 14px;
     cursor: pointer;
     font-family: "Terminus", "Terminus (TTF)", monospace;
-    font-size: 13px;
+    font-size: 14px;
     transition: background 0.3s ease;
     white-space: nowrap;
 }
@@ -91,7 +91,7 @@ body {
 }
 
 #mode-icon {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* ===== READER CONTAINER ===== */
@@ -103,7 +103,7 @@ body {
 .loading, .error {
     text-align: center;
     padding: 60px 20px;
-    font-size: 16px;
+    font-size: 18px;
     color: #8B4513;
 }
 
@@ -178,7 +178,7 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     font-family: "Terminus", "Terminus (TTF)", monospace;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     transition: background 0.3s ease;
 }
@@ -197,7 +197,7 @@ body {
     font-family: "Terminus", "Terminus (TTF)", monospace;
     color: #8B4513;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 /* ===== CHAPTER MENU SIDEBAR ===== */
@@ -294,13 +294,13 @@ body {
 .chapter-item h3 {
     margin: 0 0 5px 0;
     color: #8B4513;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .chapter-item p {
     margin: 0;
     color: #666;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* ===== TAP ZONES (Mobile Navigation) ===== */
@@ -340,15 +340,15 @@ body {
     }
 
     #series-title {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .chapter-subtitle {
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .btn, .back-btn {
-        font-size: 12px;
+        font-size: 14px;
         padding: 6px 10px;
     }
 
@@ -375,11 +375,11 @@ body {
 
     .nav-btn {
         padding: 8px 12px;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .page-counter {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
@@ -397,11 +397,11 @@ body {
     }
 
     #series-title {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .btn, .back-btn {
-        font-size: 11px;
+        font-size: 14px;
         padding: 6px 8px;
     }
 
@@ -419,7 +419,7 @@ body {
 
     .nav-btn {
         padding: 8px 10px;
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .menu-header {
