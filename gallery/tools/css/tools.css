@@ -1,3 +1,6 @@
+@font-face{font-family:"Terminus";font-style:normal;font-weight:400;src:local("Terminus"),url("../../../css/fonts/Terminus-Regular.ttf") format("truetype");font-display:swap}
+@font-face{font-family:"Terminus";font-style:normal;font-weight:700;src:local("Terminus"),url("../../../css/fonts/Terminus-Bold.ttf") format("truetype");font-display:swap}
+@font-face{font-family:"Terminus";font-style:italic;font-weight:400;src:local("Terminus"),url("../../../css/fonts/Terminus-Italic.ttf") format("truetype");font-display:swap}
 /* Tools Page Styles - Retro Farm Aesthetic */
 
 * {
@@ -6,7 +9,7 @@
 
 body {
     background: #fffef7;
-    font-family: monospace;
+    font-family: "Terminus", "Terminus (TTF)", monospace;
     color: #333;
     margin: 0;
     padding: 20px;
@@ -120,7 +123,7 @@ body {
     margin-top: 12px;
     border: none;
     cursor: pointer;
-    font-family: monospace;
+    font-family: "Terminus", "Terminus (TTF)", monospace;
     font-size: 14px;
     font-weight: bold;
     transition: background 0.3s ease;
