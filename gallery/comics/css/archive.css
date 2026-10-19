@@ -1,6 +1,4 @@
-@font-face{font-family:"Terminus";font-style:normal;font-weight:400;src:local("Terminus"),url("../../../css/fonts/Terminus-Regular.ttf") format("truetype");font-display:swap}
-@font-face{font-family:"Terminus";font-style:normal;font-weight:700;src:local("Terminus"),url("../../../css/fonts/Terminus-Bold.ttf") format("truetype");font-display:swap}
-@font-face{font-family:"Terminus";font-style:italic;font-weight:400;src:local("Terminus"),url("../../../css/fonts/Terminus-Italic.ttf") format("truetype");font-display:swap}
+@font-face{font-family:"Lexend";font-style:normal;font-weight:100 900;src:local("Lexend"),url("../../../css/fonts/Lexend.woff2") format("woff2");font-display:swap}
 /* Archive Page Styles - Retro Farm Aesthetic */
 
 * {
@@ -9,7 +7,7 @@
 
 body {
     background: #fffef7;
-    font-family: "Terminus", "Terminus (TTF)", monospace;
+    font-family: 'Lexend', system-ui, sans-serif;
     color: #333;
     margin: 0;
     padding: 20px;
@@ -174,7 +172,7 @@ body {
     margin-top: 12px;
     border: none;
     cursor: pointer;
-    font-family: "Terminus", "Terminus (TTF)", monospace;
+    font-family: 'Lexend', system-ui, sans-serif;
     font-size: 16px;
     font-weight: bold;
     transition: background 0.3s ease;
